@@ -11,11 +11,14 @@ describe('resource teamMembers', () => {
   // Prism tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.teamMembers.create({
-      character_id: 'jamie-tartt',
-      jersey_number: 9,
-      position: 'forward',
-      team_id: 'afc-richmond',
-      years_with_team: 3,
+      member: {
+        character_id: 'jamie-tartt',
+        jersey_number: 9,
+        position: 'forward',
+        team_id: 'afc-richmond',
+        years_with_team: 3,
+        member_type: 'player',
+      },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -29,15 +32,17 @@ describe('resource teamMembers', () => {
   // Prism tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.teamMembers.create({
-      character_id: 'jamie-tartt',
-      jersey_number: 9,
-      position: 'forward',
-      team_id: 'afc-richmond',
-      years_with_team: 3,
-      assists: 23,
-      goals_scored: 47,
-      is_captain: false,
-      member_type: 'player',
+      member: {
+        character_id: 'jamie-tartt',
+        jersey_number: 9,
+        position: 'forward',
+        team_id: 'afc-richmond',
+        years_with_team: 3,
+        assists: 23,
+        goals_scored: 47,
+        is_captain: false,
+        member_type: 'player',
+      },
     });
   });
 
@@ -54,8 +59,8 @@ describe('resource teamMembers', () => {
   });
 
   // Prism tests are disabled
-  test.skip('update', async () => {
-    const responsePromise = client.teamMembers.update('member_id', {});
+  test.skip('update: only required params', async () => {
+    const responsePromise = client.teamMembers.update('member_id', { updates: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -63,6 +68,21 @@ describe('resource teamMembers', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Prism tests are disabled
+  test.skip('update: required and optional params', async () => {
+    const response = await client.teamMembers.update('member_id', {
+      updates: {
+        assists: 0,
+        goals_scored: 0,
+        is_captain: true,
+        jersey_number: 1,
+        position: 'goalkeeper',
+        team_id: 'team_id',
+        years_with_team: 0,
+      },
+    });
   });
 
   // Prism tests are disabled

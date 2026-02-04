@@ -29,9 +29,9 @@ const client = new Believe({
   apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted
 });
 
-const response = await client.characters.getAllCharacters();
+const characters = await client.characters.list();
 
-console.log(response.data);
+console.log(characters.data);
 ```
 
 ### Request & Response types
@@ -46,8 +46,7 @@ const client = new Believe({
   apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted
 });
 
-const response: Believe.CharacterGetAllCharactersResponse =
-  await client.characters.getAllCharacters();
+const characters: Believe.CharacterListResponse = await client.characters.list();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -91,7 +90,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const response = await client.characters.getAllCharacters().catch(async (err) => {
+const characters = await client.characters.list().catch(async (err) => {
   if (err instanceof Believe.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
@@ -131,7 +130,7 @@ const client = new Believe({
 });
 
 // Or, configure per-request:
-await client.characters.getAllCharacters({
+await client.characters.list({
   maxRetries: 5,
 });
 ```
@@ -148,7 +147,7 @@ const client = new Believe({
 });
 
 // Override per-request:
-await client.characters.getAllCharacters({
+await client.characters.list({
   timeout: 5 * 1000,
 });
 ```
@@ -171,13 +170,13 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new Believe();
 
-const response = await client.characters.getAllCharacters().asResponse();
+const response = await client.characters.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: response, response: raw } = await client.characters.getAllCharacters().withResponse();
+const { data: characters, response: raw } = await client.characters.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(response.data);
+console.log(characters.data);
 ```
 
 ### Logging
@@ -257,7 +256,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.characters.getAllCharacters({
+client.characters.list({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
