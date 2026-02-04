@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { PagePromise, SkipLimitPage, type SkipLimitPageParams } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -71,14 +72,17 @@ export class Episodes extends APIResource {
    *
    * @example
    * ```ts
-   * const paginatedResponse = await client.episodes.list();
+   * // Automatically fetches more pages as needed.
+   * for await (const episode of client.episodes.list()) {
+   *   // ...
+   * }
    * ```
    */
   list(
     query: EpisodeListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<PaginatedResponse> {
-    return this._client.get('/episodes', { query, ...options });
+  ): PagePromise<EpisodesSkipLimitPage, Episode> {
+    return this._client.getAPIList('/episodes', SkipLimitPage<Episode>, { query, ...options });
   }
 
   /**
@@ -115,18 +119,27 @@ export class Episodes extends APIResource {
    *
    * @example
    * ```ts
-   * const paginatedResponse =
-   *   await client.episodes.listBySeason(0);
+   * // Automatically fetches more pages as needed.
+   * for await (const episode of client.episodes.listBySeason(
+   *   0,
+   * )) {
+   *   // ...
+   * }
    * ```
    */
   listBySeason(
     seasonNumber: number,
     query: EpisodeListBySeasonParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<PaginatedResponse> {
-    return this._client.get(path`/episodes/seasons/${seasonNumber}`, { query, ...options });
+  ): PagePromise<EpisodesSkipLimitPage, Episode> {
+    return this._client.getAPIList(path`/episodes/seasons/${seasonNumber}`, SkipLimitPage<Episode>, {
+      query,
+      ...options,
+    });
   }
 }
+
+export type EpisodesSkipLimitPage = SkipLimitPage<Episode>;
 
 /**
  * Full episode model with ID.
@@ -349,45 +362,26 @@ export interface EpisodeUpdateParams {
   writer?: string | null;
 }
 
-export interface EpisodeListParams {
+export interface EpisodeListParams extends SkipLimitPageParams {
   /**
    * Filter by character focus (character ID)
    */
   character_focus?: string | null;
 
   /**
-   * Maximum number of items to return (max: 100)
-   */
-  limit?: number;
-
-  /**
    * Filter by season
    */
   season?: number | null;
-
-  /**
-   * Number of items to skip (offset)
-   */
-  skip?: number;
 }
 
-export interface EpisodeListBySeasonParams {
-  /**
-   * Maximum number of items to return (max: 100)
-   */
-  limit?: number;
-
-  /**
-   * Number of items to skip (offset)
-   */
-  skip?: number;
-}
+export interface EpisodeListBySeasonParams extends SkipLimitPageParams {}
 
 export declare namespace Episodes {
   export {
     type Episode as Episode,
     type PaginatedResponse as PaginatedResponse,
     type EpisodeGetWisdomResponse as EpisodeGetWisdomResponse,
+    type EpisodesSkipLimitPage as EpisodesSkipLimitPage,
     type EpisodeCreateParams as EpisodeCreateParams,
     type EpisodeUpdateParams as EpisodeUpdateParams,
     type EpisodeListParams as EpisodeListParams,

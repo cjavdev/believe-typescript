@@ -13,20 +13,22 @@ import * as Shims from './internal/shims';
 import * as Opts from './internal/request-options';
 import { VERSION } from './version';
 import * as Errors from './core/error';
+import * as Pagination from './core/pagination';
+import { AbstractPage, type SkipLimitPageParams, SkipLimitPageResponse } from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { BelieveResource, BelieveSubmitParams, BelieveSubmitResponse } from './resources/believe';
-import { Biscuit, BiscuitListParams, BiscuitListResponse, Biscuits } from './resources/biscuits';
+import { Biscuit, BiscuitListParams, Biscuits, BiscuitsSkipLimitPage } from './resources/biscuits';
 import {
   Character,
   CharacterCreateParams,
   CharacterGetQuotesResponse,
   CharacterListParams,
-  CharacterListResponse,
   CharacterRole,
   CharacterUpdateParams,
   Characters,
+  CharactersSkipLimitPage,
   EmotionalStats,
   GrowthArc,
 } from './resources/characters';
@@ -39,6 +41,7 @@ import {
   EpisodeListParams,
   EpisodeUpdateParams,
   Episodes,
+  EpisodesSkipLimitPage,
   PaginatedResponse,
 } from './resources/episodes';
 import { Health, HealthCheckResponse } from './resources/health';
@@ -56,6 +59,7 @@ import {
   QuoteTheme,
   QuoteUpdateParams,
   Quotes,
+  QuotesSkipLimitPage,
 } from './resources/quotes';
 import {
   Reframe,
@@ -66,21 +70,23 @@ import { Stream, StreamTestConnectionResponse } from './resources/stream';
 import {
   Coach,
   CoachSpecialty,
+  CoachesSkipLimitPage,
   EquipmentManager,
   MedicalSpecialty,
   MedicalStaff,
   Player,
+  PlayersSkipLimitPage,
   Position,
   TeamMemberCreateParams,
   TeamMemberCreateResponse,
   TeamMemberListCoachesParams,
-  TeamMemberListCoachesResponse,
   TeamMemberListParams,
   TeamMemberListPlayersParams,
-  TeamMemberListPlayersResponse,
   TeamMemberListResponse,
+  TeamMemberListResponsesSkipLimitPage,
   TeamMemberListStaffParams,
   TeamMemberListStaffResponse,
+  TeamMemberListStaffResponsesSkipLimitPage,
   TeamMemberRetrieveResponse,
   TeamMemberUpdateParams,
   TeamMemberUpdateResponse,
@@ -105,11 +111,11 @@ import {
   MatchGetLessonResponse,
   MatchGetTurningPointsResponse,
   MatchListParams,
-  MatchListResponse,
   MatchResult,
   MatchType,
   MatchUpdateParams,
   Matches,
+  MatchesSkipLimitPage,
   TurningPoint,
 } from './resources/matches/matches';
 import {
@@ -121,10 +127,10 @@ import {
   TeamGetRivalsResponse,
   TeamListLogosResponse,
   TeamListParams,
-  TeamListResponse,
   TeamUpdateParams,
   TeamValues,
   Teams,
+  TeamsSkipLimitPage,
 } from './resources/teams/teams';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -598,6 +604,25 @@ export class Believe {
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
 
+  getAPIList<Item, PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>>(
+    path: string,
+    Page: new (...args: any[]) => PageClass,
+    opts?: RequestOptions,
+  ): Pagination.PagePromise<PageClass, Item> {
+    return this.requestAPIList(Page, { method: 'get', path, ...opts });
+  }
+
+  requestAPIList<
+    Item = unknown,
+    PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>,
+  >(
+    Page: new (...args: ConstructorParameters<typeof Pagination.AbstractPage>) => PageClass,
+    options: FinalRequestOptions,
+  ): Pagination.PagePromise<PageClass, Item> {
+    const request = this.makeRequest(options, null, undefined);
+    return new Pagination.PagePromise<PageClass, Item>(this as any as Believe, request, Page);
+  }
+
   async fetchWithTimeout(
     url: RequestInfo,
     init: RequestInit | undefined,
@@ -871,6 +896,12 @@ Believe.Version = Version;
 export declare namespace Believe {
   export type RequestOptions = Opts.RequestOptions;
 
+  export import SkipLimitPage = Pagination.SkipLimitPage;
+  export {
+    type SkipLimitPageParams as SkipLimitPageParams,
+    type SkipLimitPageResponse as SkipLimitPageResponse,
+  };
+
   export { type GetWelcomeResponse as GetWelcomeResponse };
 
   export {
@@ -879,8 +910,8 @@ export declare namespace Believe {
     type CharacterRole as CharacterRole,
     type EmotionalStats as EmotionalStats,
     type GrowthArc as GrowthArc,
-    type CharacterListResponse as CharacterListResponse,
     type CharacterGetQuotesResponse as CharacterGetQuotesResponse,
+    type CharactersSkipLimitPage as CharactersSkipLimitPage,
     type CharacterCreateParams as CharacterCreateParams,
     type CharacterUpdateParams as CharacterUpdateParams,
     type CharacterListParams as CharacterListParams,
@@ -892,10 +923,10 @@ export declare namespace Believe {
     type League as League,
     type Team as Team,
     type TeamValues as TeamValues,
-    type TeamListResponse as TeamListResponse,
     type TeamGetCultureResponse as TeamGetCultureResponse,
     type TeamGetRivalsResponse as TeamGetRivalsResponse,
     type TeamListLogosResponse as TeamListLogosResponse,
+    type TeamsSkipLimitPage as TeamsSkipLimitPage,
     type TeamCreateParams as TeamCreateParams,
     type TeamUpdateParams as TeamUpdateParams,
     type TeamListParams as TeamListParams,
@@ -907,9 +938,9 @@ export declare namespace Believe {
     type MatchResult as MatchResult,
     type MatchType as MatchType,
     type TurningPoint as TurningPoint,
-    type MatchListResponse as MatchListResponse,
     type MatchGetLessonResponse as MatchGetLessonResponse,
     type MatchGetTurningPointsResponse as MatchGetTurningPointsResponse,
+    type MatchesSkipLimitPage as MatchesSkipLimitPage,
     type MatchCreateParams as MatchCreateParams,
     type MatchUpdateParams as MatchUpdateParams,
     type MatchListParams as MatchListParams,
@@ -920,6 +951,7 @@ export declare namespace Believe {
     type Episode as Episode,
     type PaginatedResponse as PaginatedResponse,
     type EpisodeGetWisdomResponse as EpisodeGetWisdomResponse,
+    type EpisodesSkipLimitPage as EpisodesSkipLimitPage,
     type EpisodeCreateParams as EpisodeCreateParams,
     type EpisodeUpdateParams as EpisodeUpdateParams,
     type EpisodeListParams as EpisodeListParams,
@@ -932,6 +964,7 @@ export declare namespace Believe {
     type Quote as Quote,
     type QuoteMoment as QuoteMoment,
     type QuoteTheme as QuoteTheme,
+    type QuotesSkipLimitPage as QuotesSkipLimitPage,
     type QuoteCreateParams as QuoteCreateParams,
     type QuoteUpdateParams as QuoteUpdateParams,
     type QuoteListParams as QuoteListParams,
@@ -969,7 +1002,7 @@ export declare namespace Believe {
   export {
     Biscuits as Biscuits,
     type Biscuit as Biscuit,
-    type BiscuitListResponse as BiscuitListResponse,
+    type BiscuitsSkipLimitPage as BiscuitsSkipLimitPage,
     type BiscuitListParams as BiscuitListParams,
   };
 
@@ -994,9 +1027,11 @@ export declare namespace Believe {
     type TeamMemberRetrieveResponse as TeamMemberRetrieveResponse,
     type TeamMemberUpdateResponse as TeamMemberUpdateResponse,
     type TeamMemberListResponse as TeamMemberListResponse,
-    type TeamMemberListCoachesResponse as TeamMemberListCoachesResponse,
-    type TeamMemberListPlayersResponse as TeamMemberListPlayersResponse,
     type TeamMemberListStaffResponse as TeamMemberListStaffResponse,
+    type TeamMemberListResponsesSkipLimitPage as TeamMemberListResponsesSkipLimitPage,
+    type CoachesSkipLimitPage as CoachesSkipLimitPage,
+    type PlayersSkipLimitPage as PlayersSkipLimitPage,
+    type TeamMemberListStaffResponsesSkipLimitPage as TeamMemberListStaffResponsesSkipLimitPage,
     type TeamMemberCreateParams as TeamMemberCreateParams,
     type TeamMemberUpdateParams as TeamMemberUpdateParams,
     type TeamMemberListParams as TeamMemberListParams,

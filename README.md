@@ -29,9 +29,10 @@ const client = new Believe({
   apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted
 });
 
-const characters = await client.characters.list();
+const page = await client.characters.list();
+const character = page.data[0];
 
-console.log(characters.data);
+console.log(character.id);
 ```
 
 ### Request & Response types
@@ -46,7 +47,7 @@ const client = new Believe({
   apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted
 });
 
-const characters: Believe.CharacterListResponse = await client.characters.list();
+const [character]: [Believe.Character] = await client.characters.list();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -90,7 +91,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const characters = await client.characters.list().catch(async (err) => {
+const page = await client.characters.list().catch(async (err) => {
   if (err instanceof Believe.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
@@ -156,6 +157,37 @@ On timeout, an `APIConnectionTimeoutError` is thrown.
 
 Note that requests which time out will be [retried twice by default](#retries).
 
+## Auto-pagination
+
+List methods in the Believe API are paginated.
+You can use the `for await … of` syntax to iterate through items across all pages:
+
+```ts
+async function fetchAllCharacters(params) {
+  const allCharacters = [];
+  // Automatically fetches more pages as needed.
+  for await (const character of client.characters.list()) {
+    allCharacters.push(character);
+  }
+  return allCharacters;
+}
+```
+
+Alternatively, you can request a single page at a time:
+
+```ts
+let page = await client.characters.list();
+for (const character of page.data) {
+  console.log(character);
+}
+
+// Convenience methods are provided for manually paginating:
+while (page.hasNextPage()) {
+  page = await page.getNextPage();
+  // ...
+}
+```
+
 ## Advanced Usage
 
 ### Accessing raw Response data (e.g., headers)
@@ -174,9 +206,11 @@ const response = await client.characters.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: characters, response: raw } = await client.characters.list().withResponse();
+const { data: page, response: raw } = await client.characters.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(characters.data);
+for await (const character of page) {
+  console.log(character.id);
+}
 ```
 
 ### Logging
