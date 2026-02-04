@@ -8,11 +8,11 @@ export {
   type CharacterRole,
   type EmotionalStats,
   type GrowthArc,
-  type CharacterListResponse,
+  type CharacterGetAllCharactersResponse,
   type CharacterGetQuotesResponse,
   type CharacterCreateParams,
   type CharacterUpdateParams,
-  type CharacterListParams,
+  type CharacterGetAllCharactersParams,
 } from './characters';
 export { Coaching } from './coaching/coaching';
 export { Conflicts, type ConflictResolveResponse, type ConflictResolveParams } from './conflicts';
