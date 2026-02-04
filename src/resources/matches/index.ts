@@ -12,5 +12,6 @@ export {
   type MatchCreateParams,
   type MatchUpdateParams,
   type MatchListParams,
+  type MatchStreamLiveParams,
   type MatchesSkipLimitPage,
 } from './matches';
