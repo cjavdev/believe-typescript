@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0 (2026-02-04)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/cjavdev/believe-typescript/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* Update Character list description ([d631970](https://github.com/cjavdev/believe-typescript/commit/d631970cb487e3978ecea468497a37fa765e70c9))
+
 ## 0.4.0 (2026-02-04)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/cjavdev/believe-typescript/compare/v0.3.0...v0.4.0)
