@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as TeamMembersAPI from './team-members';
 import { APIPromise } from '../core/api-promise';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
@@ -38,20 +39,10 @@ export class TeamMembers extends APIResource {
    *   "assists": 15
    * }
    * ```
-   *
-   * @example
-   * ```ts
-   * const teamMember = await client.teamMembers.create({
-   *   character_id: 'jamie-tartt',
-   *   jersey_number: 9,
-   *   position: 'forward',
-   *   team_id: 'afc-richmond',
-   *   years_with_team: 3,
-   * });
-   * ```
    */
-  create(body: TeamMemberCreateParams, options?: RequestOptions): APIPromise<TeamMemberCreateResponse> {
-    return this._client.post('/team-members', { body, ...options });
+  create(params: TeamMemberCreateParams, options?: RequestOptions): APIPromise<TeamMemberCreateResponse> {
+    const { member } = params;
+    return this._client.post('/team-members', { body: member, ...options });
   }
 
   /**
@@ -78,10 +69,11 @@ export class TeamMembers extends APIResource {
    */
   update(
     memberID: string,
-    body: TeamMemberUpdateParams,
+    params: TeamMemberUpdateParams,
     options?: RequestOptions,
   ): APIPromise<TeamMemberUpdateResponse> {
-    return this._client.patch(path`/team-members/${memberID}`, { body, ...options });
+    const { updates } = params;
+    return this._client.patch(path`/team-members/${memberID}`, { body: updates, ...options });
   }
 
   /**
@@ -468,13 +460,21 @@ export interface TeamMemberListStaffResponse {
   total: number;
 }
 
-export type TeamMemberCreateParams =
-  | TeamMemberCreateParams.PlayerBase
-  | TeamMemberCreateParams.CoachBase
-  | TeamMemberCreateParams.MedicalStaffBase
-  | TeamMemberCreateParams.EquipmentManagerBase;
+export interface TeamMemberCreateParams {
+  /**
+   * A football player on the team.
+   */
+  member:
+    | TeamMemberCreateParams.PlayerBase
+    | TeamMemberCreateParams.CoachBase
+    | TeamMemberCreateParams.MedicalStaffBase
+    | TeamMemberCreateParams.EquipmentManagerBase;
+}
 
-export declare namespace TeamMemberCreateParams {
+export namespace TeamMemberCreateParams {
+  /**
+   * A football player on the team.
+   */
   export interface PlayerBase {
     /**
      * ID of the character (references /characters/{id})
@@ -489,7 +489,7 @@ export declare namespace TeamMemberCreateParams {
     /**
      * Playing position on the field
      */
-    position: Position;
+    position: TeamMembersAPI.Position;
 
     /**
      * ID of the team they belong to
@@ -522,6 +522,9 @@ export declare namespace TeamMemberCreateParams {
     member_type?: 'player';
   }
 
+  /**
+   * A coach or coaching staff member.
+   */
   export interface CoachBase {
     /**
      * ID of the character (references /characters/{id})
@@ -531,7 +534,7 @@ export declare namespace TeamMemberCreateParams {
     /**
      * Coaching specialty/role
      */
-    specialty: CoachSpecialty;
+    specialty: TeamMembersAPI.CoachSpecialty;
 
     /**
      * ID of the team they belong to
@@ -559,6 +562,9 @@ export declare namespace TeamMemberCreateParams {
     win_rate?: number | null;
   }
 
+  /**
+   * Medical and wellness staff member.
+   */
   export interface MedicalStaffBase {
     /**
      * ID of the character (references /characters/{id})
@@ -568,7 +574,7 @@ export declare namespace TeamMemberCreateParams {
     /**
      * Medical specialty
      */
-    specialty: MedicalSpecialty;
+    specialty: TeamMembersAPI.MedicalSpecialty;
 
     /**
      * ID of the team they belong to
@@ -596,6 +602,9 @@ export declare namespace TeamMemberCreateParams {
     qualifications?: Array<string>;
   }
 
+  /**
+   * Equipment and kit management staff.
+   */
   export interface EquipmentManagerBase {
     /**
      * ID of the character (references /characters/{id})
@@ -629,13 +638,21 @@ export declare namespace TeamMemberCreateParams {
   }
 }
 
-export type TeamMemberUpdateParams =
-  | TeamMemberUpdateParams.PlayerUpdate
-  | TeamMemberUpdateParams.CoachUpdate
-  | TeamMemberUpdateParams.MedicalStaffUpdate
-  | TeamMemberUpdateParams.EquipmentManagerUpdate;
+export interface TeamMemberUpdateParams {
+  /**
+   * Update model for players.
+   */
+  updates:
+    | TeamMemberUpdateParams.PlayerUpdate
+    | TeamMemberUpdateParams.CoachUpdate
+    | TeamMemberUpdateParams.MedicalStaffUpdate
+    | TeamMemberUpdateParams.EquipmentManagerUpdate;
+}
 
-export declare namespace TeamMemberUpdateParams {
+export namespace TeamMemberUpdateParams {
+  /**
+   * Update model for players.
+   */
   export interface PlayerUpdate {
     assists?: number | null;
 
@@ -648,20 +665,23 @@ export declare namespace TeamMemberUpdateParams {
     /**
      * Football positions for players.
      */
-    position?: Position | null;
+    position?: TeamMembersAPI.Position | null;
 
     team_id?: string | null;
 
     years_with_team?: number | null;
   }
 
+  /**
+   * Update model for coaches.
+   */
   export interface CoachUpdate {
     certifications?: Array<string> | null;
 
     /**
      * Coaching specialties.
      */
-    specialty?: CoachSpecialty | null;
+    specialty?: TeamMembersAPI.CoachSpecialty | null;
 
     team_id?: string | null;
 
@@ -670,6 +690,9 @@ export declare namespace TeamMemberUpdateParams {
     years_with_team?: number | null;
   }
 
+  /**
+   * Update model for medical staff.
+   */
   export interface MedicalStaffUpdate {
     license_number?: string | null;
 
@@ -678,13 +701,16 @@ export declare namespace TeamMemberUpdateParams {
     /**
      * Medical staff specialties.
      */
-    specialty?: MedicalSpecialty | null;
+    specialty?: TeamMembersAPI.MedicalSpecialty | null;
 
     team_id?: string | null;
 
     years_with_team?: number | null;
   }
 
+  /**
+   * Update model for equipment managers.
+   */
   export interface EquipmentManagerUpdate {
     is_head_kitman?: boolean | null;
 

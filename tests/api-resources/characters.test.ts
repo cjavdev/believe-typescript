@@ -92,8 +92,8 @@ describe('resource characters', () => {
   });
 
   // Prism tests are disabled
-  test.skip('delete', async () => {
-    const responsePromise = client.characters.delete('character_id');
+  test.skip('list', async () => {
+    const responsePromise = client.characters.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -104,22 +104,10 @@ describe('resource characters', () => {
   });
 
   // Prism tests are disabled
-  test.skip('getAllCharacters', async () => {
-    const responsePromise = client.characters.getAllCharacters();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Prism tests are disabled
-  test.skip('getAllCharacters: request options and params are passed correctly', async () => {
+  test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.characters.getAllCharacters(
+      client.characters.list(
         {
           limit: 10,
           min_optimism: 0,
@@ -130,6 +118,18 @@ describe('resource characters', () => {
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Believe.NotFoundError);
+  });
+
+  // Prism tests are disabled
+  test.skip('delete', async () => {
+    const responsePromise = client.characters.delete('character_id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   // Prism tests are disabled

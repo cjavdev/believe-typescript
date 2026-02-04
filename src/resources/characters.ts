@@ -66,6 +66,21 @@ export class Characters extends APIResource {
   }
 
   /**
+   * Get a paginated list of all Ted Lasso characters with optional filtering.
+   *
+   * @example
+   * ```ts
+   * const characters = await client.characters.list();
+   * ```
+   */
+  list(
+    query: CharacterListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CharacterListResponse> {
+    return this._client.get('/characters', { query, ...options });
+  }
+
+  /**
    * Remove a character from the database.
    *
    * @example
@@ -78,21 +93,6 @@ export class Characters extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
-  }
-
-  /**
-   * Get a paginated list of all Ted Lasso characters with optional filtering.
-   *
-   * @example
-   * ```ts
-   * const response = await client.characters.getAllCharacters();
-   * ```
-   */
-  getAllCharacters(
-    query: CharacterGetAllCharactersParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<CharacterGetAllCharactersResponse> {
-    return this._client.get('/characters', { query, ...options });
   }
 
   /**
@@ -260,7 +260,7 @@ export interface GrowthArc {
   starting_point: string;
 }
 
-export interface CharacterGetAllCharactersResponse {
+export interface CharacterListResponse {
   data: Array<Character>;
 
   /**
@@ -388,7 +388,7 @@ export interface CharacterUpdateParams {
   team_id?: string | null;
 }
 
-export interface CharacterGetAllCharactersParams {
+export interface CharacterListParams {
   /**
    * Maximum number of items to return (max: 100)
    */
@@ -421,10 +421,10 @@ export declare namespace Characters {
     type CharacterRole as CharacterRole,
     type EmotionalStats as EmotionalStats,
     type GrowthArc as GrowthArc,
-    type CharacterGetAllCharactersResponse as CharacterGetAllCharactersResponse,
+    type CharacterListResponse as CharacterListResponse,
     type CharacterGetQuotesResponse as CharacterGetQuotesResponse,
     type CharacterCreateParams as CharacterCreateParams,
     type CharacterUpdateParams as CharacterUpdateParams,
-    type CharacterGetAllCharactersParams as CharacterGetAllCharactersParams,
+    type CharacterListParams as CharacterListParams,
   };
 }

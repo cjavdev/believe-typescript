@@ -21,9 +21,9 @@ import { Biscuit, BiscuitListParams, BiscuitListResponse, Biscuits } from './res
 import {
   Character,
   CharacterCreateParams,
-  CharacterGetAllCharactersParams,
-  CharacterGetAllCharactersResponse,
   CharacterGetQuotesResponse,
+  CharacterListParams,
+  CharacterListResponse,
   CharacterRole,
   CharacterUpdateParams,
   Characters,
@@ -879,11 +879,11 @@ export declare namespace Believe {
     type CharacterRole as CharacterRole,
     type EmotionalStats as EmotionalStats,
     type GrowthArc as GrowthArc,
-    type CharacterGetAllCharactersResponse as CharacterGetAllCharactersResponse,
+    type CharacterListResponse as CharacterListResponse,
     type CharacterGetQuotesResponse as CharacterGetQuotesResponse,
     type CharacterCreateParams as CharacterCreateParams,
     type CharacterUpdateParams as CharacterUpdateParams,
-    type CharacterGetAllCharactersParams as CharacterGetAllCharactersParams,
+    type CharacterListParams as CharacterListParams,
   };
 
   export {
