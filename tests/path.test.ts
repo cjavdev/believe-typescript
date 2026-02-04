@@ -1,4 +1,4 @@
-import { createPathTagFunction, encodeURIPath } from 'believe/internal/utils/path';
+import { createPathTagFunction, encodeURIPath } from '@cjavdev/believe/internal/utils/path';
 import { inspect } from 'node:util';
 import { runInNewContext } from 'node:vm';
 

@@ -55,12 +55,12 @@ $ cd believe-typescript
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link believe
+$ yarn link @cjavdev/believe
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global believe
+$ pnpm link -—global @cjavdev/believe
 ```
 
 ## Running tests
