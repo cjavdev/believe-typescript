@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIPromise } from 'believe/core/api-promise';
+import { APIPromise } from '@cjavdev/believe/core/api-promise';
 
 import util from 'node:util';
-import Believe from 'believe';
-import { APIUserAbortError } from 'believe';
+import Believe from '@cjavdev/believe';
+import { APIUserAbortError } from '@cjavdev/believe';
 const defaultFetch = fetch;
 
 describe('instantiate client', () => {

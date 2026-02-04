@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^believe(/.*)?',
+              regex: '^@cjavdev/believe(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

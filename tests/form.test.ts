@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'believe/internal/uploads';
-import { toFile } from 'believe/core/uploads';
+import { multipartFormRequestOptions, createForm } from '@cjavdev/believe/internal/uploads';
+import { toFile } from '@cjavdev/believe/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
