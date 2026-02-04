@@ -1,4 +1,4 @@
-import { fromBase64, toBase64 } from 'believe/internal/utils/base64';
+import { fromBase64, toBase64 } from '@cjavdev/believe/internal/utils/base64';
 
 describe.each(['Buffer', 'atob'])('with %s', (mode) => {
   let originalBuffer: BufferConstructor;

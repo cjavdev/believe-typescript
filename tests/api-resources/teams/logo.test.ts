@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Believe, { toFile } from 'believe';
+import Believe, { toFile } from '@cjavdev/believe';
 
 const client = new Believe({
   apiKey: 'My API Key',

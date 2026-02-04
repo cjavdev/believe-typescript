@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Believe } from 'believe';
+import { Believe } from '@cjavdev/believe';
 
 const { stringifyQuery } = Believe.prototype as any;
 

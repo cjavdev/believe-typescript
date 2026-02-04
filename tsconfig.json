@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "believe/*": ["./src/*"],
-      "believe": ["./src/index.ts"]
+      "@cjavdev/believe/*": ["./src/*"],
+      "@cjavdev/believe": ["./src/index.ts"]
     },
     "noEmit": true,
 
