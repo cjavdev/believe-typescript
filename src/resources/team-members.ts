@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as TeamMembersAPI from './team-members';
 import { APIPromise } from '../core/api-promise';
+import { PagePromise, SkipLimitPage, type SkipLimitPageParams } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -87,8 +88,11 @@ export class TeamMembers extends APIResource {
   list(
     query: TeamMemberListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<TeamMemberListResponse> {
-    return this._client.get('/team-members', { query, ...options });
+  ): PagePromise<TeamMemberListResponsesSkipLimitPage, TeamMemberListResponse> {
+    return this._client.getAPIList('/team-members', SkipLimitPage<TeamMemberListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -107,8 +111,8 @@ export class TeamMembers extends APIResource {
   listCoaches(
     query: TeamMemberListCoachesParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<TeamMemberListCoachesResponse> {
-    return this._client.get('/team-members/coaches/', { query, ...options });
+  ): PagePromise<CoachesSkipLimitPage, Coach> {
+    return this._client.getAPIList('/team-members/coaches/', SkipLimitPage<Coach>, { query, ...options });
   }
 
   /**
@@ -117,8 +121,8 @@ export class TeamMembers extends APIResource {
   listPlayers(
     query: TeamMemberListPlayersParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<TeamMemberListPlayersResponse> {
-    return this._client.get('/team-members/players/', { query, ...options });
+  ): PagePromise<PlayersSkipLimitPage, Player> {
+    return this._client.getAPIList('/team-members/players/', SkipLimitPage<Player>, { query, ...options });
   }
 
   /**
@@ -130,10 +134,21 @@ export class TeamMembers extends APIResource {
   listStaff(
     query: TeamMemberListStaffParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<TeamMemberListStaffResponse> {
-    return this._client.get('/team-members/staff/', { query, ...options });
+  ): PagePromise<TeamMemberListStaffResponsesSkipLimitPage, TeamMemberListStaffResponse> {
+    return this._client.getAPIList('/team-members/staff/', SkipLimitPage<TeamMemberListStaffResponse>, {
+      query,
+      ...options,
+    });
   }
 }
+
+export type TeamMemberListResponsesSkipLimitPage = SkipLimitPage<TeamMemberListResponse>;
+
+export type CoachesSkipLimitPage = SkipLimitPage<Coach>;
+
+export type PlayersSkipLimitPage = SkipLimitPage<Player>;
+
+export type TeamMemberListStaffResponsesSkipLimitPage = SkipLimitPage<TeamMemberListStaffResponse>;
 
 /**
  * Full coach model with ID.
@@ -360,105 +375,15 @@ export type TeamMemberRetrieveResponse = Player | Coach | MedicalStaff | Equipme
  */
 export type TeamMemberUpdateResponse = Player | Coach | MedicalStaff | EquipmentManager;
 
-export interface TeamMemberListResponse {
-  data: Array<Player | Coach | MedicalStaff | EquipmentManager>;
+/**
+ * Full player model with ID.
+ */
+export type TeamMemberListResponse = Player | Coach | MedicalStaff | EquipmentManager;
 
-  /**
-   * Whether there are more items after this page.
-   */
-  has_more: boolean;
-
-  limit: number;
-
-  /**
-   * Current page number (1-indexed, for display purposes).
-   */
-  page: number;
-
-  /**
-   * Total number of pages.
-   */
-  pages: number;
-
-  skip: number;
-
-  total: number;
-}
-
-export interface TeamMemberListCoachesResponse {
-  data: Array<Coach>;
-
-  /**
-   * Whether there are more items after this page.
-   */
-  has_more: boolean;
-
-  limit: number;
-
-  /**
-   * Current page number (1-indexed, for display purposes).
-   */
-  page: number;
-
-  /**
-   * Total number of pages.
-   */
-  pages: number;
-
-  skip: number;
-
-  total: number;
-}
-
-export interface TeamMemberListPlayersResponse {
-  data: Array<Player>;
-
-  /**
-   * Whether there are more items after this page.
-   */
-  has_more: boolean;
-
-  limit: number;
-
-  /**
-   * Current page number (1-indexed, for display purposes).
-   */
-  page: number;
-
-  /**
-   * Total number of pages.
-   */
-  pages: number;
-
-  skip: number;
-
-  total: number;
-}
-
-export interface TeamMemberListStaffResponse {
-  data: Array<MedicalStaff | EquipmentManager>;
-
-  /**
-   * Whether there are more items after this page.
-   */
-  has_more: boolean;
-
-  limit: number;
-
-  /**
-   * Current page number (1-indexed, for display purposes).
-   */
-  page: number;
-
-  /**
-   * Total number of pages.
-   */
-  pages: number;
-
-  skip: number;
-
-  total: number;
-}
+/**
+ * Full medical staff model with ID.
+ */
+export type TeamMemberListStaffResponse = MedicalStaff | EquipmentManager;
 
 export interface TeamMemberCreateParams {
   /**
@@ -722,21 +647,11 @@ export namespace TeamMemberUpdateParams {
   }
 }
 
-export interface TeamMemberListParams {
-  /**
-   * Maximum number of items to return (max: 100)
-   */
-  limit?: number;
-
+export interface TeamMemberListParams extends SkipLimitPageParams {
   /**
    * Types of team members - used as discriminator.
    */
   member_type?: 'player' | 'coach' | 'medical_staff' | 'equipment_manager' | null;
-
-  /**
-   * Number of items to skip (offset)
-   */
-  skip?: number;
 
   /**
    * Filter by team ID
@@ -744,17 +659,7 @@ export interface TeamMemberListParams {
   team_id?: string | null;
 }
 
-export interface TeamMemberListCoachesParams {
-  /**
-   * Maximum number of items to return (max: 100)
-   */
-  limit?: number;
-
-  /**
-   * Number of items to skip (offset)
-   */
-  skip?: number;
-
+export interface TeamMemberListCoachesParams extends SkipLimitPageParams {
   /**
    * Coaching specialties.
    */
@@ -766,21 +671,11 @@ export interface TeamMemberListCoachesParams {
   team_id?: string | null;
 }
 
-export interface TeamMemberListPlayersParams {
-  /**
-   * Maximum number of items to return (max: 100)
-   */
-  limit?: number;
-
+export interface TeamMemberListPlayersParams extends SkipLimitPageParams {
   /**
    * Football positions for players.
    */
   position?: Position | null;
-
-  /**
-   * Number of items to skip (offset)
-   */
-  skip?: number;
 
   /**
    * Filter by team ID
@@ -788,17 +683,7 @@ export interface TeamMemberListPlayersParams {
   team_id?: string | null;
 }
 
-export interface TeamMemberListStaffParams {
-  /**
-   * Maximum number of items to return (max: 100)
-   */
-  limit?: number;
-
-  /**
-   * Number of items to skip (offset)
-   */
-  skip?: number;
-
+export interface TeamMemberListStaffParams extends SkipLimitPageParams {
   /**
    * Filter by team ID
    */
@@ -818,9 +703,11 @@ export declare namespace TeamMembers {
     type TeamMemberRetrieveResponse as TeamMemberRetrieveResponse,
     type TeamMemberUpdateResponse as TeamMemberUpdateResponse,
     type TeamMemberListResponse as TeamMemberListResponse,
-    type TeamMemberListCoachesResponse as TeamMemberListCoachesResponse,
-    type TeamMemberListPlayersResponse as TeamMemberListPlayersResponse,
     type TeamMemberListStaffResponse as TeamMemberListStaffResponse,
+    type TeamMemberListResponsesSkipLimitPage as TeamMemberListResponsesSkipLimitPage,
+    type CoachesSkipLimitPage as CoachesSkipLimitPage,
+    type PlayersSkipLimitPage as PlayersSkipLimitPage,
+    type TeamMemberListStaffResponsesSkipLimitPage as TeamMemberListStaffResponsesSkipLimitPage,
     type TeamMemberCreateParams as TeamMemberCreateParams,
     type TeamMemberUpdateParams as TeamMemberUpdateParams,
     type TeamMemberListParams as TeamMemberListParams,
