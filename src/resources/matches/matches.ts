@@ -111,6 +111,59 @@ export class Matches extends APIResource {
   getTurningPoints(matchID: string, options?: RequestOptions): APIPromise<MatchGetTurningPointsResponse> {
     return this._client.get(path`/matches/${matchID}/turning-points`, options);
   }
+
+  /**
+   * WebSocket endpoint for real-time live match simulation.
+   *
+   * Connect to receive a stream of match events as they happen in a simulated
+   * football match.
+   *
+   * ## Connection
+   *
+   * Connect via WebSocket with optional query parameters to customize the
+   * simulation.
+   *
+   * ## Example WebSocket URL
+   *
+   * ```
+   * ws://localhost:8000/matches/live?home_team=AFC%20Richmond&away_team=Manchester%20City&speed=2.0&excitement_level=7
+   * ```
+   *
+   * ## Server Messages
+   *
+   * The server sends JSON messages with these types:
+   *
+   * - `match_start` - When the match begins
+   * - `match_event` - For each match event (goals, fouls, cards, etc.)
+   * - `match_end` - When the match concludes
+   * - `error` - If an error occurs
+   * - `pong` - Response to client ping
+   *
+   * ## Client Messages
+   *
+   * Send JSON to control the simulation:
+   *
+   * - `{"action": "ping"}` - Keep-alive, server responds with `{"type": "pong"}`
+   * - `{"action": "pause"}` - Pause the simulation
+   * - `{"action": "resume"}` - Resume a paused simulation
+   * - `{"action": "set_speed", "speed": 2.0}` - Change playback speed (0.1-10.0)
+   * - `{"action": "get_status"}` - Request current match status
+   *
+   * @example
+   * ```ts
+   * await client.matches.streamLive();
+   * ```
+   */
+  streamLive(
+    query: MatchStreamLiveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    return this._client.get('/matches/live', {
+      query,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
 }
 
 export type MatchesSkipLimitPage = SkipLimitPage<Match>;
@@ -371,6 +424,28 @@ export interface MatchListParams extends SkipLimitPageParams {
   team_id?: string | null;
 }
 
+export interface MatchStreamLiveParams {
+  /**
+   * Away team name
+   */
+  away_team?: string;
+
+  /**
+   * How eventful the match should be (1=boring, 10=chaos)
+   */
+  excitement_level?: number;
+
+  /**
+   * Home team name
+   */
+  home_team?: string;
+
+  /**
+   * Simulation speed multiplier (1.0 = real-time)
+   */
+  speed?: number;
+}
+
 Matches.Commentary = Commentary;
 
 export declare namespace Matches {
@@ -385,6 +460,7 @@ export declare namespace Matches {
     type MatchCreateParams as MatchCreateParams,
     type MatchUpdateParams as MatchUpdateParams,
     type MatchListParams as MatchListParams,
+    type MatchStreamLiveParams as MatchStreamLiveParams,
   };
 
   export { Commentary as Commentary, type CommentaryStreamResponse as CommentaryStreamResponse };

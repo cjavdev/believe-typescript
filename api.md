@@ -83,6 +83,7 @@ Methods:
 - <code title="delete /matches/{match_id}">client.matches.<a href="./src/resources/matches/matches.ts">delete</a>(matchID) -> void</code>
 - <code title="get /matches/{match_id}/lesson">client.matches.<a href="./src/resources/matches/matches.ts">getLesson</a>(matchID) -> MatchGetLessonResponse</code>
 - <code title="get /matches/{match_id}/turning-points">client.matches.<a href="./src/resources/matches/matches.ts">getTurningPoints</a>(matchID) -> MatchGetTurningPointsResponse</code>
+- <code title="get /matches/live">client.matches.<a href="./src/resources/matches/matches.ts">streamLive</a>({ ...params }) -> void</code>
 
 ## Commentary
 
@@ -283,3 +284,11 @@ Types:
 Methods:
 
 - <code title="get /version">client.version.<a href="./src/resources/version.ts">retrieve</a>() -> unknown</code>
+
+# Client
+
+## Ws
+
+Methods:
+
+- <code title="get /ws/test">client.client.ws.<a href="./src/resources/client/ws.ts">test</a>() -> void</code>

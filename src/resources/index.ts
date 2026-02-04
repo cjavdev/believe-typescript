@@ -14,6 +14,7 @@ export {
   type CharacterListParams,
   type CharactersSkipLimitPage,
 } from './characters';
+export { Client } from './client/client';
 export { Coaching } from './coaching/coaching';
 export { Conflicts, type ConflictResolveResponse, type ConflictResolveParams } from './conflicts';
 export {
@@ -39,6 +40,7 @@ export {
   type MatchCreateParams,
   type MatchUpdateParams,
   type MatchListParams,
+  type MatchStreamLiveParams,
   type MatchesSkipLimitPage,
 } from './matches/matches';
 export { PepTalk, type PepTalkRetrieveResponse, type PepTalkRetrieveParams } from './pep-talk';
