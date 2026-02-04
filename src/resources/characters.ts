@@ -67,7 +67,7 @@ export class Characters extends APIResource {
   }
 
   /**
-   * Get a paginated list of Ted Lasso characters with optional filtering.
+   * Get a paginated list of Ted Lasso characters.
    *
    * @example
    * ```ts
