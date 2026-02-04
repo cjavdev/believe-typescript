@@ -112,6 +112,7 @@ import {
   MatchGetTurningPointsResponse,
   MatchListParams,
   MatchResult,
+  MatchStreamLiveParams,
   MatchType,
   MatchUpdateParams,
   Matches,
@@ -144,6 +145,7 @@ import {
   parseLogLevel,
 } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
+import { Client } from './resources/client/client';
 
 export interface ClientOptions {
   /**
@@ -873,6 +875,7 @@ export class Believe {
   webhooks: API.Webhooks = new API.Webhooks(this);
   health: API.Health = new API.Health(this);
   version: API.Version = new API.Version(this);
+  client: API.Client = new API.Client(this);
 }
 
 Believe.Characters = Characters;
@@ -892,6 +895,7 @@ Believe.TeamMembers = TeamMembers;
 Believe.Webhooks = Webhooks;
 Believe.Health = Health;
 Believe.Version = Version;
+Believe.Client = Client;
 
 export declare namespace Believe {
   export type RequestOptions = Opts.RequestOptions;
@@ -944,6 +948,7 @@ export declare namespace Believe {
     type MatchCreateParams as MatchCreateParams,
     type MatchUpdateParams as MatchUpdateParams,
     type MatchListParams as MatchListParams,
+    type MatchStreamLiveParams as MatchStreamLiveParams,
   };
 
   export {
@@ -1054,4 +1059,6 @@ export declare namespace Believe {
   export { Health as Health, type HealthCheckResponse as HealthCheckResponse };
 
   export { Version as Version, type VersionRetrieveResponse as VersionRetrieveResponse };
+
+  export { Client as Client };
 }

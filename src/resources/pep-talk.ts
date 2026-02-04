@@ -40,7 +40,7 @@ export interface PepTalkRetrieveResponse {
 
 export namespace PepTalkRetrieveResponse {
   /**
-   * A chunk of a streaming pep talk.
+   * A chunk of a streaming pep talk from Ted.
    */
   export interface Chunk {
     /**
@@ -49,19 +49,20 @@ export namespace PepTalkRetrieveResponse {
     chunk_id: number;
 
     /**
+     * Is this the final chunk
+     */
+    is_final: boolean;
+
+    /**
      * The text of this chunk
      */
     text: string;
 
     /**
-     * The emotional purpose of this chunk
+     * The emotional purpose of this chunk (e.g., greeting, acknowledgment, wisdom,
+     * affirmation, encouragement)
      */
     emotional_beat?: string | null;
-
-    /**
-     * Is this the final chunk
-     */
-    is_final?: boolean;
   }
 }
 
