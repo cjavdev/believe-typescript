@@ -21,7 +21,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'cjavdev_believe_api',
-      version: '0.5.0',
+      version: '0.5.1',
     },
     { capabilities: { tools: {}, logging: {} } },
   );
