@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.1 (2026-02-05)
+
+Full Changelog: [v0.5.0...v0.5.1](https://github.com/cjavdev/believe-typescript/compare/v0.5.0...v0.5.1)
+
+### Chores
+
+* configure new SDK language ([7e3257e](https://github.com/cjavdev/believe-typescript/commit/7e3257e3453a7eeaeb70ce78e6a356ae4bc63fbd))
+
 ## 0.5.0 (2026-02-04)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/cjavdev/believe-typescript/compare/v0.4.0...v0.5.0)
