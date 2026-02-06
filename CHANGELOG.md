@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.1 (2026-02-06)
+
+Full Changelog: [v0.6.0...v0.6.1](https://github.com/cjavdev/believe-typescript/compare/v0.6.0...v0.6.1)
+
+### Bug Fixes
+
+* **client:** avoid removing abort listener too early ([02a6fc6](https://github.com/cjavdev/believe-typescript/commit/02a6fc6a46952c6e62f35ba45a0a2a2caec4984f))
+
+
+### Chores
+
+* **internal:** fix pagination internals not accepting option promises ([a86faa9](https://github.com/cjavdev/believe-typescript/commit/a86faa951478953f03a8e16caa2428d166f40fa9))
+
 ## 0.6.0 (2026-02-06)
 
 Full Changelog: [v0.5.1...v0.6.0](https://github.com/cjavdev/believe-typescript/compare/v0.5.1...v0.6.0)
