@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.6.0 (2026-02-06)
+
+Full Changelog: [v0.5.1...v0.6.0](https://github.com/cjavdev/believe-typescript/compare/v0.5.1...v0.6.0)
+
+### Features
+
+* **mcp:** add initial server instructions ([9e099a3](https://github.com/cjavdev/believe-typescript/commit/9e099a35892c9dbb6c374e6ec1fea913eb6c3153))
+
+
+### Chores
+
+* **client:** restructure abort controller binding ([738e365](https://github.com/cjavdev/believe-typescript/commit/738e365583abefc051335d1996aea8c0fe8668cf))
+* **internal:** configure MCP Server hosting ([f20a74c](https://github.com/cjavdev/believe-typescript/commit/f20a74c6cf79e322f8ed26ad3cf51d18ce5fe507))
+* **internal:** refactor flag parsing for MCP servers and add debug flag ([566e80e](https://github.com/cjavdev/believe-typescript/commit/566e80e5c8f0528b50c70a37dfe2e9ba679b788a))
+
 ## 0.5.1 (2026-02-05)
 
 Full Changelog: [v0.5.0...v0.5.1](https://github.com/cjavdev/believe-typescript/compare/v0.5.0...v0.5.1)
