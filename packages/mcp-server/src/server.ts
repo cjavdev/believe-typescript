@@ -57,7 +57,7 @@ export const newMcpServer = async () =>
   new McpServer(
     {
       name: 'cjavdev_believe_api',
-      version: '0.6.1',
+      version: '0.6.2',
     },
     {
       instructions: await getInstructions(),
