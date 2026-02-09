@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.2 (2026-02-07)
+
+Full Changelog: [v0.6.1...v0.6.2](https://github.com/cjavdev/believe-typescript/compare/v0.6.1...v0.6.2)
+
+### Chores
+
+* **internal:** add health check to MCP server when running in HTTP mode ([40d6a81](https://github.com/cjavdev/believe-typescript/commit/40d6a810e0ab98308e924aebdad095edcc9ab168))
+* **internal:** upgrade pnpm ([10aa370](https://github.com/cjavdev/believe-typescript/commit/10aa3704214bcbe23b868f4fa3bb77547d90504b))
+
 ## 0.6.1 (2026-02-06)
 
 Full Changelog: [v0.6.0...v0.6.1](https://github.com/cjavdev/believe-typescript/compare/v0.6.0...v0.6.1)

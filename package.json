@@ -1,6 +1,6 @@
 {
   "name": "@cjavdev/believe",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "The official TypeScript library for the Believe API",
   "author": "Believe <wave@cjav.dev>",
   "types": "dist/index.d.ts",
@@ -8,7 +8,7 @@
   "type": "commonjs",
   "repository": "github:cjavdev/believe-typescript",
   "license": "MIT",
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.27.0",
   "files": [
     "**/*"
   ],
