@@ -409,12 +409,12 @@ export interface MatchUpdateParams {
 
 export interface MatchListParams extends SkipLimitPageParams {
   /**
-   * Types of matches.
+   * Filter by match type
    */
   match_type?: MatchType | null;
 
   /**
-   * Match result types.
+   * Filter by result
    */
   result?: MatchResult | null;
 

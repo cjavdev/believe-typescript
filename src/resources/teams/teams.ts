@@ -422,7 +422,7 @@ export interface TeamUpdateParams {
 
 export interface TeamListParams extends SkipLimitPageParams {
   /**
-   * Football leagues.
+   * Filter by league
    */
   league?: League | null;
 
