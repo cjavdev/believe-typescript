@@ -392,12 +392,12 @@ export interface QuoteListParams extends SkipLimitPageParams {
   inspirational?: boolean | null;
 
   /**
-   * Types of moments when quotes occur.
+   * Filter by moment type
    */
   moment_type?: QuoteMoment | null;
 
   /**
-   * Themes that quotes can be categorized under.
+   * Filter by theme
    */
   theme?: QuoteTheme | null;
 }
@@ -414,7 +414,7 @@ export interface QuoteGetRandomParams {
   inspirational?: boolean | null;
 
   /**
-   * Themes that quotes can be categorized under.
+   * Filter by theme
    */
   theme?: QuoteTheme | null;
 }

@@ -376,7 +376,7 @@ export interface CharacterListParams extends SkipLimitPageParams {
   min_optimism?: number | null;
 
   /**
-   * Roles characters can have.
+   * Filter by role
    */
   role?: CharacterRole | null;
 
