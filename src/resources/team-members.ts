@@ -649,7 +649,7 @@ export namespace TeamMemberUpdateParams {
 
 export interface TeamMemberListParams extends SkipLimitPageParams {
   /**
-   * Types of team members - used as discriminator.
+   * Filter by member type
    */
   member_type?: 'player' | 'coach' | 'medical_staff' | 'equipment_manager' | null;
 
@@ -661,7 +661,7 @@ export interface TeamMemberListParams extends SkipLimitPageParams {
 
 export interface TeamMemberListCoachesParams extends SkipLimitPageParams {
   /**
-   * Coaching specialties.
+   * Filter by specialty
    */
   specialty?: CoachSpecialty | null;
 
@@ -673,7 +673,7 @@ export interface TeamMemberListCoachesParams extends SkipLimitPageParams {
 
 export interface TeamMemberListPlayersParams extends SkipLimitPageParams {
   /**
-   * Football positions for players.
+   * Filter by position
    */
   position?: Position | null;
 
