@@ -95,7 +95,10 @@ import {
 import { GetWelcomeResponse } from './resources/top-level';
 import { Version, VersionRetrieveResponse } from './resources/version';
 import {
+  MatchCompletedWebhookEvent,
   RegisteredWebhook,
+  TeamMemberTransferredWebhookEvent,
+  UnwrapWebhookEvent,
   WebhookCreateParams,
   WebhookCreateResponse,
   WebhookDeleteResponse,
@@ -1063,6 +1066,9 @@ export declare namespace Believe {
     type WebhookListResponse as WebhookListResponse,
     type WebhookDeleteResponse as WebhookDeleteResponse,
     type WebhookTriggerEventResponse as WebhookTriggerEventResponse,
+    type MatchCompletedWebhookEvent as MatchCompletedWebhookEvent,
+    type TeamMemberTransferredWebhookEvent as TeamMemberTransferredWebhookEvent,
+    type UnwrapWebhookEvent as UnwrapWebhookEvent,
     type WebhookCreateParams as WebhookCreateParams,
     type WebhookTriggerEventParams as WebhookTriggerEventParams,
   };
