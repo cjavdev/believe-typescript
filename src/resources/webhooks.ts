@@ -91,6 +91,10 @@ export class Webhooks extends APIResource {
   ): APIPromise<WebhookTriggerEventResponse> {
     return this._client.post('/webhooks/trigger', { body, ...options });
   }
+
+  unwrap(body: string): UnwrapWebhookEvent {
+    return JSON.parse(body) as UnwrapWebhookEvent;
+  }
 }
 
 /**
@@ -218,6 +222,191 @@ export namespace WebhookTriggerEventResponse {
     status_code?: number | null;
   }
 }
+
+/**
+ * Webhook event sent when a match completes.
+ */
+export interface MatchCompletedWebhookEvent {
+  /**
+   * When the event was created
+   */
+  created_at: string;
+
+  /**
+   * Data payload for a match completed event.
+   */
+  data: MatchCompletedWebhookEvent.Data;
+
+  /**
+   * Unique identifier for this event
+   */
+  event_id: string;
+
+  /**
+   * The type of webhook event
+   */
+  event_type: 'match.completed';
+}
+
+export namespace MatchCompletedWebhookEvent {
+  /**
+   * Data payload for a match completed event.
+   */
+  export interface Data {
+    /**
+     * Final away team score
+     */
+    away_score: number;
+
+    /**
+     * Away team ID
+     */
+    away_team_id: string;
+
+    /**
+     * When the match completed
+     */
+    completed_at: string;
+
+    /**
+     * Final home team score
+     */
+    home_score: number;
+
+    /**
+     * Home team ID
+     */
+    home_team_id: string;
+
+    /**
+     * Unique match identifier
+     */
+    match_id: string;
+
+    /**
+     * Type of match
+     */
+    match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final';
+
+    /**
+     * Match result from home team perspective
+     */
+    result: 'home_win' | 'away_win' | 'draw';
+
+    /**
+     * Ted's post-match wisdom
+     */
+    ted_post_match_quote: string;
+
+    /**
+     * Ted's lesson from the match
+     */
+    lesson_learned?: string | null;
+
+    /**
+     * Player of the match (if awarded)
+     */
+    man_of_the_match?: string | null;
+  }
+}
+
+/**
+ * Webhook event sent when a team member (player, coach, staff) transfers between
+ * teams.
+ */
+export interface TeamMemberTransferredWebhookEvent {
+  /**
+   * When the event was created
+   */
+  created_at: string;
+
+  /**
+   * Data payload for a team member transfer event.
+   */
+  data: TeamMemberTransferredWebhookEvent.Data;
+
+  /**
+   * Unique identifier for this event
+   */
+  event_id: string;
+
+  /**
+   * The type of webhook event
+   */
+  event_type: 'team_member.transferred';
+}
+
+export namespace TeamMemberTransferredWebhookEvent {
+  /**
+   * Data payload for a team member transfer event.
+   */
+  export interface Data {
+    /**
+     * ID of the character (links to /characters)
+     */
+    character_id: string;
+
+    /**
+     * Name of the character
+     */
+    character_name: string;
+
+    /**
+     * Type of team member
+     */
+    member_type: 'player' | 'coach' | 'medical_staff' | 'equipment_manager';
+
+    /**
+     * ID of the team involved
+     */
+    team_id: string;
+
+    /**
+     * ID of the team member
+     */
+    team_member_id: string;
+
+    /**
+     * Name of the team involved
+     */
+    team_name: string;
+
+    /**
+     * Ted's reaction to the transfer
+     */
+    ted_reaction: string;
+
+    /**
+     * Whether the member joined or departed
+     */
+    transfer_type: 'joined' | 'departed';
+
+    /**
+     * Previous team ID (for joins from another team)
+     */
+    previous_team_id?: string | null;
+
+    /**
+     * Previous team name (for joins from another team)
+     */
+    previous_team_name?: string | null;
+
+    /**
+     * Transfer fee in GBP (for players)
+     */
+    transfer_fee_gbp?: string | null;
+
+    /**
+     * Years spent with previous team
+     */
+    years_with_previous_team?: number | null;
+  }
+}
+
+/**
+ * Webhook event sent when a match completes.
+ */
+export type UnwrapWebhookEvent = MatchCompletedWebhookEvent | TeamMemberTransferredWebhookEvent;
 
 export interface WebhookCreateParams {
   /**
@@ -419,6 +608,9 @@ export declare namespace Webhooks {
     type WebhookListResponse as WebhookListResponse,
     type WebhookDeleteResponse as WebhookDeleteResponse,
     type WebhookTriggerEventResponse as WebhookTriggerEventResponse,
+    type MatchCompletedWebhookEvent as MatchCompletedWebhookEvent,
+    type TeamMemberTransferredWebhookEvent as TeamMemberTransferredWebhookEvent,
+    type UnwrapWebhookEvent as UnwrapWebhookEvent,
     type WebhookCreateParams as WebhookCreateParams,
     type WebhookTriggerEventParams as WebhookTriggerEventParams,
   };

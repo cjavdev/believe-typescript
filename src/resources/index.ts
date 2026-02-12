@@ -112,6 +112,9 @@ export {
   type WebhookListResponse,
   type WebhookDeleteResponse,
   type WebhookTriggerEventResponse,
+  type MatchCompletedWebhookEvent,
+  type TeamMemberTransferredWebhookEvent,
+  type UnwrapWebhookEvent,
   type WebhookCreateParams,
   type WebhookTriggerEventParams,
 } from './webhooks';
