@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.7.0 (2026-02-12)
+
+Full Changelog: [v0.6.2...v0.7.0](https://github.com/cjavdev/believe-typescript/compare/v0.6.2...v0.7.0)
+
+### Features
+
+* **api:** Add webhook unwrapping ([68bbe38](https://github.com/cjavdev/believe-typescript/commit/68bbe38698fff0f2b82047a1e28106d6839849fb))
+
+
+### Chores
+
+* **api:** minor updates ([7a294d7](https://github.com/cjavdev/believe-typescript/commit/7a294d744786008be836abf373f581210a8e7629))
+* **internal:** allow basic filtering of methods allowed for MCP code mode ([8ca2c7a](https://github.com/cjavdev/believe-typescript/commit/8ca2c7ac3ca442c4a6deef2728c9ea998a62ebd0))
+* **internal:** always generate MCP server dockerfiles and upgrade associated dependencies ([fcc513b](https://github.com/cjavdev/believe-typescript/commit/fcc513be622857c807869108dd52f93946a2768a))
+* **internal:** avoid type checking errors with ts-reset ([a663673](https://github.com/cjavdev/believe-typescript/commit/a663673b7486a4e0df13613185c79e6489a2e4b0))
+
 ## 0.6.2 (2026-02-07)
 
 Full Changelog: [v0.6.1...v0.6.2](https://github.com/cjavdev/believe-typescript/compare/v0.6.1...v0.6.2)
