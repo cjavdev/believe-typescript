@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.8.0 (2026-02-16)
+
+Full Changelog: [v0.7.0...v0.8.0](https://github.com/cjavdev/believe-typescript/compare/v0.7.0...v0.8.0)
+
+### Features
+
+* **api:** manual updates ([f70151b](https://github.com/cjavdev/believe-typescript/commit/f70151b2a8949863d9eec2bc5a4e54801594167e))
+
+
+### Chores
+
+* **internal:** improve layout of generated MCP server files ([e641ef4](https://github.com/cjavdev/believe-typescript/commit/e641ef42131d44e5df0ec5281be0100cda851e09))
+* **internal:** improve reliability of MCP servers when using local code mode execution ([687dcdf](https://github.com/cjavdev/believe-typescript/commit/687dcdf2bd77ddbe5ebb4840e43aca4dcf443411))
+* **mcp:** forward STAINLESS_API_KEY to docs search endpoint ([f7c8d4c](https://github.com/cjavdev/believe-typescript/commit/f7c8d4c28d05ebf27d49ffa1ec47764de0d918b9))
+
 ## 0.7.0 (2026-02-12)
 
 Full Changelog: [v0.6.2...v0.7.0](https://github.com/cjavdev/believe-typescript/compare/v0.6.2...v0.7.0)
