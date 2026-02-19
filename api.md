@@ -292,7 +292,3 @@ Methods:
 # Client
 
 ## Ws
-
-Methods:
-
-- <code title="get /ws/test">client.client.ws.<a href="./src/resources/client/ws.ts">test</a>() -> void</code>
