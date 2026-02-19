@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.9.0 (2026-02-19)
+
+Full Changelog: [v0.8.0...v0.9.0](https://github.com/cjavdev/believe-typescript/compare/v0.8.0...v0.9.0)
+
+### Features
+
+* **api:** manual updates ([d536272](https://github.com/cjavdev/believe-typescript/commit/d536272c2a487a4f51e3cf55cb1d1ba41a6f834a))
+
+
+### Chores
+
+* **internal/client:** fix form-urlencoded requests ([15d25e5](https://github.com/cjavdev/believe-typescript/commit/15d25e55dd169f632272100d91fc5a42c46d547f))
+* **internal:** allow setting x-stainless-api-key header on mcp server requests ([3742898](https://github.com/cjavdev/believe-typescript/commit/374289813794c23d3411d39fa839d74966247e28))
+* **internal:** cache fetch instruction calls in MCP server ([ad897c5](https://github.com/cjavdev/believe-typescript/commit/ad897c532e821aa615fc69993ac9cb61e4b9c5c6))
+
 ## 0.8.0 (2026-02-16)
 
 Full Changelog: [v0.7.0...v0.8.0](https://github.com/cjavdev/believe-typescript/compare/v0.7.0...v0.8.0)
