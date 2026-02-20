@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('resource characters', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.characters.create({
       background:
@@ -33,7 +33,7 @@ describe('resource characters', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.characters.create({
       background:
@@ -67,7 +67,7 @@ describe('resource characters', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.characters.retrieve('character_id');
     const rawResponse = await responsePromise.asResponse();
@@ -79,7 +79,7 @@ describe('resource characters', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update', async () => {
     const responsePromise = client.characters.update('character_id', {});
     const rawResponse = await responsePromise.asResponse();
@@ -91,7 +91,7 @@ describe('resource characters', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.characters.list();
     const rawResponse = await responsePromise.asResponse();
@@ -103,7 +103,7 @@ describe('resource characters', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -120,7 +120,7 @@ describe('resource characters', () => {
     ).rejects.toThrow(Believe.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.characters.delete('character_id');
     const rawResponse = await responsePromise.asResponse();
@@ -132,7 +132,7 @@ describe('resource characters', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('getQuotes', async () => {
     const responsePromise = client.characters.getQuotes('character_id');
     const rawResponse = await responsePromise.asResponse();

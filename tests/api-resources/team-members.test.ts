@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('resource teamMembers', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.teamMembers.create({
       member: {
@@ -29,7 +29,7 @@ describe('resource teamMembers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.teamMembers.create({
       member: {
@@ -46,7 +46,7 @@ describe('resource teamMembers', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.teamMembers.retrieve('member_id');
     const rawResponse = await responsePromise.asResponse();
@@ -58,7 +58,7 @@ describe('resource teamMembers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.teamMembers.update('member_id', { updates: {} });
     const rawResponse = await responsePromise.asResponse();
@@ -70,7 +70,7 @@ describe('resource teamMembers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.teamMembers.update('member_id', {
       updates: {
@@ -85,7 +85,7 @@ describe('resource teamMembers', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.teamMembers.list();
     const rawResponse = await responsePromise.asResponse();
@@ -97,7 +97,7 @@ describe('resource teamMembers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -113,7 +113,7 @@ describe('resource teamMembers', () => {
     ).rejects.toThrow(Believe.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.teamMembers.delete('member_id');
     const rawResponse = await responsePromise.asResponse();
@@ -125,7 +125,7 @@ describe('resource teamMembers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listCoaches', async () => {
     const responsePromise = client.teamMembers.listCoaches();
     const rawResponse = await responsePromise.asResponse();
@@ -137,7 +137,7 @@ describe('resource teamMembers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listCoaches: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -153,7 +153,7 @@ describe('resource teamMembers', () => {
     ).rejects.toThrow(Believe.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listPlayers', async () => {
     const responsePromise = client.teamMembers.listPlayers();
     const rawResponse = await responsePromise.asResponse();
@@ -165,7 +165,7 @@ describe('resource teamMembers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listPlayers: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -181,7 +181,7 @@ describe('resource teamMembers', () => {
     ).rejects.toThrow(Believe.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listStaff', async () => {
     const responsePromise = client.teamMembers.listStaff();
     const rawResponse = await responsePromise.asResponse();
@@ -193,7 +193,7 @@ describe('resource teamMembers', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listStaff: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(

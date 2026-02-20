@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('resource conflicts', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('resolve: only required params', async () => {
     const responsePromise = client.conflicts.resolve({
       conflict_type: 'interpersonal',
@@ -24,7 +24,7 @@ describe('resource conflicts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('resolve: required and optional params', async () => {
     const response = await client.conflicts.resolve({
       conflict_type: 'interpersonal',

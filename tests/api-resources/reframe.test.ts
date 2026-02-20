@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('resource reframe', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('transformNegativeThoughts: only required params', async () => {
     const responsePromise = client.reframe.transformNegativeThoughts({
       negative_thought: "I'm not good enough for this job.",
@@ -22,7 +22,7 @@ describe('resource reframe', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('transformNegativeThoughts: required and optional params', async () => {
     const response = await client.reframe.transformNegativeThoughts({
       negative_thought: "I'm not good enough for this job.",

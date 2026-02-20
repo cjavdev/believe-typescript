@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('resource commentary', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('stream', async () => {
     const responsePromise = client.matches.commentary.stream('match_id');
     const rawResponse = await responsePromise.asResponse();

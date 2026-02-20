@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('resource logo', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete: only required params', async () => {
     const responsePromise = client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       team_id: 'team_id',
@@ -22,14 +22,14 @@ describe('resource logo', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete: required and optional params', async () => {
     const response = await client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       team_id: 'team_id',
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('download: only required params', async () => {
     const responsePromise = client.teams.logo.download('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       team_id: 'team_id',
@@ -43,14 +43,14 @@ describe('resource logo', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('download: required and optional params', async () => {
     const response = await client.teams.logo.download('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       team_id: 'team_id',
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('upload: only required params', async () => {
     const responsePromise = client.teams.logo.upload('team_id', {
       file: await toFile(Buffer.from('# my file contents'), 'README.md'),
@@ -64,7 +64,7 @@ describe('resource logo', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('upload: required and optional params', async () => {
     const response = await client.teams.logo.upload('team_id', {
       file: await toFile(Buffer.from('# my file contents'), 'README.md'),
