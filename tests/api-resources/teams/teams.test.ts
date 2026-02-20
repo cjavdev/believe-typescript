@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('resource teams', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.teams.create({
       culture_score: 70,
@@ -31,7 +31,7 @@ describe('resource teams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.teams.create({
       culture_score: 70,
@@ -58,7 +58,7 @@ describe('resource teams', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.teams.retrieve('team_id');
     const rawResponse = await responsePromise.asResponse();
@@ -70,7 +70,7 @@ describe('resource teams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update', async () => {
     const responsePromise = client.teams.update('team_id', {});
     const rawResponse = await responsePromise.asResponse();
@@ -82,7 +82,7 @@ describe('resource teams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.teams.list();
     const rawResponse = await responsePromise.asResponse();
@@ -94,7 +94,7 @@ describe('resource teams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -110,7 +110,7 @@ describe('resource teams', () => {
     ).rejects.toThrow(Believe.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.teams.delete('team_id');
     const rawResponse = await responsePromise.asResponse();
@@ -122,7 +122,7 @@ describe('resource teams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('getCulture', async () => {
     const responsePromise = client.teams.getCulture('team_id');
     const rawResponse = await responsePromise.asResponse();
@@ -134,7 +134,7 @@ describe('resource teams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('getRivals', async () => {
     const responsePromise = client.teams.getRivals('team_id');
     const rawResponse = await responsePromise.asResponse();
@@ -146,7 +146,7 @@ describe('resource teams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listLogos', async () => {
     const responsePromise = client.teams.listLogos('team_id');
     const rawResponse = await responsePromise.asResponse();

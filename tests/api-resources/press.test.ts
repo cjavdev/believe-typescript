@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('resource press', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('simulate: only required params', async () => {
     const responsePromise = client.press.simulate({
       question: 'Ted, your team just lost 5-0. How do you explain this embarrassing defeat?',
@@ -22,7 +22,7 @@ describe('resource press', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('simulate: required and optional params', async () => {
     const response = await client.press.simulate({
       question: 'Ted, your team just lost 5-0. How do you explain this embarrassing defeat?',

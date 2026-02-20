@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('top level methods', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('getWelcome', async () => {
     const responsePromise = client.getWelcome();
     const rawResponse = await responsePromise.asResponse();

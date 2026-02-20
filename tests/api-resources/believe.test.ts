@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('resource believe', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('submit: only required params', async () => {
     const responsePromise = client.believe.submit({
       situation: "I just got passed over for a promotion I've been working toward for two years.",
@@ -23,7 +23,7 @@ describe('resource believe', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('submit: required and optional params', async () => {
     const response = await client.believe.submit({
       situation: "I just got passed over for a promotion I've been working toward for two years.",
