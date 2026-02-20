@@ -144,7 +144,7 @@ describe('resource matches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Mock server doesn't support callbacks yet
+  // Mock server tests are disabled
   test.skip('streamLive', async () => {
     const responsePromise = client.matches.streamLive();
     const rawResponse = await responsePromise.asResponse();
@@ -156,7 +156,7 @@ describe('resource matches', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Mock server doesn't support callbacks yet
+  // Mock server tests are disabled
   test.skip('streamLive: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
