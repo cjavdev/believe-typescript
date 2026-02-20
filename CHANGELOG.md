@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.10.0 (2026-02-20)
+
+Full Changelog: [v0.9.0...v0.10.0](https://github.com/cjavdev/believe-typescript/compare/v0.9.0...v0.10.0)
+
+### Features
+
+* **api:** manual updates ([34e7e4c](https://github.com/cjavdev/believe-typescript/commit/34e7e4c4d5995df9845e06e6844922b663f1e4dc))
+
+
+### Bug Fixes
+
+* **mcp:** initialize SDK lazily to avoid failing the connection on init errors ([69e8ff7](https://github.com/cjavdev/believe-typescript/commit/69e8ff7f8ca59178ad957e0369a22656202914a3))
+
+
+### Chores
+
+* **internal:** remove mock server code ([6872ac5](https://github.com/cjavdev/believe-typescript/commit/6872ac5e8ac3d414580e5809a6d562d7b0975519))
+* **mcp:** correctly update version in sync with sdk ([6b36d3d](https://github.com/cjavdev/believe-typescript/commit/6b36d3d02b94ace0471e7a0ec60c0eb860e7158a))
+* **test:** update skip reason message ([de388a4](https://github.com/cjavdev/believe-typescript/commit/de388a4f7ea1c05d0ae54b613451ac47c74c3561))
+* update mock server docs ([e328932](https://github.com/cjavdev/believe-typescript/commit/e328932ce62defd2d07a7e82d38505192a2fc02e))
+
 ## 0.9.0 (2026-02-19)
 
 Full Changelog: [v0.8.0...v0.9.0](https://github.com/cjavdev/believe-typescript/compare/v0.8.0...v0.9.0)
