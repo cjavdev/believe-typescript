@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('resource stream', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('testConnection', async () => {
     const responsePromise = client.stream.testConnection();
     const rawResponse = await responsePromise.asResponse();

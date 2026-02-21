@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('resource quotes', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.quotes.create({
       character_id: 'ted-lasso',
@@ -26,7 +26,7 @@ describe('resource quotes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.quotes.create({
       character_id: 'ted-lasso',
@@ -43,7 +43,7 @@ describe('resource quotes', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.quotes.retrieve('quote_id');
     const rawResponse = await responsePromise.asResponse();
@@ -55,7 +55,7 @@ describe('resource quotes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update', async () => {
     const responsePromise = client.quotes.update('quote_id', {});
     const rawResponse = await responsePromise.asResponse();
@@ -67,7 +67,7 @@ describe('resource quotes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.quotes.list();
     const rawResponse = await responsePromise.asResponse();
@@ -79,7 +79,7 @@ describe('resource quotes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -98,7 +98,7 @@ describe('resource quotes', () => {
     ).rejects.toThrow(Believe.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.quotes.delete('quote_id');
     const rawResponse = await responsePromise.asResponse();
@@ -110,7 +110,7 @@ describe('resource quotes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('getRandom', async () => {
     const responsePromise = client.quotes.getRandom();
     const rawResponse = await responsePromise.asResponse();
@@ -122,7 +122,7 @@ describe('resource quotes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('getRandom: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -137,7 +137,7 @@ describe('resource quotes', () => {
     ).rejects.toThrow(Believe.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listByCharacter', async () => {
     const responsePromise = client.quotes.listByCharacter('character_id');
     const rawResponse = await responsePromise.asResponse();
@@ -149,7 +149,7 @@ describe('resource quotes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listByCharacter: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -161,7 +161,7 @@ describe('resource quotes', () => {
     ).rejects.toThrow(Believe.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listByTheme', async () => {
     const responsePromise = client.quotes.listByTheme('belief');
     const rawResponse = await responsePromise.asResponse();
@@ -173,7 +173,7 @@ describe('resource quotes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listByTheme: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(

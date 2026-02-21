@@ -8,7 +8,7 @@ const client = new Believe({
 });
 
 describe('resource episodes', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.episodes.create({
       air_date: '2020-10-02',
@@ -33,7 +33,7 @@ describe('resource episodes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.episodes.create({
       air_date: '2020-10-02',
@@ -59,7 +59,7 @@ describe('resource episodes', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.episodes.retrieve('episode_id');
     const rawResponse = await responsePromise.asResponse();
@@ -71,7 +71,7 @@ describe('resource episodes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('update', async () => {
     const responsePromise = client.episodes.update('episode_id', {});
     const rawResponse = await responsePromise.asResponse();
@@ -83,7 +83,7 @@ describe('resource episodes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.episodes.list();
     const rawResponse = await responsePromise.asResponse();
@@ -95,7 +95,7 @@ describe('resource episodes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -111,7 +111,7 @@ describe('resource episodes', () => {
     ).rejects.toThrow(Believe.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.episodes.delete('episode_id');
     const rawResponse = await responsePromise.asResponse();
@@ -123,7 +123,7 @@ describe('resource episodes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('getWisdom', async () => {
     const responsePromise = client.episodes.getWisdom('episode_id');
     const rawResponse = await responsePromise.asResponse();
@@ -135,7 +135,7 @@ describe('resource episodes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listBySeason', async () => {
     const responsePromise = client.episodes.listBySeason(0);
     const rawResponse = await responsePromise.asResponse();
@@ -147,7 +147,7 @@ describe('resource episodes', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listBySeason: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
