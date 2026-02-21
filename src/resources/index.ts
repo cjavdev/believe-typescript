@@ -25,7 +25,6 @@ export {
   type EpisodeCreateParams,
   type EpisodeUpdateParams,
   type EpisodeListParams,
-  type EpisodeListBySeasonParams,
   type EpisodesSkipLimitPage,
 } from './episodes';
 export { Health, type HealthCheckResponse } from './health';
