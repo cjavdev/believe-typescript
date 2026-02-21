@@ -1,3 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export * from './ws/index';
+import { APIResource } from '../../core/resource';
+
+export class Ws extends APIResource {}
