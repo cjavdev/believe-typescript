@@ -111,7 +111,6 @@ Methods:
 - <code title="get /episodes">client.episodes.<a href="./src/resources/episodes.ts">list</a>({ ...params }) -> EpisodesSkipLimitPage</code>
 - <code title="delete /episodes/{episode_id}">client.episodes.<a href="./src/resources/episodes.ts">delete</a>(episodeID) -> void</code>
 - <code title="get /episodes/{episode_id}/wisdom">client.episodes.<a href="./src/resources/episodes.ts">getWisdom</a>(episodeID) -> EpisodeGetWisdomResponse</code>
-- <code title="get /episodes/seasons/{season_number}">client.episodes.<a href="./src/resources/episodes.ts">listBySeason</a>(seasonNumber, { ...params }) -> EpisodesSkipLimitPage</code>
 
 # Quotes
 

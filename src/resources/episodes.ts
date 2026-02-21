@@ -113,30 +113,6 @@ export class Episodes extends APIResource {
   getWisdom(episodeID: string, options?: RequestOptions): APIPromise<EpisodeGetWisdomResponse> {
     return this._client.get(path`/episodes/${episodeID}/wisdom`, options);
   }
-
-  /**
-   * Get a paginated list of episodes from a specific season.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const episode of client.episodes.listBySeason(
-   *   0,
-   * )) {
-   *   // ...
-   * }
-   * ```
-   */
-  listBySeason(
-    seasonNumber: number,
-    query: EpisodeListBySeasonParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<EpisodesSkipLimitPage, Episode> {
-    return this._client.getAPIList(path`/episodes/seasons/${seasonNumber}`, SkipLimitPage<Episode>, {
-      query,
-      ...options,
-    });
-  }
 }
 
 export type EpisodesSkipLimitPage = SkipLimitPage<Episode>;
@@ -374,8 +350,6 @@ export interface EpisodeListParams extends SkipLimitPageParams {
   season?: number | null;
 }
 
-export interface EpisodeListBySeasonParams extends SkipLimitPageParams {}
-
 export declare namespace Episodes {
   export {
     type Episode as Episode,
@@ -385,6 +359,5 @@ export declare namespace Episodes {
     type EpisodeCreateParams as EpisodeCreateParams,
     type EpisodeUpdateParams as EpisodeUpdateParams,
     type EpisodeListParams as EpisodeListParams,
-    type EpisodeListBySeasonParams as EpisodeListBySeasonParams,
   };
 }

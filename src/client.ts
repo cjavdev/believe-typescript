@@ -37,7 +37,6 @@ import {
   Episode,
   EpisodeCreateParams,
   EpisodeGetWisdomResponse,
-  EpisodeListBySeasonParams,
   EpisodeListParams,
   EpisodeUpdateParams,
   Episodes,
@@ -996,7 +995,6 @@ export declare namespace Believe {
     type EpisodeCreateParams as EpisodeCreateParams,
     type EpisodeUpdateParams as EpisodeUpdateParams,
     type EpisodeListParams as EpisodeListParams,
-    type EpisodeListBySeasonParams as EpisodeListBySeasonParams,
   };
 
   export {
