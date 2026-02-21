@@ -425,7 +425,6 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'get',
     httpPath: '/version',
   },
-  { clientCallName: 'client.client.ws.test', fullyQualifiedName: 'client.ws.test' },
 ];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {
