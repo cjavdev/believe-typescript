@@ -209,12 +209,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/episodes/{episode_id}/wisdom',
   },
   {
-    clientCallName: 'client.episodes.listBySeason',
-    fullyQualifiedName: 'episodes.listBySeason',
-    httpMethod: 'get',
-    httpPath: '/episodes/seasons/{season_number}',
-  },
-  {
     clientCallName: 'client.quotes.create',
     fullyQualifiedName: 'quotes.create',
     httpMethod: 'post',
