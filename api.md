@@ -292,8 +292,3 @@ Methods:
 # Client
 
 ## Ws
-
-Types:
-
-- <code><a href="./src/resources/client/ws.ts">TestClientEvent</a></code>
-- <code><a href="./src/resources/client/ws.ts">TestServerEvent</a></code>
