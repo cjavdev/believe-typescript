@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.13.1 (2026-02-24)
+
+Full Changelog: [v0.13.0...v0.13.1](https://github.com/cjavdev/believe-typescript/compare/v0.13.0...v0.13.1)
+
+### Bug Fixes
+
+* **docs/contributing:** correct pnpm link command ([3c3dd7b](https://github.com/cjavdev/believe-typescript/commit/3c3dd7b2ae5190f06ef1c8e7a86c32b44c8d1a68))
+
+
+### Chores
+
+* **internal:** upgrade pnpm version ([ce80c91](https://github.com/cjavdev/believe-typescript/commit/ce80c91b1b13d2dc8adc1662421d29455219395a))
+
 ## 0.13.0 (2026-02-21)
 
 Full Changelog: [v0.12.0...v0.13.0](https://github.com/cjavdev/believe-typescript/compare/v0.12.0...v0.13.0)
