@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.13.2 (2026-02-24)
+
+Full Changelog: [v0.13.1...v0.13.2](https://github.com/cjavdev/believe-typescript/compare/v0.13.1...v0.13.2)
+
+### Chores
+
+* **internal:** upgrade @modelcontextprotocol/sdk and hono ([29883d7](https://github.com/cjavdev/believe-typescript/commit/29883d7ed26a624bd3af48731ca0061531420000))
+
 ## 0.13.1 (2026-02-24)
 
 Full Changelog: [v0.13.0...v0.13.1](https://github.com/cjavdev/believe-typescript/compare/v0.13.0...v0.13.1)
