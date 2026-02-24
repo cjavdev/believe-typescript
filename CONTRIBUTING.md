@@ -60,7 +60,7 @@ $ yarn link @cjavdev/believe
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global @cjavdev/believe
+$ pnpm link --global @cjavdev/believe
 ```
 
 ## Running tests
