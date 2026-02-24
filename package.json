@@ -1,6 +1,6 @@
 {
   "name": "@cjavdev/believe",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "description": "The official TypeScript library for the Believe API",
   "author": "Believe <wave@cjav.dev>",
   "types": "dist/index.d.ts",
