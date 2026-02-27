@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.14.0 (2026-02-27)
+
+Full Changelog: [v0.13.2...v0.14.0](https://github.com/cjavdev/believe-typescript/compare/v0.13.2...v0.14.0)
+
+### Features
+
+* **mcp:** add an option to disable code tool ([ff76136](https://github.com/cjavdev/believe-typescript/commit/ff76136614ad63a924c5e2bd1efc7358bce1f6d9))
+
+
+### Chores
+
+* **internal:** codegen related update ([b00cedf](https://github.com/cjavdev/believe-typescript/commit/b00cedf472522c37312bd4b9473f2e8d3919d5c5))
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([14dd8d2](https://github.com/cjavdev/believe-typescript/commit/14dd8d2c3cb5d7220fe5533daddd7275f87d0517))
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([ec9f5f7](https://github.com/cjavdev/believe-typescript/commit/ec9f5f72860ff5665aca3dbda7af7ead53592c18))
+* **internal:** make MCP code execution location configurable via a flag ([fc17917](https://github.com/cjavdev/believe-typescript/commit/fc17917e19382d06d20a89116241be14623c31fe))
+* **internal:** move stringifyQuery implementation to internal function ([e8a8945](https://github.com/cjavdev/believe-typescript/commit/e8a8945ae154e914d5d2430013784da979865bb6))
+
 ## 0.13.2 (2026-02-24)
 
 Full Changelog: [v0.13.1...v0.13.2](https://github.com/cjavdev/believe-typescript/compare/v0.13.1...v0.13.2)
