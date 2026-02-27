@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.14.1 (2026-02-27)
+
+Full Changelog: [v0.14.0...v0.14.1](https://github.com/cjavdev/believe-typescript/compare/v0.14.0...v0.14.1)
+
+### Bug Fixes
+
+* **mcp:** update prompt ([c1f7066](https://github.com/cjavdev/believe-typescript/commit/c1f706635a016ab9f757aa2b9c85f8435a13b284))
+
 ## 0.14.0 (2026-02-27)
 
 Full Changelog: [v0.13.2...v0.14.0](https://github.com/cjavdev/believe-typescript/compare/v0.13.2...v0.14.0)
