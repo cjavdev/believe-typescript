@@ -881,20 +881,59 @@ export class Believe {
 
   static toFile = Uploads.toFile;
 
+  /**
+   * Operations related to Ted Lasso characters
+   */
   characters: API.Characters = new API.Characters(this);
+  /**
+   * Operations related to football teams
+   */
   teams: API.Teams = new API.Teams(this);
   matches: API.Matches = new API.Matches(this);
+  /**
+   * Operations related to TV episodes
+   */
   episodes: API.Episodes = new API.Episodes(this);
+  /**
+   * Memorable quotes from the show
+   */
   quotes: API.Quotes = new API.Quotes(this);
+  /**
+   * Interactive endpoints for motivation and guidance
+   */
   believe: API.BelieveResource = new API.BelieveResource(this);
+  /**
+   * Interactive endpoints for motivation and guidance
+   */
   conflicts: API.Conflicts = new API.Conflicts(this);
+  /**
+   * Interactive endpoints for motivation and guidance
+   */
   reframe: API.Reframe = new API.Reframe(this);
+  /**
+   * Interactive endpoints for motivation and guidance
+   */
   press: API.Press = new API.Press(this);
   coaching: API.Coaching = new API.Coaching(this);
+  /**
+   * Interactive endpoints for motivation and guidance
+   */
   biscuits: API.Biscuits = new API.Biscuits(this);
+  /**
+   * Server-Sent Events (SSE) streaming endpoints
+   */
   pepTalk: API.PepTalk = new API.PepTalk(this);
+  /**
+   * Server-Sent Events (SSE) streaming endpoints
+   */
   stream: API.Stream = new API.Stream(this);
+  /**
+   * Team members with union types (oneOf) - Players, Coaches, Medical Staff, Equipment Managers
+   */
   teamMembers: API.TeamMembers = new API.TeamMembers(this);
+  /**
+   * Register webhook endpoints and trigger events for testing
+   */
   webhooks: API.Webhooks = new API.Webhooks(this);
   health: API.Health = new API.Health(this);
   version: API.Version = new API.Version(this);
