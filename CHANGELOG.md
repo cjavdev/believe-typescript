@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.15.0 (2026-03-05)
+
+Full Changelog: [v0.14.1...v0.15.0](https://github.com/cjavdev/believe-typescript/compare/v0.14.1...v0.15.0)
+
+### Features
+
+* **api:** manual updates ([38fd09d](https://github.com/cjavdev/believe-typescript/commit/38fd09da041130f03f806b18e4a092d4a8bd455d))
+
+
+### Chores
+
+* **internal:** codegen related update ([fbe852c](https://github.com/cjavdev/believe-typescript/commit/fbe852cf5ab9637d2296b9bec6b518f7fbe12257))
+* **internal:** use x-stainless-mcp-client-envs header for MCP remote code tool calls ([51a4a31](https://github.com/cjavdev/believe-typescript/commit/51a4a316c4a51365cfff1e4d82f95b03109658bf))
+* **mcp-server:** return access instructions for 404 without API key ([4e86aad](https://github.com/cjavdev/believe-typescript/commit/4e86aadafc1a46019a3ceeb46ae269461ef61e70))
+
 ## 0.14.1 (2026-02-27)
 
 Full Changelog: [v0.14.0...v0.14.1](https://github.com/cjavdev/believe-typescript/compare/v0.14.0...v0.14.1)
