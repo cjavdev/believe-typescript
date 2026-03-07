@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.15.1 (2026-03-07)
+
+Full Changelog: [v0.15.0...v0.15.1](https://github.com/cjavdev/believe-typescript/compare/v0.15.0...v0.15.1)
+
+### Bug Fixes
+
+* **client:** preserve URL params already embedded in path ([76a629f](https://github.com/cjavdev/believe-typescript/commit/76a629fa4327ae1e121e5205f3e383ec6bd0eb69))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([8d709f1](https://github.com/cjavdev/believe-typescript/commit/8d709f1791cabf49421a780f1c4b501ee52b9896))
+* **internal:** codegen related update ([5a8def8](https://github.com/cjavdev/believe-typescript/commit/5a8def8b59c50d29baaef65a10ca57115f5e33b3))
+* **internal:** codegen related update ([da1c1ef](https://github.com/cjavdev/believe-typescript/commit/da1c1ef0ce48eafbcd466d0b0350f52b0ecea278))
+* update placeholder string ([8d25b53](https://github.com/cjavdev/believe-typescript/commit/8d25b5301aa6f5dbec785c5b007251b3cbd02a74))
+
 ## 0.15.0 (2026-03-05)
 
 Full Changelog: [v0.14.1...v0.15.0](https://github.com/cjavdev/believe-typescript/compare/v0.14.1...v0.15.0)
