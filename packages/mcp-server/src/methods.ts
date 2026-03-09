@@ -425,6 +425,36 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'get',
     httpPath: '/ws/test',
   },
+  {
+    clientCallName: 'client.client.ticketSales.create',
+    fullyQualifiedName: 'client.ticketSales.create',
+    httpMethod: 'post',
+    httpPath: '/ticket-sales',
+  },
+  {
+    clientCallName: 'client.client.ticketSales.retrieve',
+    fullyQualifiedName: 'client.ticketSales.retrieve',
+    httpMethod: 'get',
+    httpPath: '/ticket-sales/{ticket_sale_id}',
+  },
+  {
+    clientCallName: 'client.client.ticketSales.update',
+    fullyQualifiedName: 'client.ticketSales.update',
+    httpMethod: 'patch',
+    httpPath: '/ticket-sales/{ticket_sale_id}',
+  },
+  {
+    clientCallName: 'client.client.ticketSales.list',
+    fullyQualifiedName: 'client.ticketSales.list',
+    httpMethod: 'get',
+    httpPath: '/ticket-sales',
+  },
+  {
+    clientCallName: 'client.client.ticketSales.delete',
+    fullyQualifiedName: 'client.ticketSales.delete',
+    httpMethod: 'delete',
+    httpPath: '/ticket-sales/{ticket_sale_id}',
+  },
 ];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {
