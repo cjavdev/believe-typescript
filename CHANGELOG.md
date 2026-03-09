@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.16.0 (2026-03-09)
+
+Full Changelog: [v0.15.1...v0.16.0](https://github.com/cjavdev/believe-typescript/compare/v0.15.1...v0.16.0)
+
+### Features
+
+* Add ticket sales data model and more examples ([09f391e](https://github.com/cjavdev/believe-typescript/commit/09f391e77c8bac55ed532e0b04309bcb3406e07a))
+
+
+### Chores
+
+* **mcp-server:** improve instructions ([150e213](https://github.com/cjavdev/believe-typescript/commit/150e2136958592a51b21f3cb4f961a0c97b4079e))
+
 ## 0.15.1 (2026-03-07)
 
 Full Changelog: [v0.15.0...v0.15.1](https://github.com/cjavdev/believe-typescript/compare/v0.15.0...v0.15.1)
