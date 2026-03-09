@@ -289,7 +289,11 @@ export type QuoteTheme =
   | 'confidence'
   | 'conflict'
   | 'honesty'
-  | 'integrity';
+  | 'integrity'
+  | 'intimidation'
+  | 'ambition'
+  | 'narcissism'
+  | 'maturity';
 
 export interface QuoteCreateParams {
   /**

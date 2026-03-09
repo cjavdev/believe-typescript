@@ -174,6 +174,11 @@ const fuse = new Fuse(
     'client.health.check',
     'client.version.retrieve',
     'client.client.ws.test',
+    'client.client.ticketSales.create',
+    'client.client.ticketSales.delete',
+    'client.client.ticketSales.list',
+    'client.client.ticketSales.retrieve',
+    'client.client.ticketSales.update',
   ],
   { threshold: 1, shouldSort: true },
 );
