@@ -268,6 +268,21 @@ Methods:
 - <code title="post /webhooks/trigger">client.webhooks.<a href="./src/resources/webhooks.ts">triggerEvent</a>({ ...params }) -> WebhookTriggerEventResponse</code>
 - <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(body) -> void</code>
 
+# TicketSales
+
+Types:
+
+- <code><a href="./src/resources/ticket-sales.ts">PurchaseMethod</a></code>
+- <code><a href="./src/resources/ticket-sales.ts">TicketSale</a></code>
+
+Methods:
+
+- <code title="post /ticket-sales">client.ticketSales.<a href="./src/resources/ticket-sales.ts">create</a>({ ...params }) -> TicketSale</code>
+- <code title="get /ticket-sales/{ticket_sale_id}">client.ticketSales.<a href="./src/resources/ticket-sales.ts">retrieve</a>(ticketSaleID) -> TicketSale</code>
+- <code title="patch /ticket-sales/{ticket_sale_id}">client.ticketSales.<a href="./src/resources/ticket-sales.ts">update</a>(ticketSaleID, { ...params }) -> TicketSale</code>
+- <code title="get /ticket-sales">client.ticketSales.<a href="./src/resources/ticket-sales.ts">list</a>({ ...params }) -> TicketSalesSkipLimitPage</code>
+- <code title="delete /ticket-sales/{ticket_sale_id}">client.ticketSales.<a href="./src/resources/ticket-sales.ts">delete</a>(ticketSaleID) -> void</code>
+
 # Health
 
 Types:
@@ -295,20 +310,3 @@ Methods:
 Methods:
 
 - <code title="get /ws/test">client.client.ws.<a href="./src/resources/client/ws.ts">test</a>() -> void</code>
-
-## TicketSales
-
-Types:
-
-- <code><a href="./src/resources/client/ticket-sales.ts">TicketSaleCreateResponse</a></code>
-- <code><a href="./src/resources/client/ticket-sales.ts">TicketSaleRetrieveResponse</a></code>
-- <code><a href="./src/resources/client/ticket-sales.ts">TicketSaleUpdateResponse</a></code>
-- <code><a href="./src/resources/client/ticket-sales.ts">TicketSaleListResponse</a></code>
-
-Methods:
-
-- <code title="post /ticket-sales">client.client.ticketSales.<a href="./src/resources/client/ticket-sales.ts">create</a>({ ...params }) -> TicketSaleCreateResponse</code>
-- <code title="get /ticket-sales/{ticket_sale_id}">client.client.ticketSales.<a href="./src/resources/client/ticket-sales.ts">retrieve</a>(ticketSaleID) -> TicketSaleRetrieveResponse</code>
-- <code title="patch /ticket-sales/{ticket_sale_id}">client.client.ticketSales.<a href="./src/resources/client/ticket-sales.ts">update</a>(ticketSaleID, { ...params }) -> TicketSaleUpdateResponse</code>
-- <code title="get /ticket-sales">client.client.ticketSales.<a href="./src/resources/client/ticket-sales.ts">list</a>({ ...params }) -> TicketSaleListResponsesSkipLimitPage</code>
-- <code title="delete /ticket-sales/{ticket_sale_id}">client.client.ticketSales.<a href="./src/resources/client/ticket-sales.ts">delete</a>(ticketSaleID) -> void</code>

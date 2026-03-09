@@ -10,7 +10,7 @@ const client = new Believe({
 describe('resource ticketSales', () => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
-    const responsePromise = client.client.ticketSales.create({
+    const responsePromise = client.ticketSales.create({
       buyer_name: 'Mae Green',
       currency: 'GBP',
       discount: '9.00',
@@ -33,7 +33,7 @@ describe('resource ticketSales', () => {
 
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
-    const response = await client.client.ticketSales.create({
+    const response = await client.ticketSales.create({
       buyer_name: 'Mae Green',
       currency: 'GBP',
       discount: '9.00',
@@ -51,7 +51,7 @@ describe('resource ticketSales', () => {
 
   // Mock server tests are disabled
   test.skip('retrieve', async () => {
-    const responsePromise = client.client.ticketSales.retrieve('ticket_sale_id');
+    const responsePromise = client.ticketSales.retrieve('ticket_sale_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -63,7 +63,7 @@ describe('resource ticketSales', () => {
 
   // Mock server tests are disabled
   test.skip('update', async () => {
-    const responsePromise = client.client.ticketSales.update('ticket_sale_id', {});
+    const responsePromise = client.ticketSales.update('ticket_sale_id', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -75,7 +75,7 @@ describe('resource ticketSales', () => {
 
   // Mock server tests are disabled
   test.skip('list', async () => {
-    const responsePromise = client.client.ticketSales.list();
+    const responsePromise = client.ticketSales.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -89,7 +89,7 @@ describe('resource ticketSales', () => {
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.client.ticketSales.list(
+      client.ticketSales.list(
         {
           coupon_code: 'coupon_code',
           currency: 'currency',
@@ -105,7 +105,7 @@ describe('resource ticketSales', () => {
 
   // Mock server tests are disabled
   test.skip('delete', async () => {
-    const responsePromise = client.client.ticketSales.delete('ticket_sale_id');
+    const responsePromise = client.ticketSales.delete('ticket_sale_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

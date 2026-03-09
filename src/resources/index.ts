@@ -103,6 +103,15 @@ export {
   type TeamListParams,
   type TeamsSkipLimitPage,
 } from './teams/teams';
+export {
+  TicketSales,
+  type PurchaseMethod,
+  type TicketSale,
+  type TicketSaleCreateParams,
+  type TicketSaleUpdateParams,
+  type TicketSaleListParams,
+  type TicketSalesSkipLimitPage,
+} from './ticket-sales';
 export { Version, type VersionRetrieveResponse } from './version';
 export {
   Webhooks,
