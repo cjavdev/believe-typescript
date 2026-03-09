@@ -408,6 +408,36 @@ export const sdkMethods: SdkMethod[] = [
   },
   { clientCallName: 'client.webhooks.unwrap', fullyQualifiedName: 'webhooks.unwrap' },
   {
+    clientCallName: 'client.ticketSales.create',
+    fullyQualifiedName: 'ticketSales.create',
+    httpMethod: 'post',
+    httpPath: '/ticket-sales',
+  },
+  {
+    clientCallName: 'client.ticketSales.retrieve',
+    fullyQualifiedName: 'ticketSales.retrieve',
+    httpMethod: 'get',
+    httpPath: '/ticket-sales/{ticket_sale_id}',
+  },
+  {
+    clientCallName: 'client.ticketSales.update',
+    fullyQualifiedName: 'ticketSales.update',
+    httpMethod: 'patch',
+    httpPath: '/ticket-sales/{ticket_sale_id}',
+  },
+  {
+    clientCallName: 'client.ticketSales.list',
+    fullyQualifiedName: 'ticketSales.list',
+    httpMethod: 'get',
+    httpPath: '/ticket-sales',
+  },
+  {
+    clientCallName: 'client.ticketSales.delete',
+    fullyQualifiedName: 'ticketSales.delete',
+    httpMethod: 'delete',
+    httpPath: '/ticket-sales/{ticket_sale_id}',
+  },
+  {
     clientCallName: 'client.health.check',
     fullyQualifiedName: 'health.check',
     httpMethod: 'get',
@@ -424,36 +454,6 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'client.ws.test',
     httpMethod: 'get',
     httpPath: '/ws/test',
-  },
-  {
-    clientCallName: 'client.client.ticketSales.create',
-    fullyQualifiedName: 'client.ticketSales.create',
-    httpMethod: 'post',
-    httpPath: '/ticket-sales',
-  },
-  {
-    clientCallName: 'client.client.ticketSales.retrieve',
-    fullyQualifiedName: 'client.ticketSales.retrieve',
-    httpMethod: 'get',
-    httpPath: '/ticket-sales/{ticket_sale_id}',
-  },
-  {
-    clientCallName: 'client.client.ticketSales.update',
-    fullyQualifiedName: 'client.ticketSales.update',
-    httpMethod: 'patch',
-    httpPath: '/ticket-sales/{ticket_sale_id}',
-  },
-  {
-    clientCallName: 'client.client.ticketSales.list',
-    fullyQualifiedName: 'client.ticketSales.list',
-    httpMethod: 'get',
-    httpPath: '/ticket-sales',
-  },
-  {
-    clientCallName: 'client.client.ticketSales.delete',
-    fullyQualifiedName: 'client.ticketSales.delete',
-    httpMethod: 'delete',
-    httpPath: '/ticket-sales/{ticket_sale_id}',
   },
 ];
 

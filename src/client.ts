@@ -92,6 +92,15 @@ import {
   TeamMemberUpdateResponse,
   TeamMembers,
 } from './resources/team-members';
+import {
+  PurchaseMethod,
+  TicketSale,
+  TicketSaleCreateParams,
+  TicketSaleListParams,
+  TicketSaleUpdateParams,
+  TicketSales,
+  TicketSalesSkipLimitPage,
+} from './resources/ticket-sales';
 import { GetWelcomeResponse } from './resources/top-level';
 import { Version, VersionRetrieveResponse } from './resources/version';
 import {
@@ -936,6 +945,10 @@ export class Believe {
    * Register webhook endpoints and trigger events for testing
    */
   webhooks: API.Webhooks = new API.Webhooks(this);
+  /**
+   * Ticket sales with 300 records for practicing pagination, filtering, and financial data
+   */
+  ticketSales: API.TicketSales = new API.TicketSales(this);
   health: API.Health = new API.Health(this);
   version: API.Version = new API.Version(this);
   client: API.Client = new API.Client(this);
@@ -956,6 +969,7 @@ Believe.PepTalk = PepTalk;
 Believe.Stream = Stream;
 Believe.TeamMembers = TeamMembers;
 Believe.Webhooks = Webhooks;
+Believe.TicketSales = TicketSales;
 Believe.Health = Health;
 Believe.Version = Version;
 Believe.Client = Client;
@@ -1119,6 +1133,16 @@ export declare namespace Believe {
     type UnwrapWebhookEvent as UnwrapWebhookEvent,
     type WebhookCreateParams as WebhookCreateParams,
     type WebhookTriggerEventParams as WebhookTriggerEventParams,
+  };
+
+  export {
+    TicketSales as TicketSales,
+    type PurchaseMethod as PurchaseMethod,
+    type TicketSale as TicketSale,
+    type TicketSalesSkipLimitPage as TicketSalesSkipLimitPage,
+    type TicketSaleCreateParams as TicketSaleCreateParams,
+    type TicketSaleUpdateParams as TicketSaleUpdateParams,
+    type TicketSaleListParams as TicketSaleListParams,
   };
 
   export { Health as Health, type HealthCheckResponse as HealthCheckResponse };

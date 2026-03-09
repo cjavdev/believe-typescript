@@ -24,11 +24,6 @@ export class Ws extends APIResource {
    * ws.onmessage = (event) => console.log(event.data);
    * ws.send("Hello!"); // Server responds with echo
    * ```
-   *
-   * @example
-   * ```ts
-   * await client.client.ws.test();
-   * ```
    */
   test(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/ws/test', {

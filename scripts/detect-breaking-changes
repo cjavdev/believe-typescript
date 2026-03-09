@@ -26,11 +26,11 @@ TEST_PATHS=(
 	tests/api-resources/stream.test.ts
 	tests/api-resources/team-members.test.ts
 	tests/api-resources/webhooks.test.ts
+	tests/api-resources/ticket-sales.test.ts
 	tests/api-resources/health.test.ts
 	tests/api-resources/version.test.ts
 	tests/api-resources/client/client.test.ts
 	tests/api-resources/client/ws.test.ts
-	tests/api-resources/client/ticket-sales.test.ts
 	tests/index.test.ts
 )
 
