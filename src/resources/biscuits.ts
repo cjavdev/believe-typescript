@@ -85,7 +85,7 @@ export interface Biscuit {
   /**
    * Type of biscuit
    */
-  type: 'classic' | 'shortbread' | 'chocolate_chip' | 'oatmeal_raisin';
+  type: 'classic' | 'shortbread' | 'chocolate_chip' | 'oatmeal_raisin' | 'snickerdoodle' | 'lemon_drizzle';
 
   /**
    * How warm and fresh (1-10)
