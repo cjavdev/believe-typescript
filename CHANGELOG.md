@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.17.1 (2026-03-12)
+
+Full Changelog: [v0.17.0...v0.17.1](https://github.com/cjavdev/believe-typescript/compare/v0.17.0...v0.17.1)
+
+### Chores
+
+* **internal:** codegen related update ([baa059b](https://github.com/cjavdev/believe-typescript/commit/baa059b92a3783c2a4e299486ca0524889b39e98))
+* **internal:** codegen related update ([ee49dcf](https://github.com/cjavdev/believe-typescript/commit/ee49dcf09e50a21951be5e4e9e6e5d5da8cad7dc))
+* **internal:** codegen related update ([6a88d6d](https://github.com/cjavdev/believe-typescript/commit/6a88d6d0205516cf26e02545519ce30f65b3f1b4))
+* **internal:** codegen related update ([0c000eb](https://github.com/cjavdev/believe-typescript/commit/0c000ebcadbcf635e5cd02ce34ad2ebe61a5ad72))
+* **internal:** codegen related update ([d91620d](https://github.com/cjavdev/believe-typescript/commit/d91620d0d7ba97a610e9d5026740d093f32d824d))
+* **internal:** codegen related update ([72e0d44](https://github.com/cjavdev/believe-typescript/commit/72e0d440d8583e39536587ebfb580b65c56cf8ba))
+* **internal:** codegen related update ([9908acc](https://github.com/cjavdev/believe-typescript/commit/9908acc1ca7afee8cced4e874aab6d5f5415c113))
+* **internal:** codegen related update ([e97ef23](https://github.com/cjavdev/believe-typescript/commit/e97ef23e682cd35dc230f29cbb9c964a4d467a6c))
+* **internal:** codegen related update ([6d86321](https://github.com/cjavdev/believe-typescript/commit/6d8632182c3169177a6d3547e5ab84a1b8edb126))
+* **internal:** codegen related update ([28a1008](https://github.com/cjavdev/believe-typescript/commit/28a1008cf11715fa06f8943c44e242ff87ce5b58))
+* **internal:** codegen related update ([59a3d3d](https://github.com/cjavdev/believe-typescript/commit/59a3d3d2c6a99ca6fc88ee99273376a1230fe23b))
+* **internal:** codegen related update ([1d0f3bf](https://github.com/cjavdev/believe-typescript/commit/1d0f3bf220985b7d5d78e39416542d484aebf88f))
+* **internal:** codegen related update ([2d12ebe](https://github.com/cjavdev/believe-typescript/commit/2d12ebe44504b152ce58976c26c2677d3a73b503))
+* **internal:** codegen related update ([069db1b](https://github.com/cjavdev/believe-typescript/commit/069db1bea5fa9c180e622182b916291d1464deca))
+* **internal:** update dependencies to address dependabot vulnerabilities ([8ef6c1a](https://github.com/cjavdev/believe-typescript/commit/8ef6c1a9f7e7c4be9e04f4f2b32294903d76d05e))
+* **internal:** update lock file ([0537bef](https://github.com/cjavdev/believe-typescript/commit/0537bef7ff722f7db0c9cdbe7459d37c418c35a6))
+
 ## 0.17.0 (2026-03-09)
 
 Full Changelog: [v0.16.0...v0.17.0](https://github.com/cjavdev/believe-typescript/compare/v0.16.0...v0.17.0)
