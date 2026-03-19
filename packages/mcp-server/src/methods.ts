@@ -11,6 +11,12 @@ export type SdkMethod = {
 
 export const sdkMethods: SdkMethod[] = [
   {
+    clientCallName: 'client.getWelcome',
+    fullyQualifiedName: 'getWelcome',
+    httpMethod: 'get',
+    httpPath: '/',
+  },
+  {
     clientCallName: 'client.characters.create',
     fullyQualifiedName: 'characters.create',
     httpMethod: 'post',
@@ -399,6 +405,36 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'webhooks.triggerEvent',
     httpMethod: 'post',
     httpPath: '/webhooks/trigger',
+  },
+  {
+    clientCallName: 'client.ticketSales.create',
+    fullyQualifiedName: 'ticketSales.create',
+    httpMethod: 'post',
+    httpPath: '/ticket-sales',
+  },
+  {
+    clientCallName: 'client.ticketSales.retrieve',
+    fullyQualifiedName: 'ticketSales.retrieve',
+    httpMethod: 'get',
+    httpPath: '/ticket-sales/{ticket_sale_id}',
+  },
+  {
+    clientCallName: 'client.ticketSales.update',
+    fullyQualifiedName: 'ticketSales.update',
+    httpMethod: 'patch',
+    httpPath: '/ticket-sales/{ticket_sale_id}',
+  },
+  {
+    clientCallName: 'client.ticketSales.list',
+    fullyQualifiedName: 'ticketSales.list',
+    httpMethod: 'get',
+    httpPath: '/ticket-sales',
+  },
+  {
+    clientCallName: 'client.ticketSales.delete',
+    fullyQualifiedName: 'ticketSales.delete',
+    httpMethod: 'delete',
+    httpPath: '/ticket-sales/{ticket_sale_id}',
   },
 ];
 

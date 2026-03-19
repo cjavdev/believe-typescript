@@ -1,3 +1,13 @@
+# Believe
+
+Types:
+
+- <code><a href="./src/resources/top-level.ts">GetWelcomeResponse</a></code>
+
+Methods:
+
+- <code title="get /">client.<a href="./src/index.ts">getWelcome</a>() -> unknown</code>
+
 # Characters
 
 Types:
@@ -253,3 +263,18 @@ Methods:
 - <code title="get /webhooks">client.webhooks.<a href="./src/resources/webhooks.ts">list</a>() -> WebhookListResponse</code>
 - <code title="delete /webhooks/{webhook_id}">client.webhooks.<a href="./src/resources/webhooks.ts">delete</a>(webhookID) -> WebhookDeleteResponse</code>
 - <code title="post /webhooks/trigger">client.webhooks.<a href="./src/resources/webhooks.ts">triggerEvent</a>({ ...params }) -> WebhookTriggerEventResponse</code>
+
+# TicketSales
+
+Types:
+
+- <code><a href="./src/resources/ticket-sales.ts">PurchaseMethod</a></code>
+- <code><a href="./src/resources/ticket-sales.ts">TicketSale</a></code>
+
+Methods:
+
+- <code title="post /ticket-sales">client.ticketSales.<a href="./src/resources/ticket-sales.ts">create</a>({ ...params }) -> TicketSale</code>
+- <code title="get /ticket-sales/{ticket_sale_id}">client.ticketSales.<a href="./src/resources/ticket-sales.ts">retrieve</a>(ticketSaleID) -> TicketSale</code>
+- <code title="patch /ticket-sales/{ticket_sale_id}">client.ticketSales.<a href="./src/resources/ticket-sales.ts">update</a>(ticketSaleID, { ...params }) -> TicketSale</code>
+- <code title="get /ticket-sales">client.ticketSales.<a href="./src/resources/ticket-sales.ts">list</a>({ ...params }) -> TicketSalesSkipLimitPage</code>
+- <code title="delete /ticket-sales/{ticket_sale_id}">client.ticketSales.<a href="./src/resources/ticket-sales.ts">delete</a>(ticketSaleID) -> void</code>

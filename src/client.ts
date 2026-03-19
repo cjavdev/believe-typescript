@@ -92,6 +92,16 @@ import {
   TeamMembers,
 } from './resources/team-members';
 import {
+  PurchaseMethod,
+  TicketSale,
+  TicketSaleCreateParams,
+  TicketSaleListParams,
+  TicketSaleUpdateParams,
+  TicketSales,
+  TicketSalesSkipLimitPage,
+} from './resources/ticket-sales';
+import { GetWelcomeResponse } from './resources/top-level';
+import {
   RegisteredWebhook,
   WebhookCreateParams,
   WebhookCreateResponse,
@@ -323,6 +333,13 @@ export class Believe {
    */
   #baseURLOverridden(): boolean {
     return this.baseURL !== 'https://believe.cjav.dev';
+  }
+
+  /**
+   * Get a warm welcome and overview of available endpoints.
+   */
+  getWelcome(options?: RequestOptions): APIPromise<unknown> {
+    return this.get('/', options);
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
@@ -922,6 +939,10 @@ export class Believe {
    * Register webhook endpoints and trigger events for testing
    */
   webhooks: API.Webhooks = new API.Webhooks(this);
+  /**
+   * Ticket sales with 300 records for practicing pagination, filtering, and financial data
+   */
+  ticketSales: API.TicketSales = new API.TicketSales(this);
 }
 
 Believe.Characters = Characters;
@@ -939,6 +960,7 @@ Believe.PepTalk = PepTalk;
 Believe.Stream = Stream;
 Believe.TeamMembers = TeamMembers;
 Believe.Webhooks = Webhooks;
+Believe.TicketSales = TicketSales;
 
 export declare namespace Believe {
   export type RequestOptions = Opts.RequestOptions;
@@ -948,6 +970,8 @@ export declare namespace Believe {
     type SkipLimitPageParams as SkipLimitPageParams,
     type SkipLimitPageResponse as SkipLimitPageResponse,
   };
+
+  export { type GetWelcomeResponse as GetWelcomeResponse };
 
   export {
     Characters as Characters,
@@ -1094,5 +1118,15 @@ export declare namespace Believe {
     type WebhookTriggerEventResponse as WebhookTriggerEventResponse,
     type WebhookCreateParams as WebhookCreateParams,
     type WebhookTriggerEventParams as WebhookTriggerEventParams,
+  };
+
+  export {
+    TicketSales as TicketSales,
+    type PurchaseMethod as PurchaseMethod,
+    type TicketSale as TicketSale,
+    type TicketSalesSkipLimitPage as TicketSalesSkipLimitPage,
+    type TicketSaleCreateParams as TicketSaleCreateParams,
+    type TicketSaleUpdateParams as TicketSaleUpdateParams,
+    type TicketSaleListParams as TicketSaleListParams,
   };
 }
