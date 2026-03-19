@@ -104,7 +104,6 @@ function getTSDiagnostics(code: string): string[] {
 
 const fuse = new Fuse(
   [
-    'client.getWelcome',
     'client.characters.create',
     'client.characters.delete',
     'client.characters.getQuotes',
@@ -165,20 +164,6 @@ const fuse = new Fuse(
     'client.teamMembers.listStaff',
     'client.teamMembers.retrieve',
     'client.teamMembers.update',
-    'client.webhooks.create',
-    'client.webhooks.delete',
-    'client.webhooks.list',
-    'client.webhooks.retrieve',
-    'client.webhooks.triggerEvent',
-    'client.webhooks.unwrap',
-    'client.ticketSales.create',
-    'client.ticketSales.delete',
-    'client.ticketSales.list',
-    'client.ticketSales.retrieve',
-    'client.ticketSales.update',
-    'client.health.check',
-    'client.version.retrieve',
-    'client.client.ws.test',
   ],
   { threshold: 1, shouldSort: true },
 );

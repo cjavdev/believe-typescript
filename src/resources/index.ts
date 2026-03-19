@@ -14,7 +14,6 @@ export {
   type CharacterListParams,
   type CharactersSkipLimitPage,
 } from './characters';
-export { Client } from './client/client';
 export { Coaching } from './coaching/coaching';
 export { Conflicts, type ConflictResolveResponse, type ConflictResolveParams } from './conflicts';
 export {
@@ -27,7 +26,6 @@ export {
   type EpisodeListParams,
   type EpisodesSkipLimitPage,
 } from './episodes';
-export { Health, type HealthCheckResponse } from './health';
 export {
   Matches,
   type Match,
@@ -103,27 +101,3 @@ export {
   type TeamListParams,
   type TeamsSkipLimitPage,
 } from './teams/teams';
-export {
-  TicketSales,
-  type PurchaseMethod,
-  type TicketSale,
-  type TicketSaleCreateParams,
-  type TicketSaleUpdateParams,
-  type TicketSaleListParams,
-  type TicketSalesSkipLimitPage,
-} from './ticket-sales';
-export { Version, type VersionRetrieveResponse } from './version';
-export {
-  Webhooks,
-  type RegisteredWebhook,
-  type WebhookCreateResponse,
-  type WebhookListResponse,
-  type WebhookDeleteResponse,
-  type WebhookTriggerEventResponse,
-  type MatchCompletedWebhookEvent,
-  type TeamMemberTransferredWebhookEvent,
-  type UnwrapWebhookEvent,
-  type WebhookCreateParams,
-  type WebhookTriggerEventParams,
-} from './webhooks';
-export { type GetWelcomeResponse } from './top-level';
