@@ -44,7 +44,6 @@ import {
   EpisodesSkipLimitPage,
   PaginatedResponse,
 } from './resources/episodes';
-import { Health, HealthCheckResponse } from './resources/health';
 import { PepTalk, PepTalkRetrieveParams, PepTalkRetrieveResponse } from './resources/pep-talk';
 import { Press, PressSimulateParams, PressSimulateResponse } from './resources/press';
 import {
@@ -92,30 +91,6 @@ import {
   TeamMemberUpdateResponse,
   TeamMembers,
 } from './resources/team-members';
-import {
-  PurchaseMethod,
-  TicketSale,
-  TicketSaleCreateParams,
-  TicketSaleListParams,
-  TicketSaleUpdateParams,
-  TicketSales,
-  TicketSalesSkipLimitPage,
-} from './resources/ticket-sales';
-import { GetWelcomeResponse } from './resources/top-level';
-import { Version, VersionRetrieveResponse } from './resources/version';
-import {
-  MatchCompletedWebhookEvent,
-  RegisteredWebhook,
-  TeamMemberTransferredWebhookEvent,
-  UnwrapWebhookEvent,
-  WebhookCreateParams,
-  WebhookCreateResponse,
-  WebhookDeleteResponse,
-  WebhookListResponse,
-  WebhookTriggerEventParams,
-  WebhookTriggerEventResponse,
-  Webhooks,
-} from './resources/webhooks';
 import { Coaching } from './resources/coaching/coaching';
 import {
   Match,
@@ -158,7 +133,6 @@ import {
   parseLogLevel,
 } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
-import { Client } from './resources/client/client';
 
 export interface ClientOptions {
   /**
@@ -339,13 +313,6 @@ export class Believe {
    */
   #baseURLOverridden(): boolean {
     return this.baseURL !== 'https://believe.cjav.dev';
-  }
-
-  /**
-   * Get a warm welcome and overview of available endpoints.
-   */
-  getWelcome(options?: RequestOptions): APIPromise<unknown> {
-    return this.get('/', options);
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
@@ -941,17 +908,6 @@ export class Believe {
    * Team members with union types (oneOf) - Players, Coaches, Medical Staff, Equipment Managers
    */
   teamMembers: API.TeamMembers = new API.TeamMembers(this);
-  /**
-   * Register webhook endpoints and trigger events for testing
-   */
-  webhooks: API.Webhooks = new API.Webhooks(this);
-  /**
-   * Ticket sales with 300 records for practicing pagination, filtering, and financial data
-   */
-  ticketSales: API.TicketSales = new API.TicketSales(this);
-  health: API.Health = new API.Health(this);
-  version: API.Version = new API.Version(this);
-  client: API.Client = new API.Client(this);
 }
 
 Believe.Characters = Characters;
@@ -968,11 +924,6 @@ Believe.Biscuits = Biscuits;
 Believe.PepTalk = PepTalk;
 Believe.Stream = Stream;
 Believe.TeamMembers = TeamMembers;
-Believe.Webhooks = Webhooks;
-Believe.TicketSales = TicketSales;
-Believe.Health = Health;
-Believe.Version = Version;
-Believe.Client = Client;
 
 export declare namespace Believe {
   export type RequestOptions = Opts.RequestOptions;
@@ -982,8 +933,6 @@ export declare namespace Believe {
     type SkipLimitPageParams as SkipLimitPageParams,
     type SkipLimitPageResponse as SkipLimitPageResponse,
   };
-
-  export { type GetWelcomeResponse as GetWelcomeResponse };
 
   export {
     Characters as Characters,
@@ -1120,34 +1069,4 @@ export declare namespace Believe {
     type TeamMemberListPlayersParams as TeamMemberListPlayersParams,
     type TeamMemberListStaffParams as TeamMemberListStaffParams,
   };
-
-  export {
-    Webhooks as Webhooks,
-    type RegisteredWebhook as RegisteredWebhook,
-    type WebhookCreateResponse as WebhookCreateResponse,
-    type WebhookListResponse as WebhookListResponse,
-    type WebhookDeleteResponse as WebhookDeleteResponse,
-    type WebhookTriggerEventResponse as WebhookTriggerEventResponse,
-    type MatchCompletedWebhookEvent as MatchCompletedWebhookEvent,
-    type TeamMemberTransferredWebhookEvent as TeamMemberTransferredWebhookEvent,
-    type UnwrapWebhookEvent as UnwrapWebhookEvent,
-    type WebhookCreateParams as WebhookCreateParams,
-    type WebhookTriggerEventParams as WebhookTriggerEventParams,
-  };
-
-  export {
-    TicketSales as TicketSales,
-    type PurchaseMethod as PurchaseMethod,
-    type TicketSale as TicketSale,
-    type TicketSalesSkipLimitPage as TicketSalesSkipLimitPage,
-    type TicketSaleCreateParams as TicketSaleCreateParams,
-    type TicketSaleUpdateParams as TicketSaleUpdateParams,
-    type TicketSaleListParams as TicketSaleListParams,
-  };
-
-  export { Health as Health, type HealthCheckResponse as HealthCheckResponse };
-
-  export { Version as Version, type VersionRetrieveResponse as VersionRetrieveResponse };
-
-  export { Client as Client };
 }
