@@ -101,3 +101,13 @@ export {
   type TeamListParams,
   type TeamsSkipLimitPage,
 } from './teams/teams';
+export {
+  Webhooks,
+  type RegisteredWebhook,
+  type WebhookCreateResponse,
+  type WebhookListResponse,
+  type WebhookDeleteResponse,
+  type WebhookTriggerEventResponse,
+  type WebhookCreateParams,
+  type WebhookTriggerEventParams,
+} from './webhooks';

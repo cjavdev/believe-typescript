@@ -91,6 +91,16 @@ import {
   TeamMemberUpdateResponse,
   TeamMembers,
 } from './resources/team-members';
+import {
+  RegisteredWebhook,
+  WebhookCreateParams,
+  WebhookCreateResponse,
+  WebhookDeleteResponse,
+  WebhookListResponse,
+  WebhookTriggerEventParams,
+  WebhookTriggerEventResponse,
+  Webhooks,
+} from './resources/webhooks';
 import { Coaching } from './resources/coaching/coaching';
 import {
   Match,
@@ -908,6 +918,10 @@ export class Believe {
    * Team members with union types (oneOf) - Players, Coaches, Medical Staff, Equipment Managers
    */
   teamMembers: API.TeamMembers = new API.TeamMembers(this);
+  /**
+   * Register webhook endpoints and trigger events for testing
+   */
+  webhooks: API.Webhooks = new API.Webhooks(this);
 }
 
 Believe.Characters = Characters;
@@ -924,6 +938,7 @@ Believe.Biscuits = Biscuits;
 Believe.PepTalk = PepTalk;
 Believe.Stream = Stream;
 Believe.TeamMembers = TeamMembers;
+Believe.Webhooks = Webhooks;
 
 export declare namespace Believe {
   export type RequestOptions = Opts.RequestOptions;
@@ -1068,5 +1083,16 @@ export declare namespace Believe {
     type TeamMemberListCoachesParams as TeamMemberListCoachesParams,
     type TeamMemberListPlayersParams as TeamMemberListPlayersParams,
     type TeamMemberListStaffParams as TeamMemberListStaffParams,
+  };
+
+  export {
+    Webhooks as Webhooks,
+    type RegisteredWebhook as RegisteredWebhook,
+    type WebhookCreateResponse as WebhookCreateResponse,
+    type WebhookListResponse as WebhookListResponse,
+    type WebhookDeleteResponse as WebhookDeleteResponse,
+    type WebhookTriggerEventResponse as WebhookTriggerEventResponse,
+    type WebhookCreateParams as WebhookCreateParams,
+    type WebhookTriggerEventParams as WebhookTriggerEventParams,
   };
 }
