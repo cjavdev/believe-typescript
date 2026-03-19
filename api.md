@@ -278,3 +278,31 @@ Methods:
 - <code title="patch /ticket-sales/{ticket_sale_id}">client.ticketSales.<a href="./src/resources/ticket-sales.ts">update</a>(ticketSaleID, { ...params }) -> TicketSale</code>
 - <code title="get /ticket-sales">client.ticketSales.<a href="./src/resources/ticket-sales.ts">list</a>({ ...params }) -> TicketSalesSkipLimitPage</code>
 - <code title="delete /ticket-sales/{ticket_sale_id}">client.ticketSales.<a href="./src/resources/ticket-sales.ts">delete</a>(ticketSaleID) -> void</code>
+
+# Health
+
+Types:
+
+- <code><a href="./src/resources/health.ts">HealthCheckResponse</a></code>
+
+Methods:
+
+- <code title="get /health">client.health.<a href="./src/resources/health.ts">check</a>() -> unknown</code>
+
+# Version
+
+Types:
+
+- <code><a href="./src/resources/version.ts">VersionRetrieveResponse</a></code>
+
+Methods:
+
+- <code title="get /version">client.version.<a href="./src/resources/version.ts">retrieve</a>() -> unknown</code>
+
+# Client
+
+## Ws
+
+Methods:
+
+- <code title="get /ws/test">client.client.ws.<a href="./src/resources/client/ws.ts">test</a>() -> void</code>
