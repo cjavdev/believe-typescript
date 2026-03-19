@@ -235,3 +235,21 @@ Methods:
 - <code title="get /team-members/coaches/">client.teamMembers.<a href="./src/resources/team-members.ts">listCoaches</a>({ ...params }) -> CoachesSkipLimitPage</code>
 - <code title="get /team-members/players/">client.teamMembers.<a href="./src/resources/team-members.ts">listPlayers</a>({ ...params }) -> PlayersSkipLimitPage</code>
 - <code title="get /team-members/staff/">client.teamMembers.<a href="./src/resources/team-members.ts">listStaff</a>({ ...params }) -> TeamMemberListStaffResponsesSkipLimitPage</code>
+
+# Webhooks
+
+Types:
+
+- <code><a href="./src/resources/webhooks.ts">RegisteredWebhook</a></code>
+- <code><a href="./src/resources/webhooks.ts">WebhookCreateResponse</a></code>
+- <code><a href="./src/resources/webhooks.ts">WebhookListResponse</a></code>
+- <code><a href="./src/resources/webhooks.ts">WebhookDeleteResponse</a></code>
+- <code><a href="./src/resources/webhooks.ts">WebhookTriggerEventResponse</a></code>
+
+Methods:
+
+- <code title="post /webhooks">client.webhooks.<a href="./src/resources/webhooks.ts">create</a>({ ...params }) -> WebhookCreateResponse</code>
+- <code title="get /webhooks/{webhook_id}">client.webhooks.<a href="./src/resources/webhooks.ts">retrieve</a>(webhookID) -> RegisteredWebhook</code>
+- <code title="get /webhooks">client.webhooks.<a href="./src/resources/webhooks.ts">list</a>() -> WebhookListResponse</code>
+- <code title="delete /webhooks/{webhook_id}">client.webhooks.<a href="./src/resources/webhooks.ts">delete</a>(webhookID) -> WebhookDeleteResponse</code>
+- <code title="post /webhooks/trigger">client.webhooks.<a href="./src/resources/webhooks.ts">triggerEvent</a>({ ...params }) -> WebhookTriggerEventResponse</code>

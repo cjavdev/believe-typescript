@@ -164,6 +164,11 @@ const fuse = new Fuse(
     'client.teamMembers.listStaff',
     'client.teamMembers.retrieve',
     'client.teamMembers.update',
+    'client.webhooks.create',
+    'client.webhooks.delete',
+    'client.webhooks.list',
+    'client.webhooks.retrieve',
+    'client.webhooks.triggerEvent',
   ],
   { threshold: 1, shouldSort: true },
 );

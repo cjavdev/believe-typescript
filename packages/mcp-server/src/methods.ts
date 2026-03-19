@@ -370,6 +370,36 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'get',
     httpPath: '/team-members/staff/',
   },
+  {
+    clientCallName: 'client.webhooks.create',
+    fullyQualifiedName: 'webhooks.create',
+    httpMethod: 'post',
+    httpPath: '/webhooks',
+  },
+  {
+    clientCallName: 'client.webhooks.retrieve',
+    fullyQualifiedName: 'webhooks.retrieve',
+    httpMethod: 'get',
+    httpPath: '/webhooks/{webhook_id}',
+  },
+  {
+    clientCallName: 'client.webhooks.list',
+    fullyQualifiedName: 'webhooks.list',
+    httpMethod: 'get',
+    httpPath: '/webhooks',
+  },
+  {
+    clientCallName: 'client.webhooks.delete',
+    fullyQualifiedName: 'webhooks.delete',
+    httpMethod: 'delete',
+    httpPath: '/webhooks/{webhook_id}',
+  },
+  {
+    clientCallName: 'client.webhooks.triggerEvent',
+    fullyQualifiedName: 'webhooks.triggerEvent',
+    httpMethod: 'post',
+    httpPath: '/webhooks/trigger',
+  },
 ];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {
