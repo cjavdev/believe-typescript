@@ -170,6 +170,7 @@ const fuse = new Fuse(
     'client.webhooks.list',
     'client.webhooks.retrieve',
     'client.webhooks.triggerEvent',
+    'client.webhooks.unwrap',
     'client.ticketSales.create',
     'client.ticketSales.delete',
     'client.ticketSales.list',

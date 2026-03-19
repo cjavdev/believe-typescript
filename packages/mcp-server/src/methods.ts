@@ -406,6 +406,7 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'post',
     httpPath: '/webhooks/trigger',
   },
+  { clientCallName: 'client.webhooks.unwrap', fullyQualifiedName: 'webhooks.unwrap' },
   {
     clientCallName: 'client.ticketSales.create',
     fullyQualifiedName: 'ticketSales.create',
