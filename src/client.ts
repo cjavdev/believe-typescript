@@ -44,6 +44,7 @@ import {
   EpisodesSkipLimitPage,
   PaginatedResponse,
 } from './resources/episodes';
+import { Health, HealthCheckResponse } from './resources/health';
 import { PepTalk, PepTalkRetrieveParams, PepTalkRetrieveResponse } from './resources/pep-talk';
 import { Press, PressSimulateParams, PressSimulateResponse } from './resources/press';
 import {
@@ -101,6 +102,7 @@ import {
   TicketSalesSkipLimitPage,
 } from './resources/ticket-sales';
 import { GetWelcomeResponse } from './resources/top-level';
+import { Version, VersionRetrieveResponse } from './resources/version';
 import {
   RegisteredWebhook,
   WebhookCreateParams,
@@ -153,6 +155,7 @@ import {
   parseLogLevel,
 } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
+import { Client } from './resources/client/client';
 
 export interface ClientOptions {
   /**
@@ -943,6 +946,9 @@ export class Believe {
    * Ticket sales with 300 records for practicing pagination, filtering, and financial data
    */
   ticketSales: API.TicketSales = new API.TicketSales(this);
+  health: API.Health = new API.Health(this);
+  version: API.Version = new API.Version(this);
+  client: API.Client = new API.Client(this);
 }
 
 Believe.Characters = Characters;
@@ -961,6 +967,9 @@ Believe.Stream = Stream;
 Believe.TeamMembers = TeamMembers;
 Believe.Webhooks = Webhooks;
 Believe.TicketSales = TicketSales;
+Believe.Health = Health;
+Believe.Version = Version;
+Believe.Client = Client;
 
 export declare namespace Believe {
   export type RequestOptions = Opts.RequestOptions;
@@ -1129,4 +1138,10 @@ export declare namespace Believe {
     type TicketSaleUpdateParams as TicketSaleUpdateParams,
     type TicketSaleListParams as TicketSaleListParams,
   };
+
+  export { Health as Health, type HealthCheckResponse as HealthCheckResponse };
+
+  export { Version as Version, type VersionRetrieveResponse as VersionRetrieveResponse };
+
+  export { Client as Client };
 }

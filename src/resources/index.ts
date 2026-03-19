@@ -14,6 +14,7 @@ export {
   type CharacterListParams,
   type CharactersSkipLimitPage,
 } from './characters';
+export { Client } from './client/client';
 export { Coaching } from './coaching/coaching';
 export { Conflicts, type ConflictResolveResponse, type ConflictResolveParams } from './conflicts';
 export {
@@ -26,6 +27,7 @@ export {
   type EpisodeListParams,
   type EpisodesSkipLimitPage,
 } from './episodes';
+export { Health, type HealthCheckResponse } from './health';
 export {
   Matches,
   type Match,
@@ -110,6 +112,7 @@ export {
   type TicketSaleListParams,
   type TicketSalesSkipLimitPage,
 } from './ticket-sales';
+export { Version, type VersionRetrieveResponse } from './version';
 export {
   Webhooks,
   type RegisteredWebhook,
