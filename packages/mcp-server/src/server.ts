@@ -20,7 +20,7 @@ export const newMcpServer = async (stainlessApiKey: string | undefined) =>
   new McpServer(
     {
       name: 'cjavdev_believe_api',
-      version: '0.19.0',
+      version: '0.20.0',
     },
     {
       instructions: await getInstructions(stainlessApiKey),
