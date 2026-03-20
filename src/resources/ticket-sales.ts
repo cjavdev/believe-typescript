@@ -10,7 +10,9 @@ import { path } from '../internal/utils/path';
 /**
  * Ticket sales with 300 records for practicing pagination, filtering, and financial data
  */
-export class TicketSales extends APIResource {
+export class BaseTicketSales extends APIResource {
+  static override readonly _key: readonly ['ticketSales'] = Object.freeze(['ticketSales'] as const);
+
   /**
    * Record a new ticket sale.
    *
@@ -100,6 +102,10 @@ export class TicketSales extends APIResource {
     });
   }
 }
+/**
+ * Ticket sales with 300 records for practicing pagination, filtering, and financial data
+ */
+export class TicketSales extends BaseTicketSales {}
 
 export type TicketSalesSkipLimitPage = SkipLimitPage<TicketSale>;
 

@@ -1,9 +1,21 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { BelieveResource, type BelieveSubmitResponse, type BelieveSubmitParams } from './believe';
-export { Biscuits, type Biscuit, type BiscuitListParams, type BiscuitsSkipLimitPage } from './biscuits';
+export {
+  BelieveResource,
+  BaseBelieveResource,
+  type BelieveSubmitResponse,
+  type BelieveSubmitParams,
+} from './believe';
+export {
+  Biscuits,
+  BaseBiscuits,
+  type Biscuit,
+  type BiscuitListParams,
+  type BiscuitsSkipLimitPage,
+} from './biscuits';
 export {
   Characters,
+  BaseCharacters,
   type Character,
   type CharacterRole,
   type EmotionalStats,
@@ -14,11 +26,17 @@ export {
   type CharacterListParams,
   type CharactersSkipLimitPage,
 } from './characters';
-export { Client } from './client/client';
-export { Coaching } from './coaching/coaching';
-export { Conflicts, type ConflictResolveResponse, type ConflictResolveParams } from './conflicts';
+export { Client, BaseClient } from './client/client';
+export { Coaching, BaseCoaching } from './coaching/coaching';
+export {
+  Conflicts,
+  BaseConflicts,
+  type ConflictResolveResponse,
+  type ConflictResolveParams,
+} from './conflicts';
 export {
   Episodes,
+  BaseEpisodes,
   type Episode,
   type PaginatedResponse,
   type EpisodeGetWisdomResponse,
@@ -27,9 +45,10 @@ export {
   type EpisodeListParams,
   type EpisodesSkipLimitPage,
 } from './episodes';
-export { Health, type HealthCheckResponse } from './health';
+export { Health, BaseHealth, type HealthCheckResponse } from './health';
 export {
   Matches,
+  BaseMatches,
   type Match,
   type MatchResult,
   type MatchType,
@@ -42,10 +61,11 @@ export {
   type MatchStreamLiveParams,
   type MatchesSkipLimitPage,
 } from './matches/matches';
-export { PepTalk, type PepTalkRetrieveResponse, type PepTalkRetrieveParams } from './pep-talk';
-export { Press, type PressSimulateResponse, type PressSimulateParams } from './press';
+export { PepTalk, BasePepTalk, type PepTalkRetrieveResponse, type PepTalkRetrieveParams } from './pep-talk';
+export { Press, BasePress, type PressSimulateResponse, type PressSimulateParams } from './press';
 export {
   Quotes,
+  BaseQuotes,
   type PaginatedResponseQuote,
   type Quote,
   type QuoteMoment,
@@ -60,12 +80,14 @@ export {
 } from './quotes';
 export {
   Reframe,
+  BaseReframe,
   type ReframeTransformNegativeThoughtsResponse,
   type ReframeTransformNegativeThoughtsParams,
 } from './reframe';
-export { Stream, type StreamTestConnectionResponse } from './stream';
+export { Stream, BaseStream, type StreamTestConnectionResponse } from './stream';
 export {
   TeamMembers,
+  BaseTeamMembers,
   type Coach,
   type CoachSpecialty,
   type EquipmentManager,
@@ -91,6 +113,7 @@ export {
 } from './team-members';
 export {
   Teams,
+  BaseTeams,
   type GeoLocation,
   type League,
   type Team,
@@ -105,6 +128,7 @@ export {
 } from './teams/teams';
 export {
   TicketSales,
+  BaseTicketSales,
   type PurchaseMethod,
   type TicketSale,
   type TicketSaleCreateParams,
@@ -112,9 +136,10 @@ export {
   type TicketSaleListParams,
   type TicketSalesSkipLimitPage,
 } from './ticket-sales';
-export { Version, type VersionRetrieveResponse } from './version';
+export { Version, BaseVersion, type VersionRetrieveResponse } from './version';
 export {
   Webhooks,
+  BaseWebhooks,
   type RegisteredWebhook,
   type WebhookCreateResponse,
   type WebhookListResponse,

@@ -7,7 +7,9 @@ import { RequestOptions } from '../internal/request-options';
 /**
  * Interactive endpoints for motivation and guidance
  */
-export class Press extends APIResource {
+export class BasePress extends APIResource {
+  static override readonly _key: readonly ['press'] = Object.freeze(['press'] as const);
+
   /**
    * Get Ted's response to press conference questions.
    *
@@ -23,6 +25,10 @@ export class Press extends APIResource {
     return this._client.post('/press', { body, ...options });
   }
 }
+/**
+ * Interactive endpoints for motivation and guidance
+ */
+export class Press extends BasePress {}
 
 /**
  * Ted's press conference response.

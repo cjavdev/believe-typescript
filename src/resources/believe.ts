@@ -7,7 +7,9 @@ import { RequestOptions } from '../internal/request-options';
 /**
  * Interactive endpoints for motivation and guidance
  */
-export class BelieveResource extends APIResource {
+export class BaseBelieveResource extends APIResource {
+  static override readonly _key: readonly ['believe'] = Object.freeze(['believe'] as const);
+
   /**
    * Submit your situation and receive Ted Lasso-style motivational guidance.
    *
@@ -24,6 +26,10 @@ export class BelieveResource extends APIResource {
     return this._client.post('/believe', { body, ...options });
   }
 }
+/**
+ * Interactive endpoints for motivation and guidance
+ */
+export class BelieveResource extends BaseBelieveResource {}
 
 /**
  * Response from the Believe Engine.

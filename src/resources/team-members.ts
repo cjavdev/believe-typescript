@@ -11,7 +11,9 @@ import { path } from '../internal/utils/path';
 /**
  * Team members with union types (oneOf) - Players, Coaches, Medical Staff, Equipment Managers
  */
-export class TeamMembers extends APIResource {
+export class BaseTeamMembers extends APIResource {
+  static override readonly _key: readonly ['teamMembers'] = Object.freeze(['teamMembers'] as const);
+
   /**
    * Add a new team member to a team.
    *
@@ -144,6 +146,10 @@ export class TeamMembers extends APIResource {
     });
   }
 }
+/**
+ * Team members with union types (oneOf) - Players, Coaches, Medical Staff, Equipment Managers
+ */
+export class TeamMembers extends BaseTeamMembers {}
 
 export type TeamMemberListResponsesSkipLimitPage = SkipLimitPage<TeamMemberListResponse>;
 

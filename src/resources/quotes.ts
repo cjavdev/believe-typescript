@@ -10,7 +10,9 @@ import { path } from '../internal/utils/path';
 /**
  * Memorable quotes from the show
  */
-export class Quotes extends APIResource {
+export class BaseQuotes extends APIResource {
+  static override readonly _key: readonly ['quotes'] = Object.freeze(['quotes'] as const);
+
   /**
    * Add a new memorable quote to the collection.
    *
@@ -150,6 +152,10 @@ export class Quotes extends APIResource {
     });
   }
 }
+/**
+ * Memorable quotes from the show
+ */
+export class Quotes extends BaseQuotes {}
 
 export type QuotesSkipLimitPage = SkipLimitPage<Quote>;
 

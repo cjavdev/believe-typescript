@@ -8,7 +8,9 @@ import { RequestOptions } from '../../internal/request-options';
 /**
  * WebSocket endpoints for real-time bidirectional communication - Live match simulation
  */
-export class Ws extends APIResource {
+export class BaseWs extends APIResource {
+  static override readonly _key: readonly ['client', 'ws'] = Object.freeze(['client', 'ws'] as const);
+
   /**
    * Simple WebSocket test endpoint for connectivity testing.
    *
@@ -32,3 +34,7 @@ export class Ws extends APIResource {
     });
   }
 }
+/**
+ * WebSocket endpoints for real-time bidirectional communication - Live match simulation
+ */
+export class Ws extends BaseWs {}

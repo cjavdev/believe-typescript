@@ -7,7 +7,9 @@ import { RequestOptions } from '../internal/request-options';
 /**
  * Interactive endpoints for motivation and guidance
  */
-export class Reframe extends APIResource {
+export class BaseReframe extends APIResource {
+  static override readonly _key: readonly ['reframe'] = Object.freeze(['reframe'] as const);
+
   /**
    * Transform negative thoughts into positive perspectives with Ted's help.
    *
@@ -26,6 +28,10 @@ export class Reframe extends APIResource {
     return this._client.post('/reframe', { body, ...options });
   }
 }
+/**
+ * Interactive endpoints for motivation and guidance
+ */
+export class Reframe extends BaseReframe {}
 
 /**
  * Reframed perspective response.

@@ -3,7 +3,7 @@
 import { BelieveError } from './error';
 import { FinalRequestOptions } from '../internal/request-options';
 import { defaultParseResponse } from '../internal/parse';
-import { type Believe } from '../client';
+import { type BaseBelieve } from '../client';
 import { APIPromise } from './api-promise';
 import { type APIResponseProps } from '../internal/parse';
 import { maybeObj } from '../internal/utils/values';
@@ -11,13 +11,13 @@ import { maybeObj } from '../internal/utils/values';
 export type PageRequestOptions = Pick<FinalRequestOptions, 'query' | 'headers' | 'body' | 'path' | 'method'>;
 
 export abstract class AbstractPage<Item> implements AsyncIterable<Item> {
-  #client: Believe;
+  #client: BaseBelieve;
   protected options: FinalRequestOptions;
 
   protected response: Response;
   protected body: unknown;
 
-  constructor(client: Believe, response: Response, body: unknown, options: FinalRequestOptions) {
+  constructor(client: BaseBelieve, response: Response, body: unknown, options: FinalRequestOptions) {
     this.#client = client;
     this.options = options;
     this.response = response;
@@ -80,7 +80,7 @@ export class PagePromise<
   implements AsyncIterable<Item>
 {
   constructor(
-    client: Believe,
+    client: BaseBelieve,
     request: Promise<APIResponseProps>,
     Page: new (...args: ConstructorParameters<typeof AbstractPage>) => PageClass,
   ) {
@@ -135,7 +135,7 @@ export class SkipLimitPage<Item> extends AbstractPage<Item> implements SkipLimit
   skip: number;
 
   constructor(
-    client: Believe,
+    client: BaseBelieve,
     response: Response,
     body: SkipLimitPageResponse<Item>,
     options: FinalRequestOptions,

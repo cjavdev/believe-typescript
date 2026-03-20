@@ -10,7 +10,9 @@ import { path } from '../internal/utils/path';
 /**
  * Operations related to TV episodes
  */
-export class Episodes extends APIResource {
+export class BaseEpisodes extends APIResource {
+  static override readonly _key: readonly ['episodes'] = Object.freeze(['episodes'] as const);
+
   /**
    * Add a new episode to the series.
    *
@@ -117,6 +119,10 @@ export class Episodes extends APIResource {
     return this._client.get(path`/episodes/${episodeID}/wisdom`, options);
   }
 }
+/**
+ * Operations related to TV episodes
+ */
+export class Episodes extends BaseEpisodes {}
 
 export type EpisodesSkipLimitPage = SkipLimitPage<Episode>;
 

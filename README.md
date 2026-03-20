@@ -196,6 +196,83 @@ while (page.hasNextPage()) {
 
 ## Advanced Usage
 
+### Tree shaking
+
+This library supports tree shaking to reduce bundle size. Instead of importing the full client, you can create a client only including the API resources you need:
+
+```ts
+import { createClient } from '@cjavdev/believe/tree-shakable';
+import { Characters } from '@cjavdev/believe/resources/characters';
+import { BaseLogo } from '@cjavdev/believe/resources/teams/logo';
+
+const client = createClient({
+  // Specify the resources you'd like to use ...
+  resources: [Characters, BaseLogo],
+});
+
+// ... then make API calls as usual.
+const character = await client.characters.create({
+  background:
+    'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
+  emotional_stats: {
+    curiosity: 40,
+    empathy: 85,
+    optimism: 45,
+    resilience: 95,
+    vulnerability: 60,
+  },
+  name: 'Roy Kent',
+  personality_traits: ['intense', 'loyal', 'secretly caring', 'profane'],
+  role: 'coach',
+});
+await client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { team_id: 'team_id' });
+```
+
+Each API resource has two versions, the full resource (e.g., `Characters`) which includes all subresources, and the base resource (e.g., `BaseCharacters`) which does not.
+
+The tree-shaken client is fully typed, so TypeScript will provide accurate autocomplete and prevent access to resources not included in your configuration.
+The `createClient` function automatically infers the correct type, but you can also use the `PartialBelieve` type explicitly:
+
+```ts
+import Believe from '@cjavdev/believe';
+import { createClient, type PartialBelieve } from '@cjavdev/believe/tree-shakable';
+import { BaseCharacters } from '@cjavdev/believe/resources/characters';
+
+// Explicit variable type
+const client: PartialBelieve<{ characters: BaseCharacters }> = createClient({
+  resources: [BaseCharacters],
+  /* ... */
+});
+
+// Function parameter type
+async function main(client: PartialBelieve<{ characters: BaseCharacters }>) {
+  const character = await client.characters.create({
+    background:
+      'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
+    emotional_stats: {
+      curiosity: 40,
+      empathy: 85,
+      optimism: 45,
+      resilience: 95,
+      vulnerability: 60,
+    },
+    name: 'Roy Kent',
+    personality_traits: ['intense', 'loyal', 'secretly caring', 'profane'],
+    role: 'coach',
+  });
+}
+
+// Works with any client that has the characters resource
+const treeShakableClient = createClient({
+  resources: [BaseCharacters],
+  /* ... */
+});
+const fullClient = new Believe(/* ... */);
+
+main(treeShakableClient); // Works
+main(fullClient); // Also works
+```
+
 ### Accessing raw Response data (e.g., headers)
 
 The "raw" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.

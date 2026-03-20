@@ -1,13 +1,22 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { BaseMatches } from '@cjavdev/believe/resources/matches/matches';
+
 import Believe from '@cjavdev/believe';
+import { createClient, type PartialBelieve } from '@cjavdev/believe/tree-shakable';
 
 const client = new Believe({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource matches', () => {
+const partialClient = createClient({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  resources: [BaseMatches],
+});
+
+const runTests = (client: PartialBelieve<{ matches: BaseMatches }>) => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.matches.create({
@@ -171,4 +180,6 @@ describe('resource matches', () => {
       ),
     ).rejects.toThrow(Believe.NotFoundError);
   });
-});
+};
+describe('resource matches', () => runTests(client));
+describe('resource matches (tree shakable, base)', () => runTests(partialClient));

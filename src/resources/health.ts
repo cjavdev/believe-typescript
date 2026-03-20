@@ -4,7 +4,9 @@ import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
-export class Health extends APIResource {
+export class BaseHealth extends APIResource {
+  static override readonly _key: readonly ['health'] = Object.freeze(['health'] as const);
+
   /**
    * Check if the API is running and healthy.
    */
@@ -12,6 +14,7 @@ export class Health extends APIResource {
     return this._client.get('/health', options);
   }
 }
+export class Health extends BaseHealth {}
 
 export type HealthCheckResponse = unknown;
 

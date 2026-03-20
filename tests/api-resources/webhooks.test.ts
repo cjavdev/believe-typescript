@@ -1,13 +1,22 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { BaseWebhooks } from '@cjavdev/believe/resources/webhooks';
+
 import Believe from '@cjavdev/believe';
+import { createClient, type PartialBelieve } from '@cjavdev/believe/tree-shakable';
 
 const client = new Believe({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource webhooks', () => {
+const partialClient = createClient({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  resources: [BaseWebhooks],
+});
+
+const runTests = (client: PartialBelieve<{ webhooks: BaseWebhooks }>) => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.webhooks.create({ url: 'https://example.com/webhooks' });
@@ -99,4 +108,6 @@ describe('resource webhooks', () => {
       },
     });
   });
-});
+};
+describe('resource webhooks', () => runTests(client));
+describe('resource webhooks (tree shakable, base)', () => runTests(partialClient));

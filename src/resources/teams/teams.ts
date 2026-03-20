@@ -3,6 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as LogoAPI from './logo';
 import {
+  BaseLogo,
   FileUpload,
   Logo,
   LogoDeleteParams,
@@ -19,8 +20,8 @@ import { path } from '../../internal/utils/path';
 /**
  * Operations related to football teams
  */
-export class Teams extends APIResource {
-  logo: LogoAPI.Logo = new LogoAPI.Logo(this._client);
+export class BaseTeams extends APIResource {
+  static override readonly _key: readonly ['teams'] = Object.freeze(['teams'] as const);
 
   /**
    * Add a new team to the league.
@@ -138,6 +139,12 @@ export class Teams extends APIResource {
   listLogos(teamID: string, options?: RequestOptions): APIPromise<TeamListLogosResponse> {
     return this._client.get(path`/teams/${teamID}/logos`, options);
   }
+}
+/**
+ * Operations related to football teams
+ */
+export class Teams extends BaseTeams {
+  logo: LogoAPI.Logo = new LogoAPI.Logo(this._client);
 }
 
 export type TeamsSkipLimitPage = SkipLimitPage<Team>;
@@ -436,6 +443,7 @@ export interface TeamListParams extends SkipLimitPageParams {
 }
 
 Teams.Logo = Logo;
+Teams.BaseLogo = BaseLogo;
 
 export declare namespace Teams {
   export {
@@ -454,6 +462,7 @@ export declare namespace Teams {
 
   export {
     Logo as Logo,
+    BaseLogo as BaseLogo,
     type FileUpload as FileUpload,
     type LogoDownloadResponse as LogoDownloadResponse,
     type LogoDeleteParams as LogoDeleteParams,
