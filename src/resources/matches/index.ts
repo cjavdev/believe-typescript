@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Commentary, type CommentaryStreamResponse } from './commentary';
+export { Commentary, BaseCommentary, type CommentaryStreamResponse } from './commentary';
 export {
   Matches,
+  BaseMatches,
   type Match,
   type MatchResult,
   type MatchType,

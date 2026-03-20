@@ -1,13 +1,22 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { BasePress } from '@cjavdev/believe/resources/press';
+
 import Believe from '@cjavdev/believe';
+import { createClient, type PartialBelieve } from '@cjavdev/believe/tree-shakable';
 
 const client = new Believe({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource press', () => {
+const partialClient = createClient({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  resources: [BasePress],
+});
+
+const runTests = (client: PartialBelieve<{ press: BasePress }>) => {
   // Mock server tests are disabled
   test.skip('simulate: only required params', async () => {
     const responsePromise = client.press.simulate({
@@ -30,4 +39,6 @@ describe('resource press', () => {
       topic: 'match_result',
     });
   });
-});
+};
+describe('resource press', () => runTests(client));
+describe('resource press (tree shakable, base)', () => runTests(partialClient));

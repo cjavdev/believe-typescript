@@ -10,7 +10,9 @@ import { path } from '../internal/utils/path';
 /**
  * Operations related to Ted Lasso characters
  */
-export class Characters extends APIResource {
+export class BaseCharacters extends APIResource {
+  static override readonly _key: readonly ['characters'] = Object.freeze(['characters'] as const);
+
   /**
    * Add a new character to the Ted Lasso universe.
    *
@@ -116,6 +118,10 @@ export class Characters extends APIResource {
     return this._client.get(path`/characters/${characterID}/quotes`, options);
   }
 }
+/**
+ * Operations related to Ted Lasso characters
+ */
+export class Characters extends BaseCharacters {}
 
 export type CharactersSkipLimitPage = SkipLimitPage<Character>;
 

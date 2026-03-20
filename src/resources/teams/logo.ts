@@ -11,7 +11,9 @@ import { path } from '../../internal/utils/path';
 /**
  * Operations related to football teams
  */
-export class Logo extends APIResource {
+export class BaseLogo extends APIResource {
+  static override readonly _key: readonly ['teams', 'logo'] = Object.freeze(['teams', 'logo'] as const);
+
   /**
    * Delete a team's logo.
    *
@@ -65,6 +67,10 @@ export class Logo extends APIResource {
     );
   }
 }
+/**
+ * Operations related to football teams
+ */
+export class Logo extends BaseLogo {}
 
 /**
  * Response model for file uploads.

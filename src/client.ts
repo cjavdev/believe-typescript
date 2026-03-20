@@ -242,9 +242,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Believe API.
+ * Base class for Believe API clients.
  */
-export class Believe {
+export class BaseBelieve {
   apiKey: string;
 
   baseURL: string;
@@ -296,7 +296,7 @@ export class Believe {
     }
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? Believe.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? BaseBelieve.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
@@ -872,8 +872,14 @@ export class Believe {
     }
   }
 
-  static Believe = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
+}
+
+/**
+ * API Client for interfacing with the Believe API.
+ */
+export class Believe extends BaseBelieve {
+  static Believe = this;
 
   static BelieveError = Errors.BelieveError;
   static APIError = Errors.APIError;

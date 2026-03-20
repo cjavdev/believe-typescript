@@ -1,13 +1,22 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { BaseReframe } from '@cjavdev/believe/resources/reframe';
+
 import Believe from '@cjavdev/believe';
+import { createClient, type PartialBelieve } from '@cjavdev/believe/tree-shakable';
 
 const client = new Believe({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource reframe', () => {
+const partialClient = createClient({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  resources: [BaseReframe],
+});
+
+const runTests = (client: PartialBelieve<{ reframe: BaseReframe }>) => {
   // Mock server tests are disabled
   test.skip('transformNegativeThoughts: only required params', async () => {
     const responsePromise = client.reframe.transformNegativeThoughts({
@@ -29,4 +38,6 @@ describe('resource reframe', () => {
       recurring: true,
     });
   });
-});
+};
+describe('resource reframe', () => runTests(client));
+describe('resource reframe (tree shakable, base)', () => runTests(partialClient));

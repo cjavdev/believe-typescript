@@ -7,7 +7,9 @@ import { RequestOptions } from '../internal/request-options';
 /**
  * Interactive endpoints for motivation and guidance
  */
-export class Conflicts extends APIResource {
+export class BaseConflicts extends APIResource {
+  static override readonly _key: readonly ['conflicts'] = Object.freeze(['conflicts'] as const);
+
   /**
    * Get Ted Lasso-style advice for resolving conflicts.
    *
@@ -25,6 +27,10 @@ export class Conflicts extends APIResource {
     return this._client.post('/conflicts/resolve', { body, ...options });
   }
 }
+/**
+ * Interactive endpoints for motivation and guidance
+ */
+export class Conflicts extends BaseConflicts {}
 
 /**
  * Conflict resolution response.

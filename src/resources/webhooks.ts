@@ -8,7 +8,9 @@ import { path } from '../internal/utils/path';
 /**
  * Register webhook endpoints and trigger events for testing
  */
-export class Webhooks extends APIResource {
+export class BaseWebhooks extends APIResource {
+  static override readonly _key: readonly ['webhooks'] = Object.freeze(['webhooks'] as const);
+
   /**
    * Register a new webhook endpoint to receive event notifications.
    *
@@ -99,6 +101,10 @@ export class Webhooks extends APIResource {
     return JSON.parse(body) as UnwrapWebhookEvent;
   }
 }
+/**
+ * Register webhook endpoints and trigger events for testing
+ */
+export class Webhooks extends BaseWebhooks {}
 
 /**
  * A registered webhook endpoint.

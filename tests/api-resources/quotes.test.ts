@@ -1,13 +1,22 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { BaseQuotes } from '@cjavdev/believe/resources/quotes';
+
 import Believe from '@cjavdev/believe';
+import { createClient, type PartialBelieve } from '@cjavdev/believe/tree-shakable';
 
 const client = new Believe({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource quotes', () => {
+const partialClient = createClient({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  resources: [BaseQuotes],
+});
+
+const runTests = (client: PartialBelieve<{ quotes: BaseQuotes }>) => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.quotes.create({
@@ -180,4 +189,6 @@ describe('resource quotes', () => {
       client.quotes.listByTheme('belief', { limit: 10, skip: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Believe.NotFoundError);
   });
-});
+};
+describe('resource quotes', () => runTests(client));
+describe('resource quotes (tree shakable, base)', () => runTests(partialClient));

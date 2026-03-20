@@ -9,7 +9,9 @@ import { path } from '../internal/utils/path';
 /**
  * Interactive endpoints for motivation and guidance
  */
-export class Biscuits extends APIResource {
+export class BaseBiscuits extends APIResource {
+  static override readonly _key: readonly ['biscuits'] = Object.freeze(['biscuits'] as const);
+
   /**
    * Get a specific type of biscuit by ID.
    *
@@ -55,6 +57,10 @@ export class Biscuits extends APIResource {
     return this._client.get('/biscuits/fresh', options);
   }
 }
+/**
+ * Interactive endpoints for motivation and guidance
+ */
+export class Biscuits extends BaseBiscuits {}
 
 export type BiscuitsSkipLimitPage = SkipLimitPage<Biscuit>;
 
