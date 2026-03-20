@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.20.0 (2026-03-20)
+
+Full Changelog: [v0.19.0...v0.20.0](https://github.com/cjavdev/believe-typescript/compare/v0.19.0...v0.20.0)
+
+### Features
+
+* **api:** enable tree shaking ([5d4d369](https://github.com/cjavdev/believe-typescript/commit/5d4d369f9b1f7feeed35b5a88f182b2844c30d88))
+* **api:** manual updates ([c7837df](https://github.com/cjavdev/believe-typescript/commit/c7837df84073b1b03de5169451ad4b586d572b31))
+
+
+### Chores
+
+* **internal:** codegen related update ([fa316d6](https://github.com/cjavdev/believe-typescript/commit/fa316d62d0422f992eb957e6da58cb36ecbcdcf9))
+* **internal:** support x-stainless-mcp-client-permissions headers in MCP servers ([8a7dc36](https://github.com/cjavdev/believe-typescript/commit/8a7dc361a9631bc23092c71a5e527870ab84d2ab))
+* **internal:** tweak CI branches ([b1a9109](https://github.com/cjavdev/believe-typescript/commit/b1a9109d6becba1bcd3acc6117f89474058e24dd))
+
 ## 0.19.0 (2026-03-19)
 
 Full Changelog: [v0.18.0...v0.19.0](https://github.com/cjavdev/believe-typescript/compare/v0.18.0...v0.19.0)
