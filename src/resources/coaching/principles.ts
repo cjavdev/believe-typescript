@@ -9,7 +9,12 @@ import { path } from '../../internal/utils/path';
 /**
  * Interactive endpoints for motivation and guidance
  */
-export class Principles extends APIResource {
+export class BasePrinciples extends APIResource {
+  static override readonly _key: readonly ['coaching', 'principles'] = Object.freeze([
+    'coaching',
+    'principles',
+  ] as const);
+
   /**
    * Get details about a specific coaching principle.
    *
@@ -57,6 +62,10 @@ export class Principles extends APIResource {
     return this._client.get('/coaching/principles/random', options);
   }
 }
+/**
+ * Interactive endpoints for motivation and guidance
+ */
+export class Principles extends BasePrinciples {}
 
 export type CoachingPrinciplesSkipLimitPage = SkipLimitPage<CoachingPrinciple>;
 

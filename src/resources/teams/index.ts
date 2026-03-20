@@ -2,6 +2,7 @@
 
 export {
   Logo,
+  BaseLogo,
   type FileUpload,
   type LogoDownloadResponse,
   type LogoDeleteParams,
@@ -10,6 +11,7 @@ export {
 } from './logo';
 export {
   Teams,
+  BaseTeams,
   type GeoLocation,
   type League,
   type Team,

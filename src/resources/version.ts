@@ -4,7 +4,9 @@ import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
-export class Version extends APIResource {
+export class BaseVersion extends APIResource {
+  static override readonly _key: readonly ['version'] = Object.freeze(['version'] as const);
+
   /**
    * Get detailed information about API versioning.
    */
@@ -12,6 +14,7 @@ export class Version extends APIResource {
     return this._client.get('/version', options);
   }
 }
+export class Version extends BaseVersion {}
 
 export type VersionRetrieveResponse = unknown;
 

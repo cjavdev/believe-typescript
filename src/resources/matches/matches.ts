@@ -2,15 +2,15 @@
 
 import { APIResource } from '../../core/resource';
 import * as CommentaryAPI from './commentary';
-import { Commentary, CommentaryStreamResponse } from './commentary';
+import { BaseCommentary, Commentary, CommentaryStreamResponse } from './commentary';
 import { APIPromise } from '../../core/api-promise';
 import { PagePromise, SkipLimitPage, type SkipLimitPageParams } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
-export class Matches extends APIResource {
-  commentary: CommentaryAPI.Commentary = new CommentaryAPI.Commentary(this._client);
+export class BaseMatches extends APIResource {
+  static override readonly _key: readonly ['matches'] = Object.freeze(['matches'] as const);
 
   /**
    * Schedule a new match.
@@ -164,6 +164,9 @@ export class Matches extends APIResource {
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
+}
+export class Matches extends BaseMatches {
+  commentary: CommentaryAPI.Commentary = new CommentaryAPI.Commentary(this._client);
 }
 
 export type MatchesSkipLimitPage = SkipLimitPage<Match>;
@@ -447,6 +450,7 @@ export interface MatchStreamLiveParams {
 }
 
 Matches.Commentary = Commentary;
+Matches.BaseCommentary = BaseCommentary;
 
 export declare namespace Matches {
   export {
@@ -463,5 +467,9 @@ export declare namespace Matches {
     type MatchStreamLiveParams as MatchStreamLiveParams,
   };
 
-  export { Commentary as Commentary, type CommentaryStreamResponse as CommentaryStreamResponse };
+  export {
+    Commentary as Commentary,
+    BaseCommentary as BaseCommentary,
+    type CommentaryStreamResponse as CommentaryStreamResponse,
+  };
 }

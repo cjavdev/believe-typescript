@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type Believe } from '../client';
+import { type BaseBelieve } from '../client';
 
 import { type PromiseOrValue } from '../internal/types';
 import { APIResponseProps, defaultParseResponse } from '../internal/parse';
@@ -11,13 +11,13 @@ import { APIResponseProps, defaultParseResponse } from '../internal/parse';
  */
 export class APIPromise<T> extends Promise<T> {
   private parsedPromise: Promise<T> | undefined;
-  #client: Believe;
+  #client: BaseBelieve;
 
   constructor(
-    client: Believe,
+    client: BaseBelieve,
     private responsePromise: Promise<APIResponseProps>,
     private parseResponse: (
-      client: Believe,
+      client: BaseBelieve,
       props: APIResponseProps,
     ) => PromiseOrValue<T> = defaultParseResponse,
   ) {

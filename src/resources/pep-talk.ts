@@ -7,7 +7,9 @@ import { RequestOptions } from '../internal/request-options';
 /**
  * Server-Sent Events (SSE) streaming endpoints
  */
-export class PepTalk extends APIResource {
+export class BasePepTalk extends APIResource {
+  static override readonly _key: readonly ['pepTalk'] = Object.freeze(['pepTalk'] as const);
+
   /**
    * Get a motivational pep talk from Ted Lasso himself. By default returns the
    * complete pep talk. Add `?stream=true` to get Server-Sent Events (SSE) streaming
@@ -25,6 +27,10 @@ export class PepTalk extends APIResource {
     return this._client.get('/pep-talk', { query, ...options });
   }
 }
+/**
+ * Server-Sent Events (SSE) streaming endpoints
+ */
+export class PepTalk extends BasePepTalk {}
 
 /**
  * A complete pep talk response.

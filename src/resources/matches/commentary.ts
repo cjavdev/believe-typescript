@@ -8,7 +8,12 @@ import { path } from '../../internal/utils/path';
 /**
  * Server-Sent Events (SSE) streaming endpoints
  */
-export class Commentary extends APIResource {
+export class BaseCommentary extends APIResource {
+  static override readonly _key: readonly ['matches', 'commentary'] = Object.freeze([
+    'matches',
+    'commentary',
+  ] as const);
+
   /**
    * Stream live match commentary for a specific match. Uses Server-Sent Events (SSE)
    * to stream commentary events in real-time.
@@ -24,6 +29,10 @@ export class Commentary extends APIResource {
     return this._client.post(path`/matches/${matchID}/commentary/stream`, options);
   }
 }
+/**
+ * Server-Sent Events (SSE) streaming endpoints
+ */
+export class Commentary extends BaseCommentary {}
 
 export type CommentaryStreamResponse = unknown;
 
