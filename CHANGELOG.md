@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.20.1 (2026-04-01)
+
+Full Changelog: [v0.20.0...v0.20.1](https://github.com/cjavdev/believe-typescript/compare/v0.20.0...v0.20.1)
+
+### Bug Fixes
+
+* **internal:** gitignore generated `oidc` dir ([8705332](https://github.com/cjavdev/believe-typescript/commit/8705332999e44609a57c60dd3691f236cf16269a))
+
+
+### Chores
+
+* **ci:** escape input path in publish-npm workflow ([20bfb97](https://github.com/cjavdev/believe-typescript/commit/20bfb97289ea0de69b77d7ae4924af086d02d2c5))
+* **ci:** skip lint on metadata-only changes ([983762e](https://github.com/cjavdev/believe-typescript/commit/983762eb5d613a1cd7bdb82174ff43df68c236a1))
+* **internal:** fix MCP server TS errors that occur with required client options ([b3f0162](https://github.com/cjavdev/believe-typescript/commit/b3f0162a44276737dba85166ed8ba2e03ae8e885))
+* **internal:** improve local docs search for MCP servers ([b536a7e](https://github.com/cjavdev/believe-typescript/commit/b536a7e817d1524586a03874e200cc0392acca8c))
+* **internal:** improve local docs search for MCP servers ([02367c6](https://github.com/cjavdev/believe-typescript/commit/02367c69e8759ac87d44de76dfc07c2618ec9186))
+* **internal:** support custom-instructions-path flag in MCP servers ([7e4261a](https://github.com/cjavdev/believe-typescript/commit/7e4261abf03cbf5ac71168d41befc2c0c997bef5))
+* **internal:** support local docs search in MCP servers ([3109750](https://github.com/cjavdev/believe-typescript/commit/310975085377792d79ab493c3075763a100179b6))
+* **internal:** update gitignore ([faf8978](https://github.com/cjavdev/believe-typescript/commit/faf8978c811c1b4bb9ba1256417a94d16d2c9a91))
+* **mcp-server:** add support for session id, forward client info ([b0bda7c](https://github.com/cjavdev/believe-typescript/commit/b0bda7c33f7cd76465fbeffb05cd5bf0e025debe))
+
 ## 0.20.0 (2026-03-20)
 
 Full Changelog: [v0.19.0...v0.20.0](https://github.com/cjavdev/believe-typescript/compare/v0.19.0...v0.20.0)

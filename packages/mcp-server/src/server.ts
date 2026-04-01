@@ -28,7 +28,7 @@ export const newMcpServer = async ({
   new McpServer(
     {
       name: 'cjavdev_believe_api',
-      version: '0.20.0',
+      version: '0.20.1',
     },
     {
       instructions: await getInstructions({ stainlessApiKey, customInstructionsPath }),
