@@ -4,7 +4,7 @@ import path from 'node:path';
 import util from 'node:util';
 import Fuse from 'fuse.js';
 import ts from 'typescript';
-import { WorkerOutput } from './code-tool-types';
+import { WorkerInput, WorkerOutput } from './code-tool-types';
 import { Believe, ClientOptions } from '@cjavdev/believe';
 
 async function tseval(code: string) {
@@ -59,8 +59,8 @@ function getTSDiagnostics(code: string): string[] {
   const codeWithImport = [
     'import { Believe } from "@cjavdev/believe";',
     functionSource.type === 'declaration' ?
-      `async function run(${functionSource.client}: Believe)`
-    : `const run: (${functionSource.client}: Believe) => Promise<unknown> =`,
+      `async function run(${functionSource.client}: Believe)` :
+      `const run: (${functionSource.client}: Believe) => Promise<unknown> =`,
     functionSource.code,
   ].join('\n');
   const sourcePath = path.resolve('code.ts');
@@ -108,81 +108,81 @@ function getTSDiagnostics(code: string): string[] {
 
 const fuse = new Fuse(
   [
-    'client.getWelcome',
-    'client.characters.create',
-    'client.characters.delete',
-    'client.characters.getQuotes',
-    'client.characters.list',
-    'client.characters.retrieve',
-    'client.characters.update',
-    'client.teams.create',
-    'client.teams.delete',
-    'client.teams.getCulture',
-    'client.teams.getRivals',
-    'client.teams.list',
-    'client.teams.listLogos',
-    'client.teams.retrieve',
-    'client.teams.update',
-    'client.teams.logo.delete',
-    'client.teams.logo.download',
-    'client.teams.logo.upload',
-    'client.matches.create',
-    'client.matches.delete',
-    'client.matches.getLesson',
-    'client.matches.getTurningPoints',
-    'client.matches.list',
-    'client.matches.retrieve',
-    'client.matches.streamLive',
-    'client.matches.update',
-    'client.matches.commentary.stream',
-    'client.episodes.create',
-    'client.episodes.delete',
-    'client.episodes.getWisdom',
-    'client.episodes.list',
-    'client.episodes.retrieve',
-    'client.episodes.update',
-    'client.quotes.create',
-    'client.quotes.delete',
-    'client.quotes.getRandom',
-    'client.quotes.list',
-    'client.quotes.listByCharacter',
-    'client.quotes.listByTheme',
-    'client.quotes.retrieve',
-    'client.quotes.update',
-    'client.believe.submit',
-    'client.conflicts.resolve',
-    'client.reframe.transformNegativeThoughts',
-    'client.press.simulate',
-    'client.coaching.principles.getRandom',
-    'client.coaching.principles.list',
-    'client.coaching.principles.retrieve',
-    'client.biscuits.getFresh',
-    'client.biscuits.list',
-    'client.biscuits.retrieve',
-    'client.pepTalk.retrieve',
-    'client.stream.testConnection',
-    'client.teamMembers.create',
-    'client.teamMembers.delete',
-    'client.teamMembers.list',
-    'client.teamMembers.listCoaches',
-    'client.teamMembers.listPlayers',
-    'client.teamMembers.listStaff',
-    'client.teamMembers.retrieve',
-    'client.teamMembers.update',
-    'client.webhooks.create',
-    'client.webhooks.delete',
-    'client.webhooks.list',
-    'client.webhooks.retrieve',
-    'client.webhooks.triggerEvent',
-    'client.webhooks.unwrap',
-    'client.ticketSales.create',
-    'client.ticketSales.delete',
-    'client.ticketSales.list',
-    'client.ticketSales.retrieve',
-    'client.ticketSales.update',
-    'client.health.check',
-    'client.version.retrieve',
-    'client.client.ws.test',
+    "client.getWelcome",
+    "client.characters.create",
+    "client.characters.delete",
+    "client.characters.getQuotes",
+    "client.characters.list",
+    "client.characters.retrieve",
+    "client.characters.update",
+    "client.teams.create",
+    "client.teams.delete",
+    "client.teams.getCulture",
+    "client.teams.getRivals",
+    "client.teams.list",
+    "client.teams.listLogos",
+    "client.teams.retrieve",
+    "client.teams.update",
+    "client.teams.logo.delete",
+    "client.teams.logo.download",
+    "client.teams.logo.upload",
+    "client.matches.create",
+    "client.matches.delete",
+    "client.matches.getLesson",
+    "client.matches.getTurningPoints",
+    "client.matches.list",
+    "client.matches.retrieve",
+    "client.matches.streamLive",
+    "client.matches.update",
+    "client.matches.commentary.stream",
+    "client.episodes.create",
+    "client.episodes.delete",
+    "client.episodes.getWisdom",
+    "client.episodes.list",
+    "client.episodes.retrieve",
+    "client.episodes.update",
+    "client.quotes.create",
+    "client.quotes.delete",
+    "client.quotes.getRandom",
+    "client.quotes.list",
+    "client.quotes.listByCharacter",
+    "client.quotes.listByTheme",
+    "client.quotes.retrieve",
+    "client.quotes.update",
+    "client.believe.submit",
+    "client.conflicts.resolve",
+    "client.reframe.transformNegativeThoughts",
+    "client.press.simulate",
+    "client.coaching.principles.getRandom",
+    "client.coaching.principles.list",
+    "client.coaching.principles.retrieve",
+    "client.biscuits.getFresh",
+    "client.biscuits.list",
+    "client.biscuits.retrieve",
+    "client.pepTalk.retrieve",
+    "client.stream.testConnection",
+    "client.teamMembers.create",
+    "client.teamMembers.delete",
+    "client.teamMembers.list",
+    "client.teamMembers.listCoaches",
+    "client.teamMembers.listPlayers",
+    "client.teamMembers.listStaff",
+    "client.teamMembers.retrieve",
+    "client.teamMembers.update",
+    "client.webhooks.create",
+    "client.webhooks.delete",
+    "client.webhooks.list",
+    "client.webhooks.retrieve",
+    "client.webhooks.triggerEvent",
+    "client.webhooks.unwrap",
+    "client.ticketSales.create",
+    "client.ticketSales.delete",
+    "client.ticketSales.list",
+    "client.ticketSales.retrieve",
+    "client.ticketSales.update",
+    "client.health.check",
+    "client.version.retrieve",
+    "client.client.ws.test"
   ],
   { threshold: 1, shouldSort: true },
 );
@@ -264,12 +264,7 @@ function parseError(code: string, error: unknown): string | undefined {
     // Deno uses V8; the first "<anonymous>:LINE:COLUMN" is the top of stack.
     const lineNumber = error.stack?.match(/<anonymous>:([0-9]+):[0-9]+/)?.[1];
     // -1 for the zero-based indexing
-    const line =
-      lineNumber &&
-      code
-        .split('\n')
-        .at(parseInt(lineNumber, 10) - 1)
-        ?.trim();
+    const line = lineNumber && code.split('\n').at(parseInt(lineNumber, 10) - 1)?.trim();
     return line ? `${message}\n  at line ${lineNumber}\n    ${line}` : message;
   } catch {
     return message;
@@ -281,9 +276,8 @@ const fetch = async (req: Request): Promise<Response> => {
 
   const runFunctionSource = code ? getRunFunctionSource(code) : null;
   if (!runFunctionSource) {
-    const message =
-      code ?
-        'The code is missing a top-level `run` function.'
+    const message = code
+      ? 'The code is missing a top-level `run` function.'
       : 'The code argument is missing. Provide one containing a top-level `run` function.';
     return Response.json(
       {
@@ -328,7 +322,7 @@ const fetch = async (req: Request): Promise<Response> => {
   try {
     let run_ = async (client: any) => {};
     run_ = (await tseval(`${code}\nexport default run;`)).default;
-    const result = await run_(makeSdkProxy(client, { path: ['client'] }));
+    const result = await run_(makeSdkProxy(client, { path: ["client"] }));
     return Response.json({
       is_error: false,
       result,

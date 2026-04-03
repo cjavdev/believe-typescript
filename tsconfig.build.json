@@ -6,7 +6,7 @@
     "rootDir": "./dist/src",
     "paths": {
       "@cjavdev/believe/*": ["./dist/src/*"],
-      "@cjavdev/believe": ["./dist/src/index.ts"]
+      "@cjavdev/believe": ["./dist/src/index.ts"],
     },
     "noEmit": false,
     "declaration": true,

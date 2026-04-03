@@ -7,7 +7,6 @@ It is generated with [Stainless](https://www.stainless.com/).
 ### Direct invocation
 
 You can run the MCP Server directly via `npx`:
-
 ```sh
 export BELIEVE_API_KEY="My API Key"
 npx -y @cjavdev/believe-mcp@latest
@@ -25,7 +24,10 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "cjavdev_believe_api": {
       "command": "npx",
-      "args": ["-y", "@cjavdev/believe-mcp"],
+      "args": [
+        "-y",
+        "@cjavdev/believe-mcp"
+      ],
       "env": {
         "BELIEVE_API_KEY": "My API Key"
       }
@@ -63,16 +65,17 @@ This MCP server is built on the "Code Mode" tool scheme. In this MCP Server,
 your agent will write code against the TypeScript SDK, which will then be executed in an
 isolated sandbox. To accomplish this, the server will expose two tools to your agent:
 
-- The first tool is a docs search tool, which can be used to generically query for
+* The first tool is a docs search tool, which can be used to generically query for
   documentation about your API/SDK.
 
-- The second tool is a code tool, where the agent can write code against the TypeScript SDK.
+* The second tool is a code tool, where the agent can write code against the TypeScript SDK.
   The code will be executed in a sandbox environment without web or filesystem access. Then,
   anything the code returns or prints will be returned to the agent as the result of the
   tool call.
 
 Using this scheme, agents are capable of performing very complex tasks deterministically
 and repeatably.
+
 
 ## Running remotely
 
@@ -81,12 +84,11 @@ Launching the client with `--transport=http` launches the server as a remote ser
 Authorization can be provided via the `Authorization` header using the Bearer scheme.
 
 Additionally, authorization can be provided via the following headers:
-| Header | Equivalent client option | Security scheme |
+| Header              | Equivalent client option | Security scheme |
 | ------------------- | ------------------------ | --------------- |
-| `x-believe-api-key` | `apiKey` | HTTPBearer |
+| `x-believe-api-key` | `apiKey`                 | HTTPBearer      |
 
 A configuration JSON for this server might look like this, assuming the server is hosted at `http://localhost:3000`:
-
 ```json
 {
   "mcpServers": {

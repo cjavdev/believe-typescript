@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as MatchesAPI from './matches';
 import * as CommentaryAPI from './commentary';
 import { BaseCommentary, Commentary, CommentaryStreamResponse } from './commentary';
 import { APIPromise } from '../../core/api-promise';
@@ -10,7 +11,7 @@ import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
 export class BaseMatches extends APIResource {
-  static override readonly _key: readonly ['matches'] = Object.freeze(['matches'] as const);
+  static override readonly _key: readonly ['matches'] = Object.freeze(['matches'] as const)
 
   /**
    * Schedule a new match.
@@ -64,10 +65,7 @@ export class BaseMatches extends APIResource {
    * }
    * ```
    */
-  list(
-    query: MatchListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<MatchesSkipLimitPage, Match> {
+  list(query: MatchListParams | null | undefined = {}, options?: RequestOptions): PagePromise<MatchesSkipLimitPage, Match> {
     return this._client.getAPIList('/matches', SkipLimitPage<Match>, { query, ...options });
   }
 
@@ -80,10 +78,7 @@ export class BaseMatches extends APIResource {
    * ```
    */
   delete(matchID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/matches/${matchID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/matches/${matchID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -154,22 +149,15 @@ export class BaseMatches extends APIResource {
    * await client.matches.streamLive();
    * ```
    */
-  streamLive(
-    query: MatchStreamLiveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    return this._client.get('/matches/live', {
-      query,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  streamLive(query: MatchStreamLiveParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
+    return this._client.get('/matches/live', { query, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 export class Matches extends BaseMatches {
   commentary: CommentaryAPI.Commentary = new CommentaryAPI.Commentary(this._client);
 }
 
-export type MatchesSkipLimitPage = SkipLimitPage<Match>;
+export type MatchesSkipLimitPage = SkipLimitPage<Match>
 
 /**
  * Full match model with ID.
@@ -259,12 +247,12 @@ export interface Match {
 /**
  * Match result types.
  */
-export type MatchResult = 'win' | 'loss' | 'draw' | 'pending';
+export type MatchResult = 'win' | 'loss' | 'draw' | 'pending'
 
 /**
  * Types of matches.
  */
-export type MatchType = 'league' | 'cup' | 'friendly' | 'playoff' | 'final';
+export type MatchType = 'league' | 'cup' | 'friendly' | 'playoff' | 'final'
 
 /**
  * A pivotal moment in a match.
@@ -291,9 +279,9 @@ export interface TurningPoint {
   character_involved?: string | null;
 }
 
-export type MatchGetLessonResponse = { [key: string]: unknown };
+export type MatchGetLessonResponse = { [key: string]: unknown }
 
-export type MatchGetTurningPointsResponse = Array<{ [key: string]: unknown }>;
+export type MatchGetTurningPointsResponse = Array<{ [key: string]: unknown }>
 
 export interface MatchCreateParams {
   /**
@@ -464,12 +452,12 @@ export declare namespace Matches {
     type MatchCreateParams as MatchCreateParams,
     type MatchUpdateParams as MatchUpdateParams,
     type MatchListParams as MatchListParams,
-    type MatchStreamLiveParams as MatchStreamLiveParams,
+    type MatchStreamLiveParams as MatchStreamLiveParams
   };
 
   export {
     Commentary as Commentary,
     BaseCommentary as BaseCommentary,
-    type CommentaryStreamResponse as CommentaryStreamResponse,
+    type CommentaryStreamResponse as CommentaryStreamResponse
   };
 }

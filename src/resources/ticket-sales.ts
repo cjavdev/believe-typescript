@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as TicketSalesAPI from './ticket-sales';
 import { APIPromise } from '../core/api-promise';
 import { PagePromise, SkipLimitPage, type SkipLimitPageParams } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -11,7 +12,7 @@ import { path } from '../internal/utils/path';
  * Ticket sales with 300 records for practicing pagination, filtering, and financial data
  */
 export class BaseTicketSales extends APIResource {
-  static override readonly _key: readonly ['ticketSales'] = Object.freeze(['ticketSales'] as const);
+  static override readonly _key: readonly ['ticketSales'] = Object.freeze(['ticketSales'] as const)
 
   /**
    * Record a new ticket sale.
@@ -60,11 +61,7 @@ export class BaseTicketSales extends APIResource {
    * );
    * ```
    */
-  update(
-    ticketSaleID: string,
-    body: TicketSaleUpdateParams,
-    options?: RequestOptions,
-  ): APIPromise<TicketSale> {
+  update(ticketSaleID: string, body: TicketSaleUpdateParams, options?: RequestOptions): APIPromise<TicketSale> {
     return this._client.patch(path`/ticket-sales/${ticketSaleID}`, { body, ...options });
   }
 
@@ -80,10 +77,7 @@ export class BaseTicketSales extends APIResource {
    * }
    * ```
    */
-  list(
-    query: TicketSaleListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<TicketSalesSkipLimitPage, TicketSale> {
+  list(query: TicketSaleListParams | null | undefined = {}, options?: RequestOptions): PagePromise<TicketSalesSkipLimitPage, TicketSale> {
     return this._client.getAPIList('/ticket-sales', SkipLimitPage<TicketSale>, { query, ...options });
   }
 
@@ -96,23 +90,22 @@ export class BaseTicketSales extends APIResource {
    * ```
    */
   delete(ticketSaleID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/ticket-sales/${ticketSaleID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/ticket-sales/${ticketSaleID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 /**
  * Ticket sales with 300 records for practicing pagination, filtering, and financial data
  */
-export class TicketSales extends BaseTicketSales {}
+export class TicketSales extends BaseTicketSales {
 
-export type TicketSalesSkipLimitPage = SkipLimitPage<TicketSale>;
+}
+
+export type TicketSalesSkipLimitPage = SkipLimitPage<TicketSale>
 
 /**
  * How the ticket was purchased.
  */
-export type PurchaseMethod = 'online' | 'box_office' | 'will_call' | 'phone';
+export type PurchaseMethod = 'online' | 'box_office' | 'will_call' | 'phone'
 
 /**
  * Full ticket sale model with ID.
@@ -304,6 +297,6 @@ export declare namespace TicketSales {
     type TicketSalesSkipLimitPage as TicketSalesSkipLimitPage,
     type TicketSaleCreateParams as TicketSaleCreateParams,
     type TicketSaleUpdateParams as TicketSaleUpdateParams,
-    type TicketSaleListParams as TicketSaleListParams,
+    type TicketSaleListParams as TicketSaleListParams
   };
 }

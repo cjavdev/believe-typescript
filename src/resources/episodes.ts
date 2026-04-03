@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as EpisodesAPI from './episodes';
 import { APIPromise } from '../core/api-promise';
 import { PagePromise, SkipLimitPage, type SkipLimitPageParams } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -11,7 +12,7 @@ import { path } from '../internal/utils/path';
  * Operations related to TV episodes
  */
 export class BaseEpisodes extends APIResource {
-  static override readonly _key: readonly ['episodes'] = Object.freeze(['episodes'] as const);
+  static override readonly _key: readonly ['episodes'] = Object.freeze(['episodes'] as const)
 
   /**
    * Add a new episode to the series.
@@ -83,10 +84,7 @@ export class BaseEpisodes extends APIResource {
    * }
    * ```
    */
-  list(
-    query: EpisodeListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<EpisodesSkipLimitPage, Episode> {
+  list(query: EpisodeListParams | null | undefined = {}, options?: RequestOptions): PagePromise<EpisodesSkipLimitPage, Episode> {
     return this._client.getAPIList('/episodes', SkipLimitPage<Episode>, { query, ...options });
   }
 
@@ -99,10 +97,7 @@ export class BaseEpisodes extends APIResource {
    * ```
    */
   delete(episodeID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/episodes/${episodeID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/episodes/${episodeID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -122,9 +117,11 @@ export class BaseEpisodes extends APIResource {
 /**
  * Operations related to TV episodes
  */
-export class Episodes extends BaseEpisodes {}
+export class Episodes extends BaseEpisodes {
 
-export type EpisodesSkipLimitPage = SkipLimitPage<Episode>;
+}
+
+export type EpisodesSkipLimitPage = SkipLimitPage<Episode>
 
 /**
  * Full episode model with ID.
@@ -236,7 +233,7 @@ export interface PaginatedResponse {
   total: number;
 }
 
-export type EpisodeGetWisdomResponse = { [key: string]: unknown };
+export type EpisodeGetWisdomResponse = { [key: string]: unknown }
 
 export interface EpisodeCreateParams {
   /**
@@ -367,6 +364,6 @@ export declare namespace Episodes {
     type EpisodesSkipLimitPage as EpisodesSkipLimitPage,
     type EpisodeCreateParams as EpisodeCreateParams,
     type EpisodeUpdateParams as EpisodeUpdateParams,
-    type EpisodeListParams as EpisodeListParams,
+    type EpisodeListParams as EpisodeListParams
   };
 }

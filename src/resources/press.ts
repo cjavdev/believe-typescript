@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as PressAPI from './press';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -8,7 +9,7 @@ import { RequestOptions } from '../internal/request-options';
  * Interactive endpoints for motivation and guidance
  */
 export class BasePress extends APIResource {
-  static override readonly _key: readonly ['press'] = Object.freeze(['press'] as const);
+  static override readonly _key: readonly ['press'] = Object.freeze(['press'] as const)
 
   /**
    * Get Ted's response to press conference questions.
@@ -28,7 +29,9 @@ export class BasePress extends APIResource {
 /**
  * Interactive endpoints for motivation and guidance
  */
-export class Press extends BasePress {}
+export class Press extends BasePress {
+
+}
 
 /**
  * Ted's press conference response.
@@ -80,6 +83,6 @@ export interface PressSimulateParams {
 export declare namespace Press {
   export {
     type PressSimulateResponse as PressSimulateResponse,
-    type PressSimulateParams as PressSimulateParams,
+    type PressSimulateParams as PressSimulateParams
   };
 }

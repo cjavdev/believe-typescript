@@ -6,9 +6,7 @@ import { hasOwn } from './internal/utils/values';
 
 export type PartialBelieve<T extends MaybeResource> = BaseBelieve & T;
 
-type InferClientStructure<T extends readonly (typeof APIResource)[]> =
-  SimplifyResources<UnionToIntersection<ResourcePath<T[number]>>> extends infer O extends MaybeResource ? O
-  : never;
+type InferClientStructure<T extends readonly (typeof APIResource)[]> = SimplifyResources<UnionToIntersection<ResourcePath<T[number]>>> extends infer O extends MaybeResource ? O : never;
 
 /**
  * Creates a client with a subset of the available resources to reduce
@@ -67,10 +65,14 @@ export function createClient<const T extends readonly (typeof APIResource)[]>(
 /**
  * `FromDeepEntry<['a', 'b', 'c'], 'value'>` -> `{ a: { b: { c: 'value'; }; }; }`
  */
-type FromDeepEntry<K extends readonly PropertyKey[], V> = K['length'] extends 1 ? { [_ in K[0]]: V } & {}
-: K extends readonly [infer First extends PropertyKey, ...infer Rest extends readonly PropertyKey[]] ?
-  { [_ in First]: FromDeepEntry<Rest, V> }
-: never;
+type FromDeepEntry<K extends readonly PropertyKey[], V> = K["length"] extends 1
+  ? { [_ in K[0]]: V } & {}
+  : K extends readonly [
+      infer First extends PropertyKey,
+      ...infer Rest extends readonly PropertyKey[],
+    ]
+  ? { [_ in First]: FromDeepEntry<Rest, V> }
+  : never;
 
 /**
  * `ResourcePath<{ _key: ["a", "b", "c"]; new (): Instance }>` -> `{ a: { b: { c: Instance; }; }; }`

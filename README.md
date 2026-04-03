@@ -1,8 +1,10 @@
 # Believe TypeScript API Library
 
-[![NPM version](<https://img.shields.io/npm/v/@cjavdev/believe.svg?label=npm%20(stable)>)](https://npmjs.org/package/@cjavdev/believe) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@cjavdev/believe)
+[![NPM version](https://img.shields.io/npm/v/@cjavdev/believe.svg?label=npm%20(stable))](https://npmjs.org/package/@cjavdev/believe) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@cjavdev/believe)
 
 This library provides convenient access to the Believe REST API from server-side TypeScript or JavaScript.
+
+
 
 The full API of this library can be found in [api.md](api.md).
 
@@ -23,6 +25,8 @@ Use the Believe MCP Server to enable AI assistants to interact with this API, al
 npm install @cjavdev/believe
 ```
 
+
+
 ## Usage
 
 The full API of this library can be found in [api.md](api.md).
@@ -40,6 +44,8 @@ const character = page.data[0];
 
 console.log(character.id);
 ```
+
+
 
 ### Request & Response types
 
@@ -61,7 +67,6 @@ Documentation for each method, request param, and response field are available i
 ## File uploads
 
 Request parameters that correspond to file uploads can be passed in many different forms:
-
 - `File` (or an object with the same structure)
 - a `fetch` `Response` (or an object with the same structure)
 - an `fs.ReadStream`
@@ -88,6 +93,8 @@ await client.teams.logo.upload('team_id', {
   file: await toFile(new Uint8Array([0, 1, 2]), 'file'),
 });
 ```
+
+
 
 ## Handling errors
 
@@ -194,13 +201,15 @@ while (page.hasNextPage()) {
 }
 ```
 
+
+
 ## Advanced Usage
 
 ### Tree shaking
 
 This library supports tree shaking to reduce bundle size. Instead of importing the full client, you can create a client only including the API resources you need:
 
-```ts
+~~~ts
 import { createClient } from '@cjavdev/believe/tree-shakable';
 import { Characters } from '@cjavdev/believe/resources/characters';
 import { BaseLogo } from '@cjavdev/believe/resources/teams/logo';
@@ -212,28 +221,27 @@ const client = createClient({
 
 // ... then make API calls as usual.
 const character = await client.characters.create({
-  background:
-    'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
+  background: 'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
   emotional_stats: {
-    curiosity: 40,
-    empathy: 85,
-    optimism: 45,
-    resilience: 95,
-    vulnerability: 60,
-  },
+  curiosity: 40,
+  empathy: 85,
+  optimism: 45,
+  resilience: 95,
+  vulnerability: 60,
+},
   name: 'Roy Kent',
   personality_traits: ['intense', 'loyal', 'secretly caring', 'profane'],
   role: 'coach',
 });
-await client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { team_id: 'team_id' });
-```
+await client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { team_id: 'team_id' })
+~~~
 
 Each API resource has two versions, the full resource (e.g., `Characters`) which includes all subresources, and the base resource (e.g., `BaseCharacters`) which does not.
 
 The tree-shaken client is fully typed, so TypeScript will provide accurate autocomplete and prevent access to resources not included in your configuration.
 The `createClient` function automatically infers the correct type, but you can also use the `PartialBelieve` type explicitly:
 
-```ts
+~~~ts
 import Believe from '@cjavdev/believe';
 import { createClient, type PartialBelieve } from '@cjavdev/believe/tree-shakable';
 import { BaseCharacters } from '@cjavdev/believe/resources/characters';
@@ -247,15 +255,14 @@ const client: PartialBelieve<{ characters: BaseCharacters }> = createClient({
 // Function parameter type
 async function main(client: PartialBelieve<{ characters: BaseCharacters }>) {
   const character = await client.characters.create({
-    background:
-      'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
+    background: 'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
     emotional_stats: {
-      curiosity: 40,
-      empathy: 85,
-      optimism: 45,
-      resilience: 95,
-      vulnerability: 60,
-    },
+    curiosity: 40,
+    empathy: 85,
+    optimism: 45,
+    resilience: 95,
+    vulnerability: 60,
+  },
     name: 'Roy Kent',
     personality_traits: ['intense', 'loyal', 'secretly caring', 'profane'],
     role: 'coach',
@@ -271,7 +278,7 @@ const fullClient = new Believe(/* ... */);
 
 main(treeShakableClient); // Works
 main(fullClient); // Also works
-```
+~~~
 
 ### Accessing raw Response data (e.g., headers)
 
@@ -499,18 +506,14 @@ The following runtimes are supported:
 - Jest 28 or greater with the `"node"` environment (`"jsdom"` is not supported at this time).
 - Nitro v2.6 or greater.
 - Web browsers: disabled by default to avoid exposing your secret API credentials. Enable browser support by explicitly setting `dangerouslyAllowBrowser` to true'.
-  <details>
-    <summary>More explanation</summary>
+<details>
+  <summary>More explanation</summary>
 
   ### Why is this dangerous?
-
   Enabling the `dangerouslyAllowBrowser` option can be dangerous because it exposes your secret API credentials in the client-side code. Web browsers are inherently less secure than server environments,
   any user with access to the browser can potentially inspect, extract, and misuse these credentials. This could lead to unauthorized access using your credentials and potentially compromise sensitive data or functionality.
-
   ### When might this not be dangerous?
-
   In certain scenarios where enabling browser support might not pose significant risks:
-
   - Internal Tools: If the application is used solely within a controlled internal environment where the users are trusted, the risk of credential exposure can be mitigated.
   - Public APIs with Limited Scope: If your API has very limited scope and the exposed credentials do not grant access to sensitive data or critical operations, the potential impact of exposure is reduced.
   - Development or debugging purpose: Enabling this feature temporarily might be acceptable, provided the credentials are short-lived, aren't also used in production environments, or are frequently rotated.

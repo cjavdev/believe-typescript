@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as LogoAPI from './logo';
 import { APIPromise } from '../../core/api-promise';
 import { type Uploadable } from '../../core/uploads';
 import { buildHeaders } from '../../internal/headers';
@@ -12,7 +13,7 @@ import { path } from '../../internal/utils/path';
  * Operations related to football teams
  */
 export class BaseLogo extends APIResource {
-  static override readonly _key: readonly ['teams', 'logo'] = Object.freeze(['teams', 'logo'] as const);
+  static override readonly _key: readonly ['teams', 'logo'] = Object.freeze(['teams', 'logo'] as const)
 
   /**
    * Delete a team's logo.
@@ -26,11 +27,8 @@ export class BaseLogo extends APIResource {
    * ```
    */
   delete(fileID: string, params: LogoDeleteParams, options?: RequestOptions): APIPromise<void> {
-    const { team_id } = params;
-    return this._client.delete(path`/teams/${team_id}/logo/${fileID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    const { team_id } = params
+    return this._client.delete(path`/teams/${team_id}/logo/${fileID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -45,7 +43,7 @@ export class BaseLogo extends APIResource {
    * ```
    */
   download(fileID: string, params: LogoDownloadParams, options?: RequestOptions): APIPromise<unknown> {
-    const { team_id } = params;
+    const { team_id } = params
     return this._client.get(path`/teams/${team_id}/logo/${fileID}`, options);
   }
 
@@ -61,16 +59,15 @@ export class BaseLogo extends APIResource {
    * ```
    */
   upload(teamID: string, body: LogoUploadParams, options?: RequestOptions): APIPromise<FileUpload> {
-    return this._client.post(
-      path`/teams/${teamID}/logo`,
-      multipartFormRequestOptions({ body, ...options }, this._client),
-    );
+    return this._client.post(path`/teams/${teamID}/logo`, multipartFormRequestOptions({ body, ...options }, this._client));
   }
 }
 /**
  * Operations related to football teams
  */
-export class Logo extends BaseLogo {}
+export class Logo extends BaseLogo {
+
+}
 
 /**
  * Response model for file uploads.
@@ -89,7 +86,7 @@ export interface FileUpload {
   uploaded_at: string;
 }
 
-export type LogoDownloadResponse = unknown;
+export type LogoDownloadResponse = unknown
 
 export interface LogoDeleteParams {
   team_id: string;
@@ -112,6 +109,6 @@ export declare namespace Logo {
     type LogoDownloadResponse as LogoDownloadResponse,
     type LogoDeleteParams as LogoDeleteParams,
     type LogoDownloadParams as LogoDownloadParams,
-    type LogoUploadParams as LogoUploadParams,
+    type LogoUploadParams as LogoUploadParams
   };
 }

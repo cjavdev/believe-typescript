@@ -1,16 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as TeamsAPI from './teams';
 import * as LogoAPI from './logo';
-import {
-  BaseLogo,
-  FileUpload,
-  Logo,
-  LogoDeleteParams,
-  LogoDownloadParams,
-  LogoDownloadResponse,
-  LogoUploadParams,
-} from './logo';
+import { BaseLogo, FileUpload, Logo, LogoDeleteParams, LogoDownloadParams, LogoDownloadResponse, LogoUploadParams } from './logo';
 import { APIPromise } from '../../core/api-promise';
 import { PagePromise, SkipLimitPage, type SkipLimitPageParams } from '../../core/pagination';
 import { buildHeaders } from '../../internal/headers';
@@ -21,7 +14,7 @@ import { path } from '../../internal/utils/path';
  * Operations related to football teams
  */
 export class BaseTeams extends APIResource {
-  static override readonly _key: readonly ['teams'] = Object.freeze(['teams'] as const);
+  static override readonly _key: readonly ['teams'] = Object.freeze(['teams'] as const)
 
   /**
    * Add a new team to the league.
@@ -82,10 +75,7 @@ export class BaseTeams extends APIResource {
    * }
    * ```
    */
-  list(
-    query: TeamListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<TeamsSkipLimitPage, Team> {
+  list(query: TeamListParams | null | undefined = {}, options?: RequestOptions): PagePromise<TeamsSkipLimitPage, Team> {
     return this._client.getAPIList('/teams', SkipLimitPage<Team>, { query, ...options });
   }
 
@@ -98,10 +88,7 @@ export class BaseTeams extends APIResource {
    * ```
    */
   delete(teamID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/teams/${teamID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/teams/${teamID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -147,7 +134,7 @@ export class Teams extends BaseTeams {
   logo: LogoAPI.Logo = new LogoAPI.Logo(this._client);
 }
 
-export type TeamsSkipLimitPage = SkipLimitPage<Team>;
+export type TeamsSkipLimitPage = SkipLimitPage<Team>
 
 /**
  * Geographic coordinates for a location.
@@ -167,15 +154,7 @@ export interface GeoLocation {
 /**
  * Football leagues.
  */
-export type League =
-  | 'Premier League'
-  | 'Championship'
-  | 'League One'
-  | 'League Two'
-  | 'La Liga'
-  | 'Serie A'
-  | 'Bundesliga'
-  | 'Ligue 1';
+export type League = 'Premier League' | 'Championship' | 'League One' | 'League Two' | 'La Liga' | 'Serie A' | 'Bundesliga' | 'Ligue 1'
 
 /**
  * Full team model with ID.
@@ -292,11 +271,11 @@ export interface TeamValues {
   team_motto: string;
 }
 
-export type TeamGetCultureResponse = { [key: string]: unknown };
+export type TeamGetCultureResponse = { [key: string]: unknown }
 
-export type TeamGetRivalsResponse = Array<Team>;
+export type TeamGetRivalsResponse = Array<Team>
 
-export type TeamListLogosResponse = Array<LogoAPI.FileUpload>;
+export type TeamListLogosResponse = Array<LogoAPI.FileUpload>
 
 export interface TeamCreateParams {
   /**
@@ -457,7 +436,7 @@ export declare namespace Teams {
     type TeamsSkipLimitPage as TeamsSkipLimitPage,
     type TeamCreateParams as TeamCreateParams,
     type TeamUpdateParams as TeamUpdateParams,
-    type TeamListParams as TeamListParams,
+    type TeamListParams as TeamListParams
   };
 
   export {
@@ -467,6 +446,6 @@ export declare namespace Teams {
     type LogoDownloadResponse as LogoDownloadResponse,
     type LogoDeleteParams as LogoDeleteParams,
     type LogoDownloadParams as LogoDownloadParams,
-    type LogoUploadParams as LogoUploadParams,
+    type LogoUploadParams as LogoUploadParams
   };
 }

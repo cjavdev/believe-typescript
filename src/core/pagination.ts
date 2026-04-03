@@ -87,8 +87,7 @@ export class PagePromise<
     super(
       client,
       request,
-      async (client, props) =>
-        new Page(client, props.response, await defaultParseResponse(client, props), props.options),
+      async (client, props) => new Page(client, props.response, await defaultParseResponse(client, props), props.options)
     );
   }
 
@@ -134,12 +133,7 @@ export class SkipLimitPage<Item> extends AbstractPage<Item> implements SkipLimit
 
   skip: number;
 
-  constructor(
-    client: BaseBelieve,
-    response: Response,
-    body: SkipLimitPageResponse<Item>,
-    options: FinalRequestOptions,
-  ) {
+  constructor(client: BaseBelieve, response: Response, body: SkipLimitPageResponse<Item>, options: FinalRequestOptions) {
     super(client, response, body, options);
 
     this.data = body.data || [];
@@ -163,14 +157,14 @@ export class SkipLimitPage<Item> extends AbstractPage<Item> implements SkipLimit
 
     if (currentCount < totalCount) {
       return {
-        ...this.options,
-        query: {
-          ...maybeObj(this.options.query),
-          skip: currentCount,
-        },
-      };
+      ...this.options,
+      query: {
+        ...maybeObj(this.options.query),
+        skip: currentCount,
+      },
+    };
     }
 
-    return null;
+    return null
   }
 }

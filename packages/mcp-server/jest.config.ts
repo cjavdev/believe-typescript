@@ -10,7 +10,9 @@ const config: JestConfigWithTsJest = {
     '^@cjavdev/believe-mcp$': '<rootDir>/src/index.ts',
     '^@cjavdev/believe-mcp/(.*)$': '<rootDir>/src/$1',
   },
-  modulePathIgnorePatterns: ['<rootDir>/dist/'],
+  modulePathIgnorePatterns: [
+    '<rootDir>/dist/',
+  ],
   testPathIgnorePatterns: ['scripts'],
 };
 

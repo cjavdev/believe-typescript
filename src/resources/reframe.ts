@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as ReframeAPI from './reframe';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -8,7 +9,7 @@ import { RequestOptions } from '../internal/request-options';
  * Interactive endpoints for motivation and guidance
  */
 export class BaseReframe extends APIResource {
-  static override readonly _key: readonly ['reframe'] = Object.freeze(['reframe'] as const);
+  static override readonly _key: readonly ['reframe'] = Object.freeze(['reframe'] as const)
 
   /**
    * Transform negative thoughts into positive perspectives with Ted's help.
@@ -21,17 +22,16 @@ export class BaseReframe extends APIResource {
    *   });
    * ```
    */
-  transformNegativeThoughts(
-    body: ReframeTransformNegativeThoughtsParams,
-    options?: RequestOptions,
-  ): APIPromise<ReframeTransformNegativeThoughtsResponse> {
+  transformNegativeThoughts(body: ReframeTransformNegativeThoughtsParams, options?: RequestOptions): APIPromise<ReframeTransformNegativeThoughtsResponse> {
     return this._client.post('/reframe', { body, ...options });
   }
 }
 /**
  * Interactive endpoints for motivation and guidance
  */
-export class Reframe extends BaseReframe {}
+export class Reframe extends BaseReframe {
+
+}
 
 /**
  * Reframed perspective response.
@@ -78,6 +78,6 @@ export interface ReframeTransformNegativeThoughtsParams {
 export declare namespace Reframe {
   export {
     type ReframeTransformNegativeThoughtsResponse as ReframeTransformNegativeThoughtsResponse,
-    type ReframeTransformNegativeThoughtsParams as ReframeTransformNegativeThoughtsParams,
+    type ReframeTransformNegativeThoughtsParams as ReframeTransformNegativeThoughtsParams
   };
 }

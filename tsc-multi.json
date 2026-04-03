@@ -13,5 +13,7 @@
       "pureClassAssignment": true
     }
   ],
-  "projects": ["tsconfig.build.json"]
+  "projects": [
+    "tsconfig.build.json"
+  ]
 }

@@ -3,23 +3,20 @@
 import { Client } from '@cjavdev/believe/resources/client/client';
 import { BaseWs } from '@cjavdev/believe/resources/client/ws';
 
-import Believe from '@cjavdev/believe';
+import Believe, { toFile } from '@cjavdev/believe';
 import { createClient, type PartialBelieve } from '@cjavdev/believe/tree-shakable';
 
-const client = new Believe({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Believe({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 const partialClient = createClient({
   apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
   resources: [BaseWs],
 });
 
 const parentPartialClient = createClient({
   apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
   resources: [Client],
 });
 

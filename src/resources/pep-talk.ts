@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as PepTalkAPI from './pep-talk';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -8,7 +9,7 @@ import { RequestOptions } from '../internal/request-options';
  * Server-Sent Events (SSE) streaming endpoints
  */
 export class BasePepTalk extends APIResource {
-  static override readonly _key: readonly ['pepTalk'] = Object.freeze(['pepTalk'] as const);
+  static override readonly _key: readonly ['pepTalk'] = Object.freeze(['pepTalk'] as const)
 
   /**
    * Get a motivational pep talk from Ted Lasso himself. By default returns the
@@ -20,17 +21,16 @@ export class BasePepTalk extends APIResource {
    * const pepTalk = await client.pepTalk.retrieve();
    * ```
    */
-  retrieve(
-    query: PepTalkRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<PepTalkRetrieveResponse> {
+  retrieve(query: PepTalkRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<PepTalkRetrieveResponse> {
     return this._client.get('/pep-talk', { query, ...options });
   }
 }
 /**
  * Server-Sent Events (SSE) streaming endpoints
  */
-export class PepTalk extends BasePepTalk {}
+export class PepTalk extends BasePepTalk {
+
+}
 
 /**
  * A complete pep talk response.
@@ -85,6 +85,6 @@ export interface PepTalkRetrieveParams {
 export declare namespace PepTalk {
   export {
     type PepTalkRetrieveResponse as PepTalkRetrieveResponse,
-    type PepTalkRetrieveParams as PepTalkRetrieveParams,
+    type PepTalkRetrieveParams as PepTalkRetrieveParams
   };
 }

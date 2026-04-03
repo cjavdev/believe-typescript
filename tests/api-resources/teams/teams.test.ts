@@ -2,17 +2,14 @@
 
 import { BaseTeams } from '@cjavdev/believe/resources/teams/teams';
 
-import Believe from '@cjavdev/believe';
+import Believe, { toFile } from '@cjavdev/believe';
 import { createClient, type PartialBelieve } from '@cjavdev/believe/tree-shakable';
 
-const client = new Believe({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Believe({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 const partialClient = createClient({
   apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
   resources: [BaseTeams],
 });
 
@@ -20,17 +17,17 @@ const runTests = (client: PartialBelieve<{ teams: BaseTeams }>) => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.teams.create({
-      culture_score: 70,
-      founded_year: 1895,
-      league: 'Premier League',
-      name: 'West Ham United',
-      stadium: 'London Stadium',
-      values: {
-        primary_value: 'Pride',
-        secondary_values: ['History', 'Community', 'Passion'],
-        team_motto: 'Forever Blowing Bubbles',
-      },
-    });
+    culture_score: 70,
+    founded_year: 1895,
+    league: 'Premier League',
+    name: 'West Ham United',
+    stadium: 'London Stadium',
+    values: {
+    primary_value: 'Pride',
+    secondary_values: ['History', 'Community', 'Passion'],
+    team_motto: 'Forever Blowing Bubbles',
+  },
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -43,28 +40,28 @@ const runTests = (client: PartialBelieve<{ teams: BaseTeams }>) => {
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.teams.create({
-      culture_score: 70,
-      founded_year: 1895,
-      league: 'Premier League',
-      name: 'West Ham United',
-      stadium: 'London Stadium',
-      values: {
-        primary_value: 'Pride',
-        secondary_values: ['History', 'Community', 'Passion'],
-        team_motto: 'Forever Blowing Bubbles',
-      },
-      annual_budget_gbp: '150000000.00',
-      average_attendance: 59988,
-      contact_email: 'info@westhamunited.co.uk',
-      is_active: true,
-      nickname: 'The Hammers',
-      primary_color: '#7A263A',
-      rival_teams: ['afc-richmond', 'tottenham'],
-      secondary_color: '#1BB1E7',
-      stadium_location: { latitude: 51.5387, longitude: -0.0166 },
-      website: 'https://www.whufc.com',
-      win_percentage: 52.3,
-    });
+    culture_score: 70,
+    founded_year: 1895,
+    league: 'Premier League',
+    name: 'West Ham United',
+    stadium: 'London Stadium',
+    values: {
+    primary_value: 'Pride',
+    secondary_values: ['History', 'Community', 'Passion'],
+    team_motto: 'Forever Blowing Bubbles',
+  },
+    annual_budget_gbp: '150000000.00',
+    average_attendance: 59988,
+    contact_email: 'info@westhamunited.co.uk',
+    is_active: true,
+    nickname: 'The Hammers',
+    primary_color: '#7A263A',
+    rival_teams: ['afc-richmond', 'tottenham'],
+    secondary_color: '#1BB1E7',
+    stadium_location: { latitude: 51.5387, longitude: -0.0166 },
+    website: 'https://www.whufc.com',
+    win_percentage: 52.3,
+  });
   });
 
   // Mock server tests are disabled
@@ -106,17 +103,14 @@ const runTests = (client: PartialBelieve<{ teams: BaseTeams }>) => {
   // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.teams.list(
-        {
-          league: 'Premier League',
-          limit: 10,
-          min_culture_score: 0,
-          skip: 0,
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Believe.NotFoundError);
+    await expect(client.teams.list({
+    league: 'Premier League',
+    limit: 10,
+    min_culture_score: 0,
+    skip: 0,
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Believe.NotFoundError);
   });
 
   // Mock server tests are disabled

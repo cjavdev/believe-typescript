@@ -1,6 +1,6 @@
 {
   "name": "@cjavdev/believe-mcp",
-  "version": "0.21.0",
+  "version": "0.0.1",
   "description": "The official MCP Server for the Believe API",
   "author": "Believe <wave@cjav.dev>",
   "types": "dist/index.d.ts",
@@ -24,6 +24,7 @@
     "prepack": "echo 'to pack, run pnpm build && (cd dist; pnpm pack)' && exit 1",
     "prepublishOnly": "echo 'to publish, run pnpm build && (cd dist; pnpm publish)' && exit 1",
     "format": "prettier --write --cache --cache-strategy metadata . !dist",
+    
     "tsn": "ts-node -r tsconfig-paths/register",
     "lint": "eslint .",
     "fix": "eslint --fix ."

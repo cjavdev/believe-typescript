@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as StreamAPI from './stream';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -8,7 +9,7 @@ import { RequestOptions } from '../internal/request-options';
  * Server-Sent Events (SSE) streaming endpoints
  */
 export class BaseStream extends APIResource {
-  static override readonly _key: readonly ['stream'] = Object.freeze(['stream'] as const);
+  static override readonly _key: readonly ['stream'] = Object.freeze(['stream'] as const)
 
   /**
    * A simple SSE test endpoint that streams numbers 1-5.
@@ -20,10 +21,14 @@ export class BaseStream extends APIResource {
 /**
  * Server-Sent Events (SSE) streaming endpoints
  */
-export class Stream extends BaseStream {}
+export class Stream extends BaseStream {
 
-export type StreamTestConnectionResponse = unknown;
+}
+
+export type StreamTestConnectionResponse = unknown
 
 export declare namespace Stream {
-  export { type StreamTestConnectionResponse as StreamTestConnectionResponse };
+  export {
+    type StreamTestConnectionResponse as StreamTestConnectionResponse
+  };
 }

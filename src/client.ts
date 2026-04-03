@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { APIError, APIUserAbortError, APIConnectionTimeoutError, APIConnectionError } from './core/error';
 import type { RequestInit, RequestInfo, BodyInit } from './internal/builtin-types';
-import type { HTTPMethod, PromiseOrValue, MergedRequestInit, FinalizedRequestInit } from './internal/types';
+import type { HTTPMethod, PromiseOrValue, KeysEnum, MergedRequestInit, FinalizedRequestInit } from './internal/types';
 import { uuid4 } from './internal/utils/uuid';
-import { validatePositiveInteger, isAbsoluteURL, safeJSON } from './internal/utils/values';
+import { validatePositiveInteger, isAbsoluteURL, hasOwn, safeJSON } from './internal/utils/values';
 import { sleep } from './internal/utils/sleep';
 export type { Logger, LogLevel } from './internal/utils/log';
 import { castToError, isAbortError } from './internal/errors';
@@ -15,148 +16,35 @@ import { stringifyQuery } from './internal/utils/query';
 import { VERSION } from './version';
 import * as Errors from './core/error';
 import * as Pagination from './core/pagination';
-import { AbstractPage, type SkipLimitPageParams, SkipLimitPageResponse } from './core/pagination';
+import { AbstractPage, PagePromise, type SkipLimitPageParams, SkipLimitPageResponse } from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { BelieveResource, BelieveSubmitParams, BelieveSubmitResponse } from './resources/believe';
 import { Biscuit, BiscuitListParams, Biscuits, BiscuitsSkipLimitPage } from './resources/biscuits';
-import {
-  Character,
-  CharacterCreateParams,
-  CharacterGetQuotesResponse,
-  CharacterListParams,
-  CharacterRole,
-  CharacterUpdateParams,
-  Characters,
-  CharactersSkipLimitPage,
-  EmotionalStats,
-  GrowthArc,
-} from './resources/characters';
+import { Character, CharacterCreateParams, CharacterGetQuotesResponse, CharacterListParams, CharacterRole, CharacterUpdateParams, Characters, CharactersSkipLimitPage, EmotionalStats, GrowthArc } from './resources/characters';
 import { ConflictResolveParams, ConflictResolveResponse, Conflicts } from './resources/conflicts';
-import {
-  Episode,
-  EpisodeCreateParams,
-  EpisodeGetWisdomResponse,
-  EpisodeListParams,
-  EpisodeUpdateParams,
-  Episodes,
-  EpisodesSkipLimitPage,
-  PaginatedResponse,
-} from './resources/episodes';
+import { Episode, EpisodeCreateParams, EpisodeGetWisdomResponse, EpisodeListParams, EpisodeUpdateParams, Episodes, EpisodesSkipLimitPage, PaginatedResponse } from './resources/episodes';
 import { Health, HealthCheckResponse } from './resources/health';
 import { PepTalk, PepTalkRetrieveParams, PepTalkRetrieveResponse } from './resources/pep-talk';
 import { Press, PressSimulateParams, PressSimulateResponse } from './resources/press';
-import {
-  PaginatedResponseQuote,
-  Quote,
-  QuoteCreateParams,
-  QuoteGetRandomParams,
-  QuoteListByCharacterParams,
-  QuoteListByThemeParams,
-  QuoteListParams,
-  QuoteMoment,
-  QuoteTheme,
-  QuoteUpdateParams,
-  Quotes,
-  QuotesSkipLimitPage,
-} from './resources/quotes';
-import {
-  Reframe,
-  ReframeTransformNegativeThoughtsParams,
-  ReframeTransformNegativeThoughtsResponse,
-} from './resources/reframe';
+import { PaginatedResponseQuote, Quote, QuoteCreateParams, QuoteGetRandomParams, QuoteListByCharacterParams, QuoteListByThemeParams, QuoteListParams, QuoteMoment, QuoteTheme, QuoteUpdateParams, Quotes, QuotesSkipLimitPage } from './resources/quotes';
+import { Reframe, ReframeTransformNegativeThoughtsParams, ReframeTransformNegativeThoughtsResponse } from './resources/reframe';
 import { Stream, StreamTestConnectionResponse } from './resources/stream';
-import {
-  Coach,
-  CoachSpecialty,
-  CoachesSkipLimitPage,
-  EquipmentManager,
-  MedicalSpecialty,
-  MedicalStaff,
-  Player,
-  PlayersSkipLimitPage,
-  Position,
-  TeamMemberCreateParams,
-  TeamMemberCreateResponse,
-  TeamMemberListCoachesParams,
-  TeamMemberListParams,
-  TeamMemberListPlayersParams,
-  TeamMemberListResponse,
-  TeamMemberListResponsesSkipLimitPage,
-  TeamMemberListStaffParams,
-  TeamMemberListStaffResponse,
-  TeamMemberListStaffResponsesSkipLimitPage,
-  TeamMemberRetrieveResponse,
-  TeamMemberUpdateParams,
-  TeamMemberUpdateResponse,
-  TeamMembers,
-} from './resources/team-members';
-import {
-  PurchaseMethod,
-  TicketSale,
-  TicketSaleCreateParams,
-  TicketSaleListParams,
-  TicketSaleUpdateParams,
-  TicketSales,
-  TicketSalesSkipLimitPage,
-} from './resources/ticket-sales';
+import { Coach, CoachSpecialty, CoachesSkipLimitPage, EquipmentManager, MedicalSpecialty, MedicalStaff, Player, PlayersSkipLimitPage, Position, TeamMemberCreateParams, TeamMemberCreateResponse, TeamMemberListCoachesParams, TeamMemberListParams, TeamMemberListPlayersParams, TeamMemberListResponse, TeamMemberListResponsesSkipLimitPage, TeamMemberListStaffParams, TeamMemberListStaffResponse, TeamMemberListStaffResponsesSkipLimitPage, TeamMemberRetrieveResponse, TeamMemberUpdateParams, TeamMemberUpdateResponse, TeamMembers } from './resources/team-members';
+import { PurchaseMethod, TicketSale, TicketSaleCreateParams, TicketSaleListParams, TicketSaleUpdateParams, TicketSales, TicketSalesSkipLimitPage } from './resources/ticket-sales';
 import { GetWelcomeResponse } from './resources/top-level';
 import { Version, VersionRetrieveResponse } from './resources/version';
-import {
-  MatchCompletedWebhookEvent,
-  RegisteredWebhook,
-  TeamMemberTransferredWebhookEvent,
-  UnwrapWebhookEvent,
-  WebhookCreateParams,
-  WebhookCreateResponse,
-  WebhookDeleteResponse,
-  WebhookListResponse,
-  WebhookTriggerEventParams,
-  WebhookTriggerEventResponse,
-  Webhooks,
-} from './resources/webhooks';
+import { MatchCompletedWebhookEvent, RegisteredWebhook, TeamMemberTransferredWebhookEvent, UnwrapWebhookEvent, WebhookCreateParams, WebhookCreateResponse, WebhookDeleteResponse, WebhookListResponse, WebhookTriggerEventParams, WebhookTriggerEventResponse, Webhooks } from './resources/webhooks';
 import { Coaching } from './resources/coaching/coaching';
-import {
-  Match,
-  MatchCreateParams,
-  MatchGetLessonResponse,
-  MatchGetTurningPointsResponse,
-  MatchListParams,
-  MatchResult,
-  MatchStreamLiveParams,
-  MatchType,
-  MatchUpdateParams,
-  Matches,
-  MatchesSkipLimitPage,
-  TurningPoint,
-} from './resources/matches/matches';
-import {
-  GeoLocation,
-  League,
-  Team,
-  TeamCreateParams,
-  TeamGetCultureResponse,
-  TeamGetRivalsResponse,
-  TeamListLogosResponse,
-  TeamListParams,
-  TeamUpdateParams,
-  TeamValues,
-  Teams,
-  TeamsSkipLimitPage,
-} from './resources/teams/teams';
+import { Match, MatchCreateParams, MatchGetLessonResponse, MatchGetTurningPointsResponse, MatchListParams, MatchResult, MatchStreamLiveParams, MatchType, MatchUpdateParams, Matches, MatchesSkipLimitPage, TurningPoint } from './resources/matches/matches';
+import { GeoLocation, League, Team, TeamCreateParams, TeamGetCultureResponse, TeamGetRivalsResponse, TeamListLogosResponse, TeamListParams, TeamUpdateParams, TeamValues, Teams, TeamsSkipLimitPage } from './resources/teams/teams';
 import { type Fetch } from './internal/builtin-types';
 import { isRunningInBrowser } from './internal/detect-platform';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
 import { readEnv } from './internal/utils/env';
-import {
-  type LogLevel,
-  type Logger,
-  formatRequestDetails,
-  loggerFor,
-  parseLogLevel,
-} from './internal/utils/log';
+import { type LogLevel, type Logger, formatRequestDetails, loggerFor, parseLogLevel } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 import { Client } from './resources/client/client';
 
@@ -279,7 +167,7 @@ export class BaseBelieve {
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
       throw new Errors.BelieveError(
-        "The BELIEVE_API_KEY environment variable is missing or empty; either provide it, or instantiate the Believe client with an apiKey option, like new Believe({ apiKey: 'My API Key' }).",
+        'The BELIEVE_API_KEY environment variable is missing or empty; either provide it, or instantiate the Believe client with an apiKey option, like new Believe({ apiKey: \'My API Key\' }).'
       );
     }
 
@@ -290,9 +178,7 @@ export class BaseBelieve {
     };
 
     if (!options.dangerouslyAllowBrowser && isRunningInBrowser()) {
-      throw new Errors.BelieveError(
-        'This is disabled by default, as it risks exposing your secret API credentials to attackers.\nIf you understand the risks and have appropriate mitigations in place,\nyou can set the `dangerouslyAllowBrowser` option to `true`, e.g.,\n\nnew Believe({ dangerouslyAllowBrowser: true })',
-      );
+      throw new Errors.BelieveError('This is disabled by default, as it risks exposing your secret API credentials to attackers.\nIf you understand the risks and have appropriate mitigations in place,\nyou can set the `dangerouslyAllowBrowser` option to `true`, e.g.,\n\nnew Believe({ dangerouslyAllowBrowser: true })')
     }
 
     this.baseURL = options.baseURL!;
@@ -301,10 +187,7 @@ export class BaseBelieve {
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
-    this.logLevel =
-      parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('BELIEVE_LOG'), "process.env['BELIEVE_LOG']", this) ??
-      defaultLogLevel;
+    this.logLevel = parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ?? parseLogLevel(readEnv('BELIEVE_LOG'), 'process.env[\'BELIEVE_LOG\']', this) ?? defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
     this.fetch = options.fetch ?? Shims.getDefaultFetch();
@@ -329,7 +212,7 @@ export class BaseBelieve {
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
       apiKey: this.apiKey,
-      ...options,
+      ...options
     });
     return client;
   }
@@ -349,7 +232,7 @@ export class BaseBelieve {
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
-    return this._options.defaultQuery;
+    return this._options.defaultQuery
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
@@ -384,11 +267,7 @@ export class BaseBelieve {
     return Errors.APIError.generate(status, error, message, headers);
   }
 
-  buildURL(
-    path: string,
-    query: Record<string, unknown> | null | undefined,
-    defaultBaseURL?: string | undefined,
-  ): string {
+  buildURL(path: string, query: Record<string, unknown> | null | undefined, defaultBaseURL?: string | undefined): string {
     const baseURL = (!this.#baseURLOverridden() && defaultBaseURL) || this.baseURL;
     const url =
       isAbsoluteURL(path) ?
@@ -476,9 +355,7 @@ export class BaseBelieve {
 
     await this.prepareOptions(options);
 
-    const { req, url, timeout } = await this.buildRequest(options, {
-      retryCount: maxRetries - retriesRemaining,
-    });
+    const { req, url, timeout } = await this.buildRequest(options, { retryCount: maxRetries - retriesRemaining });
 
     await this.prepareRequest(req, { url, options });
 
@@ -487,16 +364,7 @@ export class BaseBelieve {
     const retryLogStr = retryOfRequestLogID === undefined ? '' : `, retryOf: ${retryOfRequestLogID}`;
     const startTime = Date.now();
 
-    loggerFor(this).debug(
-      `[${requestLogID}] sending request`,
-      formatRequestDetails({
-        retryOfRequestLogID,
-        method: options.method,
-        url,
-        options,
-        headers: req.headers,
-      }),
-    );
+    loggerFor(this).debug(`[${requestLogID}] sending request`, formatRequestDetails({ retryOfRequestLogID, method: options.method, url, options, headers: req.headers }));
 
     if (options.signal?.aborted) {
       throw new Errors.APIUserAbortError();
@@ -515,45 +383,21 @@ export class BaseBelieve {
       // deno throws "TypeError: error sending request for url (https://example/): client error (Connect): tcp connect error: Operation timed out (os error 60): Operation timed out (os error 60)"
       // undici throws "TypeError: fetch failed" with cause "ConnectTimeoutError: Connect Timeout Error (attempted address: example:443, timeout: 1ms)"
       // others do not provide enough information to distinguish timeouts from other connection errors
-      const isTimeout =
-        isAbortError(response) ||
-        /timed? ?out/i.test(String(response) + ('cause' in response ? String(response.cause) : ''));
+      const isTimeout = isAbortError(response) || /timed? ?out/i.test(String(response) + ('cause' in response ? String(response.cause) : ''))
       if (retriesRemaining) {
-        loggerFor(this).info(
-          `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - ${retryMessage}`,
-        );
-        loggerFor(this).debug(
-          `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (${retryMessage})`,
-          formatRequestDetails({
-            retryOfRequestLogID,
-            url,
-            durationMs: headersTime - startTime,
-            message: response.message,
-          }),
-        );
+        loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - ${retryMessage}`)
+        loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url, durationMs: headersTime - startTime, message: response.message }));
         return this.retryRequest(options, retriesRemaining, retryOfRequestLogID ?? requestLogID);
       }
-      loggerFor(this).info(
-        `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - error; no more retries left`,
-      );
-      loggerFor(this).debug(
-        `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (error; no more retries left)`,
-        formatRequestDetails({
-          retryOfRequestLogID,
-          url,
-          durationMs: headersTime - startTime,
-          message: response.message,
-        }),
-      );
+      loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - error; no more retries left`)
+      loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (error; no more retries left)`, formatRequestDetails({ retryOfRequestLogID, url, durationMs: headersTime - startTime, message: response.message }));
       if (isTimeout) {
         throw new Errors.APIConnectionTimeoutError();
       }
       throw new Errors.APIConnectionError({ cause: response });
     }
 
-    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${
-      response.ok ? 'succeeded' : 'failed'
-    } with status ${response.status} in ${headersTime - startTime}ms`;
+    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${response.ok ? 'succeeded' : 'failed'} with status ${response.status} in ${headersTime - startTime}ms`;
 
     if (!response.ok) {
       const shouldRetry = await this.shouldRetry(response);
@@ -562,60 +406,27 @@ export class BaseBelieve {
 
         // We don't need the body of this response.
         await Shims.CancelReadableStream(response.body);
-        loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
-        loggerFor(this).debug(
-          `[${requestLogID}] response error (${retryMessage})`,
-          formatRequestDetails({
-            retryOfRequestLogID,
-            url: response.url,
-            status: response.status,
-            headers: response.headers,
-            durationMs: headersTime - startTime,
-          }),
-        );
-        return this.retryRequest(
-          options,
-          retriesRemaining,
-          retryOfRequestLogID ?? requestLogID,
-          response.headers,
-        );
+        loggerFor(this).info(`${responseInfo} - ${retryMessage}`)
+        loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, durationMs: headersTime - startTime }));
+        return this.retryRequest(options, retriesRemaining, retryOfRequestLogID ?? requestLogID, response.headers);
       }
 
       const retryMessage = shouldRetry ? `error; no more retries left` : `error; not retryable`;
 
-      loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
+      loggerFor(this).info(`${responseInfo} - ${retryMessage}`)
 
       const errText = await response.text().catch((err: any) => castToError(err).message);
       const errJSON = safeJSON(errText) as any;
       const errMessage = errJSON ? undefined : errText;
 
-      loggerFor(this).debug(
-        `[${requestLogID}] response error (${retryMessage})`,
-        formatRequestDetails({
-          retryOfRequestLogID,
-          url: response.url,
-          status: response.status,
-          headers: response.headers,
-          message: errMessage,
-          durationMs: Date.now() - startTime,
-        }),
-      );
+      loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, message: errMessage, durationMs: Date.now() - startTime }));
 
       const err = this.makeStatusError(response.status, errJSON, errMessage, response.headers);
       throw err;
     }
 
-    loggerFor(this).info(responseInfo);
-    loggerFor(this).debug(
-      `[${requestLogID}] response start`,
-      formatRequestDetails({
-        retryOfRequestLogID,
-        url: response.url,
-        status: response.status,
-        headers: response.headers,
-        durationMs: headersTime - startTime,
-      }),
-    );
+    loggerFor(this).info(responseInfo)
+    loggerFor(this).debug(`[${requestLogID}] response start`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, durationMs: headersTime - startTime }));
 
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
@@ -633,10 +444,7 @@ export class BaseBelieve {
     );
   }
 
-  requestAPIList<
-    Item = unknown,
-    PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>,
-  >(
+  requestAPIList<Item = unknown, PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>>(
     Page: new (...args: ConstructorParameters<typeof Pagination.AbstractPage>) => PageClass,
     options: PromiseOrValue<FinalRequestOptions>,
   ): Pagination.PagePromise<PageClass, Item> {
@@ -656,9 +464,7 @@ export class BaseBelieve {
 
     const timeout = setTimeout(abort, ms);
 
-    const isReadableBody =
-      ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) ||
-      (typeof options.body === 'object' && options.body !== null && Symbol.asyncIterator in options.body);
+    const isReadableBody = ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) || (typeof options.body === "object" && options.body !== null && Symbol.asyncIterator in options.body);
 
     const fetchOptions: RequestInit = {
       signal: controller.signal as any,
@@ -673,6 +479,7 @@ export class BaseBelieve {
     }
 
     try {
+
       // use undefined this binding; fetch errors if bound to something else in browser/cloudflare
       return await this.fetch.call(undefined, url, fetchOptions);
     } finally {
@@ -773,12 +580,11 @@ export class BaseBelieve {
     const req: FinalizedRequestInit = {
       method,
       headers: reqHeaders,
-      ...(options.signal && { signal: options.signal }),
-      ...((globalThis as any).ReadableStream &&
-        body instanceof (globalThis as any).ReadableStream && { duplex: 'half' }),
+      ...(options.signal && { signal: options.signal}),
+      ...((globalThis as any).ReadableStream && body instanceof (globalThis as any).ReadableStream && { duplex: "half" }),
       ...(body && { body }),
-      ...((this.fetchOptions as any) ?? {}),
-      ...((options.fetchOptions as any) ?? {}),
+      ...(this.fetchOptions as any ?? {}),
+      ...(options.fetchOptions as any ?? {}),
     };
 
     return { req, url, timeout: options.timeout };
@@ -803,17 +609,15 @@ export class BaseBelieve {
 
     const headers = buildHeaders([
       idempotencyHeaders,
-      {
-        Accept: 'application/json',
-        'User-Agent': this.getUserAgent(),
-        'X-Stainless-Retry-Count': String(retryCount),
-        ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
-        ...getPlatformHeaders(),
-      },
+      {Accept: 'application/json',
+      'User-Agent': this.getUserAgent(),
+      'X-Stainless-Retry-Count': String(retryCount),
+      ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
+      ...getPlatformHeaders()},
       await this.authHeaders(options),
       this._options.defaultHeaders,
       bodyHeaders,
-      options.headers,
+      options.headers
     ]);
 
     this.validateHeaders(headers);
@@ -840,9 +644,11 @@ export class BaseBelieve {
       ArrayBuffer.isView(body) ||
       body instanceof ArrayBuffer ||
       body instanceof DataView ||
-      (typeof body === 'string' &&
+      (
+        typeof body === 'string' &&
         // Preserve legacy string encoding behavior for now
-        headers.values.has('content-type')) ||
+        headers.values.has('content-type')
+      ) ||
       // `Blob` is superset of `File`
       ((globalThis as any).Blob && body instanceof (globalThis as any).Blob) ||
       // `FormData` -> `multipart/form-data`
@@ -872,11 +678,11 @@ export class BaseBelieve {
     }
   }
 
-  static DEFAULT_TIMEOUT = 60000; // 1 minute
+  static DEFAULT_TIMEOUT = 60000 // 1 minute
 }
 
 /**
- * API Client for interfacing with the Believe API.
+ * API Client for interfacing with the Believe API. 
  */
 export class Believe extends BaseBelieve {
   static Believe = this;
@@ -981,179 +787,194 @@ Believe.Version = Version;
 Believe.Client = Client;
 
 export declare namespace Believe {
-  export type RequestOptions = Opts.RequestOptions;
+      export type RequestOptions = Opts.RequestOptions;
 
-  export import SkipLimitPage = Pagination.SkipLimitPage;
-  export {
-    type SkipLimitPageParams as SkipLimitPageParams,
-    type SkipLimitPageResponse as SkipLimitPageResponse,
-  };
+      export import SkipLimitPage = Pagination.SkipLimitPage;
+export {
+  type SkipLimitPageParams as SkipLimitPageParams,
+  type SkipLimitPageResponse as SkipLimitPageResponse
+};
 
-  export { type GetWelcomeResponse as GetWelcomeResponse };
+export {
+  type GetWelcomeResponse as GetWelcomeResponse
+};
 
-  export {
-    Characters as Characters,
-    type Character as Character,
-    type CharacterRole as CharacterRole,
-    type EmotionalStats as EmotionalStats,
-    type GrowthArc as GrowthArc,
-    type CharacterGetQuotesResponse as CharacterGetQuotesResponse,
-    type CharactersSkipLimitPage as CharactersSkipLimitPage,
-    type CharacterCreateParams as CharacterCreateParams,
-    type CharacterUpdateParams as CharacterUpdateParams,
-    type CharacterListParams as CharacterListParams,
-  };
+export {
+  Characters as Characters,
+  type Character as Character,
+  type CharacterRole as CharacterRole,
+  type EmotionalStats as EmotionalStats,
+  type GrowthArc as GrowthArc,
+  type CharacterGetQuotesResponse as CharacterGetQuotesResponse,
+  type CharactersSkipLimitPage as CharactersSkipLimitPage,
+  type CharacterCreateParams as CharacterCreateParams,
+  type CharacterUpdateParams as CharacterUpdateParams,
+  type CharacterListParams as CharacterListParams
+};
 
-  export {
-    Teams as Teams,
-    type GeoLocation as GeoLocation,
-    type League as League,
-    type Team as Team,
-    type TeamValues as TeamValues,
-    type TeamGetCultureResponse as TeamGetCultureResponse,
-    type TeamGetRivalsResponse as TeamGetRivalsResponse,
-    type TeamListLogosResponse as TeamListLogosResponse,
-    type TeamsSkipLimitPage as TeamsSkipLimitPage,
-    type TeamCreateParams as TeamCreateParams,
-    type TeamUpdateParams as TeamUpdateParams,
-    type TeamListParams as TeamListParams,
-  };
+export {
+  Teams as Teams,
+  type GeoLocation as GeoLocation,
+  type League as League,
+  type Team as Team,
+  type TeamValues as TeamValues,
+  type TeamGetCultureResponse as TeamGetCultureResponse,
+  type TeamGetRivalsResponse as TeamGetRivalsResponse,
+  type TeamListLogosResponse as TeamListLogosResponse,
+  type TeamsSkipLimitPage as TeamsSkipLimitPage,
+  type TeamCreateParams as TeamCreateParams,
+  type TeamUpdateParams as TeamUpdateParams,
+  type TeamListParams as TeamListParams
+};
 
-  export {
-    Matches as Matches,
-    type Match as Match,
-    type MatchResult as MatchResult,
-    type MatchType as MatchType,
-    type TurningPoint as TurningPoint,
-    type MatchGetLessonResponse as MatchGetLessonResponse,
-    type MatchGetTurningPointsResponse as MatchGetTurningPointsResponse,
-    type MatchesSkipLimitPage as MatchesSkipLimitPage,
-    type MatchCreateParams as MatchCreateParams,
-    type MatchUpdateParams as MatchUpdateParams,
-    type MatchListParams as MatchListParams,
-    type MatchStreamLiveParams as MatchStreamLiveParams,
-  };
+export {
+  Matches as Matches,
+  type Match as Match,
+  type MatchResult as MatchResult,
+  type MatchType as MatchType,
+  type TurningPoint as TurningPoint,
+  type MatchGetLessonResponse as MatchGetLessonResponse,
+  type MatchGetTurningPointsResponse as MatchGetTurningPointsResponse,
+  type MatchesSkipLimitPage as MatchesSkipLimitPage,
+  type MatchCreateParams as MatchCreateParams,
+  type MatchUpdateParams as MatchUpdateParams,
+  type MatchListParams as MatchListParams,
+  type MatchStreamLiveParams as MatchStreamLiveParams
+};
 
-  export {
-    Episodes as Episodes,
-    type Episode as Episode,
-    type PaginatedResponse as PaginatedResponse,
-    type EpisodeGetWisdomResponse as EpisodeGetWisdomResponse,
-    type EpisodesSkipLimitPage as EpisodesSkipLimitPage,
-    type EpisodeCreateParams as EpisodeCreateParams,
-    type EpisodeUpdateParams as EpisodeUpdateParams,
-    type EpisodeListParams as EpisodeListParams,
-  };
+export {
+  Episodes as Episodes,
+  type Episode as Episode,
+  type PaginatedResponse as PaginatedResponse,
+  type EpisodeGetWisdomResponse as EpisodeGetWisdomResponse,
+  type EpisodesSkipLimitPage as EpisodesSkipLimitPage,
+  type EpisodeCreateParams as EpisodeCreateParams,
+  type EpisodeUpdateParams as EpisodeUpdateParams,
+  type EpisodeListParams as EpisodeListParams
+};
 
-  export {
-    Quotes as Quotes,
-    type PaginatedResponseQuote as PaginatedResponseQuote,
-    type Quote as Quote,
-    type QuoteMoment as QuoteMoment,
-    type QuoteTheme as QuoteTheme,
-    type QuotesSkipLimitPage as QuotesSkipLimitPage,
-    type QuoteCreateParams as QuoteCreateParams,
-    type QuoteUpdateParams as QuoteUpdateParams,
-    type QuoteListParams as QuoteListParams,
-    type QuoteGetRandomParams as QuoteGetRandomParams,
-    type QuoteListByCharacterParams as QuoteListByCharacterParams,
-    type QuoteListByThemeParams as QuoteListByThemeParams,
-  };
+export {
+  Quotes as Quotes,
+  type PaginatedResponseQuote as PaginatedResponseQuote,
+  type Quote as Quote,
+  type QuoteMoment as QuoteMoment,
+  type QuoteTheme as QuoteTheme,
+  type QuotesSkipLimitPage as QuotesSkipLimitPage,
+  type QuoteCreateParams as QuoteCreateParams,
+  type QuoteUpdateParams as QuoteUpdateParams,
+  type QuoteListParams as QuoteListParams,
+  type QuoteGetRandomParams as QuoteGetRandomParams,
+  type QuoteListByCharacterParams as QuoteListByCharacterParams,
+  type QuoteListByThemeParams as QuoteListByThemeParams
+};
 
-  export {
-    BelieveResource as BelieveResource,
-    type BelieveSubmitResponse as BelieveSubmitResponse,
-    type BelieveSubmitParams as BelieveSubmitParams,
-  };
+export {
+  BelieveResource as BelieveResource,
+  type BelieveSubmitResponse as BelieveSubmitResponse,
+  type BelieveSubmitParams as BelieveSubmitParams
+};
 
-  export {
-    Conflicts as Conflicts,
-    type ConflictResolveResponse as ConflictResolveResponse,
-    type ConflictResolveParams as ConflictResolveParams,
-  };
+export {
+  Conflicts as Conflicts,
+  type ConflictResolveResponse as ConflictResolveResponse,
+  type ConflictResolveParams as ConflictResolveParams
+};
 
-  export {
-    Reframe as Reframe,
-    type ReframeTransformNegativeThoughtsResponse as ReframeTransformNegativeThoughtsResponse,
-    type ReframeTransformNegativeThoughtsParams as ReframeTransformNegativeThoughtsParams,
-  };
+export {
+  Reframe as Reframe,
+  type ReframeTransformNegativeThoughtsResponse as ReframeTransformNegativeThoughtsResponse,
+  type ReframeTransformNegativeThoughtsParams as ReframeTransformNegativeThoughtsParams
+};
 
-  export {
-    Press as Press,
-    type PressSimulateResponse as PressSimulateResponse,
-    type PressSimulateParams as PressSimulateParams,
-  };
+export {
+  Press as Press,
+  type PressSimulateResponse as PressSimulateResponse,
+  type PressSimulateParams as PressSimulateParams
+};
 
-  export { Coaching as Coaching };
+export {
+  Coaching as Coaching
+};
 
-  export {
-    Biscuits as Biscuits,
-    type Biscuit as Biscuit,
-    type BiscuitsSkipLimitPage as BiscuitsSkipLimitPage,
-    type BiscuitListParams as BiscuitListParams,
-  };
+export {
+  Biscuits as Biscuits,
+  type Biscuit as Biscuit,
+  type BiscuitsSkipLimitPage as BiscuitsSkipLimitPage,
+  type BiscuitListParams as BiscuitListParams
+};
 
-  export {
-    PepTalk as PepTalk,
-    type PepTalkRetrieveResponse as PepTalkRetrieveResponse,
-    type PepTalkRetrieveParams as PepTalkRetrieveParams,
-  };
+export {
+  PepTalk as PepTalk,
+  type PepTalkRetrieveResponse as PepTalkRetrieveResponse,
+  type PepTalkRetrieveParams as PepTalkRetrieveParams
+};
 
-  export { Stream as Stream, type StreamTestConnectionResponse as StreamTestConnectionResponse };
+export {
+  Stream as Stream,
+  type StreamTestConnectionResponse as StreamTestConnectionResponse
+};
 
-  export {
-    TeamMembers as TeamMembers,
-    type Coach as Coach,
-    type CoachSpecialty as CoachSpecialty,
-    type EquipmentManager as EquipmentManager,
-    type MedicalSpecialty as MedicalSpecialty,
-    type MedicalStaff as MedicalStaff,
-    type Player as Player,
-    type Position as Position,
-    type TeamMemberCreateResponse as TeamMemberCreateResponse,
-    type TeamMemberRetrieveResponse as TeamMemberRetrieveResponse,
-    type TeamMemberUpdateResponse as TeamMemberUpdateResponse,
-    type TeamMemberListResponse as TeamMemberListResponse,
-    type TeamMemberListStaffResponse as TeamMemberListStaffResponse,
-    type TeamMemberListResponsesSkipLimitPage as TeamMemberListResponsesSkipLimitPage,
-    type CoachesSkipLimitPage as CoachesSkipLimitPage,
-    type PlayersSkipLimitPage as PlayersSkipLimitPage,
-    type TeamMemberListStaffResponsesSkipLimitPage as TeamMemberListStaffResponsesSkipLimitPage,
-    type TeamMemberCreateParams as TeamMemberCreateParams,
-    type TeamMemberUpdateParams as TeamMemberUpdateParams,
-    type TeamMemberListParams as TeamMemberListParams,
-    type TeamMemberListCoachesParams as TeamMemberListCoachesParams,
-    type TeamMemberListPlayersParams as TeamMemberListPlayersParams,
-    type TeamMemberListStaffParams as TeamMemberListStaffParams,
-  };
+export {
+  TeamMembers as TeamMembers,
+  type Coach as Coach,
+  type CoachSpecialty as CoachSpecialty,
+  type EquipmentManager as EquipmentManager,
+  type MedicalSpecialty as MedicalSpecialty,
+  type MedicalStaff as MedicalStaff,
+  type Player as Player,
+  type Position as Position,
+  type TeamMemberCreateResponse as TeamMemberCreateResponse,
+  type TeamMemberRetrieveResponse as TeamMemberRetrieveResponse,
+  type TeamMemberUpdateResponse as TeamMemberUpdateResponse,
+  type TeamMemberListResponse as TeamMemberListResponse,
+  type TeamMemberListStaffResponse as TeamMemberListStaffResponse,
+  type TeamMemberListResponsesSkipLimitPage as TeamMemberListResponsesSkipLimitPage,
+  type CoachesSkipLimitPage as CoachesSkipLimitPage,
+  type PlayersSkipLimitPage as PlayersSkipLimitPage,
+  type TeamMemberListStaffResponsesSkipLimitPage as TeamMemberListStaffResponsesSkipLimitPage,
+  type TeamMemberCreateParams as TeamMemberCreateParams,
+  type TeamMemberUpdateParams as TeamMemberUpdateParams,
+  type TeamMemberListParams as TeamMemberListParams,
+  type TeamMemberListCoachesParams as TeamMemberListCoachesParams,
+  type TeamMemberListPlayersParams as TeamMemberListPlayersParams,
+  type TeamMemberListStaffParams as TeamMemberListStaffParams
+};
 
-  export {
-    Webhooks as Webhooks,
-    type RegisteredWebhook as RegisteredWebhook,
-    type WebhookCreateResponse as WebhookCreateResponse,
-    type WebhookListResponse as WebhookListResponse,
-    type WebhookDeleteResponse as WebhookDeleteResponse,
-    type WebhookTriggerEventResponse as WebhookTriggerEventResponse,
-    type MatchCompletedWebhookEvent as MatchCompletedWebhookEvent,
-    type TeamMemberTransferredWebhookEvent as TeamMemberTransferredWebhookEvent,
-    type UnwrapWebhookEvent as UnwrapWebhookEvent,
-    type WebhookCreateParams as WebhookCreateParams,
-    type WebhookTriggerEventParams as WebhookTriggerEventParams,
-  };
+export {
+  Webhooks as Webhooks,
+  type RegisteredWebhook as RegisteredWebhook,
+  type WebhookCreateResponse as WebhookCreateResponse,
+  type WebhookListResponse as WebhookListResponse,
+  type WebhookDeleteResponse as WebhookDeleteResponse,
+  type WebhookTriggerEventResponse as WebhookTriggerEventResponse,
+  type MatchCompletedWebhookEvent as MatchCompletedWebhookEvent,
+  type TeamMemberTransferredWebhookEvent as TeamMemberTransferredWebhookEvent,
+  type UnwrapWebhookEvent as UnwrapWebhookEvent,
+  type WebhookCreateParams as WebhookCreateParams,
+  type WebhookTriggerEventParams as WebhookTriggerEventParams
+};
 
-  export {
-    TicketSales as TicketSales,
-    type PurchaseMethod as PurchaseMethod,
-    type TicketSale as TicketSale,
-    type TicketSalesSkipLimitPage as TicketSalesSkipLimitPage,
-    type TicketSaleCreateParams as TicketSaleCreateParams,
-    type TicketSaleUpdateParams as TicketSaleUpdateParams,
-    type TicketSaleListParams as TicketSaleListParams,
-  };
+export {
+  TicketSales as TicketSales,
+  type PurchaseMethod as PurchaseMethod,
+  type TicketSale as TicketSale,
+  type TicketSalesSkipLimitPage as TicketSalesSkipLimitPage,
+  type TicketSaleCreateParams as TicketSaleCreateParams,
+  type TicketSaleUpdateParams as TicketSaleUpdateParams,
+  type TicketSaleListParams as TicketSaleListParams
+};
 
-  export { Health as Health, type HealthCheckResponse as HealthCheckResponse };
+export {
+  Health as Health,
+  type HealthCheckResponse as HealthCheckResponse
+};
 
-  export { Version as Version, type VersionRetrieveResponse as VersionRetrieveResponse };
+export {
+  Version as Version,
+  type VersionRetrieveResponse as VersionRetrieveResponse
+};
 
-  export { Client as Client };
-}
+export {
+  Client as Client
+};
+    }

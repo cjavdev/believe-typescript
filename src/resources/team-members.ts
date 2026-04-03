@@ -12,7 +12,7 @@ import { path } from '../internal/utils/path';
  * Team members with union types (oneOf) - Players, Coaches, Medical Staff, Equipment Managers
  */
 export class BaseTeamMembers extends APIResource {
-  static override readonly _key: readonly ['teamMembers'] = Object.freeze(['teamMembers'] as const);
+  static override readonly _key: readonly ['teamMembers'] = Object.freeze(['teamMembers'] as const)
 
   /**
    * Add a new team member to a team.
@@ -47,7 +47,7 @@ export class BaseTeamMembers extends APIResource {
    * ```
    */
   create(params: TeamMemberCreateParams, options?: RequestOptions): APIPromise<TeamMemberCreateResponse> {
-    const { member } = params;
+    const { member } = params
     return this._client.post('/team-members', { body: member, ...options });
   }
 
@@ -73,12 +73,8 @@ export class BaseTeamMembers extends APIResource {
   /**
    * Update specific fields of an existing team member. Fields vary by member type.
    */
-  update(
-    memberID: string,
-    params: TeamMemberUpdateParams,
-    options?: RequestOptions,
-  ): APIPromise<TeamMemberUpdateResponse> {
-    const { updates } = params;
+  update(memberID: string, params: TeamMemberUpdateParams, options?: RequestOptions): APIPromise<TeamMemberUpdateResponse> {
+    const { updates } = params
     return this._client.patch(path`/team-members/${memberID}`, { body: updates, ...options });
   }
 
@@ -90,43 +86,28 @@ export class BaseTeamMembers extends APIResource {
    * `member_type` field acts as a discriminator to determine the shape of each
    * object.
    */
-  list(
-    query: TeamMemberListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<TeamMemberListResponsesSkipLimitPage, TeamMemberListResponse> {
-    return this._client.getAPIList('/team-members', SkipLimitPage<TeamMemberListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: TeamMemberListParams | null | undefined = {}, options?: RequestOptions): PagePromise<TeamMemberListResponsesSkipLimitPage, TeamMemberListResponse> {
+    return this._client.getAPIList('/team-members', SkipLimitPage<TeamMemberListResponse>, { query, ...options });
   }
 
   /**
    * Remove a team member from the roster.
    */
   delete(memberID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/team-members/${memberID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/team-members/${memberID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
    * Get only coaches (filtered subset of team members).
    */
-  listCoaches(
-    query: TeamMemberListCoachesParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<CoachesSkipLimitPage, Coach> {
+  listCoaches(query: TeamMemberListCoachesParams | null | undefined = {}, options?: RequestOptions): PagePromise<CoachesSkipLimitPage, Coach> {
     return this._client.getAPIList('/team-members/coaches/', SkipLimitPage<Coach>, { query, ...options });
   }
 
   /**
    * Get only players (filtered subset of team members).
    */
-  listPlayers(
-    query: TeamMemberListPlayersParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<PlayersSkipLimitPage, Player> {
+  listPlayers(query: TeamMemberListPlayersParams | null | undefined = {}, options?: RequestOptions): PagePromise<PlayersSkipLimitPage, Player> {
     return this._client.getAPIList('/team-members/players/', SkipLimitPage<Player>, { query, ...options });
   }
 
@@ -136,28 +117,24 @@ export class BaseTeamMembers extends APIResource {
    * This demonstrates a **narrower union type** - the response is oneOf MedicalStaff
    * or EquipmentManager.
    */
-  listStaff(
-    query: TeamMemberListStaffParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<TeamMemberListStaffResponsesSkipLimitPage, TeamMemberListStaffResponse> {
-    return this._client.getAPIList('/team-members/staff/', SkipLimitPage<TeamMemberListStaffResponse>, {
-      query,
-      ...options,
-    });
+  listStaff(query: TeamMemberListStaffParams | null | undefined = {}, options?: RequestOptions): PagePromise<TeamMemberListStaffResponsesSkipLimitPage, TeamMemberListStaffResponse> {
+    return this._client.getAPIList('/team-members/staff/', SkipLimitPage<TeamMemberListStaffResponse>, { query, ...options });
   }
 }
 /**
  * Team members with union types (oneOf) - Players, Coaches, Medical Staff, Equipment Managers
  */
-export class TeamMembers extends BaseTeamMembers {}
+export class TeamMembers extends BaseTeamMembers {
 
-export type TeamMemberListResponsesSkipLimitPage = SkipLimitPage<TeamMemberListResponse>;
+}
 
-export type CoachesSkipLimitPage = SkipLimitPage<Coach>;
+export type TeamMemberListResponsesSkipLimitPage = SkipLimitPage<TeamMemberListResponse>
 
-export type PlayersSkipLimitPage = SkipLimitPage<Player>;
+export type CoachesSkipLimitPage = SkipLimitPage<Coach>
 
-export type TeamMemberListStaffResponsesSkipLimitPage = SkipLimitPage<TeamMemberListStaffResponse>;
+export type PlayersSkipLimitPage = SkipLimitPage<Player>
+
+export type TeamMemberListStaffResponsesSkipLimitPage = SkipLimitPage<TeamMemberListStaffResponse>
 
 /**
  * Full coach model with ID.
@@ -207,12 +184,7 @@ export interface Coach {
 /**
  * Coaching specialties.
  */
-export type CoachSpecialty =
-  | 'head_coach'
-  | 'assistant_coach'
-  | 'goalkeeping_coach'
-  | 'fitness_coach'
-  | 'tactical_analyst';
+export type CoachSpecialty = 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst'
 
 /**
  * Full equipment manager model with ID.
@@ -257,12 +229,7 @@ export interface EquipmentManager {
 /**
  * Medical staff specialties.
  */
-export type MedicalSpecialty =
-  | 'team_doctor'
-  | 'physiotherapist'
-  | 'sports_psychologist'
-  | 'nutritionist'
-  | 'massage_therapist';
+export type MedicalSpecialty = 'team_doctor' | 'physiotherapist' | 'sports_psychologist' | 'nutritionist' | 'massage_therapist'
 
 /**
  * Full medical staff model with ID.
@@ -367,42 +334,38 @@ export interface Player {
 /**
  * Football positions for players.
  */
-export type Position = 'goalkeeper' | 'defender' | 'midfielder' | 'forward';
+export type Position = 'goalkeeper' | 'defender' | 'midfielder' | 'forward'
 
 /**
  * Full player model with ID.
  */
-export type TeamMemberCreateResponse = Player | Coach | MedicalStaff | EquipmentManager;
+export type TeamMemberCreateResponse = Player | Coach | MedicalStaff | EquipmentManager
 
 /**
  * Full player model with ID.
  */
-export type TeamMemberRetrieveResponse = Player | Coach | MedicalStaff | EquipmentManager;
+export type TeamMemberRetrieveResponse = Player | Coach | MedicalStaff | EquipmentManager
 
 /**
  * Full player model with ID.
  */
-export type TeamMemberUpdateResponse = Player | Coach | MedicalStaff | EquipmentManager;
+export type TeamMemberUpdateResponse = Player | Coach | MedicalStaff | EquipmentManager
 
 /**
  * Full player model with ID.
  */
-export type TeamMemberListResponse = Player | Coach | MedicalStaff | EquipmentManager;
+export type TeamMemberListResponse = Player | Coach | MedicalStaff | EquipmentManager
 
 /**
  * Full medical staff model with ID.
  */
-export type TeamMemberListStaffResponse = MedicalStaff | EquipmentManager;
+export type TeamMemberListStaffResponse = MedicalStaff | EquipmentManager
 
 export interface TeamMemberCreateParams {
   /**
    * A football player on the team.
    */
-  member:
-    | TeamMemberCreateParams.PlayerBase
-    | TeamMemberCreateParams.CoachBase
-    | TeamMemberCreateParams.MedicalStaffBase
-    | TeamMemberCreateParams.EquipmentManagerBase;
+  member: TeamMemberCreateParams.PlayerBase | TeamMemberCreateParams.CoachBase | TeamMemberCreateParams.MedicalStaffBase | TeamMemberCreateParams.EquipmentManagerBase;
 }
 
 export namespace TeamMemberCreateParams {
@@ -576,11 +539,7 @@ export interface TeamMemberUpdateParams {
   /**
    * Update model for players.
    */
-  updates:
-    | TeamMemberUpdateParams.PlayerUpdate
-    | TeamMemberUpdateParams.CoachUpdate
-    | TeamMemberUpdateParams.MedicalStaffUpdate
-    | TeamMemberUpdateParams.EquipmentManagerUpdate;
+  updates: TeamMemberUpdateParams.PlayerUpdate | TeamMemberUpdateParams.CoachUpdate | TeamMemberUpdateParams.MedicalStaffUpdate | TeamMemberUpdateParams.EquipmentManagerUpdate;
 }
 
 export namespace TeamMemberUpdateParams {
@@ -722,6 +681,6 @@ export declare namespace TeamMembers {
     type TeamMemberListParams as TeamMemberListParams,
     type TeamMemberListCoachesParams as TeamMemberListCoachesParams,
     type TeamMemberListPlayersParams as TeamMemberListPlayersParams,
-    type TeamMemberListStaffParams as TeamMemberListStaffParams,
+    type TeamMemberListStaffParams as TeamMemberListStaffParams
   };
 }

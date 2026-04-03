@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as WsAPI from './ws';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
@@ -9,7 +10,7 @@ import { RequestOptions } from '../../internal/request-options';
  * WebSocket endpoints for real-time bidirectional communication - Live match simulation
  */
 export class BaseWs extends APIResource {
-  static override readonly _key: readonly ['client', 'ws'] = Object.freeze(['client', 'ws'] as const);
+  static override readonly _key: readonly ['client', 'ws'] = Object.freeze(['client', 'ws'] as const)
 
   /**
    * Simple WebSocket test endpoint for connectivity testing.
@@ -28,13 +29,12 @@ export class BaseWs extends APIResource {
    * ```
    */
   test(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/ws/test', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get('/ws/test', { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 /**
  * WebSocket endpoints for real-time bidirectional communication - Live match simulation
  */
-export class Ws extends BaseWs {}
+export class Ws extends BaseWs {
+
+}

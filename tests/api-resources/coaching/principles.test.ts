@@ -3,23 +3,20 @@
 import { Coaching } from '@cjavdev/believe/resources/coaching/coaching';
 import { BasePrinciples } from '@cjavdev/believe/resources/coaching/principles';
 
-import Believe from '@cjavdev/believe';
+import Believe, { toFile } from '@cjavdev/believe';
 import { createClient, type PartialBelieve } from '@cjavdev/believe/tree-shakable';
 
-const client = new Believe({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Believe({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 const partialClient = createClient({
   apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
   resources: [BasePrinciples],
 });
 
 const parentPartialClient = createClient({
   apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
   resources: [Coaching],
 });
 
@@ -51,9 +48,9 @@ const runTests = (client: PartialBelieve<{ coaching: { principles: BasePrinciple
   // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.coaching.principles.list({ limit: 10, skip: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Believe.NotFoundError);
+    await expect(client.coaching.principles.list({ limit: 10, skip: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Believe.NotFoundError);
   });
 
   // Mock server tests are disabled

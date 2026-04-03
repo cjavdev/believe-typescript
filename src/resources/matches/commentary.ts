@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as CommentaryAPI from './commentary';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -9,10 +10,7 @@ import { path } from '../../internal/utils/path';
  * Server-Sent Events (SSE) streaming endpoints
  */
 export class BaseCommentary extends APIResource {
-  static override readonly _key: readonly ['matches', 'commentary'] = Object.freeze([
-    'matches',
-    'commentary',
-  ] as const);
+  static override readonly _key: readonly ['matches', 'commentary'] = Object.freeze(['matches', 'commentary'] as const)
 
   /**
    * Stream live match commentary for a specific match. Uses Server-Sent Events (SSE)
@@ -32,10 +30,14 @@ export class BaseCommentary extends APIResource {
 /**
  * Server-Sent Events (SSE) streaming endpoints
  */
-export class Commentary extends BaseCommentary {}
+export class Commentary extends BaseCommentary {
 
-export type CommentaryStreamResponse = unknown;
+}
+
+export type CommentaryStreamResponse = unknown
 
 export declare namespace Commentary {
-  export { type CommentaryStreamResponse as CommentaryStreamResponse };
+  export {
+    type CommentaryStreamResponse as CommentaryStreamResponse
+  };
 }

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as WebhooksAPI from './webhooks';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -9,7 +10,7 @@ import { path } from '../internal/utils/path';
  * Register webhook endpoints and trigger events for testing
  */
 export class BaseWebhooks extends APIResource {
-  static override readonly _key: readonly ['webhooks'] = Object.freeze(['webhooks'] as const);
+  static override readonly _key: readonly ['webhooks'] = Object.freeze(['webhooks'] as const)
 
   /**
    * Register a new webhook endpoint to receive event notifications.
@@ -90,10 +91,7 @@ export class BaseWebhooks extends APIResource {
    * )
    * ```
    */
-  triggerEvent(
-    body: WebhookTriggerEventParams,
-    options?: RequestOptions,
-  ): APIPromise<WebhookTriggerEventResponse> {
+  triggerEvent(body: WebhookTriggerEventParams, options?: RequestOptions): APIPromise<WebhookTriggerEventResponse> {
     return this._client.post('/webhooks/trigger', { body, ...options });
   }
 
@@ -104,7 +102,9 @@ export class BaseWebhooks extends APIResource {
 /**
  * Register webhook endpoints and trigger events for testing
  */
-export class Webhooks extends BaseWebhooks {}
+export class Webhooks extends BaseWebhooks {
+
+}
 
 /**
  * A registered webhook endpoint.
@@ -161,9 +161,9 @@ export interface WebhookCreateResponse {
   ted_says?: string;
 }
 
-export type WebhookListResponse = Array<RegisteredWebhook>;
+export type WebhookListResponse = Array<RegisteredWebhook>
 
-export type WebhookDeleteResponse = { [key: string]: unknown };
+export type WebhookDeleteResponse = { [key: string]: unknown }
 
 /**
  * Response after triggering webhook events.
@@ -415,7 +415,7 @@ export namespace TeamMemberTransferredWebhookEvent {
 /**
  * Webhook event sent when a match completes.
  */
-export type UnwrapWebhookEvent = MatchCompletedWebhookEvent | TeamMemberTransferredWebhookEvent;
+export type UnwrapWebhookEvent = MatchCompletedWebhookEvent | TeamMemberTransferredWebhookEvent
 
 export interface WebhookCreateParams {
   /**
@@ -443,10 +443,7 @@ export interface WebhookTriggerEventParams {
   /**
    * Optional event payload. If not provided, a sample payload will be generated.
    */
-  payload?:
-    | WebhookTriggerEventParams.MatchCompletedPayload
-    | WebhookTriggerEventParams.TeamMemberTransferredPayload
-    | null;
+  payload?: WebhookTriggerEventParams.MatchCompletedPayload | WebhookTriggerEventParams.TeamMemberTransferredPayload | null;
 }
 
 export namespace WebhookTriggerEventParams {
@@ -621,6 +618,6 @@ export declare namespace Webhooks {
     type TeamMemberTransferredWebhookEvent as TeamMemberTransferredWebhookEvent,
     type UnwrapWebhookEvent as UnwrapWebhookEvent,
     type WebhookCreateParams as WebhookCreateParams,
-    type WebhookTriggerEventParams as WebhookTriggerEventParams,
+    type WebhookTriggerEventParams as WebhookTriggerEventParams
   };
 }

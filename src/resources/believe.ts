@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as BelieveAPI from './believe';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -8,7 +9,7 @@ import { RequestOptions } from '../internal/request-options';
  * Interactive endpoints for motivation and guidance
  */
 export class BaseBelieveResource extends APIResource {
-  static override readonly _key: readonly ['believe'] = Object.freeze(['believe'] as const);
+  static override readonly _key: readonly ['believe'] = Object.freeze(['believe'] as const)
 
   /**
    * Submit your situation and receive Ted Lasso-style motivational guidance.
@@ -29,7 +30,9 @@ export class BaseBelieveResource extends APIResource {
 /**
  * Interactive endpoints for motivation and guidance
  */
-export class BelieveResource extends BaseBelieveResource {}
+export class BelieveResource extends BaseBelieveResource {
+
+}
 
 /**
  * Response from the Believe Engine.
@@ -70,15 +73,7 @@ export interface BelieveSubmitParams {
   /**
    * Type of situation
    */
-  situation_type:
-    | 'work_challenge'
-    | 'personal_setback'
-    | 'team_conflict'
-    | 'self_doubt'
-    | 'big_decision'
-    | 'failure'
-    | 'new_beginning'
-    | 'relationship';
+  situation_type: 'work_challenge' | 'personal_setback' | 'team_conflict' | 'self_doubt' | 'big_decision' | 'failure' | 'new_beginning' | 'relationship';
 
   /**
    * Additional context
@@ -94,6 +89,6 @@ export interface BelieveSubmitParams {
 export declare namespace BelieveResource {
   export {
     type BelieveSubmitResponse as BelieveSubmitResponse,
-    type BelieveSubmitParams as BelieveSubmitParams,
+    type BelieveSubmitParams as BelieveSubmitParams
   };
 }

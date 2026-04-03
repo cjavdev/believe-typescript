@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as PrinciplesAPI from './principles';
 import { APIPromise } from '../../core/api-promise';
 import { PagePromise, SkipLimitPage, type SkipLimitPageParams } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
@@ -10,10 +11,7 @@ import { path } from '../../internal/utils/path';
  * Interactive endpoints for motivation and guidance
  */
 export class BasePrinciples extends APIResource {
-  static override readonly _key: readonly ['coaching', 'principles'] = Object.freeze([
-    'coaching',
-    'principles',
-  ] as const);
+  static override readonly _key: readonly ['coaching', 'principles'] = Object.freeze(['coaching', 'principles'] as const)
 
   /**
    * Get details about a specific coaching principle.
@@ -39,14 +37,8 @@ export class BasePrinciples extends APIResource {
    * }
    * ```
    */
-  list(
-    query: PrincipleListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<CoachingPrinciplesSkipLimitPage, CoachingPrinciple> {
-    return this._client.getAPIList('/coaching/principles', SkipLimitPage<CoachingPrinciple>, {
-      query,
-      ...options,
-    });
+  list(query: PrincipleListParams | null | undefined = {}, options?: RequestOptions): PagePromise<CoachingPrinciplesSkipLimitPage, CoachingPrinciple> {
+    return this._client.getAPIList('/coaching/principles', SkipLimitPage<CoachingPrinciple>, { query, ...options });
   }
 
   /**
@@ -65,9 +57,11 @@ export class BasePrinciples extends APIResource {
 /**
  * Interactive endpoints for motivation and guidance
  */
-export class Principles extends BasePrinciples {}
+export class Principles extends BasePrinciples {
 
-export type CoachingPrinciplesSkipLimitPage = SkipLimitPage<CoachingPrinciple>;
+}
+
+export type CoachingPrinciplesSkipLimitPage = SkipLimitPage<CoachingPrinciple>
 
 /**
  * A Ted Lasso coaching principle.
@@ -104,12 +98,13 @@ export interface CoachingPrinciple {
   ted_quote: string;
 }
 
-export interface PrincipleListParams extends SkipLimitPageParams {}
+export interface PrincipleListParams extends SkipLimitPageParams {
+}
 
 export declare namespace Principles {
   export {
     type CoachingPrinciple as CoachingPrinciple,
     type CoachingPrinciplesSkipLimitPage as CoachingPrinciplesSkipLimitPage,
-    type PrincipleListParams as PrincipleListParams,
+    type PrincipleListParams as PrincipleListParams
   };
 }

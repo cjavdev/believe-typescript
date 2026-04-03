@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as QuotesAPI from './quotes';
 import { APIPromise } from '../core/api-promise';
 import { PagePromise, SkipLimitPage, type SkipLimitPageParams } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -11,7 +12,7 @@ import { path } from '../internal/utils/path';
  * Memorable quotes from the show
  */
 export class BaseQuotes extends APIResource {
-  static override readonly _key: readonly ['quotes'] = Object.freeze(['quotes'] as const);
+  static override readonly _key: readonly ['quotes'] = Object.freeze(['quotes'] as const)
 
   /**
    * Add a new memorable quote to the collection.
@@ -67,10 +68,7 @@ export class BaseQuotes extends APIResource {
    * }
    * ```
    */
-  list(
-    query: QuoteListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<QuotesSkipLimitPage, Quote> {
+  list(query: QuoteListParams | null | undefined = {}, options?: RequestOptions): PagePromise<QuotesSkipLimitPage, Quote> {
     return this._client.getAPIList('/quotes', SkipLimitPage<Quote>, { query, ...options });
   }
 
@@ -83,10 +81,7 @@ export class BaseQuotes extends APIResource {
    * ```
    */
   delete(quoteID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/quotes/${quoteID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/quotes/${quoteID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -97,10 +92,7 @@ export class BaseQuotes extends APIResource {
    * const quote = await client.quotes.getRandom();
    * ```
    */
-  getRandom(
-    query: QuoteGetRandomParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Quote> {
+  getRandom(query: QuoteGetRandomParams | null | undefined = {}, options?: RequestOptions): APIPromise<Quote> {
     return this._client.get('/quotes/random', { query, ...options });
   }
 
@@ -117,15 +109,8 @@ export class BaseQuotes extends APIResource {
    * }
    * ```
    */
-  listByCharacter(
-    characterID: string,
-    query: QuoteListByCharacterParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<QuotesSkipLimitPage, Quote> {
-    return this._client.getAPIList(path`/quotes/characters/${characterID}`, SkipLimitPage<Quote>, {
-      query,
-      ...options,
-    });
+  listByCharacter(characterID: string, query: QuoteListByCharacterParams | null | undefined = {}, options?: RequestOptions): PagePromise<QuotesSkipLimitPage, Quote> {
+    return this._client.getAPIList(path`/quotes/characters/${characterID}`, SkipLimitPage<Quote>, { query, ...options });
   }
 
   /**
@@ -141,23 +126,18 @@ export class BaseQuotes extends APIResource {
    * }
    * ```
    */
-  listByTheme(
-    theme: QuoteTheme,
-    query: QuoteListByThemeParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<QuotesSkipLimitPage, Quote> {
-    return this._client.getAPIList(path`/quotes/themes/${theme}`, SkipLimitPage<Quote>, {
-      query,
-      ...options,
-    });
+  listByTheme(theme: QuoteTheme, query: QuoteListByThemeParams | null | undefined = {}, options?: RequestOptions): PagePromise<QuotesSkipLimitPage, Quote> {
+    return this._client.getAPIList(path`/quotes/themes/${theme}`, SkipLimitPage<Quote>, { query, ...options });
   }
 }
 /**
  * Memorable quotes from the show
  */
-export class Quotes extends BaseQuotes {}
+export class Quotes extends BaseQuotes {
 
-export type QuotesSkipLimitPage = SkipLimitPage<Quote>;
+}
+
+export type QuotesSkipLimitPage = SkipLimitPage<Quote>
 
 export interface PaginatedResponseQuote {
   data: Array<Quote>;
@@ -252,54 +232,12 @@ export interface Quote {
 /**
  * Types of moments when quotes occur.
  */
-export type QuoteMoment =
-  | 'halftime_speech'
-  | 'press_conference'
-  | 'locker_room'
-  | 'training'
-  | 'biscuits_with_boss'
-  | 'pub'
-  | 'one_on_one'
-  | 'celebration'
-  | 'crisis'
-  | 'casual'
-  | 'confrontation';
+export type QuoteMoment = 'halftime_speech' | 'press_conference' | 'locker_room' | 'training' | 'biscuits_with_boss' | 'pub' | 'one_on_one' | 'celebration' | 'crisis' | 'casual' | 'confrontation'
 
 /**
  * Themes that quotes can be categorized under.
  */
-export type QuoteTheme =
-  | 'belief'
-  | 'teamwork'
-  | 'curiosity'
-  | 'kindness'
-  | 'resilience'
-  | 'vulnerability'
-  | 'growth'
-  | 'humor'
-  | 'wisdom'
-  | 'leadership'
-  | 'love'
-  | 'forgiveness'
-  | 'philosophy'
-  | 'romance'
-  | 'cultural-pride'
-  | 'cultural-differences'
-  | 'antagonism'
-  | 'celebration'
-  | 'identity'
-  | 'isolation'
-  | 'power'
-  | 'sacrifice'
-  | 'standards'
-  | 'confidence'
-  | 'conflict'
-  | 'honesty'
-  | 'integrity'
-  | 'intimidation'
-  | 'ambition'
-  | 'narcissism'
-  | 'maturity';
+export type QuoteTheme = 'belief' | 'teamwork' | 'curiosity' | 'kindness' | 'resilience' | 'vulnerability' | 'growth' | 'humor' | 'wisdom' | 'leadership' | 'love' | 'forgiveness' | 'philosophy' | 'romance' | 'cultural-pride' | 'cultural-differences' | 'antagonism' | 'celebration' | 'identity' | 'isolation' | 'power' | 'sacrifice' | 'standards' | 'confidence' | 'conflict' | 'honesty' | 'integrity' | 'intimidation' | 'ambition' | 'narcissism' | 'maturity'
 
 export interface QuoteCreateParams {
   /**
@@ -432,9 +370,11 @@ export interface QuoteGetRandomParams {
   theme?: QuoteTheme | null;
 }
 
-export interface QuoteListByCharacterParams extends SkipLimitPageParams {}
+export interface QuoteListByCharacterParams extends SkipLimitPageParams {
+}
 
-export interface QuoteListByThemeParams extends SkipLimitPageParams {}
+export interface QuoteListByThemeParams extends SkipLimitPageParams {
+}
 
 export declare namespace Quotes {
   export {
@@ -448,6 +388,6 @@ export declare namespace Quotes {
     type QuoteListParams as QuoteListParams,
     type QuoteGetRandomParams as QuoteGetRandomParams,
     type QuoteListByCharacterParams as QuoteListByCharacterParams,
-    type QuoteListByThemeParams as QuoteListByThemeParams,
+    type QuoteListByThemeParams as QuoteListByThemeParams
   };
 }

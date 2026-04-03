@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as CharactersAPI from './characters';
 import { APIPromise } from '../core/api-promise';
 import { PagePromise, SkipLimitPage, type SkipLimitPageParams } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
@@ -11,7 +12,7 @@ import { path } from '../internal/utils/path';
  * Operations related to Ted Lasso characters
  */
 export class BaseCharacters extends APIResource {
-  static override readonly _key: readonly ['characters'] = Object.freeze(['characters'] as const);
+  static override readonly _key: readonly ['characters'] = Object.freeze(['characters'] as const)
 
   /**
    * Add a new character to the Ted Lasso universe.
@@ -82,10 +83,7 @@ export class BaseCharacters extends APIResource {
    * }
    * ```
    */
-  list(
-    query: CharacterListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<CharactersSkipLimitPage, Character> {
+  list(query: CharacterListParams | null | undefined = {}, options?: RequestOptions): PagePromise<CharactersSkipLimitPage, Character> {
     return this._client.getAPIList('/characters', SkipLimitPage<Character>, { query, ...options });
   }
 
@@ -98,10 +96,7 @@ export class BaseCharacters extends APIResource {
    * ```
    */
   delete(characterID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/characters/${characterID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/characters/${characterID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -121,9 +116,11 @@ export class BaseCharacters extends APIResource {
 /**
  * Operations related to Ted Lasso characters
  */
-export class Characters extends BaseCharacters {}
+export class Characters extends BaseCharacters {
 
-export type CharactersSkipLimitPage = SkipLimitPage<Character>;
+}
+
+export type CharactersSkipLimitPage = SkipLimitPage<Character>
 
 /**
  * Full character model with ID.
@@ -203,17 +200,7 @@ export interface Character {
 /**
  * Roles characters can have.
  */
-export type CharacterRole =
-  | 'coach'
-  | 'player'
-  | 'owner'
-  | 'manager'
-  | 'staff'
-  | 'journalist'
-  | 'family'
-  | 'friend'
-  | 'fan'
-  | 'other';
+export type CharacterRole = 'coach' | 'player' | 'owner' | 'manager' | 'staff' | 'journalist' | 'family' | 'friend' | 'fan' | 'other'
 
 /**
  * Emotional intelligence statistics for a character.
@@ -275,7 +262,7 @@ export interface GrowthArc {
   starting_point: string;
 }
 
-export type CharacterGetQuotesResponse = Array<string>;
+export type CharacterGetQuotesResponse = Array<string>
 
 export interface CharacterCreateParams {
   /**
@@ -405,6 +392,6 @@ export declare namespace Characters {
     type CharactersSkipLimitPage as CharactersSkipLimitPage,
     type CharacterCreateParams as CharacterCreateParams,
     type CharacterUpdateParams as CharacterUpdateParams,
-    type CharacterListParams as CharacterListParams,
+    type CharacterListParams as CharacterListParams
   };
 }

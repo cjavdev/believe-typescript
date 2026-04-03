@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as ConflictsAPI from './conflicts';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -8,7 +9,7 @@ import { RequestOptions } from '../internal/request-options';
  * Interactive endpoints for motivation and guidance
  */
 export class BaseConflicts extends APIResource {
-  static override readonly _key: readonly ['conflicts'] = Object.freeze(['conflicts'] as const);
+  static override readonly _key: readonly ['conflicts'] = Object.freeze(['conflicts'] as const)
 
   /**
    * Get Ted Lasso-style advice for resolving conflicts.
@@ -30,7 +31,9 @@ export class BaseConflicts extends APIResource {
 /**
  * Interactive endpoints for motivation and guidance
  */
-export class Conflicts extends BaseConflicts {}
+export class Conflicts extends BaseConflicts {
+
+}
 
 /**
  * Conflict resolution response.
@@ -71,13 +74,7 @@ export interface ConflictResolveParams {
   /**
    * Type of conflict
    */
-  conflict_type:
-    | 'interpersonal'
-    | 'team_dynamics'
-    | 'leadership'
-    | 'ego'
-    | 'miscommunication'
-    | 'competition';
+  conflict_type: 'interpersonal' | 'team_dynamics' | 'leadership' | 'ego' | 'miscommunication' | 'competition';
 
   /**
    * Describe the conflict
@@ -98,6 +95,6 @@ export interface ConflictResolveParams {
 export declare namespace Conflicts {
   export {
     type ConflictResolveResponse as ConflictResolveResponse,
-    type ConflictResolveParams as ConflictResolveParams,
+    type ConflictResolveParams as ConflictResolveParams
   };
 }

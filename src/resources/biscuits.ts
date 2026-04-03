@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as BiscuitsAPI from './biscuits';
 import { APIPromise } from '../core/api-promise';
 import { PagePromise, SkipLimitPage, type SkipLimitPageParams } from '../core/pagination';
 import { RequestOptions } from '../internal/request-options';
@@ -10,7 +11,7 @@ import { path } from '../internal/utils/path';
  * Interactive endpoints for motivation and guidance
  */
 export class BaseBiscuits extends APIResource {
-  static override readonly _key: readonly ['biscuits'] = Object.freeze(['biscuits'] as const);
+  static override readonly _key: readonly ['biscuits'] = Object.freeze(['biscuits'] as const)
 
   /**
    * Get a specific type of biscuit by ID.
@@ -38,10 +39,7 @@ export class BaseBiscuits extends APIResource {
    * }
    * ```
    */
-  list(
-    query: BiscuitListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<BiscuitsSkipLimitPage, Biscuit> {
+  list(query: BiscuitListParams | null | undefined = {}, options?: RequestOptions): PagePromise<BiscuitsSkipLimitPage, Biscuit> {
     return this._client.getAPIList('/biscuits', SkipLimitPage<Biscuit>, { query, ...options });
   }
 
@@ -60,9 +58,11 @@ export class BaseBiscuits extends APIResource {
 /**
  * Interactive endpoints for motivation and guidance
  */
-export class Biscuits extends BaseBiscuits {}
+export class Biscuits extends BaseBiscuits {
 
-export type BiscuitsSkipLimitPage = SkipLimitPage<Biscuit>;
+}
+
+export type BiscuitsSkipLimitPage = SkipLimitPage<Biscuit>
 
 /**
  * A biscuit from Ted.
@@ -99,12 +99,13 @@ export interface Biscuit {
   warmth_level: number;
 }
 
-export interface BiscuitListParams extends SkipLimitPageParams {}
+export interface BiscuitListParams extends SkipLimitPageParams {
+}
 
 export declare namespace Biscuits {
   export {
     type Biscuit as Biscuit,
     type BiscuitsSkipLimitPage as BiscuitsSkipLimitPage,
-    type BiscuitListParams as BiscuitListParams,
+    type BiscuitListParams as BiscuitListParams
   };
 }

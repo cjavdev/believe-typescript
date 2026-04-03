@@ -1,11 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as VersionAPI from './version';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
 export class BaseVersion extends APIResource {
-  static override readonly _key: readonly ['version'] = Object.freeze(['version'] as const);
+  static override readonly _key: readonly ['version'] = Object.freeze(['version'] as const)
 
   /**
    * Get detailed information about API versioning.
@@ -14,10 +15,14 @@ export class BaseVersion extends APIResource {
     return this._client.get('/version', options);
   }
 }
-export class Version extends BaseVersion {}
+export class Version extends BaseVersion {
 
-export type VersionRetrieveResponse = unknown;
+}
+
+export type VersionRetrieveResponse = unknown
 
 export declare namespace Version {
-  export { type VersionRetrieveResponse as VersionRetrieveResponse };
+  export {
+    type VersionRetrieveResponse as VersionRetrieveResponse
+  };
 }
