@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.21.0 (2026-04-03)
+
+Full Changelog: [v0.20.1...v0.21.0](https://github.com/cjavdev/believe-typescript/compare/v0.20.1...v0.21.0)
+
+### Features
+
+* **api:** manual updates ([8fb5276](https://github.com/cjavdev/believe-typescript/commit/8fb5276ef7588ea6667fb35dcb3257d47aed02e0))
+
+
+### Chores
+
+* **internal:** codegen related update ([7a9d9df](https://github.com/cjavdev/believe-typescript/commit/7a9d9df25cd6cea893b8330af419edbc78ac074e))
+* **internal:** support type annotations when running MCP in local execution mode ([5bf484b](https://github.com/cjavdev/believe-typescript/commit/5bf484b4efd6086f4d77dafba75d29a23d408b9e))
+* **mcp-server:** log client info ([ca6b76d](https://github.com/cjavdev/believe-typescript/commit/ca6b76dfacc85ce1e0876537abc59d27cbf907de))
+
 ## 0.20.1 (2026-04-01)
 
 Full Changelog: [v0.20.0...v0.20.1](https://github.com/cjavdev/believe-typescript/compare/v0.20.0...v0.20.1)
