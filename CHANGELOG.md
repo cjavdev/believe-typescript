@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.21.1 (2026-04-10)
+
+Full Changelog: [v0.21.0...v0.21.1](https://github.com/cjavdev/believe-typescript/compare/v0.21.0...v0.21.1)
+
+### Chores
+
+* **internal:** codegen related update ([b6d46cc](https://github.com/cjavdev/believe-typescript/commit/b6d46cc2db1be7ebc1dd0393b22454363387a367))
+* **internal:** fix MCP server import ordering ([82486c0](https://github.com/cjavdev/believe-typescript/commit/82486c06b3390618574f62aee179ae22d484aee7))
+* **internal:** show error causes in MCP servers when running in local mode ([661b571](https://github.com/cjavdev/believe-typescript/commit/661b571928f0ba373aade7c270bede4900517f8f))
+* **mcp-server:** increase local docs search result count from 5 to 10 ([91e5d48](https://github.com/cjavdev/believe-typescript/commit/91e5d4897b62e97ffe35cfafcc9c39e308cc39b2))
+
 ## 0.21.0 (2026-04-03)
 
 Full Changelog: [v0.20.1...v0.21.0](https://github.com/cjavdev/believe-typescript/compare/v0.20.1...v0.21.0)
