@@ -1121,7 +1121,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       php: {
         method: 'teams->logo->upload',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$fileUpload = $client->teams->logo->upload('team_id', file: 'file');\n\nvar_dump($fileUpload);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$fileUpload = $client->teams->logo->upload(\n  'team_id',\n  file: FileParam::fromString('Example data', filename: uniqid('file-upload-', true)),\n);\n\nvar_dump($fileUpload);",
       },
       python: {
         method: 'teams.logo.upload',
