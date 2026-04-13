@@ -28,7 +28,7 @@ export const newMcpServer = async ({
   new McpServer(
     {
       name: 'cjavdev_believe_api',
-      version: '0.22.0',
+      version: '0.0.1',
     },
     {
       instructions: await getInstructions({ stainlessApiKey, customInstructionsPath }),
@@ -182,7 +182,7 @@ export function selectTools(options?: McpOptions): McpTool[] {
     includedTools.push(
       codeTool({
         blockedMethods: blockedMethodsForCodeTool(options),
-        codeExecutionMode: options?.codeExecutionMode ?? 'stainless-sandbox',
+        codeExecutionMode: options?.codeExecutionMode ?? 'local',
       }),
     );
   }
