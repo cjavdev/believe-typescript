@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.22.0 (2026-04-13)
+
+Full Changelog: [v0.21.1...v0.22.0](https://github.com/cjavdev/believe-typescript/compare/v0.21.1...v0.22.0)
+
+### Features
+
+* **api:** release PRs ([969c1b4](https://github.com/cjavdev/believe-typescript/commit/969c1b4c442826b610e81de174740c38a23c8140))
+
+
+### Chores
+
+* **internal:** codegen related update ([4d76d78](https://github.com/cjavdev/believe-typescript/commit/4d76d78998f6cd08a8558a82fbd447689f4d4fe0))
+
+
+### Documentation
+
+* update examples ([7e7a292](https://github.com/cjavdev/believe-typescript/commit/7e7a2927b9c7e9c7f6375d4e313a12a622569bd5))
+
 ## 0.21.1 (2026-04-10)
 
 Full Changelog: [v0.21.0...v0.21.1](https://github.com/cjavdev/believe-typescript/compare/v0.21.0...v0.21.1)
