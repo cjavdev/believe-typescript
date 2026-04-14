@@ -16,7 +16,7 @@ Types:
 - <code><a href="./src/resources/characters.ts">CharacterRole</a></code>
 - <code><a href="./src/resources/characters.ts">EmotionalStats</a></code>
 - <code><a href="./src/resources/characters.ts">GrowthArc</a></code>
-- <code><a href="./src/resources/characters.ts">CharacterGetQuotesResponse</a></code>
+- <code><a href="./src/resources/characters.ts">CharacterRetrieveQuotesResponse</a></code>
 
 Methods:
 
@@ -25,7 +25,7 @@ Methods:
 - <code title="patch /characters/{character_id}">client.characters.<a href="./src/resources/characters.ts">update</a>(characterID, { ...params }) -> Character</code>
 - <code title="get /characters">client.characters.<a href="./src/resources/characters.ts">list</a>({ ...params }) -> CharactersSkipLimitPage</code>
 - <code title="delete /characters/{character_id}">client.characters.<a href="./src/resources/characters.ts">delete</a>(characterID) -> void</code>
-- <code title="get /characters/{character_id}/quotes">client.characters.<a href="./src/resources/characters.ts">getQuotes</a>(characterID) -> CharacterGetQuotesResponse</code>
+- <code title="get /characters/{character_id}/quotes">client.characters.<a href="./src/resources/characters.ts">retrieveQuotes</a>(characterID) -> CharacterRetrieveQuotesResponse</code>
 
 # Teams
 

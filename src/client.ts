@@ -24,8 +24,8 @@ import { Biscuit, BiscuitListParams, Biscuits, BiscuitsSkipLimitPage } from './r
 import {
   Character,
   CharacterCreateParams,
-  CharacterGetQuotesResponse,
   CharacterListParams,
+  CharacterRetrieveQuotesResponse,
   CharacterRole,
   CharacterUpdateParams,
   Characters,
@@ -997,7 +997,7 @@ export declare namespace Believe {
     type CharacterRole as CharacterRole,
     type EmotionalStats as EmotionalStats,
     type GrowthArc as GrowthArc,
-    type CharacterGetQuotesResponse as CharacterGetQuotesResponse,
+    type CharacterRetrieveQuotesResponse as CharacterRetrieveQuotesResponse,
     type CharactersSkipLimitPage as CharactersSkipLimitPage,
     type CharacterCreateParams as CharacterCreateParams,
     type CharacterUpdateParams as CharacterUpdateParams,

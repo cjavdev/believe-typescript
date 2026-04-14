@@ -142,8 +142,8 @@ const runTests = (client: PartialBelieve<{ characters: BaseCharacters }>) => {
   });
 
   // Mock server tests are disabled
-  test.skip('getQuotes', async () => {
-    const responsePromise = client.characters.getQuotes('character_id');
+  test.skip('retrieveQuotes', async () => {
+    const responsePromise = client.characters.retrieveQuotes('character_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

@@ -20,7 +20,7 @@ export {
   type CharacterRole,
   type EmotionalStats,
   type GrowthArc,
-  type CharacterGetQuotesResponse,
+  type CharacterRetrieveQuotesResponse,
   type CharacterCreateParams,
   type CharacterUpdateParams,
   type CharacterListParams,

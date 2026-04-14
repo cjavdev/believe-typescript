@@ -109,12 +109,12 @@ export class BaseCharacters extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.characters.getQuotes(
+   * const response = await client.characters.retrieveQuotes(
    *   'character_id',
    * );
    * ```
    */
-  getQuotes(characterID: string, options?: RequestOptions): APIPromise<CharacterGetQuotesResponse> {
+  retrieveQuotes(characterID: string, options?: RequestOptions): APIPromise<CharacterRetrieveQuotesResponse> {
     return this._client.get(path`/characters/${characterID}/quotes`, options);
   }
 }
@@ -275,7 +275,7 @@ export interface GrowthArc {
   starting_point: string;
 }
 
-export type CharacterGetQuotesResponse = Array<string>;
+export type CharacterRetrieveQuotesResponse = Array<string>;
 
 export interface CharacterCreateParams {
   /**
@@ -401,7 +401,7 @@ export declare namespace Characters {
     type CharacterRole as CharacterRole,
     type EmotionalStats as EmotionalStats,
     type GrowthArc as GrowthArc,
-    type CharacterGetQuotesResponse as CharacterGetQuotesResponse,
+    type CharacterRetrieveQuotesResponse as CharacterRetrieveQuotesResponse,
     type CharactersSkipLimitPage as CharactersSkipLimitPage,
     type CharacterCreateParams as CharacterCreateParams,
     type CharacterUpdateParams as CharacterUpdateParams,

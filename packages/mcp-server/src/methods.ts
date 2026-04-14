@@ -47,8 +47,8 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/characters/{character_id}',
   },
   {
-    clientCallName: 'client.characters.getQuotes',
-    fullyQualifiedName: 'characters.getQuotes',
+    clientCallName: 'client.characters.retrieveQuotes',
+    fullyQualifiedName: 'characters.retrieveQuotes',
     httpMethod: 'get',
     httpPath: '/characters/{character_id}/quotes',
   },

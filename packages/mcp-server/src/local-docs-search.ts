@@ -466,27 +466,27 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
-    name: 'get_quotes',
+    name: 'retrieve_quotes',
     endpoint: '/characters/{character_id}/quotes',
     httpMethod: 'get',
     summary: "Get character's signature quotes",
     description: 'Get all signature quotes from a specific character.',
-    stainlessPath: '(resource) characters > (method) get_quotes',
-    qualified: 'client.characters.getQuotes',
+    stainlessPath: '(resource) characters > (method) retrieve_quotes',
+    qualified: 'client.characters.retrieveQuotes',
     params: ['character_id: string;'],
     response: 'string[]',
     markdown:
-      "## get_quotes\n\n`client.characters.getQuotes(character_id: string): string[]`\n\n**get** `/characters/{character_id}/quotes`\n\nGet all signature quotes from a specific character.\n\n### Parameters\n\n- `character_id: string`\n\n### Returns\n\n- `string[]`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.characters.getQuotes('character_id');\n\nconsole.log(response);\n```",
+      "## retrieve_quotes\n\n`client.characters.retrieveQuotes(character_id: string): string[]`\n\n**get** `/characters/{character_id}/quotes`\n\nGet all signature quotes from a specific character.\n\n### Parameters\n\n- `character_id: string`\n\n### Returns\n\n- `string[]`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.characters.retrieveQuotes('character_id');\n\nconsole.log(response);\n```",
     perLanguage: {
       cli: {
-        method: 'characters get_quotes',
+        method: 'characters retrieve_quotes',
         example:
-          "believe characters get-quotes \\\n  --api-key 'My API Key' \\\n  --character-id character_id",
+          "believe characters retrieve-quotes \\\n  --api-key 'My API Key' \\\n  --character-id character_id",
       },
       csharp: {
-        method: 'Characters.GetQuotes',
+        method: 'Characters.RetrieveQuotes',
         example:
-          'CharacterGetQuotesParams parameters = new() { CharacterID = "character_id" };\n\nvar response = await client.Characters.GetQuotes(parameters);\n\nConsole.WriteLine(response);',
+          'CharacterRetrieveQuotesParams parameters = new()\n{\n    CharacterID = "character_id"\n};\n\nvar response = await client.Characters.RetrieveQuotes(parameters);\n\nConsole.WriteLine(response);',
       },
       go: {
         method: 'client.Characters.GetQuotes',
@@ -498,34 +498,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
           'curl https://believe.cjav.dev/characters/$CHARACTER_ID/quotes \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
       java: {
-        method: 'characters().getQuotes',
+        method: 'characters().retrieveQuotes',
         example:
-          'package com.believe.api.example;\n\nimport com.believe.api.client.BelieveClient;\nimport com.believe.api.client.okhttp.BelieveOkHttpClient;\nimport com.believe.api.models.characters.CharacterGetQuotesParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        List<String> response = client.characters().getQuotes("character_id");\n    }\n}',
+          'package com.believe.api.example;\n\nimport com.believe.api.client.BelieveClient;\nimport com.believe.api.client.okhttp.BelieveOkHttpClient;\nimport com.believe.api.models.characters.CharacterRetrieveQuotesParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        List<String> response = client.characters().retrieveQuotes("character_id");\n    }\n}',
       },
       kotlin: {
-        method: 'characters().getQuotes',
+        method: 'characters().retrieveQuotes',
         example:
-          'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.CharacterGetQuotesParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: List<String> = client.characters().getQuotes("character_id")\n}',
+          'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.CharacterRetrieveQuotesParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: List<String> = client.characters().retrieveQuotes("character_id")\n}',
       },
       php: {
-        method: 'characters->getQuotes',
+        method: 'characters->retrieveQuotes',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->characters->getQuotes('character_id');\n\nvar_dump($response);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->characters->retrieveQuotes('character_id');\n\nvar_dump($response);",
       },
       python: {
-        method: 'characters.get_quotes',
+        method: 'characters.retrieve_quotes',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.characters.get_quotes(\n    "character_id",\n)\nprint(response)',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.characters.retrieve_quotes(\n    "character_id",\n)\nprint(response)',
       },
       ruby: {
-        method: 'characters.get_quotes',
+        method: 'characters.retrieve_quotes',
         example:
-          'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.characters.get_quotes("character_id")\n\nputs(response)',
+          'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.characters.retrieve_quotes("character_id")\n\nputs(response)',
       },
       typescript: {
-        method: 'client.characters.getQuotes',
+        method: 'client.characters.retrieveQuotes',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.characters.getQuotes('character_id');\n\nconsole.log(response);",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.characters.retrieveQuotes('character_id');\n\nconsole.log(response);",
       },
     },
   },
@@ -1136,7 +1136,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       typescript: {
         method: 'client.teams.logo.upload',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst fileUpload = await client.teams.logo.upload('team_id', {\n  file: fs.createReadStream('path/to/file'),\n});\n\nconsole.log(fileUpload.file_id);",
+          "import fs from 'fs';\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst fileUpload = await client.teams.logo.upload('team_id', {\n  file: fs.createReadStream('path/to/file'),\n});\n\nconsole.log(fileUpload.file_id);",
       },
     },
   },
@@ -5107,7 +5107,7 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
   {
     language: 'cli',
     content:
-      "# Believe CLI\n\nThe official CLI for the Believe REST API.\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n<!-- x-release-please-start-version -->\n\n## Installation\n\n### Installing with Homebrew\n\n~~~sh\nbrew install cjavdev/believe-cli-tap https://github.com/cjavdev/believe-cli-tap/believe\n~~~\n\n### Installing with Go\n\nTo test or install the CLI locally, you need [Go](https://go.dev/doc/install) version 1.22 or later installed.\n\n~~~sh\ngo install 'github.com/cjavdev/believe-cli/cmd/believe@latest'\n~~~\n\nOnce you have run `go install`, the binary is placed in your Go bin directory:\n\n- **Default location**: `$HOME/go/bin` (or `$GOPATH/bin` if GOPATH is set)\n- **Check your path**: Run `go env GOPATH` to see the base directory\n\nIf commands aren't found after installation, add the Go bin directory to your PATH:\n\n~~~sh\n# Add to your shell profile (.zshrc, .bashrc, etc.)\nexport PATH=\"$PATH:$(go env GOPATH)/bin\"\n~~~\n\n<!-- x-release-please-end -->\n\n### Running Locally\n\nAfter cloning the git repository for this project, you can use the\n`scripts/run` script to run the tool locally:\n\n~~~sh\n./scripts/run args...\n~~~\n\n## Usage\n\nThe CLI follows a resource-based command structure:\n\n~~~sh\nbelieve [resource] <command> [flags...]\n~~~\n\n~~~sh\nbelieve characters list \\\n  --api-key 'My API Key'\n~~~\n\nFor details about specific commands, use the `--help` flag.\n\n### Environment variables\n\n| Environment variable | Required |\n| -------------------- | -------- |\n| `BELIEVE_API_KEY`    | yes      |\n\n### Global flags\n\n- `--api-key` (can also be set with `BELIEVE_API_KEY` env var)\n- `--help` - Show command line usage\n- `--debug` - Enable debug logging (includes HTTP request/response details)\n- `--version`, `-v` - Show the CLI version\n- `--base-url` - Use a custom API backend URL\n- `--format` - Change the output format (`auto`, `explore`, `json`, `jsonl`, `pretty`, `raw`, `yaml`)\n- `--format-error` - Change the output format for errors (`auto`, `explore`, `json`, `jsonl`, `pretty`, `raw`, `yaml`)\n- `--transform` - Transform the data output using [GJSON syntax](https://github.com/tidwall/gjson/blob/master/SYNTAX.md)\n- `--transform-error` - Transform the error output using [GJSON syntax](https://github.com/tidwall/gjson/blob/master/SYNTAX.md)\n\n### Passing files as arguments\n\nTo pass files to your API, you can use the `@myfile.ext` syntax:\n\n~~~bash\nbelieve <command> --arg @abe.jpg\n~~~\n\nFiles can also be passed inside JSON or YAML blobs:\n\n~~~bash\nbelieve <command> --arg '{image: \"@abe.jpg\"}'\n# Equivalent:\nbelieve <command> <<YAML\narg:\n  image: \"@abe.jpg\"\nYAML\n~~~\n\nIf you need to pass a string literal that begins with an `@` sign, you can\nescape the `@` sign to avoid accidentally passing a file.\n\n~~~bash\nbelieve <command> --username '\\@abe'\n~~~\n\n#### Explicit encoding\n\nFor JSON endpoints, the CLI tool does filetype sniffing to determine whether the\nfile contents should be sent as a string literal (for plain text files) or as a\nbase64-encoded string literal (for binary files). If you need to explicitly send\nthe file as either plain text or base64-encoded data, you can use\n`@file://myfile.txt` (for string encoding) or `@data://myfile.dat` (for\nbase64-encoding). Note that absolute paths will begin with `@file://` or\n`@data://`, followed by a third `/` (for example, `@file:///tmp/file.txt`).\n\n~~~bash\nbelieve <command> --arg @data://file.txt\n~~~\n",
+      "# Believe CLI\n\nThe official CLI for the Believe REST API.\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n<!-- x-release-please-start-version -->\n\n## Installation\n\n### Installing with Homebrew\n\n~~~sh\nbrew install cjavdev/believe-cli-tap https://github.com/cjavdev/believe-cli-tap/believe\n~~~\n\n### Installing with Go\n\nTo test or install the CLI locally, you need [Go](https://go.dev/doc/install) version 1.22 or later installed.\n\n~~~sh\ngo install 'github.com/cjavdev/believe-cli/cmd/believe@latest'\n~~~\n\nOnce you have run `go install`, the binary is placed in your Go bin directory:\n\n- **Default location**: `$HOME/go/bin` (or `$GOPATH/bin` if GOPATH is set)\n- **Check your path**: Run `go env GOPATH` to see the base directory\n\nIf commands aren't found after installation, add the Go bin directory to your PATH:\n\n~~~sh\n# Add to your shell profile (.zshrc, .bashrc, etc.)\nexport PATH=\"$PATH:$(go env GOPATH)/bin\"\n~~~\n\n<!-- x-release-please-end -->\n\n### Running Locally\n\nAfter cloning the git repository for this project, you can use the\n`scripts/run` script to run the tool locally:\n\n~~~sh\n./scripts/run args...\n~~~\n\n## Usage\n\nThe CLI follows a resource-based command structure:\n\n~~~sh\nbelieve [resource] <command> [flags...]\n~~~\n\n~~~sh\nbelieve characters list \\\n  --api-key 'My API Key'\n~~~\n\nFor details about specific commands, use the `--help` flag.\n\n### Environment variables\n\n| Environment variable | Required |\n| -------------------- | -------- |\n| `BELIEVE_API_KEY`    | yes      |\n\n### Global flags\n\n- `--api-key` (can also be set with `BELIEVE_API_KEY` env var)\n- `--help` - Show command line usage\n- `--debug` - Enable debug logging (includes HTTP request/response details)\n- `--version`, `-v` - Show the CLI version\n- `--base-url` - Use a custom API backend URL\n- `--format` - Change the output format (`auto`, `explore`, `json`, `jsonl`, `pretty`, `raw`, `yaml`)\n- `--format-error` - Change the output format for errors (`auto`, `explore`, `json`, `jsonl`, `pretty`, `raw`, `yaml`)\n- `--transform` - Transform the data output using [GJSON syntax](https://github.com/tidwall/gjson/blob/master/SYNTAX.md)\n- `--transform-error` - Transform the error output using [GJSON syntax](https://github.com/tidwall/gjson/blob/master/SYNTAX.md)\n\n### Passing files as arguments\n\nTo pass files to your API, you can use the `@myfile.ext` syntax:\n\n~~~bash\nbelieve <command> --arg @abe.jpg\n~~~\n\nFiles can also be passed inside JSON or YAML blobs:\n\n~~~bash\nbelieve <command> --arg '{image: \"@abe.jpg\"}'\n# Equivalent:\nbelieve <command> <<YAML\narg:\n  image: \"@abe.jpg\"\nYAML\n~~~\n\nIf you need to pass a string literal that begins with an `@` sign, you can\nescape the `@` sign to avoid accidentally passing a file.\n\n~~~bash\nbelieve <command> --username '\\@abe'\n~~~\n\n#### Explicit encoding\n\nFor JSON endpoints, the CLI tool does filetype sniffing to determine whether the\nfile contents should be sent as a string literal (for plain text files) or as a\nbase64-encoded string literal (for binary files). If you need to explicitly send\nthe file as either plain text or base64-encoded data, you can use\n`@file://myfile.txt` (for string encoding) or `@data://myfile.dat` (for\nbase64-encoding). Note that absolute paths will begin with `@file://` or\n`@data://`, followed by a third `/` (for example, `@file:///tmp/file.txt`).\n\n~~~bash\nbelieve <command> --arg @data://file.txt\n~~~\n\n## Linking different Go SDK versions\n\nYou can link the CLI against a different version of the Believe Go SDK\nfor development purposes using the `./scripts/link` script.\n\nTo link to a specific version from a repository (version can be a branch,\ngit tag, or commit hash):\n\n~~~bash\n./scripts/link github.com/org/repo@version\n~~~\n\nTo link to a local copy of the SDK:\n\n~~~bash\n./scripts/link ../path/to/believe-go\n~~~\n\nIf you run the link script without any arguments, it will default to `../believe-go`.\n",
   },
   {
     language: 'php',
