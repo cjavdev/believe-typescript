@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.23.0 (2026-04-18)
+
+Full Changelog: [v0.22.0...v0.23.0](https://github.com/cjavdev/believe-typescript/compare/v0.22.0...v0.23.0)
+
+### Features
+
+* **api:** manual updates ([808f058](https://github.com/cjavdev/believe-typescript/commit/808f058ec8374e3b6f5bc6f86d26e9f98afea214))
+
+
+### Chores
+
+* fix example snippet imports ([2356310](https://github.com/cjavdev/believe-typescript/commit/235631074f9566d3cc30273a0740abe337d6d74b))
+* update CLI documentation ([6c8c298](https://github.com/cjavdev/believe-typescript/commit/6c8c298aa98c7ad05b3d8b926661581d27e4b835))
+
 ## 0.22.0 (2026-04-13)
 
 Full Changelog: [v0.21.1...v0.22.0](https://github.com/cjavdev/believe-typescript/compare/v0.21.1...v0.22.0)
