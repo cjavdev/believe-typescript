@@ -22,14 +22,14 @@ import { APIPromise } from './core/api-promise';
 import { BelieveResource, BelieveSubmitParams, BelieveSubmitResponse } from './resources/believe';
 import { Biscuit, BiscuitListParams, Biscuits, BiscuitsSkipLimitPage } from './resources/biscuits';
 import {
-  Character,
   CharacterCreateParams,
   CharacterGetQuotesResponse,
   CharacterListParams,
   CharacterRole,
   CharacterUpdateParams,
   Characters,
-  CharactersSkipLimitPage,
+  Characterz,
+  CharacterzsSkipLimitPage,
   EmotionalStats,
   GrowthArc,
 } from './resources/characters';
@@ -993,12 +993,12 @@ export declare namespace Believe {
 
   export {
     Characters as Characters,
-    type Character as Character,
     type CharacterRole as CharacterRole,
+    type Characterz as Characterz,
     type EmotionalStats as EmotionalStats,
     type GrowthArc as GrowthArc,
     type CharacterGetQuotesResponse as CharacterGetQuotesResponse,
-    type CharactersSkipLimitPage as CharactersSkipLimitPage,
+    type CharacterzsSkipLimitPage as CharacterzsSkipLimitPage,
     type CharacterCreateParams as CharacterCreateParams,
     type CharacterUpdateParams as CharacterUpdateParams,
     type CharacterListParams as CharacterListParams,
