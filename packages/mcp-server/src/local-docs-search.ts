@@ -4484,11 +4484,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       csharp: {
         example: 'WebhookUnwrapParams parameters = new();\n\nawait client.Webhooks.Unwrap(parameters);',
       },
-      go: {
-        method: 'client.Webhooks.Unwrap',
-        example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Webhooks.Unwrap(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
-      },
       java: {
         example:
           'package com.believe.api.example;\n\nimport com.believe.api.client.BelieveClient;\nimport com.believe.api.client.okhttp.BelieveOkHttpClient;\nimport com.believe.api.models.webhooks.WebhookUnwrapParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        client.webhooks().unwrap();\n    }\n}',
