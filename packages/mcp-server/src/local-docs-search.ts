@@ -4481,9 +4481,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     stainlessPath: '(resource) webhooks > (method) unwrap',
     qualified: 'client.webhooks.unwrap',
     perLanguage: {
-      cli: {
-        example: "believe webhooks unwrap \\\n  --api-key 'My API Key'",
-      },
       csharp: {
         example: 'WebhookUnwrapParams parameters = new();\n\nawait client.Webhooks.Unwrap(parameters);',
       },
