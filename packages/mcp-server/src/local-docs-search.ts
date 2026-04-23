@@ -89,11 +89,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.ClientGetWelcomeParams\nimport com.believe.api.models.ClientGetWelcomeResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: ClientGetWelcomeResponse = client.getWelcome()\n}',
       },
-      php: {
-        method: 'getWelcome',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->getWelcome();\n\nvar_dump($response);",
-      },
       python: {
         method: 'get_welcome',
         example:
@@ -158,11 +153,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'characters().list',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.CharacterListPage\nimport com.believe.api.models.characters.CharacterListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: CharacterListPage = client.characters().list()\n}',
-      },
-      php: {
-        method: 'characters->list',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->characters->list(\n  limit: 10,\n  minOptimism: 0,\n  role: CharacterRole::COACH,\n  skip: 0,\n  teamID: 'team_id',\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'characters.list',
@@ -238,11 +228,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.Character\nimport com.believe.api.models.characters.CharacterCreateParams\nimport com.believe.api.models.characters.CharacterRole\nimport com.believe.api.models.characters.EmotionalStats\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: CharacterCreateParams = CharacterCreateParams.builder()\n        .background("Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.")\n        .emotionalStats(EmotionalStats.builder()\n            .curiosity(40L)\n            .empathy(85L)\n            .optimism(45L)\n            .resilience(95L)\n            .vulnerability(60L)\n            .build())\n        .name("Roy Kent")\n        .personalityTraits(listOf(\n          "intense",\n          "loyal",\n          "secretly caring",\n          "profane",\n        ))\n        .role(CharacterRole.COACH)\n        .build()\n    val character: Character = client.characters().create(params)\n}',
       },
-      php: {
-        method: 'characters->create',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$character = $client->characters->create(\n  background: 'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',\n  emotionalStats: [\n    'curiosity' => 40,\n    'empathy' => 85,\n    'optimism' => 45,\n    'resilience' => 95,\n    'vulnerability' => 60,\n  ],\n  name: 'Roy Kent',\n  personalityTraits: ['intense', 'loyal', 'secretly caring', 'profane'],\n  role: CharacterRole::COACH,\n  dateOfBirth: '1977-03-15',\n  email: 'roy.kent@afcrichmond.com',\n  growthArcs: [\n    [\n      'breakthrough' => 'Finding purpose beyond playing',\n      'challenge' => 'Accepting his body\\'s limitations',\n      'endingPoint' => 'Retired but lost',\n      'season' => 1,\n      'startingPoint' => 'Aging footballer facing retirement',\n    ],\n  ],\n  heightMeters: 1.78,\n  profileImageURL: 'https://afcrichmond.com/images/roy-kent.jpg',\n  salaryGbp: '175000.00',\n  signatureQuotes: [\n    'He\\'s here, he\\'s there, he\\'s every-f***ing-where, Roy Kent!', 'Whistle!'\n  ],\n  teamID: 'afc-richmond',\n);\n\nvar_dump($character);",
-      },
       python: {
         method: 'characters.create',
         example:
@@ -301,11 +286,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'characters().retrieve',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.Character\nimport com.believe.api.models.characters.CharacterRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val character: Character = client.characters().retrieve("character_id")\n}',
-      },
-      php: {
-        method: 'characters->retrieve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$character = $client->characters->retrieve('character_id');\n\nvar_dump($character);",
       },
       python: {
         method: 'characters.retrieve',
@@ -381,11 +361,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.Character\nimport com.believe.api.models.characters.CharacterUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val character: Character = client.characters().update("character_id")\n}',
       },
-      php: {
-        method: 'characters->update',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$character = $client->characters->update(\n  'character_id',\n  background: 'background',\n  dateOfBirth: '2019-12-27',\n  email: 'dev@stainless.com',\n  emotionalStats: [\n    'curiosity' => 99,\n    'empathy' => 100,\n    'optimism' => 95,\n    'resilience' => 90,\n    'vulnerability' => 80,\n  ],\n  growthArcs: [\n    [\n      'breakthrough' => 'breakthrough',\n      'challenge' => 'challenge',\n      'endingPoint' => 'ending_point',\n      'season' => 1,\n      'startingPoint' => 'starting_point',\n    ],\n  ],\n  heightMeters: 1,\n  name: 'x',\n  personalityTraits: ['string'],\n  profileImageURL: 'https://example.com',\n  role: CharacterRole::COACH,\n  salaryGbp: 0,\n  signatureQuotes: ['string'],\n  teamID: 'team_id',\n);\n\nvar_dump($character);",
-      },
       python: {
         method: 'characters.update',
         example:
@@ -442,11 +417,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'characters().delete',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.CharacterDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.characters().delete("character_id")\n}',
-      },
-      php: {
-        method: 'characters->delete',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$result = $client->characters->delete('character_id');\n\nvar_dump($result);",
       },
       python: {
         method: 'characters.delete',
@@ -507,11 +477,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.CharacterGetQuotesParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: List<String> = client.characters().getQuotes("character_id")\n}',
       },
-      php: {
-        method: 'characters->getQuotes',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->characters->getQuotes('character_id');\n\nvar_dump($response);",
-      },
       python: {
         method: 'characters.get_quotes',
         example:
@@ -569,11 +534,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().list',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.TeamListPage\nimport com.believe.api.models.teams.TeamListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamListPage = client.teams().list()\n}',
-      },
-      php: {
-        method: 'teams->list',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->teams->list(\n  league: League::PREMIER_LEAGUE, limit: 10, minCultureScore: 0, skip: 0\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'teams.list',
@@ -653,11 +613,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.League\nimport com.believe.api.models.teams.Team\nimport com.believe.api.models.teams.TeamCreateParams\nimport com.believe.api.models.teams.TeamValues\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: TeamCreateParams = TeamCreateParams.builder()\n        .cultureScore(70L)\n        .foundedYear(1895L)\n        .league(League.PREMIER_LEAGUE)\n        .name("West Ham United")\n        .stadium("London Stadium")\n        .values(TeamValues.builder()\n            .primaryValue("Pride")\n            .secondaryValues(listOf(\n              "History",\n              "Community",\n              "Passion",\n            ))\n            .teamMotto("Forever Blowing Bubbles")\n            .build())\n        .build()\n    val team: Team = client.teams().create(params)\n}',
       },
-      php: {
-        method: 'teams->create',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$team = $client->teams->create(\n  cultureScore: 70,\n  foundedYear: 1895,\n  league: League::PREMIER_LEAGUE,\n  name: 'West Ham United',\n  stadium: 'London Stadium',\n  values: [\n    'primaryValue' => 'Pride',\n    'secondaryValues' => ['History', 'Community', 'Passion'],\n    'teamMotto' => 'Forever Blowing Bubbles',\n  ],\n  annualBudgetGbp: '150000000.00',\n  averageAttendance: 59988,\n  contactEmail: 'info@westhamunited.co.uk',\n  isActive: true,\n  nickname: 'The Hammers',\n  primaryColor: '#7A263A',\n  rivalTeams: ['afc-richmond', 'tottenham'],\n  secondaryColor: '#1BB1E7',\n  stadiumLocation: ['latitude' => 51.5387, 'longitude' => -0.0166],\n  website: 'https://www.whufc.com',\n  winPercentage: 52.3,\n);\n\nvar_dump($team);",
-      },
       python: {
         method: 'teams.create',
         example:
@@ -716,11 +671,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().retrieve',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.Team\nimport com.believe.api.models.teams.TeamRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val team: Team = client.teams().retrieve("team_id")\n}',
-      },
-      php: {
-        method: 'teams->retrieve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$team = $client->teams->retrieve('team_id');\n\nvar_dump($team);",
       },
       python: {
         method: 'teams.retrieve',
@@ -800,11 +750,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.Team\nimport com.believe.api.models.teams.TeamUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val team: Team = client.teams().update("team_id")\n}',
       },
-      php: {
-        method: 'teams->update',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$team = $client->teams->update(\n  'team_id',\n  annualBudgetGbp: 0,\n  averageAttendance: 0,\n  contactEmail: 'dev@stainless.com',\n  cultureScore: 0,\n  foundedYear: 1800,\n  isActive: true,\n  league: League::PREMIER_LEAGUE,\n  name: 'x',\n  nickname: 'nickname',\n  primaryColor: 'primary_color',\n  rivalTeams: ['string'],\n  secondaryColor: 'secondary_color',\n  stadium: 'stadium',\n  stadiumLocation: ['latitude' => 51.4816, 'longitude' => -0.191],\n  values: [\n    'primaryValue' => 'Believe',\n    'secondaryValues' => ['Family', 'Resilience', 'Joy'],\n    'teamMotto' => 'Football is life!',\n  ],\n  website: 'https://example.com',\n  winPercentage: 0,\n);\n\nvar_dump($team);",
-      },
       python: {
         method: 'teams.update',
         example:
@@ -861,11 +806,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().delete',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.TeamDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.teams().delete("team_id")\n}',
-      },
-      php: {
-        method: 'teams->delete',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$result = $client->teams->delete('team_id');\n\nvar_dump($result);",
       },
       python: {
         method: 'teams.delete',
@@ -926,11 +866,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.Team\nimport com.believe.api.models.teams.TeamGetRivalsParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val teams: List<Team> = client.teams().getRivals("team_id")\n}',
       },
-      php: {
-        method: 'teams->getRivals',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$teams = $client->teams->getRivals('team_id');\n\nvar_dump($teams);",
-      },
       python: {
         method: 'teams.get_rivals',
         example:
@@ -988,11 +923,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().getCulture',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.TeamGetCultureParams\nimport com.believe.api.models.teams.TeamGetCultureResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: TeamGetCultureResponse = client.teams().getCulture("team_id")\n}',
-      },
-      php: {
-        method: 'teams->getCulture',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->teams->getCulture('team_id');\n\nvar_dump($response);",
       },
       python: {
         method: 'teams.get_culture',
@@ -1052,11 +982,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().listLogos',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.TeamListLogosParams\nimport com.believe.api.models.teams.logo.FileUpload\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val fileUploads: List<FileUpload> = client.teams().listLogos("team_id")\n}',
-      },
-      php: {
-        method: 'teams->listLogos',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$fileUploads = $client->teams->listLogos('team_id');\n\nvar_dump($fileUploads);",
       },
       python: {
         method: 'teams.list_logos',
@@ -1118,11 +1043,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.logo.FileUpload\nimport com.believe.api.models.teams.logo.LogoUploadParams\nimport java.io.ByteArrayInputStream\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: LogoUploadParams = LogoUploadParams.builder()\n        .teamId("team_id")\n        .file("Example data".byteInputStream())\n        .build()\n    val fileUpload: FileUpload = client.teams().logo().upload(params)\n}',
       },
-      php: {
-        method: 'teams->logo->upload',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$fileUpload = $client->teams->logo->upload(\n  'team_id',\n  file: FileParam::fromString('Example data', filename: uniqid('file-upload-', true)),\n);\n\nvar_dump($fileUpload);",
-      },
       python: {
         method: 'teams.logo.upload',
         example:
@@ -1182,11 +1102,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.logo.LogoDownloadParams\nimport com.believe.api.models.teams.logo.LogoDownloadResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: LogoDownloadParams = LogoDownloadParams.builder()\n        .teamId("team_id")\n        .fileId("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n        .build()\n    val response: LogoDownloadResponse = client.teams().logo().download(params)\n}',
       },
-      php: {
-        method: 'teams->logo->download',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->teams->logo->download(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', teamID: 'team_id'\n);\n\nvar_dump($response);",
-      },
       python: {
         method: 'teams.logo.download',
         example:
@@ -1244,11 +1159,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().logo().delete',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.logo.LogoDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: LogoDeleteParams = LogoDeleteParams.builder()\n        .teamId("team_id")\n        .fileId("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n        .build()\n    client.teams().logo().delete(params)\n}',
-      },
-      php: {
-        method: 'teams->logo->delete',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$result = $client->teams->logo->delete(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', teamID: 'team_id'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'teams.logo.delete',
@@ -1313,11 +1223,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().list',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.MatchListPage\nimport com.believe.api.models.matches.MatchListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: MatchListPage = client.matches().list()\n}',
-      },
-      php: {
-        method: 'matches->list',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->matches->list(\n  limit: 10,\n  matchType: MatchType::LEAGUE,\n  result: MatchResult::WIN,\n  skip: 0,\n  teamID: 'team_id',\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'matches.list',
@@ -1395,11 +1300,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.Match\nimport com.believe.api.models.matches.MatchCreateParams\nimport com.believe.api.models.matches.MatchType\nimport java.time.OffsetDateTime\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: MatchCreateParams = MatchCreateParams.builder()\n        .awayTeamId("tottenham")\n        .date(OffsetDateTime.parse("2024-02-20T19:45:00Z"))\n        .homeTeamId("afc-richmond")\n        .matchType(MatchType.CUP)\n        .build()\n    val match: Match = client.matches().create(params)\n}',
       },
-      php: {
-        method: 'matches->create',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$match = $client->matches->create(\n  awayTeamID: 'tottenham',\n  date: new \\DateTimeImmutable('2024-02-20T19:45:00Z'),\n  homeTeamID: 'afc-richmond',\n  matchType: MatchType::CUP,\n  attendance: 24500,\n  awayScore: 0,\n  episodeID: 's02e05',\n  homeScore: 0,\n  lessonLearned: 'It\\'s not about the wins and losses, it\\'s about helping these young fellas be the best versions of themselves.',\n  possessionPercentage: 50,\n  result: MatchResult::PENDING,\n  tedHalftimeSpeech: 'You know what the happiest animal on Earth is? It\\'s a goldfish. You know why? It\\'s got a 10-second memory.',\n  ticketRevenueGbp: '735000.00',\n  turningPoints: [\n    [\n      'description' => 'description',\n      'emotionalImpact' => 'Galvanized the team\\'s fighting spirit',\n      'minute' => 0,\n      'characterInvolved' => 'jamie-tartt',\n    ],\n  ],\n  weatherTempCelsius: 8.5,\n);\n\nvar_dump($match);",
-      },
       python: {
         method: 'matches.create',
         example:
@@ -1458,11 +1358,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().retrieve',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.Match\nimport com.believe.api.models.matches.MatchRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val match: Match = client.matches().retrieve("match_id")\n}',
-      },
-      php: {
-        method: 'matches->retrieve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$match = $client->matches->retrieve('match_id');\n\nvar_dump($match);",
       },
       python: {
         method: 'matches.retrieve',
@@ -1540,11 +1435,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.Match\nimport com.believe.api.models.matches.MatchUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val match: Match = client.matches().update("match_id")\n}',
       },
-      php: {
-        method: 'matches->update',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$match = $client->matches->update(\n  'match_id',\n  attendance: 0,\n  awayScore: 0,\n  awayTeamID: 'away_team_id',\n  date: new \\DateTimeImmutable('2019-12-27T18:11:19.117Z'),\n  episodeID: 'episode_id',\n  homeScore: 0,\n  homeTeamID: 'home_team_id',\n  lessonLearned: 'lesson_learned',\n  matchType: MatchType::LEAGUE,\n  possessionPercentage: 0,\n  result: MatchResult::WIN,\n  tedHalftimeSpeech: 'ted_halftime_speech',\n  ticketRevenueGbp: 0,\n  turningPoints: [\n    [\n      'description' => 'description',\n      'emotionalImpact' => 'Galvanized the team\\'s fighting spirit',\n      'minute' => 0,\n      'characterInvolved' => 'jamie-tartt',\n    ],\n  ],\n  weatherTempCelsius: -30,\n);\n\nvar_dump($match);",
-      },
       python: {
         method: 'matches.update',
         example:
@@ -1601,11 +1491,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().delete',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.MatchDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.matches().delete("match_id")\n}',
-      },
-      php: {
-        method: 'matches->delete',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$result = $client->matches->delete('match_id');\n\nvar_dump($result);",
       },
       python: {
         method: 'matches.delete',
@@ -1665,11 +1550,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.MatchGetTurningPointsParams\nimport com.believe.api.models.matches.MatchGetTurningPointsResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: List<MatchGetTurningPointsResponse> = client.matches().getTurningPoints("match_id")\n}',
       },
-      php: {
-        method: 'matches->getTurningPoints',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->matches->getTurningPoints('match_id');\n\nvar_dump($response);",
-      },
       python: {
         method: 'matches.get_turning_points',
         example:
@@ -1728,11 +1608,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.MatchGetLessonParams\nimport com.believe.api.models.matches.MatchGetLessonResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: MatchGetLessonResponse = client.matches().getLesson("match_id")\n}',
       },
-      php: {
-        method: 'matches->getLesson',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->matches->getLesson('match_id');\n\nvar_dump($response);",
-      },
       python: {
         method: 'matches.get_lesson',
         example:
@@ -1789,11 +1664,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().streamLive',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.MatchStreamLiveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.matches().streamLive()\n}',
-      },
-      php: {
-        method: 'matches->streamLive',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$result = $client->matches->streamLive(\n  awayTeam: 'away_team', excitementLevel: 1, homeTeam: 'home_team', speed: 0.1\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'matches.stream_live',
@@ -1854,11 +1724,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.commentary.CommentaryStreamParams\nimport com.believe.api.models.matches.commentary.CommentaryStreamResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: CommentaryStreamResponse = client.matches().commentary().stream("match_id")\n}',
       },
-      php: {
-        method: 'matches->commentary->stream',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->matches->commentary->stream('match_id');\n\nvar_dump($response);",
-      },
       python: {
         method: 'matches.commentary.stream',
         example:
@@ -1916,11 +1781,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'episodes().list',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.episodes.EpisodeListPage\nimport com.believe.api.models.episodes.EpisodeListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: EpisodeListPage = client.episodes().list()\n}',
-      },
-      php: {
-        method: 'episodes->list',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->episodes->list(\n  characterFocus: 'character_focus', limit: 10, season: 1, skip: 0\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'episodes.list',
@@ -1998,11 +1858,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.episodes.Episode\nimport com.believe.api.models.episodes.EpisodeCreateParams\nimport java.time.LocalDate\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: EpisodeCreateParams = EpisodeCreateParams.builder()\n        .airDate(LocalDate.parse("2020-10-02"))\n        .characterFocus(listOf(\n          "ted-lasso",\n          "coach-beard",\n          "higgins",\n          "nate",\n        ))\n        .director("MJ Delaney")\n        .episodeNumber(8L)\n        .mainTheme("The power of vulnerability and male friendship")\n        .runtimeMinutes(29L)\n        .season(1L)\n        .synopsis("Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.")\n        .tedWisdom("There\'s two buttons I never like to hit: that\'s panic and snooze.")\n        .title("The Diamond Dogs")\n        .writer("Jason Sudeikis, Brendan Hunt, Joe Kelly")\n        .build()\n    val episode: Episode = client.episodes().create(params)\n}',
       },
-      php: {
-        method: 'episodes->create',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$episode = $client->episodes->create(\n  airDate: '2020-10-02',\n  characterFocus: ['ted-lasso', 'coach-beard', 'higgins', 'nate'],\n  director: 'MJ Delaney',\n  episodeNumber: 8,\n  mainTheme: 'The power of vulnerability and male friendship',\n  runtimeMinutes: 29,\n  season: 1,\n  synopsis: 'Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.',\n  tedWisdom: 'There\\'s two buttons I never like to hit: that\\'s panic and snooze.',\n  title: 'The Diamond Dogs',\n  writer: 'Jason Sudeikis, Brendan Hunt, Joe Kelly',\n  biscuitsWithBossMoment: 'Ted and Rebecca have an honest conversation about trust.',\n  memorableMoments: [\n    'First Diamond Dogs meeting',\n    'The famous dart scene with Rupert',\n    'Be curious, not judgmental speech',\n  ],\n  usViewersMillions: 1.42,\n  viewerRating: 9.1,\n);\n\nvar_dump($episode);",
-      },
       python: {
         method: 'episodes.create',
         example:
@@ -2061,11 +1916,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'episodes().retrieve',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.episodes.Episode\nimport com.believe.api.models.episodes.EpisodeRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val episode: Episode = client.episodes().retrieve("episode_id")\n}',
-      },
-      php: {
-        method: 'episodes->retrieve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$episode = $client->episodes->retrieve('episode_id');\n\nvar_dump($episode);",
       },
       python: {
         method: 'episodes.retrieve',
@@ -2143,11 +1993,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.episodes.Episode\nimport com.believe.api.models.episodes.EpisodeUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val episode: Episode = client.episodes().update("episode_id")\n}',
       },
-      php: {
-        method: 'episodes->update',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$episode = $client->episodes->update(\n  'episode_id',\n  airDate: '2019-12-27',\n  biscuitsWithBossMoment: 'biscuits_with_boss_moment',\n  characterFocus: ['string'],\n  director: 'director',\n  episodeNumber: 1,\n  mainTheme: 'main_theme',\n  memorableMoments: ['string'],\n  runtimeMinutes: 20,\n  season: 1,\n  synopsis: 'synopsis',\n  tedWisdom: 'ted_wisdom',\n  title: 'x',\n  usViewersMillions: 0,\n  viewerRating: 0,\n  writer: 'writer',\n);\n\nvar_dump($episode);",
-      },
       python: {
         method: 'episodes.update',
         example:
@@ -2204,11 +2049,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'episodes().delete',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.episodes.EpisodeDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.episodes().delete("episode_id")\n}',
-      },
-      php: {
-        method: 'episodes->delete',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$result = $client->episodes->delete('episode_id');\n\nvar_dump($result);",
       },
       python: {
         method: 'episodes.delete',
@@ -2267,11 +2107,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'episodes().getWisdom',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.episodes.EpisodeGetWisdomParams\nimport com.believe.api.models.episodes.EpisodeGetWisdomResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: EpisodeGetWisdomResponse = client.episodes().getWisdom("episode_id")\n}',
-      },
-      php: {
-        method: 'episodes->getWisdom',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->episodes->getWisdom('episode_id');\n\nvar_dump($response);",
       },
       python: {
         method: 'episodes.get_wisdom',
@@ -2338,11 +2173,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'quotes().list',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.QuoteListPage\nimport com.believe.api.models.quotes.QuoteListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: QuoteListPage = client.quotes().list()\n}',
-      },
-      php: {
-        method: 'quotes->list',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->quotes->list(\n  characterID: 'character_id',\n  funny: true,\n  inspirational: true,\n  limit: 10,\n  momentType: QuoteMoment::HALFTIME_SPEECH,\n  skip: 0,\n  theme: QuoteTheme::BELIEF,\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'quotes.list',
@@ -2416,11 +2246,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.Quote\nimport com.believe.api.models.quotes.QuoteCreateParams\nimport com.believe.api.models.quotes.QuoteMoment\nimport com.believe.api.models.quotes.QuoteTheme\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: QuoteCreateParams = QuoteCreateParams.builder()\n        .characterId("ted-lasso")\n        .context("Ted\'s first team meeting, revealing his coaching philosophy")\n        .momentType(QuoteMoment.LOCKER_ROOM)\n        .text("I believe in believe.")\n        .theme(QuoteTheme.BELIEF)\n        .build()\n    val quote: Quote = client.quotes().create(params)\n}',
       },
-      php: {
-        method: 'quotes->create',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$quote = $client->quotes->create(\n  characterID: 'ted-lasso',\n  context: 'Ted\\'s first team meeting, revealing his coaching philosophy',\n  momentType: QuoteMoment::LOCKER_ROOM,\n  text: 'I believe in believe.',\n  theme: QuoteTheme::BELIEF,\n  episodeID: 's01e01',\n  isFunny: false,\n  isInspirational: true,\n  popularityScore: 98.5,\n  secondaryThemes: [QuoteTheme::LEADERSHIP, QuoteTheme::TEAMWORK],\n  timesShared: 250000,\n);\n\nvar_dump($quote);",
-      },
       python: {
         method: 'quotes.create',
         example:
@@ -2480,11 +2305,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.Quote\nimport com.believe.api.models.quotes.QuoteGetRandomParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val quote: Quote = client.quotes().getRandom()\n}',
       },
-      php: {
-        method: 'quotes->getRandom',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$quote = $client->quotes->getRandom(\n  characterID: 'character_id', inspirational: true, theme: QuoteTheme::BELIEF\n);\n\nvar_dump($quote);",
-      },
       python: {
         method: 'quotes.get_random',
         example:
@@ -2543,11 +2363,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'quotes().retrieve',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.Quote\nimport com.believe.api.models.quotes.QuoteRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val quote: Quote = client.quotes().retrieve("quote_id")\n}',
-      },
-      php: {
-        method: 'quotes->retrieve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$quote = $client->quotes->retrieve('quote_id');\n\nvar_dump($quote);",
       },
       python: {
         method: 'quotes.retrieve',
@@ -2621,11 +2436,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.Quote\nimport com.believe.api.models.quotes.QuoteUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val quote: Quote = client.quotes().update("quote_id")\n}',
       },
-      php: {
-        method: 'quotes->update',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$quote = $client->quotes->update(\n  'quote_id',\n  characterID: 'character_id',\n  context: 'context',\n  episodeID: 'episode_id',\n  isFunny: true,\n  isInspirational: true,\n  momentType: QuoteMoment::HALFTIME_SPEECH,\n  popularityScore: 0,\n  secondaryThemes: [QuoteTheme::BELIEF],\n  text: 'x',\n  theme: QuoteTheme::BELIEF,\n  timesShared: 0,\n);\n\nvar_dump($quote);",
-      },
       python: {
         method: 'quotes.update',
         example:
@@ -2682,11 +2492,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'quotes().delete',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.QuoteDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.quotes().delete("quote_id")\n}',
-      },
-      php: {
-        method: 'quotes->delete',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$result = $client->quotes->delete('quote_id');\n\nvar_dump($result);",
       },
       python: {
         method: 'quotes.delete',
@@ -2746,11 +2551,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'quotes().listByTheme',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.QuoteListByThemePage\nimport com.believe.api.models.quotes.QuoteListByThemeParams\nimport com.believe.api.models.quotes.QuoteTheme\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: QuoteListByThemePage = client.quotes().listByTheme(QuoteTheme.BELIEF)\n}',
-      },
-      php: {
-        method: 'quotes->listByTheme',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->quotes->listByTheme(QuoteTheme::BELIEF, limit: 10, skip: 0);\n\nvar_dump($page);",
       },
       python: {
         method: 'quotes.list_by_theme',
@@ -2812,11 +2612,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.QuoteListByCharacterPage\nimport com.believe.api.models.quotes.QuoteListByCharacterParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: QuoteListByCharacterPage = client.quotes().listByCharacter("character_id")\n}',
       },
-      php: {
-        method: 'quotes->listByCharacter',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->quotes->listByCharacter('character_id', limit: 10, skip: 0);\n\nvar_dump($page);",
-      },
       python: {
         method: 'quotes.list_by_character',
         example:
@@ -2876,11 +2671,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'believe().submit',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.believe.BelieveSubmitParams\nimport com.believe.api.models.believe.BelieveSubmitResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: BelieveSubmitParams = BelieveSubmitParams.builder()\n        .situation("I just got passed over for a promotion I\'ve been working toward for two years.")\n        .situationType(BelieveSubmitParams.SituationType.WORK_CHALLENGE)\n        .build()\n    val response: BelieveSubmitResponse = client.believe().submit(params)\n}',
-      },
-      php: {
-        method: 'believe->submit',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->believe->submit(\n  situation: 'I just got passed over for a promotion I\\'ve been working toward for two years.',\n  situationType: 'work_challenge',\n  context: 'I\\'ve always tried to be a team player and support my colleagues.',\n  intensity: 7,\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'believe.submit',
@@ -2947,11 +2737,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.conflicts.ConflictResolveParams\nimport com.believe.api.models.conflicts.ConflictResolveResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: ConflictResolveParams = ConflictResolveParams.builder()\n        .conflictType(ConflictResolveParams.ConflictType.INTERPERSONAL)\n        .description("Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.")\n        .addPartiesInvolved("Me")\n        .addPartiesInvolved("My teammate Alex")\n        .build()\n    val response: ConflictResolveResponse = client.conflicts().resolve(params)\n}',
       },
-      php: {
-        method: 'conflicts->resolve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->conflicts->resolve(\n  conflictType: 'interpersonal',\n  description: 'Alex keeps taking credit for my ideas in meetings and I\\'m getting resentful.',\n  partiesInvolved: ['Me', 'My teammate Alex'],\n  attemptsMade: ['Mentioned it casually', 'Avoided them'],\n);\n\nvar_dump($response);",
-      },
       python: {
         method: 'conflicts.resolve',
         example:
@@ -3011,11 +2796,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'reframe().transformNegativeThoughts',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.reframe.ReframeTransformNegativeThoughtsParams\nimport com.believe.api.models.reframe.ReframeTransformNegativeThoughtsResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: ReframeTransformNegativeThoughtsParams = ReframeTransformNegativeThoughtsParams.builder()\n        .negativeThought("I\'m not good enough for this job.")\n        .build()\n    val response: ReframeTransformNegativeThoughtsResponse = client.reframe().transformNegativeThoughts(params)\n}',
-      },
-      php: {
-        method: 'reframe->transformNegativeThoughts',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->reframe->transformNegativeThoughts(\n  negativeThought: 'I\\'m not good enough for this job.', recurring: true\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'reframe.transform_negative_thoughts',
@@ -3077,11 +2857,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.press.PressSimulateParams\nimport com.believe.api.models.press.PressSimulateResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: PressSimulateParams = PressSimulateParams.builder()\n        .question("Ted, your team just lost 5-0. How do you explain this embarrassing defeat?")\n        .build()\n    val response: PressSimulateResponse = client.press().simulate(params)\n}',
       },
-      php: {
-        method: 'press->simulate',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->press->simulate(\n  question: 'Ted, your team just lost 5-0. How do you explain this embarrassing defeat?',\n  hostile: true,\n  topic: 'match_result',\n);\n\nvar_dump($response);",
-      },
       python: {
         method: 'press.simulate',
         example:
@@ -3140,11 +2915,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'coaching().principles().list',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.coaching.principles.PrincipleListPage\nimport com.believe.api.models.coaching.principles.PrincipleListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: PrincipleListPage = client.coaching().principles().list()\n}',
-      },
-      php: {
-        method: 'coaching->principles->list',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->coaching->principles->list(limit: 10, skip: 0);\n\nvar_dump($page);",
       },
       python: {
         method: 'coaching.principles.list',
@@ -3206,11 +2976,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.coaching.principles.CoachingPrinciple\nimport com.believe.api.models.coaching.principles.PrincipleRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val coachingPrinciple: CoachingPrinciple = client.coaching().principles().retrieve("principle_id")\n}',
       },
-      php: {
-        method: 'coaching->principles->retrieve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$coachingPrinciple = $client->coaching->principles->retrieve('principle_id');\n\nvar_dump($coachingPrinciple);",
-      },
       python: {
         method: 'coaching.principles.retrieve',
         example:
@@ -3268,11 +3033,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'coaching().principles().getRandom',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.coaching.principles.CoachingPrinciple\nimport com.believe.api.models.coaching.principles.PrincipleGetRandomParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val coachingPrinciple: CoachingPrinciple = client.coaching().principles().getRandom()\n}',
-      },
-      php: {
-        method: 'coaching->principles->getRandom',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$coachingPrinciple = $client->coaching->principles->getRandom();\n\nvar_dump($coachingPrinciple);",
       },
       python: {
         method: 'coaching.principles.get_random',
@@ -3333,11 +3093,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.biscuits.BiscuitListPage\nimport com.believe.api.models.biscuits.BiscuitListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: BiscuitListPage = client.biscuits().list()\n}',
       },
-      php: {
-        method: 'biscuits->list',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->biscuits->list(limit: 10, skip: 0);\n\nvar_dump($page);",
-      },
       python: {
         method: 'biscuits.list',
         example:
@@ -3395,11 +3150,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'biscuits().getFresh',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.biscuits.Biscuit\nimport com.believe.api.models.biscuits.BiscuitGetFreshParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val biscuit: Biscuit = client.biscuits().getFresh()\n}',
-      },
-      php: {
-        method: 'biscuits->getFresh',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$biscuit = $client->biscuits->getFresh();\n\nvar_dump($biscuit);",
       },
       python: {
         method: 'biscuits.get_fresh',
@@ -3460,11 +3210,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.biscuits.Biscuit\nimport com.believe.api.models.biscuits.BiscuitRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val biscuit: Biscuit = client.biscuits().retrieve("biscuit_id")\n}',
       },
-      php: {
-        method: 'biscuits->retrieve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$biscuit = $client->biscuits->retrieve('biscuit_id');\n\nvar_dump($biscuit);",
-      },
       python: {
         method: 'biscuits.retrieve',
         example:
@@ -3524,11 +3269,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.peptalk.PepTalkRetrieveParams\nimport com.believe.api.models.peptalk.PepTalkRetrieveResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val pepTalk: PepTalkRetrieveResponse = client.pepTalk().retrieve()\n}',
       },
-      php: {
-        method: 'pepTalk->retrieve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$pepTalk = $client->pepTalk->retrieve(stream: true);\n\nvar_dump($pepTalk);",
-      },
       python: {
         method: 'pep_talk.retrieve',
         example:
@@ -3585,11 +3325,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'stream().testConnection',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.stream.StreamTestConnectionParams\nimport com.believe.api.models.stream.StreamTestConnectionResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: StreamTestConnectionResponse = client.stream().testConnection()\n}',
-      },
-      php: {
-        method: 'stream->testConnection',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->stream->testConnection();\n\nvar_dump($response);",
       },
       python: {
         method: 'stream.test_connection',
@@ -3656,11 +3391,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberListPage\nimport com.believe.api.models.teammembers.TeamMemberListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamMemberListPage = client.teamMembers().list()\n}',
       },
-      php: {
-        method: 'teamMembers->list',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->teamMembers->list(\n  limit: 10, memberType: 'player', skip: 0, teamID: 'team_id'\n);\n\nvar_dump($page);",
-      },
       python: {
         method: 'team_members.list',
         example:
@@ -3724,11 +3454,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.Position\nimport com.believe.api.models.teammembers.TeamMemberCreateParams\nimport com.believe.api.models.teammembers.TeamMemberCreateResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: TeamMemberCreateParams.Member.Player = TeamMemberCreateParams.Member.Player.builder()\n        .characterId("jamie-tartt")\n        .jerseyNumber(9L)\n        .position(Position.FORWARD)\n        .teamId("afc-richmond")\n        .yearsWithTeam(3L)\n        .memberType(TeamMemberCreateParams.Member.Player.MemberType.PLAYER)\n        .build()\n    val teamMember: TeamMemberCreateResponse = client.teamMembers().create(params)\n}',
       },
-      php: {
-        method: 'teamMembers->create',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$teamMember = $client->teamMembers->create(\n  member: [\n    'characterID' => 'jamie-tartt',\n    'jerseyNumber' => 9,\n    'position' => Position::FORWARD,\n    'teamID' => 'afc-richmond',\n    'yearsWithTeam' => 3,\n    'assists' => 23,\n    'goalsScored' => 47,\n    'isCaptain' => false,\n    'memberType' => 'player',\n  ],\n);\n\nvar_dump($teamMember);",
-      },
       python: {
         method: 'team_members.create',
         example:
@@ -3788,11 +3513,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teamMembers().retrieve',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberRetrieveParams\nimport com.believe.api.models.teammembers.TeamMemberRetrieveResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val teamMember: TeamMemberRetrieveResponse = client.teamMembers().retrieve("member_id")\n}',
-      },
-      php: {
-        method: 'teamMembers->retrieve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$teamMember = $client->teamMembers->retrieve('member_id');\n\nvar_dump($teamMember);",
       },
       python: {
         method: 'team_members.retrieve',
@@ -3857,11 +3577,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberUpdateParams\nimport com.believe.api.models.teammembers.TeamMemberUpdateResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: TeamMemberUpdateParams = TeamMemberUpdateParams.builder()\n        .memberId("member_id")\n        .updates(TeamMemberUpdateParams.Updates.PlayerUpdate.builder().build())\n        .build()\n    val teamMember: TeamMemberUpdateResponse = client.teamMembers().update(params)\n}',
       },
-      php: {
-        method: 'teamMembers->update',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$teamMember = $client->teamMembers->update(\n  'member_id',\n  updates: [\n    'assists' => 0,\n    'goalsScored' => 0,\n    'isCaptain' => true,\n    'jerseyNumber' => 1,\n    'position' => Position::GOALKEEPER,\n    'teamID' => 'team_id',\n    'yearsWithTeam' => 0,\n  ],\n);\n\nvar_dump($teamMember);",
-      },
       python: {
         method: 'team_members.update',
         example:
@@ -3918,11 +3633,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teamMembers().delete',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.teamMembers().delete("member_id")\n}',
-      },
-      php: {
-        method: 'teamMembers->delete',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$result = $client->teamMembers->delete('member_id');\n\nvar_dump($result);",
       },
       python: {
         method: 'team_members.delete',
@@ -3988,11 +3698,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberListPlayersPage\nimport com.believe.api.models.teammembers.TeamMemberListPlayersParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamMemberListPlayersPage = client.teamMembers().listPlayers()\n}',
       },
-      php: {
-        method: 'teamMembers->listPlayers',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->teamMembers->listPlayers(\n  limit: 10, position: Position::GOALKEEPER, skip: 0, teamID: 'team_id'\n);\n\nvar_dump($page);",
-      },
       python: {
         method: 'team_members.list_players',
         example:
@@ -4057,11 +3762,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberListCoachesPage\nimport com.believe.api.models.teammembers.TeamMemberListCoachesParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamMemberListCoachesPage = client.teamMembers().listCoaches()\n}',
       },
-      php: {
-        method: 'teamMembers->listCoaches',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->teamMembers->listCoaches(\n  limit: 10, skip: 0, specialty: CoachSpecialty::HEAD_COACH, teamID: 'team_id'\n);\n\nvar_dump($page);",
-      },
       python: {
         method: 'team_members.list_coaches',
         example:
@@ -4122,11 +3822,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberListStaffPage\nimport com.believe.api.models.teammembers.TeamMemberListStaffParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamMemberListStaffPage = client.teamMembers().listStaff()\n}',
       },
-      php: {
-        method: 'teamMembers->listStaff',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->teamMembers->listStaff(limit: 10, skip: 0, teamID: 'team_id');\n\nvar_dump($page);",
-      },
       python: {
         method: 'team_members.list_staff',
         example:
@@ -4183,11 +3878,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'webhooks().list',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.webhooks.RegisteredWebhook\nimport com.believe.api.models.webhooks.WebhookListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val registeredWebhooks: List<RegisteredWebhook> = client.webhooks().list()\n}',
-      },
-      php: {
-        method: 'webhooks->list',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$registeredWebhooks = $client->webhooks->list();\n\nvar_dump($registeredWebhooks);",
       },
       python: {
         method: 'webhooks.list',
@@ -4254,11 +3944,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.webhooks.WebhookCreateParams\nimport com.believe.api.models.webhooks.WebhookCreateResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: WebhookCreateParams = WebhookCreateParams.builder()\n        .url("https://example.com/webhooks")\n        .build()\n    val webhook: WebhookCreateResponse = client.webhooks().create(params)\n}',
       },
-      php: {
-        method: 'webhooks->create',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$webhook = $client->webhooks->create(\n  url: 'https://example.com/webhooks',\n  description: 'Production webhook for match notifications',\n  eventTypes: ['match.completed', 'team_member.transferred'],\n);\n\nvar_dump($webhook);",
-      },
       python: {
         method: 'webhooks.create',
         example:
@@ -4318,11 +4003,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.webhooks.RegisteredWebhook\nimport com.believe.api.models.webhooks.WebhookRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val registeredWebhook: RegisteredWebhook = client.webhooks().retrieve("webhook_id")\n}',
       },
-      php: {
-        method: 'webhooks->retrieve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$registeredWebhook = $client->webhooks->retrieve('webhook_id');\n\nvar_dump($registeredWebhook);",
-      },
       python: {
         method: 'webhooks.retrieve',
         example:
@@ -4380,11 +4060,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'webhooks().delete',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.webhooks.WebhookDeleteParams\nimport com.believe.api.models.webhooks.WebhookDeleteResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val webhook: WebhookDeleteResponse = client.webhooks().delete("webhook_id")\n}',
-      },
-      php: {
-        method: 'webhooks->delete',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$webhook = $client->webhooks->delete('webhook_id');\n\nvar_dump($webhook);",
       },
       python: {
         method: 'webhooks.delete',
@@ -4450,11 +4125,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.webhooks.WebhookTriggerEventParams\nimport com.believe.api.models.webhooks.WebhookTriggerEventResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: WebhookTriggerEventParams = WebhookTriggerEventParams.builder()\n        .eventType(WebhookTriggerEventParams.EventType.MATCH_COMPLETED)\n        .build()\n    val response: WebhookTriggerEventResponse = client.webhooks().triggerEvent(params)\n}',
       },
-      php: {
-        method: 'webhooks->triggerEvent',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->webhooks->triggerEvent(\n  eventType: 'match.completed',\n  payload: [\n    'data' => [\n      'awayScore' => 0,\n      'awayTeamID' => 'away_team_id',\n      'completedAt' => new \\DateTimeImmutable('2019-12-27T18:11:19.117Z'),\n      'homeScore' => 0,\n      'homeTeamID' => 'home_team_id',\n      'matchID' => 'match_id',\n      'matchType' => 'league',\n      'result' => 'home_win',\n      'tedPostMatchQuote' => 'ted_post_match_quote',\n      'lessonLearned' => 'lesson_learned',\n      'manOfTheMatch' => 'man_of_the_match',\n    ],\n    'eventType' => 'match.completed',\n  ],\n);\n\nvar_dump($response);",
-      },
       python: {
         method: 'webhooks.trigger_event',
         example:
@@ -4491,11 +4161,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       kotlin: {
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.webhooks.WebhookUnwrapParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.webhooks().unwrap()\n}',
-      },
-      php: {
-        method: 'webhooks->unwrap',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$result = $client->webhooks->unwrap();\n\nvar_dump($result);",
       },
       python: {
         method: 'webhooks.unwrap',
@@ -4563,11 +4228,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'ticketSales().list',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.ticketsales.TicketSaleListPage\nimport com.believe.api.models.ticketsales.TicketSaleListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TicketSaleListPage = client.ticketSales().list()\n}',
-      },
-      php: {
-        method: 'ticketSales->list',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$page = $client->ticketSales->list(\n  couponCode: 'coupon_code',\n  currency: 'currency',\n  limit: 10,\n  matchID: 'match_id',\n  purchaseMethod: PurchaseMethod::ONLINE,\n  skip: 0,\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'ticket_sales.list',
@@ -4642,11 +4302,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.ticketsales.PurchaseMethod\nimport com.believe.api.models.ticketsales.TicketSale\nimport com.believe.api.models.ticketsales.TicketSaleCreateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: TicketSaleCreateParams = TicketSaleCreateParams.builder()\n        .buyerName("Mae Green")\n        .currency("GBP")\n        .discount("9.00")\n        .matchId("match-001")\n        .purchaseMethod(PurchaseMethod.ONLINE)\n        .quantity(2L)\n        .subtotal("90.00")\n        .tax("16.20")\n        .total("97.20")\n        .unitPrice("45.00")\n        .build()\n    val ticketSale: TicketSale = client.ticketSales().create(params)\n}',
       },
-      php: {
-        method: 'ticketSales->create',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$ticketSale = $client->ticketSales->create(\n  buyerName: 'Mae Green',\n  currency: 'GBP',\n  discount: '9.00',\n  matchID: 'match-001',\n  purchaseMethod: PurchaseMethod::ONLINE,\n  quantity: 2,\n  subtotal: '90.00',\n  tax: '16.20',\n  total: '97.20',\n  unitPrice: '45.00',\n  buyerEmail: 'mae.green@example.com',\n  couponCode: 'BELIEVE10',\n);\n\nvar_dump($ticketSale);",
-      },
       python: {
         method: 'ticket_sales.create',
         example:
@@ -4704,11 +4359,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'ticketSales().delete',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.ticketsales.TicketSaleDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.ticketSales().delete("ticket_sale_id")\n}',
-      },
-      php: {
-        method: 'ticketSales->delete',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$result = $client->ticketSales->delete('ticket_sale_id');\n\nvar_dump($result);",
       },
       python: {
         method: 'ticket_sales.delete',
@@ -4769,11 +4419,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'ticketSales().retrieve',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.ticketsales.TicketSale\nimport com.believe.api.models.ticketsales.TicketSaleRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val ticketSale: TicketSale = client.ticketSales().retrieve("ticket_sale_id")\n}',
-      },
-      php: {
-        method: 'ticketSales->retrieve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$ticketSale = $client->ticketSales->retrieve('ticket_sale_id');\n\nvar_dump($ticketSale);",
       },
       python: {
         method: 'ticket_sales.retrieve',
@@ -4849,11 +4494,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.ticketsales.TicketSale\nimport com.believe.api.models.ticketsales.TicketSaleUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val ticketSale: TicketSale = client.ticketSales().update("ticket_sale_id")\n}',
       },
-      php: {
-        method: 'ticketSales->update',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$ticketSale = $client->ticketSales->update(\n  'ticket_sale_id',\n  buyerEmail: 'dev@stainless.com',\n  buyerName: 'buyer_name',\n  couponCode: 'coupon_code',\n  currency: 'currency',\n  discount: 'discount',\n  matchID: 'match_id',\n  purchaseMethod: PurchaseMethod::ONLINE,\n  quantity: 1,\n  subtotal: 'subtotal',\n  tax: 'tax',\n  total: 'total',\n  unitPrice: 'unit_price',\n);\n\nvar_dump($ticketSale);",
-      },
       python: {
         method: 'ticket_sales.update',
         example:
@@ -4909,11 +4549,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'health().check',
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.health.HealthCheckParams\nimport com.believe.api.models.health.HealthCheckResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: HealthCheckResponse = client.health().check()\n}',
-      },
-      php: {
-        method: 'health->check',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$response = $client->health->check();\n\nvar_dump($response);",
       },
       python: {
         method: 'health.check',
@@ -4971,11 +4606,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.version.VersionRetrieveParams\nimport com.believe.api.models.version.VersionRetrieveResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val version: VersionRetrieveResponse = client.version().retrieve()\n}',
       },
-      php: {
-        method: 'version->retrieve',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$version = $client->version->retrieve();\n\nvar_dump($version);",
-      },
       python: {
         method: 'version.retrieve',
         example:
@@ -5031,11 +4661,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.client.ws.WTestParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.client().ws().test()\n}',
       },
-      php: {
-        method: 'client->ws->test',
-        example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(apiKey: 'My API Key');\n\n$result = $client->client->ws->test();\n\nvar_dump($result);",
-      },
       python: {
         method: 'client.ws.test',
         example:
@@ -5080,11 +4705,6 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
     language: 'kotlin',
     content:
       '# Believe Kotlin API Library\n\n<!-- x-release-please-start-version -->\n[![Maven Central](https://img.shields.io/maven-central/v/com.believe.api/believe-kotlin)](https://central.sonatype.com/artifact/com.believe.api/believe-kotlin/0.0.1)\n[![javadoc](https://javadoc.io/badge2/com.believe.api/believe-kotlin/0.0.1/javadoc.svg)](https://javadoc.io/doc/com.believe.api/believe-kotlin/0.0.1)\n<!-- x-release-please-end -->\n\nThe Believe Kotlin SDK provides convenient access to the Believe REST API   from applications written in Kotlin.\n\n\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## MCP Server\n\nUse the Believe MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40cjavdev%2Fbelieve-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBjamF2ZGV2L2JlbGlldmUtbWNwIl0sImVudiI6eyJCRUxJRVZFX0FQSV9LRVkiOiJNeSBBUEkgS2V5In19)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40cjavdev%2Fbelieve-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40cjavdev%2Fbelieve-mcp%22%5D%2C%22env%22%3A%7B%22BELIEVE_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n<!-- x-release-please-start-version -->\n\nKDocs are available on [javadoc.io](https://javadoc.io/doc/com.believe.api/believe-kotlin/0.0.1).\n\n<!-- x-release-please-end -->\n\n## Installation\n\n<!-- x-release-please-start-version -->\n\n### Gradle\n\n~~~kotlin\nimplementation("com.believe.api:believe-kotlin:0.0.1")\n~~~\n\n### Maven\n\n~~~xml\n<dependency>\n  <groupId>com.believe.api</groupId>\n  <artifactId>believe-kotlin</artifactId>\n  <version>0.0.1</version>\n</dependency>\n~~~\n\n<!-- x-release-please-end -->\n\n## Requirements\n\nThis library requires Java 8 or later.\n\n## Usage\n\n```kotlin\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.CharacterListPage\nimport com.believe.api.models.characters.CharacterListParams\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nval client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\nval page: CharacterListPage = client.characters().list()\n```\n\n## Client configuration\n\nConfigure the client using system properties or environment variables:\n\n```kotlin\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nval client: BelieveClient = BelieveOkHttpClient.fromEnv()\n```\n\nOr manually:\n\n```kotlin\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .apiKey("My API Key")\n    .build()\n```\n\nOr using a combination of the two approaches:\n\n```kotlin\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    // Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n    // Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\n    .fromEnv()\n    .apiKey("My API Key")\n    .build()\n```\n\nSee this table for the available options:\n\n| Setter    | System property   | Environment variable | Required | Default value                |\n| --------- | ----------------- | -------------------- | -------- | ---------------------------- |\n| `apiKey`  | `believe.apiKey`  | `BELIEVE_API_KEY`    | true     | -                            |\n| `baseUrl` | `believe.baseUrl` | `BELIEVE_BASE_URL`   | true     | `"https://believe.cjav.dev"` |\n\nSystem properties take precedence over environment variables.\n\n> [!TIP]\n> Don\'t create more than one client in the same application. Each client has a connection pool and\n> thread pools, which are more efficient to share between requests.\n\n### Modifying configuration\n\nTo temporarily use a modified client configuration, while reusing the same connection and thread       pools, call `withOptions()` on any client or service:\n\n```kotlin\nimport com.believe.api.client.BelieveClient\n\nval clientWithOptions: BelieveClient = client.withOptions {\n    it.baseUrl("https://example.com")\n    it.maxRetries(42)\n}\n```\n\nThe `withOptions()` method does not affect the original client or service.\n\n## Requests and responses\n\nTo send a request to the Believe API, build an instance of some `Params` class and pass it to the     corresponding client method. When the response is received, it will be deserialized into an instance of     a Kotlin class.\n\nFor example, `client.characters().list(...)` should be called with an instance of `CharacterListParams`, and it     will return an instance of `CharacterListPage`.\n\n## Immutability\n\nEach class in the SDK has an associated   [builder](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)   or factory method for constructing it.\n\nEach class is [immutable](https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html)   once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can   be used to convert it back to a builder for making a modified copy.\n\nBecause each class is immutable, builder modification will _never_ affect already built class instances.\n\n## Asynchronous execution\n\nThe default client is synchronous. To switch to asynchronous execution, call the `async()` method:\n\n```kotlin\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.CharacterListPageAsync\nimport com.believe.api.models.characters.CharacterListParams\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nval client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\nval page: CharacterListPageAsync = client.async().characters().list()\n```\n\nOr create an asynchronous client from the beginning:\n\n```kotlin\nimport com.believe.api.client.BelieveClientAsync\nimport com.believe.api.client.okhttp.BelieveOkHttpClientAsync\nimport com.believe.api.models.characters.CharacterListPageAsync\nimport com.believe.api.models.characters.CharacterListParams\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nval client: BelieveClientAsync = BelieveOkHttpClientAsync.fromEnv()\n\nval page: CharacterListPageAsync = client.characters().list()\n```\n\nThe asynchronous client supports the same options as the synchronous one, except most methods are [suspending](https://kotlinlang.org/docs/coroutines-guide.html).\n\n\n\n## File uploads\n\nThe SDK defines methods that accept files.\n\nTo upload a file, pass a [`Path`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html):\n\n```kotlin\nimport com.believe.api.models.teams.logo.FileUpload\nimport com.believe.api.models.teams.logo.LogoUploadParams\nimport java.nio.file.Paths\n\nval params: LogoUploadParams = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file(Paths.get("/path/to/file"))\n    .build()\nval fileUpload: FileUpload = client.teams().logo().upload(params)\n```\n\nOr an arbitrary [`InputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html):\n\n```kotlin\nimport com.believe.api.models.teams.logo.FileUpload\nimport com.believe.api.models.teams.logo.LogoUploadParams\nimport java.net.URL\n\nval params: LogoUploadParams = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file(URL("https://example.com//path/to/file").openStream())\n    .build()\nval fileUpload: FileUpload = client.teams().logo().upload(params)\n```\n\nOr a `ByteArray`:\n\n```kotlin\nimport com.believe.api.models.teams.logo.FileUpload\nimport com.believe.api.models.teams.logo.LogoUploadParams\n\nval params: LogoUploadParams = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file("content".toByteArray())\n    .build()\nval fileUpload: FileUpload = client.teams().logo().upload(params)\n```\n\nNote that when passing a non-`Path` its filename is unknown so it will not be included in the request.     To manually set a filename, pass a [`MultipartField`](believe-kotlin-core/src/main/kotlin/com/believe/api/core/Values.kt):\n\n```kotlin\nimport com.believe.api.core.MultipartField\nimport com.believe.api.models.teams.logo.FileUpload\nimport com.believe.api.models.teams.logo.LogoUploadParams\nimport java.io.InputStream\nimport java.net.URL\n\nval params: LogoUploadParams = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file(MultipartField.builder<InputStream>()\n        .value(URL("https://example.com//path/to/file").openStream())\n        .filename("/path/to/file")\n        .build())\n    .build()\nval fileUpload: FileUpload = client.teams().logo().upload(params)\n```\n\n\n\n## Raw responses\n\nThe SDK defines methods that deserialize responses into instances of Kotlin classes.       However, these methods don\'t provide access to the response headers, status code, or the raw response       body.\n\nTo access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:\n\n```kotlin\nimport com.believe.api.core.http.Headers\nimport com.believe.api.core.http.HttpResponseFor\nimport com.believe.api.models.characters.CharacterListPage\nimport com.believe.api.models.characters.CharacterListParams\n\nval page: HttpResponseFor<CharacterListPage> = client.characters().withRawResponse().list()\n\nval statusCode: Int = page.statusCode()\nval headers: Headers = page.headers()\n```\n\nYou can still deserialize the response into an instance of a Kotlin class if needed:\n\n```kotlin\nimport com.believe.api.models.characters.CharacterListPage\n\nval parsedPage: CharacterListPage = page.parse()\n```\n\n## Error handling\n\nThe SDK throws custom unchecked exception types:\n\n- [`BelieveServiceException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/BelieveServiceException.kt): Base class for HTTP errors. See this table for which exception       subclass is thrown for each HTTP status code:\n\n  | Status | Exception                                          |\n  | ------ | -------------------------------------------------- |\n  | 400    | [`BadRequestException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/BadRequestException.kt)           |\n  | 401    | [`UnauthorizedException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/UnauthorizedException.kt)         |\n  | 403    | [`PermissionDeniedException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/PermissionDeniedException.kt)     |\n  | 404    | [`NotFoundException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/NotFoundException.kt)             |\n  | 422    | [`UnprocessableEntityException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/UnprocessableEntityException.kt)  |\n  | 429    | [`RateLimitException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/RateLimitException.kt)            |\n  | 5xx    | [`InternalServerException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/InternalServerException.kt)       |\n  | others | [`UnexpectedStatusCodeException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/UnexpectedStatusCodeException.kt) |\n\n- [`BelieveIoException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/BelieveIoException.kt): I/O networking errors.\n\n- [`BelieveRetryableException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/BelieveRetryableException.kt): Generic error indicating a failure that could be retried by the client.\n\n- [`BelieveInvalidDataException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/BelieveInvalidDataException.kt): Failure to interpret successfully parsed data. For example,       when accessing a property that\'s supposed to be required, but the API unexpectedly omitted it from the       response.\n\n- [`BelieveException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/BelieveException.kt): Base class for all exceptions. Most errors will result in one of the       previously mentioned ones, but completely generic errors may be thrown using the base class.\n\n## Pagination\n\nThe SDK defines methods that return a paginated lists of results. It provides convenient ways to access     the results either one page at a time or item-by-item across all pages.\n\n### Auto-pagination\n\nTo iterate through all results across all pages, use the `autoPager()` method, which automatically     fetches more pages as needed.\n\nWhen using the synchronous client, the method returns a [`Sequence`](https://kotlinlang.org/docs/sequences.html)\n\n```kotlin\nimport com.believe.api.models.characters.CharacterListPage\n\nval page: CharacterListPage = client.characters().list()\npage.autoPager()\n    .take(50)\n    .forEach { character -> println(character) }\n```\n\nWhen using the asynchronous client, the method returns a [`Flow`](https://kotlinlang.org/docs/flow.html):\n\n```kotlin\nimport com.believe.api.models.characters.CharacterListPageAsync\n\nval page: CharacterListPageAsync = client.async().characters().list()\npage.autoPager()\n    .take(50)\n    .forEach { character -> println(character) }\n```\n\n### Manual pagination\n\nTo access individual page items and manually request the next page, use the `items()`,\n`hasNextPage()`, and `nextPage()` methods:\n\n```kotlin\nimport com.believe.api.models.characters.Character\nimport com.believe.api.models.characters.CharacterListPage\n\nval page: CharacterListPage = client.characters().list()\nwhile (true) {\n    for (character in page.items()) {\n        println(character)\n    }\n\n    if (!page.hasNextPage()) {\n        break\n    }\n\n    page = page.nextPage()\n}\n```\n\n## Logging\n\nThe SDK uses the standard   [OkHttp logging interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor).\n\nEnable logging by setting the `BELIEVE_LOG` environment variable to   `info`:\n\n```sh\nexport BELIEVE_LOG=info\n```\n\nOr to `debug` for more verbose logging:\n\n```sh\nexport BELIEVE_LOG=debug\n```\n\n## ProGuard and R8\n\nAlthough the SDK uses reflection, it is still usable with     [ProGuard](https://github.com/Guardsquare/proguard) and     [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because     `believe-kotlin-core` is published with a     [configuration file](believe-kotlin-core/src/main/resources/META-INF/proguard/believe-kotlin-core.pro) containing     [keep rules](https://www.guardsquare.com/manual/configuration/usage).\n\nProGuard and R8 should automatically detect and use the published rules, but you can also manually copy     the keep rules if necessary.\n\n\n\n\n\n## Jackson\n\nThe SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON     serialization/deserialization. It is compatible with version 2.13.4 or higher,     but depends on version 2.18.2 by default.\n\nThe SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the     default version was overridden in your Maven or Gradle config).\n\nIf the SDK threw an exception, but you\'re _certain_ the version is compatible, then disable the version     check using the `checkJacksonVersionCompatibility` on [`BelieveOkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/com/believe/api/client/okhttp/BelieveOkHttpClient.kt) or     [`BelieveOkHttpClientAsync`](believe-kotlin-client-okhttp/src/main/kotlin/com/believe/api/client/okhttp/BelieveOkHttpClientAsync.kt).\n\n> [!CAUTION]\n> We make no guarantee that the SDK works correctly when the Jackson version check is disabled.\n\nAlso note that there are bugs in older Jackson versions that can affect the SDK. We don\'t work around all     Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to     upgrade Jackson for those instead.\n\n## Network options\n\n### Retries\n\nThe SDK automatically retries 2 times by default, with a short exponential backoff between requests.\n\nOnly the following error types are retried:\n- Connection errors (for example, due to a network connectivity problem)\n- 408 Request Timeout\n- 409 Conflict\n- 429 Rate Limit\n- 5xx Internal\n\nThe API may also explicitly instruct the SDK to retry or not retry a request.\n\nTo set a custom number of retries, configure the client using the `maxRetries` method:\n\n```kotlin\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .maxRetries(4)\n    .build()\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default.\n\nTo set a custom timeout, configure the method call using the `timeout` method:\n\n```kotlin\nimport com.believe.api.models.characters.CharacterListPage\n\nval page: CharacterListPage = client.characters().list(RequestOptions.builder().timeout(Duration.ofSeconds(30)).build())\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport java.time.Duration\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .timeout(Duration.ofSeconds(30))\n    .build()\n```\n\n### Proxies\n\nTo route requests through a proxy, configure the client using the `proxy` method:\n\n```kotlin\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport java.net.InetSocketAddress\nimport java.net.Proxy\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .proxy(Proxy(\n      Proxy.Type.HTTP, InetSocketAddress(\n        "https://example.com", 8080\n      )\n    ))\n    .build()\n```\n\n### Connection pooling\n\nTo customize the underlying OkHttp connection pool, configure the client using the   `maxIdleConnections` and `keepAliveDuration` methods:\n\n```kotlin\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport java.time.Duration\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.\n    .maxIdleConnections(10)\n    .keepAliveDuration(Duration.ofMinutes(2))\n    .build()\n```\n\nIf both options are unset, OkHttp\'s default connection pool settings are used.\n\n### HTTPS\n\n> [!NOTE]\n> Most applications should not call these methods, and instead use the system defaults. The defaults include\n> special optimizations that can be lost if the implementations are modified.\n\nTo configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`,   `trustManager`, and `hostnameVerifier` methods:\n\n```kotlin\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    // If `sslSocketFactory` is set, then `trustManager` must be set, and vice versa.\n    .sslSocketFactory(yourSSLSocketFactory)\n    .trustManager(yourTrustManager)\n    .hostnameVerifier(yourHostnameVerifier)\n    .build()\n```\n\n\n\n### Custom HTTP client\n\nThe SDK consists of three artifacts:\n- `believe-kotlin-core`\n  - Contains core SDK logic\n  - Does not depend on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`BelieveClient`](believe-kotlin-core/src/main/kotlin/com/believe/api/client/BelieveClient.kt), [`BelieveClientAsync`](believe-kotlin-core/src/main/kotlin/com/believe/api/client/BelieveClientAsync.kt),             [`BelieveClientImpl`](believe-kotlin-core/src/main/kotlin/com/believe/api/client/BelieveClientImpl.kt), and [`BelieveClientAsyncImpl`](believe-kotlin-core/src/main/kotlin/com/believe/api/client/BelieveClientAsyncImpl.kt), all of which can             work with any HTTP client\n- `believe-kotlin-client-okhttp`\n  - Depends on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`BelieveOkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/com/believe/api/client/okhttp/BelieveOkHttpClient.kt) and [`BelieveOkHttpClientAsync`](believe-kotlin-client-okhttp/src/main/kotlin/com/believe/api/client/okhttp/BelieveOkHttpClientAsync.kt), which             provide a way to construct [`BelieveClientImpl`](believe-kotlin-core/src/main/kotlin/com/believe/api/client/BelieveClientImpl.kt) and             [`BelieveClientAsyncImpl`](believe-kotlin-core/src/main/kotlin/com/believe/api/client/BelieveClientAsyncImpl.kt), respectively, using OkHttp\n- `believe-kotlin`\n  - Depends on and exposes the APIs of both `believe-kotlin-core` and `believe-kotlin-client-okhttp`\n  - Does not have its own logic\n\nThis structure allows replacing the SDK\'s default HTTP client without pulling in unnecessary dependencies.\n\n#### Customized [`OkHttpClient`](https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html)\n\n> [!TIP]\n> Try the available [network options](#network-options) before replacing the default client.\n\nTo use a customized `OkHttpClient`:\n\n1. Replace your [`believe-kotlin` dependency](#installation) with `believe-kotlin-core`\n2. Copy `believe-kotlin-client-okhttp`\'s [`OkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/com/believe/api/client/okhttp/OkHttpClient.kt) class into your code and        customize it\n3. Construct [`BelieveClientImpl`](believe-kotlin-core/src/main/kotlin/com/believe/api/client/BelieveClientImpl.kt) or [`BelieveClientAsyncImpl`](believe-kotlin-core/src/main/kotlin/com/believe/api/client/BelieveClientAsyncImpl.kt), similarly to        [`BelieveOkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/com/believe/api/client/okhttp/BelieveOkHttpClient.kt) or [`BelieveOkHttpClientAsync`](believe-kotlin-client-okhttp/src/main/kotlin/com/believe/api/client/okhttp/BelieveOkHttpClientAsync.kt), using your        customized client\n\n### Completely custom HTTP client\n\nTo use a completely custom HTTP client:\n\n1. Replace your [`believe-kotlin` dependency](#installation) with `believe-kotlin-core`\n2. Write a class that implements the [`HttpClient`](believe-kotlin-core/src/main/kotlin/com/believe/api/core/http/HttpClient.kt) interface\n3. Construct [`BelieveClientImpl`](believe-kotlin-core/src/main/kotlin/com/believe/api/client/BelieveClientImpl.kt) or [`BelieveClientAsyncImpl`](believe-kotlin-core/src/main/kotlin/com/believe/api/client/BelieveClientAsyncImpl.kt), similarly to        [`BelieveOkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/com/believe/api/client/okhttp/BelieveOkHttpClient.kt) or [`BelieveOkHttpClientAsync`](believe-kotlin-client-okhttp/src/main/kotlin/com/believe/api/client/okhttp/BelieveOkHttpClientAsync.kt), using your new        client class\n\n## Undocumented API functionality\n\nThe SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.\n\n### Parameters\n\nTo set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or       `putAdditionalBodyProperty` methods on any `Params` class:\n\n```kotlin\nimport com.believe.api.core.JsonValue\nimport com.believe.api.models.characters.CharacterListParams\n\nval params: CharacterListParams = CharacterListParams.builder()\n    .putAdditionalHeader("Secret-Header", "42")\n    .putAdditionalQueryParam("secret_query_param", "42")\n    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))\n    .build()\n```\n\nThese can be accessed on the built object later using the `_additionalHeaders()`,       `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.\n\nTo set undocumented parameters on _nested_ headers, query params, or body classes, call the         `putAdditionalProperty` method on the nested class:\n\n```kotlin\nimport com.believe.api.core.JsonValue\nimport com.believe.api.models.characters.CharacterCreateParams\nimport com.believe.api.models.characters.EmotionalStats\n\nval params: CharacterCreateParams = CharacterCreateParams.builder()\n    .emotionalStats(EmotionalStats.builder()\n        .putAdditionalProperty("secretProperty", JsonValue.from("42"))\n        .build())\n    .build()\n```\n\nThese properties can be accessed on the nested built object later using the         `_additionalProperties()` method.\n\nTo set a documented parameter or property to an undocumented or not yet supported _value_, pass a       [`JsonValue`](believe-kotlin-core/src/main/kotlin/com/believe/api/core/Values.kt) object to its setter:\n\n```kotlin\nimport com.believe.api.models.characters.CharacterListParams\n\nval params: CharacterListParams = CharacterListParams.builder().build()\n```\n\nThe most straightforward way to create a [`JsonValue`](believe-kotlin-core/src/main/kotlin/com/believe/api/core/Values.kt) is using its       `from(...)` method:\n\n```kotlin\nimport com.believe.api.core.JsonValue\n\n// Create primitive JSON values\nval nullValue: JsonValue = JsonValue.from(null)\nval booleanValue: JsonValue = JsonValue.from(true)\nval numberValue: JsonValue = JsonValue.from(42)\nval stringValue: JsonValue = JsonValue.from("Hello World!")\n\n// Create a JSON array value equivalent to `["Hello", "World"]`\nval arrayValue: JsonValue = JsonValue.from(listOf(\n  "Hello", "World"\n))\n\n// Create a JSON object value equivalent to `{ "a": 1, "b": 2 }`\nval objectValue: JsonValue = JsonValue.from(mapOf(\n  "a" to 1, "b" to 2\n))\n\n// Create an arbitrarily nested JSON equivalent to:\n// {\n//   "a": [1, 2],\n//   "b": [3, 4]\n// }\nval complexValue: JsonValue = JsonValue.from(mapOf(\n  "a" to listOf(\n    1, 2\n  ), "b" to listOf(\n    3, 4\n  )\n))\n```\n\nNormally a `Builder` class\'s `build` method will throw         [`IllegalStateException`](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)         if any required parameter or property is unset.\n\nTo forcibly omit a required parameter or property, pass [`JsonMissing`](believe-kotlin-core/src/main/kotlin/com/believe/api/core/Values.kt):\n\n```kotlin\nimport com.believe.api.core.JsonMissing\nimport com.believe.api.models.characters.CharacterCreateParams\nimport com.believe.api.models.characters.CharacterListParams\nimport com.believe.api.models.characters.CharacterRole\nimport com.believe.api.models.characters.EmotionalStats\n\nval params: CharacterListParams = CharacterCreateParams.builder()\n    .emotionalStats(EmotionalStats.builder()\n        .curiosity(40L)\n        .empathy(85L)\n        .optimism(45L)\n        .resilience(95L)\n        .vulnerability(60L)\n        .build())\n    .name("Roy Kent")\n    .personalityTraits(listOf(\n      "intense",\n      "loyal",\n      "secretly caring",\n      "profane",\n    ))\n    .role(CharacterRole.COACH)\n    .background(JsonMissing.of())\n    .build()\n```\n\n### Response properties\n\nTo access undocumented response properties, call the `_additionalProperties()` method:\n\n```kotlin\nimport com.believe.api.core.JsonBoolean\nimport com.believe.api.core.JsonNull\nimport com.believe.api.core.JsonNumber\nimport com.believe.api.core.JsonValue\n\nval additionalProperties: Map<String, JsonValue> = client.characters().create(params)._additionalProperties()\nval secretPropertyValue: JsonValue = additionalProperties.get("secretProperty")\n\nval result = when (secretPropertyValue) {\n    is JsonNull -> "It\'s null!"\n    is JsonBoolean -> "It\'s a boolean!"\n    is JsonNumber -> "It\'s a number!"\n    // Other types include `JsonMissing`, `JsonString`, `JsonArray`, and `JsonObject`\n    else -> "It\'s something else!"\n}\n```\n\nTo access a property\'s raw JSON value, which may be undocumented, call its `_` prefixed method:\n\n```kotlin\nimport com.believe.api.core.JsonField\n\nval background: JsonField<String> = client.characters().create(params)._background()\n\nif (background.isMissing()) {\n  // The property is absent from the JSON response\n} else if (background.isNull()) {\n  // The property was set to literal null\n} else {\n  // Check if value was provided as a string\n  // Other methods include `asNumber()`, `asBoolean()`, etc.\n  val jsonString: String? = background.asString();\n\n  // Try to deserialize into a custom type\n  val myObject: MyClass = background.asUnknown()!!.convert(MyClass::class.java)\n}\n```\n\n### Response validation\n\nIn rare cases, the API may return a response that doesn\'t match the expected type. For example, the SDK     may expect a property to contain a `String`, but the API could return something else.\n\nBy default, the SDK will not throw an exception in this case. It will throw     [`BelieveInvalidDataException`](believe-kotlin-core/src/main/kotlin/com/believe/api/errors/BelieveInvalidDataException.kt) only if you directly access the property.\n\nIf you would prefer to check that the response is completely well-typed upfront, then either call     `validate()`:\n\n```kotlin\nimport com.believe.api.models.characters.Character\n\nval character: Character = client.characters().create(params).validate()\n```\n\nOr configure the method call to validate the response using the `responseValidation` method:\n\n```kotlin\nimport com.believe.api.models.characters.CharacterListPage\n\nval page: CharacterListPage = client.characters().list(RequestOptions.builder().responseValidation(true).build())\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .responseValidation(true)\n    .build()\n```\n\n## FAQ\n\n### Why don\'t you use plain `enum` classes?\n\nKotlin `enum` classes are not trivially   [forwards compatible](https://www.stainless.com/blog/making-java-enums-forwards-compatible). Using them in   the SDK could cause runtime exceptions if the API is updated to respond with a new enum value.\n\n### Why do you represent fields using `JsonField<T>` instead of just plain `T`?\n\nUsing `JsonField<T>` enables a few features:\n\n- Allowing usage of [undocumented API functionality](#undocumented-api-functionality)\n- Lazily [validating the API response against the expected shape](#response-validation)\n- Representing absent vs explicitly null values\n\n### Why don\'t you use [`data` classes](https://kotlinlang.org/docs/data-classes.html)?\n\nIt is not [backwards compatible to add new fields to a data class](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api)   and we don\'t want to introduce a breaking change every time we add a field to a class.\n\n### Why don\'t you use checked exceptions?\n\nChecked exceptions are widely considered a mistake in the Java programming language. In fact, they were   omitted from Kotlin for this reason.\n\nChecked exceptions:\n\n- Are verbose to handle\n- Encourage error handling at the wrong level of abstraction, where nothing can be done about the error\n- Are tedious to propagate due to the [function coloring problem](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function)\n- Don\'t play well with lambdas (also due to the function coloring problem)\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/cjavdev/believe-kotlin/issues) with questions, bugs, or suggestions.\n',
-  },
-  {
-    language: 'php',
-    content:
-      "# Believe PHP API Library\n\nThe Believe PHP library provides convenient access to the Believe REST API from any PHP 8.1.0+ application.\n\n## Installation\n\n```\ncomposer require \"org-placeholder/believe 0.0.1\"\n```\n\n## Usage\n\n```php\n<?php\n\n$client = new Client(apiKey: getenv('BELIEVE_API_KEY') ?: 'My API Key');\n\n$page = $client->characters->list();\n\nvar_dump($page->id);\n```",
   },
   {
     language: 'python',
