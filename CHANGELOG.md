@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.25.1 (2026-04-23)
+
+Full Changelog: [v0.25.0...v0.25.1](https://github.com/cjavdev/believe-typescript/compare/v0.25.0...v0.25.1)
+
+### Chores
+
+* **internal:** more robust bootstrap script ([2376ab1](https://github.com/cjavdev/believe-typescript/commit/2376ab19fac5d42322fd8de5298b8868eb40b728))
+* **internal:** update docs ordering ([59ec7de](https://github.com/cjavdev/believe-typescript/commit/59ec7deb36f88c892f0e5eca7b612947b1aaebbc))
+
 ## 0.25.0 (2026-04-22)
 
 Full Changelog: [v0.24.0...v0.25.0](https://github.com/cjavdev/believe-typescript/compare/v0.24.0...v0.25.0)
