@@ -26,9 +26,9 @@ For example:
 \`\`\`
 async function run(client) {
   const page = await client.characters.list();
-  const character = page.data[0]
+  const characterz = page.data[0]
 
-  console.log(character.id);
+  console.log(characterz.id);
 }
 \`\`\`
 
