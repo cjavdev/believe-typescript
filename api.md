@@ -12,18 +12,18 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/characters.ts">Character</a></code>
 - <code><a href="./src/resources/characters.ts">CharacterRole</a></code>
+- <code><a href="./src/resources/characters.ts">Characterz</a></code>
 - <code><a href="./src/resources/characters.ts">EmotionalStats</a></code>
 - <code><a href="./src/resources/characters.ts">GrowthArc</a></code>
 - <code><a href="./src/resources/characters.ts">CharacterGetQuotesResponse</a></code>
 
 Methods:
 
-- <code title="post /characters">client.characters.<a href="./src/resources/characters.ts">create</a>({ ...params }) -> Character</code>
-- <code title="get /characters/{character_id}">client.characters.<a href="./src/resources/characters.ts">retrieve</a>(characterID) -> Character</code>
-- <code title="patch /characters/{character_id}">client.characters.<a href="./src/resources/characters.ts">update</a>(characterID, { ...params }) -> Character</code>
-- <code title="get /characters">client.characters.<a href="./src/resources/characters.ts">list</a>({ ...params }) -> CharactersSkipLimitPage</code>
+- <code title="post /characters">client.characters.<a href="./src/resources/characters.ts">create</a>({ ...params }) -> Characterz</code>
+- <code title="get /characters/{character_id}">client.characters.<a href="./src/resources/characters.ts">retrieve</a>(characterID) -> Characterz</code>
+- <code title="patch /characters/{character_id}">client.characters.<a href="./src/resources/characters.ts">update</a>(characterID, { ...params }) -> Characterz</code>
+- <code title="get /characters">client.characters.<a href="./src/resources/characters.ts">list</a>({ ...params }) -> CharacterzsSkipLimitPage</code>
 - <code title="delete /characters/{character_id}">client.characters.<a href="./src/resources/characters.ts">delete</a>(characterID) -> void</code>
 - <code title="get /characters/{character_id}/quotes">client.characters.<a href="./src/resources/characters.ts">getQuotes</a>(characterID) -> CharacterGetQuotesResponse</code>
 
