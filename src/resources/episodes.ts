@@ -14,6 +14,25 @@ export class BaseEpisodes extends APIResource {
   static override readonly _key: readonly ['episodes'] = Object.freeze(['episodes'] as const);
 
   /**
+   * Get a paginated list of all Ted Lasso episodes with optional filtering by
+   * season.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const episode of client.episodes.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: EpisodeListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<EpisodesSkipLimitPage, Episode> {
+    return this._client.getAPIList('/episodes', SkipLimitPage<Episode>, { query, ...options });
+  }
+
+  /**
    * Add a new episode to the series.
    *
    * @example
@@ -69,25 +88,6 @@ export class BaseEpisodes extends APIResource {
    */
   update(episodeID: string, body: EpisodeUpdateParams, options?: RequestOptions): APIPromise<Episode> {
     return this._client.patch(path`/episodes/${episodeID}`, { body, ...options });
-  }
-
-  /**
-   * Get a paginated list of all Ted Lasso episodes with optional filtering by
-   * season.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const episode of client.episodes.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: EpisodeListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<EpisodesSkipLimitPage, Episode> {
-    return this._client.getAPIList('/episodes', SkipLimitPage<Episode>, { query, ...options });
   }
 
   /**
@@ -238,6 +238,18 @@ export interface PaginatedResponse {
 
 export type EpisodeGetWisdomResponse = { [key: string]: unknown };
 
+export interface EpisodeListParams extends SkipLimitPageParams {
+  /**
+   * Filter by character focus (character ID)
+   */
+  character_focus?: string | null;
+
+  /**
+   * Filter by season
+   */
+  season?: number | null;
+}
+
 export interface EpisodeCreateParams {
   /**
    * Original air date
@@ -347,26 +359,14 @@ export interface EpisodeUpdateParams {
   writer?: string | null;
 }
 
-export interface EpisodeListParams extends SkipLimitPageParams {
-  /**
-   * Filter by character focus (character ID)
-   */
-  character_focus?: string | null;
-
-  /**
-   * Filter by season
-   */
-  season?: number | null;
-}
-
 export declare namespace Episodes {
   export {
     type Episode as Episode,
     type PaginatedResponse as PaginatedResponse,
     type EpisodeGetWisdomResponse as EpisodeGetWisdomResponse,
     type EpisodesSkipLimitPage as EpisodesSkipLimitPage,
+    type EpisodeListParams as EpisodeListParams,
     type EpisodeCreateParams as EpisodeCreateParams,
     type EpisodeUpdateParams as EpisodeUpdateParams,
-    type EpisodeListParams as EpisodeListParams,
   };
 }

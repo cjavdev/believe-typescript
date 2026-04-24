@@ -13,20 +13,6 @@ export class BaseBiscuits extends APIResource {
   static override readonly _key: readonly ['biscuits'] = Object.freeze(['biscuits'] as const);
 
   /**
-   * Get a specific type of biscuit by ID.
-   *
-   * @example
-   * ```ts
-   * const biscuit = await client.biscuits.retrieve(
-   *   'biscuit_id',
-   * );
-   * ```
-   */
-  retrieve(biscuitID: string, options?: RequestOptions): APIPromise<Biscuit> {
-    return this._client.get(path`/biscuits/${biscuitID}`, options);
-  }
-
-  /**
    * Get a paginated list of Ted's famous homemade biscuits! Each comes with a
    * heartwarming message.
    *
@@ -55,6 +41,20 @@ export class BaseBiscuits extends APIResource {
    */
   getFresh(options?: RequestOptions): APIPromise<Biscuit> {
     return this._client.get('/biscuits/fresh', options);
+  }
+
+  /**
+   * Get a specific type of biscuit by ID.
+   *
+   * @example
+   * ```ts
+   * const biscuit = await client.biscuits.retrieve(
+   *   'biscuit_id',
+   * );
+   * ```
+   */
+  retrieve(biscuitID: string, options?: RequestOptions): APIPromise<Biscuit> {
+    return this._client.get(path`/biscuits/${biscuitID}`, options);
   }
 }
 /**

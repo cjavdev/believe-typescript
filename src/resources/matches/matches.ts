@@ -13,6 +13,24 @@ export class BaseMatches extends APIResource {
   static override readonly _key: readonly ['matches'] = Object.freeze(['matches'] as const);
 
   /**
+   * Get a paginated list of all matches with optional filtering.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const match of client.matches.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: MatchListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<MatchesSkipLimitPage, Match> {
+    return this._client.getAPIList('/matches', SkipLimitPage<Match>, { query, ...options });
+  }
+
+  /**
    * Schedule a new match.
    *
    * @example
@@ -54,24 +72,6 @@ export class BaseMatches extends APIResource {
   }
 
   /**
-   * Get a paginated list of all matches with optional filtering.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const match of client.matches.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: MatchListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<MatchesSkipLimitPage, Match> {
-    return this._client.getAPIList('/matches', SkipLimitPage<Match>, { query, ...options });
-  }
-
-  /**
    * Remove a match from the database.
    *
    * @example
@@ -84,18 +84,6 @@ export class BaseMatches extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
-  }
-
-  /**
-   * Get the life lesson learned from a specific match.
-   *
-   * @example
-   * ```ts
-   * const response = await client.matches.getLesson('match_id');
-   * ```
-   */
-  getLesson(matchID: string, options?: RequestOptions): APIPromise<MatchGetLessonResponse> {
-    return this._client.get(path`/matches/${matchID}/lesson`, options);
   }
 
   /**
@@ -113,6 +101,18 @@ export class BaseMatches extends APIResource {
   }
 
   /**
+   * Get the life lesson learned from a specific match.
+   *
+   * @example
+   * ```ts
+   * const response = await client.matches.getLesson('match_id');
+   * ```
+   */
+  getLesson(matchID: string, options?: RequestOptions): APIPromise<MatchGetLessonResponse> {
+    return this._client.get(path`/matches/${matchID}/lesson`, options);
+  }
+
+  /**
    * WebSocket endpoint for real-time live match simulation.
    *
    * Connect to receive a stream of match events as they happen in a simulated
@@ -126,8 +126,10 @@ export class BaseMatches extends APIResource {
    * ## Example WebSocket URL
    *
    * ```
-   * ws://localhost:8000/matches/live?home_team=AFC%20Richmond&away_team=Manchester%20City&speed=2.0&excitement_level=7
+   * ws://localhost:8000/matches/live
    * ```
+   *
+   * Append query parameters from the list above to customize the simulation.
    *
    * ## Server Messages
    *
@@ -295,6 +297,23 @@ export type MatchGetLessonResponse = { [key: string]: unknown };
 
 export type MatchGetTurningPointsResponse = Array<{ [key: string]: unknown }>;
 
+export interface MatchListParams extends SkipLimitPageParams {
+  /**
+   * Filter by match type
+   */
+  match_type?: MatchType | null;
+
+  /**
+   * Filter by result
+   */
+  result?: MatchResult | null;
+
+  /**
+   * Filter by team (home or away)
+   */
+  team_id?: string | null;
+}
+
 export interface MatchCreateParams {
   /**
    * Away team ID
@@ -410,23 +429,6 @@ export interface MatchUpdateParams {
   weather_temp_celsius?: number | null;
 }
 
-export interface MatchListParams extends SkipLimitPageParams {
-  /**
-   * Filter by match type
-   */
-  match_type?: MatchType | null;
-
-  /**
-   * Filter by result
-   */
-  result?: MatchResult | null;
-
-  /**
-   * Filter by team (home or away)
-   */
-  team_id?: string | null;
-}
-
 export interface MatchStreamLiveParams {
   /**
    * Away team name
@@ -461,9 +463,9 @@ export declare namespace Matches {
     type MatchGetLessonResponse as MatchGetLessonResponse,
     type MatchGetTurningPointsResponse as MatchGetTurningPointsResponse,
     type MatchesSkipLimitPage as MatchesSkipLimitPage,
+    type MatchListParams as MatchListParams,
     type MatchCreateParams as MatchCreateParams,
     type MatchUpdateParams as MatchUpdateParams,
-    type MatchListParams as MatchListParams,
     type MatchStreamLiveParams as MatchStreamLiveParams,
   };
 

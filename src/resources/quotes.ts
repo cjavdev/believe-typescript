@@ -14,6 +14,24 @@ export class BaseQuotes extends APIResource {
   static override readonly _key: readonly ['quotes'] = Object.freeze(['quotes'] as const);
 
   /**
+   * Get a paginated list of all memorable Ted Lasso quotes with optional filtering.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const quote of client.quotes.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: QuoteListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<QuotesSkipLimitPage, Quote> {
+    return this._client.getAPIList('/quotes', SkipLimitPage<Quote>, { query, ...options });
+  }
+
+  /**
    * Add a new memorable quote to the collection.
    *
    * @example
@@ -30,6 +48,21 @@ export class BaseQuotes extends APIResource {
    */
   create(body: QuoteCreateParams, options?: RequestOptions): APIPromise<Quote> {
     return this._client.post('/quotes', { body, ...options });
+  }
+
+  /**
+   * Get a random Ted Lasso quote, optionally filtered.
+   *
+   * @example
+   * ```ts
+   * const quote = await client.quotes.getRandom();
+   * ```
+   */
+  getRandom(
+    query: QuoteGetRandomParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Quote> {
+    return this._client.get('/quotes/random', { query, ...options });
   }
 
   /**
@@ -57,24 +90,6 @@ export class BaseQuotes extends APIResource {
   }
 
   /**
-   * Get a paginated list of all memorable Ted Lasso quotes with optional filtering.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const quote of client.quotes.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: QuoteListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<QuotesSkipLimitPage, Quote> {
-    return this._client.getAPIList('/quotes', SkipLimitPage<Quote>, { query, ...options });
-  }
-
-  /**
    * Remove a quote from the collection.
    *
    * @example
@@ -86,45 +101,6 @@ export class BaseQuotes extends APIResource {
     return this._client.delete(path`/quotes/${quoteID}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
-  }
-
-  /**
-   * Get a random Ted Lasso quote, optionally filtered.
-   *
-   * @example
-   * ```ts
-   * const quote = await client.quotes.getRandom();
-   * ```
-   */
-  getRandom(
-    query: QuoteGetRandomParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Quote> {
-    return this._client.get('/quotes/random', { query, ...options });
-  }
-
-  /**
-   * Get a paginated list of quotes from a specific character.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const quote of client.quotes.listByCharacter(
-   *   'character_id',
-   * )) {
-   *   // ...
-   * }
-   * ```
-   */
-  listByCharacter(
-    characterID: string,
-    query: QuoteListByCharacterParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<QuotesSkipLimitPage, Quote> {
-    return this._client.getAPIList(path`/quotes/characters/${characterID}`, SkipLimitPage<Quote>, {
-      query,
-      ...options,
     });
   }
 
@@ -147,6 +123,30 @@ export class BaseQuotes extends APIResource {
     options?: RequestOptions,
   ): PagePromise<QuotesSkipLimitPage, Quote> {
     return this._client.getAPIList(path`/quotes/themes/${theme}`, SkipLimitPage<Quote>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
+   * Get a paginated list of quotes from a specific character.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const quote of client.quotes.listByCharacter(
+   *   'character_id',
+   * )) {
+   *   // ...
+   * }
+   * ```
+   */
+  listByCharacter(
+    characterID: string,
+    query: QuoteListByCharacterParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<QuotesSkipLimitPage, Quote> {
+    return this._client.getAPIList(path`/quotes/characters/${characterID}`, SkipLimitPage<Quote>, {
       query,
       ...options,
     });
@@ -301,6 +301,33 @@ export type QuoteTheme =
   | 'narcissism'
   | 'maturity';
 
+export interface QuoteListParams extends SkipLimitPageParams {
+  /**
+   * Filter by character
+   */
+  character_id?: string | null;
+
+  /**
+   * Filter funny quotes
+   */
+  funny?: boolean | null;
+
+  /**
+   * Filter inspirational quotes
+   */
+  inspirational?: boolean | null;
+
+  /**
+   * Filter by moment type
+   */
+  moment_type?: QuoteMoment | null;
+
+  /**
+   * Filter by theme
+   */
+  theme?: QuoteTheme | null;
+}
+
 export interface QuoteCreateParams {
   /**
    * ID of the character who said it
@@ -358,6 +385,23 @@ export interface QuoteCreateParams {
   times_shared?: number | null;
 }
 
+export interface QuoteGetRandomParams {
+  /**
+   * Filter by character
+   */
+  character_id?: string | null;
+
+  /**
+   * Filter inspirational quotes
+   */
+  inspirational?: boolean | null;
+
+  /**
+   * Filter by theme
+   */
+  theme?: QuoteTheme | null;
+}
+
 export interface QuoteUpdateParams {
   character_id?: string | null;
 
@@ -388,53 +432,9 @@ export interface QuoteUpdateParams {
   times_shared?: number | null;
 }
 
-export interface QuoteListParams extends SkipLimitPageParams {
-  /**
-   * Filter by character
-   */
-  character_id?: string | null;
-
-  /**
-   * Filter funny quotes
-   */
-  funny?: boolean | null;
-
-  /**
-   * Filter inspirational quotes
-   */
-  inspirational?: boolean | null;
-
-  /**
-   * Filter by moment type
-   */
-  moment_type?: QuoteMoment | null;
-
-  /**
-   * Filter by theme
-   */
-  theme?: QuoteTheme | null;
-}
-
-export interface QuoteGetRandomParams {
-  /**
-   * Filter by character
-   */
-  character_id?: string | null;
-
-  /**
-   * Filter inspirational quotes
-   */
-  inspirational?: boolean | null;
-
-  /**
-   * Filter by theme
-   */
-  theme?: QuoteTheme | null;
-}
+export interface QuoteListByThemeParams extends SkipLimitPageParams {}
 
 export interface QuoteListByCharacterParams extends SkipLimitPageParams {}
-
-export interface QuoteListByThemeParams extends SkipLimitPageParams {}
 
 export declare namespace Quotes {
   export {
@@ -443,11 +443,11 @@ export declare namespace Quotes {
     type QuoteMoment as QuoteMoment,
     type QuoteTheme as QuoteTheme,
     type QuotesSkipLimitPage as QuotesSkipLimitPage,
-    type QuoteCreateParams as QuoteCreateParams,
-    type QuoteUpdateParams as QuoteUpdateParams,
     type QuoteListParams as QuoteListParams,
+    type QuoteCreateParams as QuoteCreateParams,
     type QuoteGetRandomParams as QuoteGetRandomParams,
-    type QuoteListByCharacterParams as QuoteListByCharacterParams,
+    type QuoteUpdateParams as QuoteUpdateParams,
     type QuoteListByThemeParams as QuoteListByThemeParams,
+    type QuoteListByCharacterParams as QuoteListByCharacterParams,
   };
 }

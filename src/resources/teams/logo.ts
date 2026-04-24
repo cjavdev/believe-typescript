@@ -15,22 +15,21 @@ export class BaseLogo extends APIResource {
   static override readonly _key: readonly ['teams', 'logo'] = Object.freeze(['teams', 'logo'] as const);
 
   /**
-   * Delete a team's logo.
+   * Upload a logo image for a team. Accepts image files (jpg, png, gif, webp).
    *
    * @example
    * ```ts
-   * await client.teams.logo.delete(
-   *   '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *   { team_id: 'team_id' },
+   * const fileUpload = await client.teams.logo.upload(
+   *   'team_id',
+   *   { file: fs.createReadStream('path/to/file') },
    * );
    * ```
    */
-  delete(fileID: string, params: LogoDeleteParams, options?: RequestOptions): APIPromise<void> {
-    const { team_id } = params;
-    return this._client.delete(path`/teams/${team_id}/logo/${fileID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  upload(teamID: string, body: LogoUploadParams, options?: RequestOptions): APIPromise<FileUpload> {
+    return this._client.post(
+      path`/teams/${teamID}/logo`,
+      multipartFormRequestOptions({ body, ...options }, this._client),
+    );
   }
 
   /**
@@ -50,21 +49,22 @@ export class BaseLogo extends APIResource {
   }
 
   /**
-   * Upload a logo image for a team. Accepts image files (jpg, png, gif, webp).
+   * Delete a team's logo.
    *
    * @example
    * ```ts
-   * const fileUpload = await client.teams.logo.upload(
-   *   'team_id',
-   *   { file: fs.createReadStream('path/to/file') },
+   * await client.teams.logo.delete(
+   *   '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   { team_id: 'team_id' },
    * );
    * ```
    */
-  upload(teamID: string, body: LogoUploadParams, options?: RequestOptions): APIPromise<FileUpload> {
-    return this._client.post(
-      path`/teams/${teamID}/logo`,
-      multipartFormRequestOptions({ body, ...options }, this._client),
-    );
+  delete(fileID: string, params: LogoDeleteParams, options?: RequestOptions): APIPromise<void> {
+    const { team_id } = params;
+    return this._client.delete(path`/teams/${team_id}/logo/${fileID}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 /**
@@ -91,14 +91,6 @@ export interface FileUpload {
 
 export type LogoDownloadResponse = unknown;
 
-export interface LogoDeleteParams {
-  team_id: string;
-}
-
-export interface LogoDownloadParams {
-  team_id: string;
-}
-
 export interface LogoUploadParams {
   /**
    * Logo image file
@@ -106,12 +98,20 @@ export interface LogoUploadParams {
   file: Uploadable;
 }
 
+export interface LogoDownloadParams {
+  team_id: string;
+}
+
+export interface LogoDeleteParams {
+  team_id: string;
+}
+
 export declare namespace Logo {
   export {
     type FileUpload as FileUpload,
     type LogoDownloadResponse as LogoDownloadResponse,
-    type LogoDeleteParams as LogoDeleteParams,
-    type LogoDownloadParams as LogoDownloadParams,
     type LogoUploadParams as LogoUploadParams,
+    type LogoDownloadParams as LogoDownloadParams,
+    type LogoDeleteParams as LogoDeleteParams,
   };
 }
