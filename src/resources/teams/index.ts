@@ -5,9 +5,9 @@ export {
   BaseLogo,
   type FileUpload,
   type LogoDownloadResponse,
-  type LogoDeleteParams,
-  type LogoDownloadParams,
   type LogoUploadParams,
+  type LogoDownloadParams,
+  type LogoDeleteParams,
 } from './logo';
 export {
   Teams,
@@ -19,8 +19,8 @@ export {
   type TeamGetCultureResponse,
   type TeamGetRivalsResponse,
   type TeamListLogosResponse,
+  type TeamListParams,
   type TeamCreateParams,
   type TeamUpdateParams,
-  type TeamListParams,
   type TeamsSkipLimitPage,
 } from './teams';

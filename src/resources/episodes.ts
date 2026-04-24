@@ -14,28 +14,38 @@ export class BaseEpisodes extends APIResource {
   static override readonly _key: readonly ['episodes'] = Object.freeze(['episodes'] as const);
 
   /**
+   * Get a paginated list of all Ted Lasso episodes with optional filtering by season.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const episode of client.episodes.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: EpisodeListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<EpisodesSkipLimitPage, Episode> {
+    return this._client.getAPIList('/episodes', SkipLimitPage<Episode>, { query, ...options });
+  }
+
+  /**
    * Add a new episode to the series.
    *
    * @example
    * ```ts
    * const episode = await client.episodes.create({
    *   air_date: '2020-10-02',
-   *   character_focus: [
-   *     'ted-lasso',
-   *     'coach-beard',
-   *     'higgins',
-   *     'nate',
-   *   ],
+   *   character_focus: ['ted-lasso', 'coach-beard', 'higgins', 'nate'],
    *   director: 'MJ Delaney',
    *   episode_number: 8,
-   *   main_theme:
-   *     'The power of vulnerability and male friendship',
+   *   main_theme: 'The power of vulnerability and male friendship',
    *   runtime_minutes: 29,
    *   season: 1,
-   *   synopsis:
-   *     'Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.',
-   *   ted_wisdom:
-   *     "There's two buttons I never like to hit: that's panic and snooze.",
+   *   synopsis: 'Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.',
+   *   ted_wisdom: 'There\'s two buttons I never like to hit: that\'s panic and snooze.',
    *   title: 'The Diamond Dogs',
    *   writer: 'Jason Sudeikis, Brendan Hunt, Joe Kelly',
    * });
@@ -50,9 +60,7 @@ export class BaseEpisodes extends APIResource {
    *
    * @example
    * ```ts
-   * const episode = await client.episodes.retrieve(
-   *   'episode_id',
-   * );
+   * const episode = await client.episodes.retrieve('episode_id');
    * ```
    */
   retrieve(episodeID: string, options?: RequestOptions): APIPromise<Episode> {
@@ -72,30 +80,11 @@ export class BaseEpisodes extends APIResource {
   }
 
   /**
-   * Get a paginated list of all Ted Lasso episodes with optional filtering by
-   * season.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const episode of client.episodes.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: EpisodeListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<EpisodesSkipLimitPage, Episode> {
-    return this._client.getAPIList('/episodes', SkipLimitPage<Episode>, { query, ...options });
-  }
-
-  /**
    * Remove an episode from the database.
    *
    * @example
    * ```ts
-   * await client.episodes.delete('episode_id');
+   * await client.episodes.delete('episode_id')
    * ```
    */
   delete(episodeID: string, options?: RequestOptions): APIPromise<void> {
@@ -110,9 +99,7 @@ export class BaseEpisodes extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.episodes.getWisdom(
-   *   'episode_id',
-   * );
+   * const response = await client.episodes.getWisdom('episode_id');
    * ```
    */
   getWisdom(episodeID: string, options?: RequestOptions): APIPromise<EpisodeGetWisdomResponse> {
@@ -238,6 +225,18 @@ export interface PaginatedResponse {
 
 export type EpisodeGetWisdomResponse = { [key: string]: unknown };
 
+export interface EpisodeListParams extends SkipLimitPageParams {
+  /**
+   * Filter by character focus (character ID)
+   */
+  character_focus?: string | null;
+
+  /**
+   * Filter by season
+   */
+  season?: number | null;
+}
+
 export interface EpisodeCreateParams {
   /**
    * Original air date
@@ -347,26 +346,14 @@ export interface EpisodeUpdateParams {
   writer?: string | null;
 }
 
-export interface EpisodeListParams extends SkipLimitPageParams {
-  /**
-   * Filter by character focus (character ID)
-   */
-  character_focus?: string | null;
-
-  /**
-   * Filter by season
-   */
-  season?: number | null;
-}
-
 export declare namespace Episodes {
   export {
     type Episode as Episode,
     type PaginatedResponse as PaginatedResponse,
     type EpisodeGetWisdomResponse as EpisodeGetWisdomResponse,
     type EpisodesSkipLimitPage as EpisodesSkipLimitPage,
+    type EpisodeListParams as EpisodeListParams,
     type EpisodeCreateParams as EpisodeCreateParams,
     type EpisodeUpdateParams as EpisodeUpdateParams,
-    type EpisodeListParams as EpisodeListParams,
   };
 }

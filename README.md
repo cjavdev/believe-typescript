@@ -36,7 +36,7 @@ const client = new Believe({
 });
 
 const page = await client.characters.list();
-const character = page.data[0];
+const character = page.data[0]
 
 console.log(character.id);
 ```
@@ -53,7 +53,7 @@ const client = new Believe({
   apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted
 });
 
-const [character]: [Believe.Character] = await client.characters.list();
+const [ character ]: [Believe.Character] = await client.characters.list();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -84,9 +84,7 @@ await client.teams.logo.upload('team_id', { file: await fetch('https://somesite/
 
 // Finally, if none of the above are convenient, you can use our `toFile` helper:
 await client.teams.logo.upload('team_id', { file: await toFile(Buffer.from('my bytes'), 'file') });
-await client.teams.logo.upload('team_id', {
-  file: await toFile(new Uint8Array([0, 1, 2]), 'file'),
-});
+await client.teams.logo.upload('team_id', { file: await toFile(new Uint8Array([0, 1, 2]), 'file') });
 ```
 
 ## Handling errors
@@ -97,15 +95,16 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const page = await client.characters.list().catch(async (err) => {
-  if (err instanceof Believe.APIError) {
-    console.log(err.status); // 400
-    console.log(err.name); // BadRequestError
-    console.log(err.headers); // {server: 'nginx', ...}
-  } else {
-    throw err;
-  }
-});
+const page = await client.characters.list()
+  .catch(async (err) => {
+    if (err instanceof Believe.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  })
 ```
 
 Error codes are as follows:
@@ -211,21 +210,9 @@ const client = createClient({
 });
 
 // ... then make API calls as usual.
-const character = await client.characters.create({
-  background:
-    'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
-  emotional_stats: {
-    curiosity: 40,
-    empathy: 85,
-    optimism: 45,
-    resilience: 95,
-    vulnerability: 60,
-  },
-  name: 'Roy Kent',
-  personality_traits: ['intense', 'loyal', 'secretly caring', 'profane'],
-  role: 'coach',
-});
-await client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { team_id: 'team_id' });
+const page = await client.characters.list();
+const character = page.data[0];
+const fileUpload = await client.teams.logo.upload('team_id', { file: fs.createReadStream('path/to/file') });
 ```
 
 Each API resource has two versions, the full resource (e.g., `Characters`) which includes all subresources, and the base resource (e.g., `BaseCharacters`) which does not.
@@ -246,20 +233,8 @@ const client: PartialBelieve<{ characters: BaseCharacters }> = createClient({
 
 // Function parameter type
 async function main(client: PartialBelieve<{ characters: BaseCharacters }>) {
-  const character = await client.characters.create({
-    background:
-      'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
-    emotional_stats: {
-      curiosity: 40,
-      empathy: 85,
-      optimism: 45,
-      resilience: 95,
-      vulnerability: 60,
-    },
-    name: 'Roy Kent',
-    personality_traits: ['intense', 'loyal', 'secretly caring', 'profane'],
-    role: 'coach',
-  });
+  const page = await client.characters.list();
+  const character = page.data[0];
 }
 
 // Works with any client that has the characters resource

@@ -15,10 +15,7 @@ export class BaseReframe extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.reframe.transformNegativeThoughts({
-   *     negative_thought: "I'm not good enough for this job.",
-   *   });
+   * const response = await client.reframe.transformNegativeThoughts({ negative_thought: 'I\'m not good enough for this job.' });
    * ```
    */
   transformNegativeThoughts(

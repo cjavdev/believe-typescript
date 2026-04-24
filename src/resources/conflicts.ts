@@ -17,8 +17,7 @@ export class BaseConflicts extends APIResource {
    * ```ts
    * const response = await client.conflicts.resolve({
    *   conflict_type: 'interpersonal',
-   *   description:
-   *     "Alex keeps taking credit for my ideas in meetings and I'm getting resentful.",
+   *   description: 'Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.',
    *   parties_involved: ['Me', 'My teammate Alex'],
    * });
    * ```

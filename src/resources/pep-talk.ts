@@ -11,9 +11,7 @@ export class BasePepTalk extends APIResource {
   static override readonly _key: readonly ['pepTalk'] = Object.freeze(['pepTalk'] as const);
 
   /**
-   * Get a motivational pep talk from Ted Lasso himself. By default returns the
-   * complete pep talk. Add `?stream=true` to get Server-Sent Events (SSE) streaming
-   * the pep talk chunk by chunk.
+   * Get a motivational pep talk from Ted Lasso himself. By default returns the complete pep talk. Add `?stream=true` to get Server-Sent Events (SSE) streaming the pep talk chunk by chunk.
    *
    * @example
    * ```ts
@@ -68,8 +66,7 @@ export namespace PepTalkRetrieveResponse {
     text: string;
 
     /**
-     * The emotional purpose of this chunk (e.g., greeting, acknowledgment, wisdom,
-     * affirmation, encouragement)
+     * The emotional purpose of this chunk (e.g., greeting, acknowledgment, wisdom, affirmation, encouragement)
      */
     emotional_beat?: string | null;
   }

@@ -15,11 +15,7 @@ export class BaseBelieveResource extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.believe.submit({
-   *   situation:
-   *     "I just got passed over for a promotion I've been working toward for two years.",
-   *   situation_type: 'work_challenge',
-   * });
+   * const response = await client.believe.submit({ situation: 'I just got passed over for a promotion I\'ve been working toward for two years.', situation_type: 'work_challenge' });
    * ```
    */
   submit(body: BelieveSubmitParams, options?: RequestOptions): APIPromise<BelieveSubmitResponse> {

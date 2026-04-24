@@ -15,14 +15,11 @@ export class BaseCommentary extends APIResource {
   ] as const);
 
   /**
-   * Stream live match commentary for a specific match. Uses Server-Sent Events (SSE)
-   * to stream commentary events in real-time.
+   * Stream live match commentary for a specific match. Uses Server-Sent Events (SSE) to stream commentary events in real-time.
    *
    * @example
    * ```ts
-   * const response = await client.matches.commentary.stream(
-   *   'match_id',
-   * );
+   * const response = await client.matches.commentary.stream('match_id');
    * ```
    */
   stream(matchID: string, options?: RequestOptions): APIPromise<unknown> {

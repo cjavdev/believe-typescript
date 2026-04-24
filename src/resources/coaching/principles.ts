@@ -16,19 +16,6 @@ export class BasePrinciples extends APIResource {
   ] as const);
 
   /**
-   * Get details about a specific coaching principle.
-   *
-   * @example
-   * ```ts
-   * const coachingPrinciple =
-   *   await client.coaching.principles.retrieve('principle_id');
-   * ```
-   */
-  retrieve(principleID: string, options?: RequestOptions): APIPromise<CoachingPrinciple> {
-    return this._client.get(path`/coaching/principles/${principleID}`, options);
-  }
-
-  /**
    * Get a paginated list of Ted Lasso's core coaching principles and philosophy.
    *
    * @example
@@ -50,12 +37,23 @@ export class BasePrinciples extends APIResource {
   }
 
   /**
+   * Get details about a specific coaching principle.
+   *
+   * @example
+   * ```ts
+   * const coachingPrinciple = await client.coaching.principles.retrieve('principle_id');
+   * ```
+   */
+  retrieve(principleID: string, options?: RequestOptions): APIPromise<CoachingPrinciple> {
+    return this._client.get(path`/coaching/principles/${principleID}`, options);
+  }
+
+  /**
    * Get a random coaching principle to inspire your day.
    *
    * @example
    * ```ts
-   * const coachingPrinciple =
-   *   await client.coaching.principles.getRandom();
+   * const coachingPrinciple = await client.coaching.principles.getRandom();
    * ```
    */
   getRandom(options?: RequestOptions): APIPromise<CoachingPrinciple> {

@@ -13,6 +13,24 @@ export class BaseMatches extends APIResource {
   static override readonly _key: readonly ['matches'] = Object.freeze(['matches'] as const);
 
   /**
+   * Get a paginated list of all matches with optional filtering.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const match of client.matches.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: MatchListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<MatchesSkipLimitPage, Match> {
+    return this._client.getAPIList('/matches', SkipLimitPage<Match>, { query, ...options });
+  }
+
+  /**
    * Schedule a new match.
    *
    * @example
@@ -54,29 +72,11 @@ export class BaseMatches extends APIResource {
   }
 
   /**
-   * Get a paginated list of all matches with optional filtering.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const match of client.matches.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: MatchListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<MatchesSkipLimitPage, Match> {
-    return this._client.getAPIList('/matches', SkipLimitPage<Match>, { query, ...options });
-  }
-
-  /**
    * Remove a match from the database.
    *
    * @example
    * ```ts
-   * await client.matches.delete('match_id');
+   * await client.matches.delete('match_id')
    * ```
    */
   delete(matchID: string, options?: RequestOptions): APIPromise<void> {
@@ -84,6 +84,18 @@ export class BaseMatches extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
+  }
+
+  /**
+   * Get all turning points from a specific match.
+   *
+   * @example
+   * ```ts
+   * const response = await client.matches.getTurningPoints('match_id');
+   * ```
+   */
+  getTurningPoints(matchID: string, options?: RequestOptions): APIPromise<MatchGetTurningPointsResponse> {
+    return this._client.get(path`/matches/${matchID}/turning-points`, options);
   }
 
   /**
@@ -99,40 +111,25 @@ export class BaseMatches extends APIResource {
   }
 
   /**
-   * Get all turning points from a specific match.
-   *
-   * @example
-   * ```ts
-   * const response = await client.matches.getTurningPoints(
-   *   'match_id',
-   * );
-   * ```
-   */
-  getTurningPoints(matchID: string, options?: RequestOptions): APIPromise<MatchGetTurningPointsResponse> {
-    return this._client.get(path`/matches/${matchID}/turning-points`, options);
-  }
-
-  /**
    * WebSocket endpoint for real-time live match simulation.
    *
-   * Connect to receive a stream of match events as they happen in a simulated
-   * football match.
+   * Connect to receive a stream of match events as they happen in a simulated football match.
    *
    * ## Connection
    *
-   * Connect via WebSocket with optional query parameters to customize the
-   * simulation.
+   * Connect via WebSocket with optional query parameters to customize the simulation.
    *
    * ## Example WebSocket URL
    *
    * ```
-   * ws://localhost:8000/matches/live?home_team=AFC%20Richmond&away_team=Manchester%20City&speed=2.0&excitement_level=7
+   * ws://localhost:8000/matches/live
    * ```
+   *
+   * Append query parameters from the list above to customize the simulation.
    *
    * ## Server Messages
    *
    * The server sends JSON messages with these types:
-   *
    * - `match_start` - When the match begins
    * - `match_event` - For each match event (goals, fouls, cards, etc.)
    * - `match_end` - When the match concludes
@@ -142,7 +139,6 @@ export class BaseMatches extends APIResource {
    * ## Client Messages
    *
    * Send JSON to control the simulation:
-   *
    * - `{"action": "ping"}` - Keep-alive, server responds with `{"type": "pong"}`
    * - `{"action": "pause"}` - Pause the simulation
    * - `{"action": "resume"}` - Resume a paused simulation
@@ -151,7 +147,7 @@ export class BaseMatches extends APIResource {
    *
    * @example
    * ```ts
-   * await client.matches.streamLive();
+   * await client.matches.streamLive()
    * ```
    */
   streamLive(
@@ -295,6 +291,23 @@ export type MatchGetLessonResponse = { [key: string]: unknown };
 
 export type MatchGetTurningPointsResponse = Array<{ [key: string]: unknown }>;
 
+export interface MatchListParams extends SkipLimitPageParams {
+  /**
+   * Filter by match type
+   */
+  match_type?: MatchType | null;
+
+  /**
+   * Filter by result
+   */
+  result?: MatchResult | null;
+
+  /**
+   * Filter by team (home or away)
+   */
+  team_id?: string | null;
+}
+
 export interface MatchCreateParams {
   /**
    * Away team ID
@@ -410,23 +423,6 @@ export interface MatchUpdateParams {
   weather_temp_celsius?: number | null;
 }
 
-export interface MatchListParams extends SkipLimitPageParams {
-  /**
-   * Filter by match type
-   */
-  match_type?: MatchType | null;
-
-  /**
-   * Filter by result
-   */
-  result?: MatchResult | null;
-
-  /**
-   * Filter by team (home or away)
-   */
-  team_id?: string | null;
-}
-
 export interface MatchStreamLiveParams {
   /**
    * Away team name
@@ -461,9 +457,9 @@ export declare namespace Matches {
     type MatchGetLessonResponse as MatchGetLessonResponse,
     type MatchGetTurningPointsResponse as MatchGetTurningPointsResponse,
     type MatchesSkipLimitPage as MatchesSkipLimitPage,
+    type MatchListParams as MatchListParams,
     type MatchCreateParams as MatchCreateParams,
     type MatchUpdateParams as MatchUpdateParams,
-    type MatchListParams as MatchListParams,
     type MatchStreamLiveParams as MatchStreamLiveParams,
   };
 

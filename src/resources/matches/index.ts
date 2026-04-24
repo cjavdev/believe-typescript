@@ -10,9 +10,9 @@ export {
   type TurningPoint,
   type MatchGetLessonResponse,
   type MatchGetTurningPointsResponse,
+  type MatchListParams,
   type MatchCreateParams,
   type MatchUpdateParams,
-  type MatchListParams,
   type MatchStreamLiveParams,
   type MatchesSkipLimitPage,
 } from './matches';

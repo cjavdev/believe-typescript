@@ -17,6 +17,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/',
   },
   {
+    clientCallName: 'client.characters.list',
+    fullyQualifiedName: 'characters.list',
+    httpMethod: 'get',
+    httpPath: '/characters',
+  },
+  {
     clientCallName: 'client.characters.create',
     fullyQualifiedName: 'characters.create',
     httpMethod: 'post',
@@ -35,12 +41,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/characters/{character_id}',
   },
   {
-    clientCallName: 'client.characters.list',
-    fullyQualifiedName: 'characters.list',
-    httpMethod: 'get',
-    httpPath: '/characters',
-  },
-  {
     clientCallName: 'client.characters.delete',
     fullyQualifiedName: 'characters.delete',
     httpMethod: 'delete',
@@ -51,6 +51,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'characters.getQuotes',
     httpMethod: 'get',
     httpPath: '/characters/{character_id}/quotes',
+  },
+  {
+    clientCallName: 'client.teams.list',
+    fullyQualifiedName: 'teams.list',
+    httpMethod: 'get',
+    httpPath: '/teams',
   },
   {
     clientCallName: 'client.teams.create',
@@ -71,22 +77,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/teams/{team_id}',
   },
   {
-    clientCallName: 'client.teams.list',
-    fullyQualifiedName: 'teams.list',
-    httpMethod: 'get',
-    httpPath: '/teams',
-  },
-  {
     clientCallName: 'client.teams.delete',
     fullyQualifiedName: 'teams.delete',
     httpMethod: 'delete',
     httpPath: '/teams/{team_id}',
-  },
-  {
-    clientCallName: 'client.teams.getCulture',
-    fullyQualifiedName: 'teams.getCulture',
-    httpMethod: 'get',
-    httpPath: '/teams/{team_id}/culture',
   },
   {
     clientCallName: 'client.teams.getRivals',
@@ -95,16 +89,22 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/teams/{team_id}/rivals',
   },
   {
+    clientCallName: 'client.teams.getCulture',
+    fullyQualifiedName: 'teams.getCulture',
+    httpMethod: 'get',
+    httpPath: '/teams/{team_id}/culture',
+  },
+  {
     clientCallName: 'client.teams.listLogos',
     fullyQualifiedName: 'teams.listLogos',
     httpMethod: 'get',
     httpPath: '/teams/{team_id}/logos',
   },
   {
-    clientCallName: 'client.teams.logo.delete',
-    fullyQualifiedName: 'teams.logo.delete',
-    httpMethod: 'delete',
-    httpPath: '/teams/{team_id}/logo/{file_id}',
+    clientCallName: 'client.teams.logo.upload',
+    fullyQualifiedName: 'teams.logo.upload',
+    httpMethod: 'post',
+    httpPath: '/teams/{team_id}/logo',
   },
   {
     clientCallName: 'client.teams.logo.download',
@@ -113,10 +113,16 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/teams/{team_id}/logo/{file_id}',
   },
   {
-    clientCallName: 'client.teams.logo.upload',
-    fullyQualifiedName: 'teams.logo.upload',
-    httpMethod: 'post',
-    httpPath: '/teams/{team_id}/logo',
+    clientCallName: 'client.teams.logo.delete',
+    fullyQualifiedName: 'teams.logo.delete',
+    httpMethod: 'delete',
+    httpPath: '/teams/{team_id}/logo/{file_id}',
+  },
+  {
+    clientCallName: 'client.matches.list',
+    fullyQualifiedName: 'matches.list',
+    httpMethod: 'get',
+    httpPath: '/matches',
   },
   {
     clientCallName: 'client.matches.create',
@@ -137,28 +143,22 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/matches/{match_id}',
   },
   {
-    clientCallName: 'client.matches.list',
-    fullyQualifiedName: 'matches.list',
-    httpMethod: 'get',
-    httpPath: '/matches',
-  },
-  {
     clientCallName: 'client.matches.delete',
     fullyQualifiedName: 'matches.delete',
     httpMethod: 'delete',
     httpPath: '/matches/{match_id}',
   },
   {
-    clientCallName: 'client.matches.getLesson',
-    fullyQualifiedName: 'matches.getLesson',
-    httpMethod: 'get',
-    httpPath: '/matches/{match_id}/lesson',
-  },
-  {
     clientCallName: 'client.matches.getTurningPoints',
     fullyQualifiedName: 'matches.getTurningPoints',
     httpMethod: 'get',
     httpPath: '/matches/{match_id}/turning-points',
+  },
+  {
+    clientCallName: 'client.matches.getLesson',
+    fullyQualifiedName: 'matches.getLesson',
+    httpMethod: 'get',
+    httpPath: '/matches/{match_id}/lesson',
   },
   {
     clientCallName: 'client.matches.streamLive',
@@ -171,6 +171,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'matches.commentary.stream',
     httpMethod: 'post',
     httpPath: '/matches/{match_id}/commentary/stream',
+  },
+  {
+    clientCallName: 'client.episodes.list',
+    fullyQualifiedName: 'episodes.list',
+    httpMethod: 'get',
+    httpPath: '/episodes',
   },
   {
     clientCallName: 'client.episodes.create',
@@ -191,12 +197,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/episodes/{episode_id}',
   },
   {
-    clientCallName: 'client.episodes.list',
-    fullyQualifiedName: 'episodes.list',
-    httpMethod: 'get',
-    httpPath: '/episodes',
-  },
-  {
     clientCallName: 'client.episodes.delete',
     fullyQualifiedName: 'episodes.delete',
     httpMethod: 'delete',
@@ -209,10 +209,22 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/episodes/{episode_id}/wisdom',
   },
   {
+    clientCallName: 'client.quotes.list',
+    fullyQualifiedName: 'quotes.list',
+    httpMethod: 'get',
+    httpPath: '/quotes',
+  },
+  {
     clientCallName: 'client.quotes.create',
     fullyQualifiedName: 'quotes.create',
     httpMethod: 'post',
     httpPath: '/quotes',
+  },
+  {
+    clientCallName: 'client.quotes.getRandom',
+    fullyQualifiedName: 'quotes.getRandom',
+    httpMethod: 'get',
+    httpPath: '/quotes/random',
   },
   {
     clientCallName: 'client.quotes.retrieve',
@@ -227,34 +239,22 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/quotes/{quote_id}',
   },
   {
-    clientCallName: 'client.quotes.list',
-    fullyQualifiedName: 'quotes.list',
-    httpMethod: 'get',
-    httpPath: '/quotes',
-  },
-  {
     clientCallName: 'client.quotes.delete',
     fullyQualifiedName: 'quotes.delete',
     httpMethod: 'delete',
     httpPath: '/quotes/{quote_id}',
   },
   {
-    clientCallName: 'client.quotes.getRandom',
-    fullyQualifiedName: 'quotes.getRandom',
+    clientCallName: 'client.quotes.listByTheme',
+    fullyQualifiedName: 'quotes.listByTheme',
     httpMethod: 'get',
-    httpPath: '/quotes/random',
+    httpPath: '/quotes/themes/{theme}',
   },
   {
     clientCallName: 'client.quotes.listByCharacter',
     fullyQualifiedName: 'quotes.listByCharacter',
     httpMethod: 'get',
     httpPath: '/quotes/characters/{character_id}',
-  },
-  {
-    clientCallName: 'client.quotes.listByTheme',
-    fullyQualifiedName: 'quotes.listByTheme',
-    httpMethod: 'get',
-    httpPath: '/quotes/themes/{theme}',
   },
   {
     clientCallName: 'client.believe.submit',
@@ -281,28 +281,22 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/press',
   },
   {
-    clientCallName: 'client.coaching.principles.retrieve',
-    fullyQualifiedName: 'coaching.principles.retrieve',
-    httpMethod: 'get',
-    httpPath: '/coaching/principles/{principle_id}',
-  },
-  {
     clientCallName: 'client.coaching.principles.list',
     fullyQualifiedName: 'coaching.principles.list',
     httpMethod: 'get',
     httpPath: '/coaching/principles',
   },
   {
+    clientCallName: 'client.coaching.principles.retrieve',
+    fullyQualifiedName: 'coaching.principles.retrieve',
+    httpMethod: 'get',
+    httpPath: '/coaching/principles/{principle_id}',
+  },
+  {
     clientCallName: 'client.coaching.principles.getRandom',
     fullyQualifiedName: 'coaching.principles.getRandom',
     httpMethod: 'get',
     httpPath: '/coaching/principles/random',
-  },
-  {
-    clientCallName: 'client.biscuits.retrieve',
-    fullyQualifiedName: 'biscuits.retrieve',
-    httpMethod: 'get',
-    httpPath: '/biscuits/{biscuit_id}',
   },
   {
     clientCallName: 'client.biscuits.list',
@@ -317,6 +311,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/biscuits/fresh',
   },
   {
+    clientCallName: 'client.biscuits.retrieve',
+    fullyQualifiedName: 'biscuits.retrieve',
+    httpMethod: 'get',
+    httpPath: '/biscuits/{biscuit_id}',
+  },
+  {
     clientCallName: 'client.pepTalk.retrieve',
     fullyQualifiedName: 'pepTalk.retrieve',
     httpMethod: 'get',
@@ -327,6 +327,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'stream.testConnection',
     httpMethod: 'get',
     httpPath: '/stream/test',
+  },
+  {
+    clientCallName: 'client.teamMembers.list',
+    fullyQualifiedName: 'teamMembers.list',
+    httpMethod: 'get',
+    httpPath: '/team-members',
   },
   {
     clientCallName: 'client.teamMembers.create',
@@ -347,22 +353,10 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/team-members/{member_id}',
   },
   {
-    clientCallName: 'client.teamMembers.list',
-    fullyQualifiedName: 'teamMembers.list',
-    httpMethod: 'get',
-    httpPath: '/team-members',
-  },
-  {
     clientCallName: 'client.teamMembers.delete',
     fullyQualifiedName: 'teamMembers.delete',
     httpMethod: 'delete',
     httpPath: '/team-members/{member_id}',
-  },
-  {
-    clientCallName: 'client.teamMembers.listCoaches',
-    fullyQualifiedName: 'teamMembers.listCoaches',
-    httpMethod: 'get',
-    httpPath: '/team-members/coaches/',
   },
   {
     clientCallName: 'client.teamMembers.listPlayers',
@@ -371,10 +365,22 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/team-members/players/',
   },
   {
+    clientCallName: 'client.teamMembers.listCoaches',
+    fullyQualifiedName: 'teamMembers.listCoaches',
+    httpMethod: 'get',
+    httpPath: '/team-members/coaches/',
+  },
+  {
     clientCallName: 'client.teamMembers.listStaff',
     fullyQualifiedName: 'teamMembers.listStaff',
     httpMethod: 'get',
     httpPath: '/team-members/staff/',
+  },
+  {
+    clientCallName: 'client.webhooks.list',
+    fullyQualifiedName: 'webhooks.list',
+    httpMethod: 'get',
+    httpPath: '/webhooks',
   },
   {
     clientCallName: 'client.webhooks.create',
@@ -387,12 +393,6 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'webhooks.retrieve',
     httpMethod: 'get',
     httpPath: '/webhooks/{webhook_id}',
-  },
-  {
-    clientCallName: 'client.webhooks.list',
-    fullyQualifiedName: 'webhooks.list',
-    httpMethod: 'get',
-    httpPath: '/webhooks',
   },
   {
     clientCallName: 'client.webhooks.delete',
@@ -408,10 +408,22 @@ export const sdkMethods: SdkMethod[] = [
   },
   { clientCallName: 'client.webhooks.unwrap', fullyQualifiedName: 'webhooks.unwrap' },
   {
+    clientCallName: 'client.ticketSales.list',
+    fullyQualifiedName: 'ticketSales.list',
+    httpMethod: 'get',
+    httpPath: '/ticket-sales',
+  },
+  {
     clientCallName: 'client.ticketSales.create',
     fullyQualifiedName: 'ticketSales.create',
     httpMethod: 'post',
     httpPath: '/ticket-sales',
+  },
+  {
+    clientCallName: 'client.ticketSales.delete',
+    fullyQualifiedName: 'ticketSales.delete',
+    httpMethod: 'delete',
+    httpPath: '/ticket-sales/{ticket_sale_id}',
   },
   {
     clientCallName: 'client.ticketSales.retrieve',
@@ -423,18 +435,6 @@ export const sdkMethods: SdkMethod[] = [
     clientCallName: 'client.ticketSales.update',
     fullyQualifiedName: 'ticketSales.update',
     httpMethod: 'patch',
-    httpPath: '/ticket-sales/{ticket_sale_id}',
-  },
-  {
-    clientCallName: 'client.ticketSales.list',
-    fullyQualifiedName: 'ticketSales.list',
-    httpMethod: 'get',
-    httpPath: '/ticket-sales',
-  },
-  {
-    clientCallName: 'client.ticketSales.delete',
-    fullyQualifiedName: 'ticketSales.delete',
-    httpMethod: 'delete',
     httpPath: '/ticket-sales/{ticket_sale_id}',
   },
   {

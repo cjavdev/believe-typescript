@@ -15,10 +15,7 @@ export class BasePress extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.press.simulate({
-   *   question:
-   *     'Ted, your team just lost 5-0. How do you explain this embarrassing defeat?',
-   * });
+   * const response = await client.press.simulate({ question: 'Ted, your team just lost 5-0. How do you explain this embarrassing defeat?' });
    * ```
    */
   simulate(body: PressSimulateParams, options?: RequestOptions): APIPromise<PressSimulateResponse> {

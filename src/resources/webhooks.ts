@@ -12,12 +12,23 @@ export class BaseWebhooks extends APIResource {
   static override readonly _key: readonly ['webhooks'] = Object.freeze(['webhooks'] as const);
 
   /**
+   * Get a list of all registered webhook endpoints.
+   *
+   * @example
+   * ```ts
+   * const registeredWebhooks = await client.webhooks.list();
+   * ```
+   */
+  list(options?: RequestOptions): APIPromise<WebhookListResponse> {
+    return this._client.get('/webhooks', options);
+  }
+
+  /**
    * Register a new webhook endpoint to receive event notifications.
    *
    * ## Event Types
    *
    * Available event types to subscribe to:
-   *
    * - `match.completed` - Fired when a football match ends
    * - `team_member.transferred` - Fired when a player/coach joins or leaves a team
    *
@@ -26,19 +37,15 @@ export class BaseWebhooks extends APIResource {
    * ## Webhook Signatures
    *
    * All webhook deliveries include Standard Webhooks signature headers:
-   *
    * - `webhook-id` - Unique message identifier
    * - `webhook-timestamp` - Unix timestamp of when the webhook was sent
    * - `webhook-signature` - HMAC-SHA256 signature in format `v1,{base64_signature}`
    *
-   * Store the returned `secret` securely - you'll need it to verify webhook
-   * signatures.
+   * Store the returned `secret` securely - you'll need it to verify webhook signatures.
    *
    * @example
    * ```ts
-   * const webhook = await client.webhooks.create({
-   *   url: 'https://example.com/webhooks',
-   * });
+   * const webhook = await client.webhooks.create({ url: 'https://example.com/webhooks' });
    * ```
    */
   create(body: WebhookCreateParams, options?: RequestOptions): APIPromise<WebhookCreateResponse> {
@@ -50,25 +57,11 @@ export class BaseWebhooks extends APIResource {
    *
    * @example
    * ```ts
-   * const registeredWebhook = await client.webhooks.retrieve(
-   *   'webhook_id',
-   * );
+   * const registeredWebhook = await client.webhooks.retrieve('webhook_id');
    * ```
    */
   retrieve(webhookID: string, options?: RequestOptions): APIPromise<RegisteredWebhook> {
     return this._client.get(path`/webhooks/${webhookID}`, options);
-  }
-
-  /**
-   * Get a list of all registered webhook endpoints.
-   *
-   * @example
-   * ```ts
-   * const registeredWebhooks = await client.webhooks.list();
-   * ```
-   */
-  list(options?: RequestOptions): APIPromise<WebhookListResponse> {
-    return this._client.get('/webhooks', options);
   }
 
   /**
@@ -87,7 +80,6 @@ export class BaseWebhooks extends APIResource {
    * Trigger a webhook event and deliver it to all subscribed endpoints.
    *
    * This endpoint is useful for testing your webhook integration. It will:
-   *
    * 1. Generate an event with the specified type and payload
    * 2. Find all webhooks subscribed to that event type
    * 3. Send a POST request to each webhook URL with signature headers
@@ -100,13 +92,11 @@ export class BaseWebhooks extends APIResource {
    * ## Webhook Signature Headers
    *
    * Each webhook delivery includes:
-   *
    * - `webhook-id` - Unique event identifier (e.g., `evt_abc123...`)
    * - `webhook-timestamp` - Unix timestamp
    * - `webhook-signature` - HMAC-SHA256 signature (`v1,{base64}`)
    *
    * To verify signatures, compute:
-   *
    * ```
    * signature = HMAC-SHA256(
    *     key = base64_decode(secret_without_prefix),
@@ -116,9 +106,7 @@ export class BaseWebhooks extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.webhooks.triggerEvent({
-   *   event_type: 'match.completed',
-   * });
+   * const response = await client.webhooks.triggerEvent({ event_type: 'match.completed' });
    * ```
    */
   triggerEvent(
@@ -351,8 +339,7 @@ export namespace MatchCompletedWebhookEvent {
 }
 
 /**
- * Webhook event sent when a team member (player, coach, staff) transfers between
- * teams.
+ * Webhook event sent when a team member (player, coach, staff) transfers between teams.
  */
 export interface TeamMemberTransferredWebhookEvent {
   /**

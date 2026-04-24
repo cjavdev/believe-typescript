@@ -14,64 +14,6 @@ export class BaseCharacters extends APIResource {
   static override readonly _key: readonly ['characters'] = Object.freeze(['characters'] as const);
 
   /**
-   * Add a new character to the Ted Lasso universe.
-   *
-   * @example
-   * ```ts
-   * const character = await client.characters.create({
-   *   background:
-   *     'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
-   *   emotional_stats: {
-   *     curiosity: 40,
-   *     empathy: 85,
-   *     optimism: 45,
-   *     resilience: 95,
-   *     vulnerability: 60,
-   *   },
-   *   name: 'Roy Kent',
-   *   personality_traits: [
-   *     'intense',
-   *     'loyal',
-   *     'secretly caring',
-   *     'profane',
-   *   ],
-   *   role: 'coach',
-   * });
-   * ```
-   */
-  create(body: CharacterCreateParams, options?: RequestOptions): APIPromise<Character> {
-    return this._client.post('/characters', { body, ...options });
-  }
-
-  /**
-   * Retrieve detailed information about a specific character.
-   *
-   * @example
-   * ```ts
-   * const character = await client.characters.retrieve(
-   *   'character_id',
-   * );
-   * ```
-   */
-  retrieve(characterID: string, options?: RequestOptions): APIPromise<Character> {
-    return this._client.get(path`/characters/${characterID}`, options);
-  }
-
-  /**
-   * Update specific fields of an existing character.
-   *
-   * @example
-   * ```ts
-   * const character = await client.characters.update(
-   *   'character_id',
-   * );
-   * ```
-   */
-  update(characterID: string, body: CharacterUpdateParams, options?: RequestOptions): APIPromise<Character> {
-    return this._client.patch(path`/characters/${characterID}`, { body, ...options });
-  }
-
-  /**
    * Get a paginated list of Ted Lasso characters.
    *
    * @example
@@ -90,11 +32,59 @@ export class BaseCharacters extends APIResource {
   }
 
   /**
+   * Add a new character to the Ted Lasso universe.
+   *
+   * @example
+   * ```ts
+   * const character = await client.characters.create({
+   *   background: 'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
+   *   emotional_stats: {
+   *   curiosity: 40,
+   *   empathy: 85,
+   *   optimism: 45,
+   *   resilience: 95,
+   *   vulnerability: 60,
+   * },
+   *   name: 'Roy Kent',
+   *   personality_traits: ['intense', 'loyal', 'secretly caring', 'profane'],
+   *   role: 'coach',
+   * });
+   * ```
+   */
+  create(body: CharacterCreateParams, options?: RequestOptions): APIPromise<Character> {
+    return this._client.post('/characters', { body, ...options });
+  }
+
+  /**
+   * Retrieve detailed information about a specific character.
+   *
+   * @example
+   * ```ts
+   * const character = await client.characters.retrieve('character_id');
+   * ```
+   */
+  retrieve(characterID: string, options?: RequestOptions): APIPromise<Character> {
+    return this._client.get(path`/characters/${characterID}`, options);
+  }
+
+  /**
+   * Update specific fields of an existing character.
+   *
+   * @example
+   * ```ts
+   * const character = await client.characters.update('character_id');
+   * ```
+   */
+  update(characterID: string, body: CharacterUpdateParams, options?: RequestOptions): APIPromise<Character> {
+    return this._client.patch(path`/characters/${characterID}`, { body, ...options });
+  }
+
+  /**
    * Remove a character from the database.
    *
    * @example
    * ```ts
-   * await client.characters.delete('character_id');
+   * await client.characters.delete('character_id')
    * ```
    */
   delete(characterID: string, options?: RequestOptions): APIPromise<void> {
@@ -109,9 +99,7 @@ export class BaseCharacters extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.characters.getQuotes(
-   *   'character_id',
-   * );
+   * const response = await client.characters.getQuotes('character_id');
    * ```
    */
   getQuotes(characterID: string, options?: RequestOptions): APIPromise<CharacterGetQuotesResponse> {
@@ -277,6 +265,23 @@ export interface GrowthArc {
 
 export type CharacterGetQuotesResponse = Array<string>;
 
+export interface CharacterListParams extends SkipLimitPageParams {
+  /**
+   * Minimum optimism score
+   */
+  min_optimism?: number | null;
+
+  /**
+   * Filter by role
+   */
+  role?: CharacterRole | null;
+
+  /**
+   * Filter by team ID
+   */
+  team_id?: string | null;
+}
+
 export interface CharacterCreateParams {
   /**
    * Character background and history
@@ -378,23 +383,6 @@ export interface CharacterUpdateParams {
   team_id?: string | null;
 }
 
-export interface CharacterListParams extends SkipLimitPageParams {
-  /**
-   * Minimum optimism score
-   */
-  min_optimism?: number | null;
-
-  /**
-   * Filter by role
-   */
-  role?: CharacterRole | null;
-
-  /**
-   * Filter by team ID
-   */
-  team_id?: string | null;
-}
-
 export declare namespace Characters {
   export {
     type Character as Character,
@@ -403,8 +391,8 @@ export declare namespace Characters {
     type GrowthArc as GrowthArc,
     type CharacterGetQuotesResponse as CharacterGetQuotesResponse,
     type CharactersSkipLimitPage as CharactersSkipLimitPage,
+    type CharacterListParams as CharacterListParams,
     type CharacterCreateParams as CharacterCreateParams,
     type CharacterUpdateParams as CharacterUpdateParams,
-    type CharacterListParams as CharacterListParams,
   };
 }

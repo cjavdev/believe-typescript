@@ -24,6 +24,24 @@ export class BaseTeams extends APIResource {
   static override readonly _key: readonly ['teams'] = Object.freeze(['teams'] as const);
 
   /**
+   * Get a paginated list of all teams with optional filtering by league or culture score.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const team of client.teams.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: TeamListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<TeamsSkipLimitPage, Team> {
+    return this._client.getAPIList('/teams', SkipLimitPage<Team>, { query, ...options });
+  }
+
+  /**
    * Add a new team to the league.
    *
    * @example
@@ -35,10 +53,10 @@ export class BaseTeams extends APIResource {
    *   name: 'West Ham United',
    *   stadium: 'London Stadium',
    *   values: {
-   *     primary_value: 'Pride',
-   *     secondary_values: ['History', 'Community', 'Passion'],
-   *     team_motto: 'Forever Blowing Bubbles',
-   *   },
+   *   primary_value: 'Pride',
+   *   secondary_values: ['History', 'Community', 'Passion'],
+   *   team_motto: 'Forever Blowing Bubbles',
+   * },
    * });
    * ```
    */
@@ -71,30 +89,11 @@ export class BaseTeams extends APIResource {
   }
 
   /**
-   * Get a paginated list of all teams with optional filtering by league or culture
-   * score.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const team of client.teams.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: TeamListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<TeamsSkipLimitPage, Team> {
-    return this._client.getAPIList('/teams', SkipLimitPage<Team>, { query, ...options });
-  }
-
-  /**
    * Remove a team from the database (relegation to oblivion).
    *
    * @example
    * ```ts
-   * await client.teams.delete('team_id');
+   * await client.teams.delete('team_id')
    * ```
    */
   delete(teamID: string, options?: RequestOptions): APIPromise<void> {
@@ -102,18 +101,6 @@ export class BaseTeams extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
-  }
-
-  /**
-   * Get detailed culture and values information for a team.
-   *
-   * @example
-   * ```ts
-   * const response = await client.teams.getCulture('team_id');
-   * ```
-   */
-  getCulture(teamID: string, options?: RequestOptions): APIPromise<TeamGetCultureResponse> {
-    return this._client.get(path`/teams/${teamID}/culture`, options);
   }
 
   /**
@@ -126,6 +113,18 @@ export class BaseTeams extends APIResource {
    */
   getRivals(teamID: string, options?: RequestOptions): APIPromise<TeamGetRivalsResponse> {
     return this._client.get(path`/teams/${teamID}/rivals`, options);
+  }
+
+  /**
+   * Get detailed culture and values information for a team.
+   *
+   * @example
+   * ```ts
+   * const response = await client.teams.getCulture('team_id');
+   * ```
+   */
+  getCulture(teamID: string, options?: RequestOptions): APIPromise<TeamGetCultureResponse> {
+    return this._client.get(path`/teams/${teamID}/culture`, options);
   }
 
   /**
@@ -298,6 +297,18 @@ export type TeamGetRivalsResponse = Array<Team>;
 
 export type TeamListLogosResponse = Array<LogoAPI.FileUpload>;
 
+export interface TeamListParams extends SkipLimitPageParams {
+  /**
+   * Filter by league
+   */
+  league?: League | null;
+
+  /**
+   * Minimum culture score
+   */
+  min_culture_score?: number | null;
+}
+
 export interface TeamCreateParams {
   /**
    * Team culture/morale score (0-100)
@@ -430,18 +441,6 @@ export interface TeamUpdateParams {
   win_percentage?: number | null;
 }
 
-export interface TeamListParams extends SkipLimitPageParams {
-  /**
-   * Filter by league
-   */
-  league?: League | null;
-
-  /**
-   * Minimum culture score
-   */
-  min_culture_score?: number | null;
-}
-
 Teams.Logo = Logo;
 Teams.BaseLogo = BaseLogo;
 
@@ -455,9 +454,9 @@ export declare namespace Teams {
     type TeamGetRivalsResponse as TeamGetRivalsResponse,
     type TeamListLogosResponse as TeamListLogosResponse,
     type TeamsSkipLimitPage as TeamsSkipLimitPage,
+    type TeamListParams as TeamListParams,
     type TeamCreateParams as TeamCreateParams,
     type TeamUpdateParams as TeamUpdateParams,
-    type TeamListParams as TeamListParams,
   };
 
   export {
@@ -465,8 +464,8 @@ export declare namespace Teams {
     BaseLogo as BaseLogo,
     type FileUpload as FileUpload,
     type LogoDownloadResponse as LogoDownloadResponse,
-    type LogoDeleteParams as LogoDeleteParams,
-    type LogoDownloadParams as LogoDownloadParams,
     type LogoUploadParams as LogoUploadParams,
+    type LogoDownloadParams as LogoDownloadParams,
+    type LogoDeleteParams as LogoDeleteParams,
   };
 }
