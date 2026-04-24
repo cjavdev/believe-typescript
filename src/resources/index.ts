@@ -16,15 +16,15 @@ export {
 export {
   Characters,
   BaseCharacters,
+  type Character,
   type CharacterRole,
-  type Characterz,
   type EmotionalStats,
   type GrowthArc,
   type CharacterGetQuotesResponse,
   type CharacterCreateParams,
   type CharacterUpdateParams,
   type CharacterListParams,
-  type CharacterzsSkipLimitPage,
+  type CharactersSkipLimitPage,
 } from './characters';
 export { Client, BaseClient } from './client/client';
 export { Coaching, BaseCoaching } from './coaching/coaching';
