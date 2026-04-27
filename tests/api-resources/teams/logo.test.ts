@@ -25,9 +25,9 @@ const parentPartialClient = createClient({
 
 const runTests = (client: PartialBelieve<{ teams: { logo: BaseLogo } }>) => {
   // Mock server tests are disabled
-  test.skip('delete: only required params', async () => {
-    const responsePromise = client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      team_id: 'team_id',
+  test.skip('upload: only required params', async () => {
+    const responsePromise = client.teams.logo.upload('team_id', {
+      file: await toFile(Buffer.from('Example data'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -39,9 +39,9 @@ const runTests = (client: PartialBelieve<{ teams: { logo: BaseLogo } }>) => {
   });
 
   // Mock server tests are disabled
-  test.skip('delete: required and optional params', async () => {
-    const response = await client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      team_id: 'team_id',
+  test.skip('upload: required and optional params', async () => {
+    const response = await client.teams.logo.upload('team_id', {
+      file: await toFile(Buffer.from('Example data'), 'README.md'),
     });
   });
 
@@ -67,9 +67,9 @@ const runTests = (client: PartialBelieve<{ teams: { logo: BaseLogo } }>) => {
   });
 
   // Mock server tests are disabled
-  test.skip('upload: only required params', async () => {
-    const responsePromise = client.teams.logo.upload('team_id', {
-      file: await toFile(Buffer.from('Example data'), 'README.md'),
+  test.skip('delete: only required params', async () => {
+    const responsePromise = client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      team_id: 'team_id',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -81,9 +81,9 @@ const runTests = (client: PartialBelieve<{ teams: { logo: BaseLogo } }>) => {
   });
 
   // Mock server tests are disabled
-  test.skip('upload: required and optional params', async () => {
-    const response = await client.teams.logo.upload('team_id', {
-      file: await toFile(Buffer.from('Example data'), 'README.md'),
+  test.skip('delete: required and optional params', async () => {
+    const response = await client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      team_id: 'team_id',
     });
   });
 };
