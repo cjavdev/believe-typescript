@@ -18,6 +18,34 @@ const partialClient = createClient({
 
 const runTests = (client: PartialBelieve<{ teams: BaseTeams }>) => {
   // Mock server tests are disabled
+  test.skip('list', async () => {
+    const responsePromise = client.teams.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.teams.list(
+        {
+          league: 'Premier League',
+          limit: 10,
+          min_culture_score: 0,
+          skip: 0,
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Believe.NotFoundError);
+  });
+
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.teams.create({
       culture_score: 70,
@@ -92,34 +120,6 @@ const runTests = (client: PartialBelieve<{ teams: BaseTeams }>) => {
   });
 
   // Mock server tests are disabled
-  test.skip('list', async () => {
-    const responsePromise = client.teams.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.teams.list(
-        {
-          league: 'Premier League',
-          limit: 10,
-          min_culture_score: 0,
-          skip: 0,
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Believe.NotFoundError);
-  });
-
-  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.teams.delete('team_id');
     const rawResponse = await responsePromise.asResponse();
@@ -132,8 +132,8 @@ const runTests = (client: PartialBelieve<{ teams: BaseTeams }>) => {
   });
 
   // Mock server tests are disabled
-  test.skip('getCulture', async () => {
-    const responsePromise = client.teams.getCulture('team_id');
+  test.skip('getRivals', async () => {
+    const responsePromise = client.teams.getRivals('team_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -144,8 +144,8 @@ const runTests = (client: PartialBelieve<{ teams: BaseTeams }>) => {
   });
 
   // Mock server tests are disabled
-  test.skip('getRivals', async () => {
-    const responsePromise = client.teams.getRivals('team_id');
+  test.skip('getCulture', async () => {
+    const responsePromise = client.teams.getCulture('team_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

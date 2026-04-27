@@ -15,6 +15,24 @@ export class BaseTeamMembers extends APIResource {
   static override readonly _key: readonly ['teamMembers'] = Object.freeze(['teamMembers'] as const);
 
   /**
+   * Get a paginated list of all team members.
+   *
+   * This endpoint demonstrates **union types (oneOf)** in the response. Each team
+   * member can be one of: Player, Coach, MedicalStaff, or EquipmentManager. The
+   * `member_type` field acts as a discriminator to determine the shape of each
+   * object.
+   */
+  list(
+    query: TeamMemberListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<TeamMemberListResponsesSkipLimitPage, TeamMemberListResponse> {
+    return this._client.getAPIList('/team-members', SkipLimitPage<TeamMemberListResponse>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * Add a new team member to a team.
    *
    * The request body is a **union type (oneOf)** - you must include the
@@ -83,24 +101,6 @@ export class BaseTeamMembers extends APIResource {
   }
 
   /**
-   * Get a paginated list of all team members.
-   *
-   * This endpoint demonstrates **union types (oneOf)** in the response. Each team
-   * member can be one of: Player, Coach, MedicalStaff, or EquipmentManager. The
-   * `member_type` field acts as a discriminator to determine the shape of each
-   * object.
-   */
-  list(
-    query: TeamMemberListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<TeamMemberListResponsesSkipLimitPage, TeamMemberListResponse> {
-    return this._client.getAPIList('/team-members', SkipLimitPage<TeamMemberListResponse>, {
-      query,
-      ...options,
-    });
-  }
-
-  /**
    * Remove a team member from the roster.
    */
   delete(memberID: string, options?: RequestOptions): APIPromise<void> {
@@ -111,16 +111,6 @@ export class BaseTeamMembers extends APIResource {
   }
 
   /**
-   * Get only coaches (filtered subset of team members).
-   */
-  listCoaches(
-    query: TeamMemberListCoachesParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<CoachesSkipLimitPage, Coach> {
-    return this._client.getAPIList('/team-members/coaches/', SkipLimitPage<Coach>, { query, ...options });
-  }
-
-  /**
    * Get only players (filtered subset of team members).
    */
   listPlayers(
@@ -128,6 +118,16 @@ export class BaseTeamMembers extends APIResource {
     options?: RequestOptions,
   ): PagePromise<PlayersSkipLimitPage, Player> {
     return this._client.getAPIList('/team-members/players/', SkipLimitPage<Player>, { query, ...options });
+  }
+
+  /**
+   * Get only coaches (filtered subset of team members).
+   */
+  listCoaches(
+    query: TeamMemberListCoachesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<CoachesSkipLimitPage, Coach> {
+    return this._client.getAPIList('/team-members/coaches/', SkipLimitPage<Coach>, { query, ...options });
   }
 
   /**
@@ -153,9 +153,9 @@ export class TeamMembers extends BaseTeamMembers {}
 
 export type TeamMemberListResponsesSkipLimitPage = SkipLimitPage<TeamMemberListResponse>;
 
-export type CoachesSkipLimitPage = SkipLimitPage<Coach>;
-
 export type PlayersSkipLimitPage = SkipLimitPage<Player>;
+
+export type CoachesSkipLimitPage = SkipLimitPage<Coach>;
 
 export type TeamMemberListStaffResponsesSkipLimitPage = SkipLimitPage<TeamMemberListStaffResponse>;
 
@@ -393,6 +393,18 @@ export type TeamMemberListResponse = Player | Coach | MedicalStaff | EquipmentMa
  * Full medical staff model with ID.
  */
 export type TeamMemberListStaffResponse = MedicalStaff | EquipmentManager;
+
+export interface TeamMemberListParams extends SkipLimitPageParams {
+  /**
+   * Filter by member type
+   */
+  member_type?: 'player' | 'coach' | 'medical_staff' | 'equipment_manager' | null;
+
+  /**
+   * Filter by team ID
+   */
+  team_id?: string | null;
+}
 
 export interface TeamMemberCreateParams {
   /**
@@ -656,11 +668,11 @@ export namespace TeamMemberUpdateParams {
   }
 }
 
-export interface TeamMemberListParams extends SkipLimitPageParams {
+export interface TeamMemberListPlayersParams extends SkipLimitPageParams {
   /**
-   * Filter by member type
+   * Filter by position
    */
-  member_type?: 'player' | 'coach' | 'medical_staff' | 'equipment_manager' | null;
+  position?: Position | null;
 
   /**
    * Filter by team ID
@@ -673,18 +685,6 @@ export interface TeamMemberListCoachesParams extends SkipLimitPageParams {
    * Filter by specialty
    */
   specialty?: CoachSpecialty | null;
-
-  /**
-   * Filter by team ID
-   */
-  team_id?: string | null;
-}
-
-export interface TeamMemberListPlayersParams extends SkipLimitPageParams {
-  /**
-   * Filter by position
-   */
-  position?: Position | null;
 
   /**
    * Filter by team ID
@@ -714,14 +714,14 @@ export declare namespace TeamMembers {
     type TeamMemberListResponse as TeamMemberListResponse,
     type TeamMemberListStaffResponse as TeamMemberListStaffResponse,
     type TeamMemberListResponsesSkipLimitPage as TeamMemberListResponsesSkipLimitPage,
-    type CoachesSkipLimitPage as CoachesSkipLimitPage,
     type PlayersSkipLimitPage as PlayersSkipLimitPage,
+    type CoachesSkipLimitPage as CoachesSkipLimitPage,
     type TeamMemberListStaffResponsesSkipLimitPage as TeamMemberListStaffResponsesSkipLimitPage,
+    type TeamMemberListParams as TeamMemberListParams,
     type TeamMemberCreateParams as TeamMemberCreateParams,
     type TeamMemberUpdateParams as TeamMemberUpdateParams,
-    type TeamMemberListParams as TeamMemberListParams,
-    type TeamMemberListCoachesParams as TeamMemberListCoachesParams,
     type TeamMemberListPlayersParams as TeamMemberListPlayersParams,
+    type TeamMemberListCoachesParams as TeamMemberListCoachesParams,
     type TeamMemberListStaffParams as TeamMemberListStaffParams,
   };
 }
