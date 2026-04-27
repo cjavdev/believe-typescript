@@ -36,9 +36,9 @@ const client = new Believe({
 });
 
 const page = await client.characters.list();
-const character = page.data[0];
+const characterz = page.data[0];
 
-console.log(character.id);
+console.log(characterz.id);
 ```
 
 ### Request & Response types
@@ -53,7 +53,7 @@ const client = new Believe({
   apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted
 });
 
-const [character]: [Believe.Character] = await client.characters.list();
+const [characterz]: [Believe.Characterz] = await client.characters.list();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -169,13 +169,13 @@ List methods in the Believe API are paginated.
 You can use the `for await … of` syntax to iterate through items across all pages:
 
 ```ts
-async function fetchAllCharacters(params) {
-  const allCharacters = [];
+async function fetchAllCharacterzs(params) {
+  const allCharacterzs = [];
   // Automatically fetches more pages as needed.
-  for await (const character of client.characters.list()) {
-    allCharacters.push(character);
+  for await (const characterz of client.characters.list()) {
+    allCharacterzs.push(characterz);
   }
-  return allCharacters;
+  return allCharacterzs;
 }
 ```
 
@@ -183,8 +183,8 @@ Alternatively, you can request a single page at a time:
 
 ```ts
 let page = await client.characters.list();
-for (const character of page.data) {
-  console.log(character);
+for (const characterz of page.data) {
+  console.log(characterz);
 }
 
 // Convenience methods are provided for manually paginating:
@@ -211,7 +211,7 @@ const client = createClient({
 });
 
 // ... then make API calls as usual.
-const character = await client.characters.create({
+const characterz = await client.characters.create({
   background:
     'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
   emotional_stats: {
@@ -246,7 +246,7 @@ const client: PartialBelieve<{ characters: BaseCharacters }> = createClient({
 
 // Function parameter type
 async function main(client: PartialBelieve<{ characters: BaseCharacters }>) {
-  const character = await client.characters.create({
+  const characterz = await client.characters.create({
     background:
       'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
     emotional_stats: {
@@ -291,8 +291,8 @@ console.log(response.statusText); // access the underlying Response object
 
 const { data: page, response: raw } = await client.characters.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-for await (const character of page) {
-  console.log(character.id);
+for await (const characterz of page) {
+  console.log(characterz.id);
 }
 ```
 
