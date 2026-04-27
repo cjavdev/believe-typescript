@@ -18,7 +18,7 @@ export class BaseCharacters extends APIResource {
    *
    * @example
    * ```ts
-   * const character = await client.characters.create({
+   * const characterz = await client.characters.create({
    *   background:
    *     'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',
    *   emotional_stats: {
@@ -39,7 +39,7 @@ export class BaseCharacters extends APIResource {
    * });
    * ```
    */
-  create(body: CharacterCreateParams, options?: RequestOptions): APIPromise<Character> {
+  create(body: CharacterCreateParams, options?: RequestOptions): APIPromise<Characterz> {
     return this._client.post('/characters', { body, ...options });
   }
 
@@ -48,12 +48,12 @@ export class BaseCharacters extends APIResource {
    *
    * @example
    * ```ts
-   * const character = await client.characters.retrieve(
+   * const characterz = await client.characters.retrieve(
    *   'character_id',
    * );
    * ```
    */
-  retrieve(characterID: string, options?: RequestOptions): APIPromise<Character> {
+  retrieve(characterID: string, options?: RequestOptions): APIPromise<Characterz> {
     return this._client.get(path`/characters/${characterID}`, options);
   }
 
@@ -62,12 +62,12 @@ export class BaseCharacters extends APIResource {
    *
    * @example
    * ```ts
-   * const character = await client.characters.update(
+   * const characterz = await client.characters.update(
    *   'character_id',
    * );
    * ```
    */
-  update(characterID: string, body: CharacterUpdateParams, options?: RequestOptions): APIPromise<Character> {
+  update(characterID: string, body: CharacterUpdateParams, options?: RequestOptions): APIPromise<Characterz> {
     return this._client.patch(path`/characters/${characterID}`, { body, ...options });
   }
 
@@ -77,7 +77,7 @@ export class BaseCharacters extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const character of client.characters.list()) {
+   * for await (const characterz of client.characters.list()) {
    *   // ...
    * }
    * ```
@@ -85,8 +85,8 @@ export class BaseCharacters extends APIResource {
   list(
     query: CharacterListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<CharactersSkipLimitPage, Character> {
-    return this._client.getAPIList('/characters', SkipLimitPage<Character>, { query, ...options });
+  ): PagePromise<CharacterzsSkipLimitPage, Characterz> {
+    return this._client.getAPIList('/characters', SkipLimitPage<Characterz>, { query, ...options });
   }
 
   /**
@@ -123,12 +123,27 @@ export class BaseCharacters extends APIResource {
  */
 export class Characters extends BaseCharacters {}
 
-export type CharactersSkipLimitPage = SkipLimitPage<Character>;
+export type CharacterzsSkipLimitPage = SkipLimitPage<Characterz>;
+
+/**
+ * Roles characters can have.
+ */
+export type CharacterRole =
+  | 'coach'
+  | 'player'
+  | 'owner'
+  | 'manager'
+  | 'staff'
+  | 'journalist'
+  | 'family'
+  | 'friend'
+  | 'fan'
+  | 'other';
 
 /**
  * Full character model with ID.
  */
-export interface Character {
+export interface Characterz {
   /**
    * Unique identifier
    */
@@ -199,21 +214,6 @@ export interface Character {
    */
   team_id?: string | null;
 }
-
-/**
- * Roles characters can have.
- */
-export type CharacterRole =
-  | 'coach'
-  | 'player'
-  | 'owner'
-  | 'manager'
-  | 'staff'
-  | 'journalist'
-  | 'family'
-  | 'friend'
-  | 'fan'
-  | 'other';
 
 /**
  * Emotional intelligence statistics for a character.
@@ -397,12 +397,12 @@ export interface CharacterListParams extends SkipLimitPageParams {
 
 export declare namespace Characters {
   export {
-    type Character as Character,
     type CharacterRole as CharacterRole,
+    type Characterz as Characterz,
     type EmotionalStats as EmotionalStats,
     type GrowthArc as GrowthArc,
     type CharacterGetQuotesResponse as CharacterGetQuotesResponse,
-    type CharactersSkipLimitPage as CharactersSkipLimitPage,
+    type CharacterzsSkipLimitPage as CharacterzsSkipLimitPage,
     type CharacterCreateParams as CharacterCreateParams,
     type CharacterUpdateParams as CharacterUpdateParams,
     type CharacterListParams as CharacterListParams,
