@@ -62,22 +62,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_welcome\n\n`client.getWelcome(): object`\n\n**get** `/`\n\nGet a warm welcome and overview of available endpoints.\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.getWelcome();\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: '$client get_welcome',
-        example: "believe get-welcome \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'GetWelcome',
+      typescript: {
+        method: 'client.getWelcome',
         example:
-          'ClientGetWelcomeParams parameters = new();\n\nvar response = await client.GetWelcome(parameters);\n\nConsole.WriteLine(response);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.getWelcome();\n\nconsole.log(response);",
       },
-      go: {
-        method: 'client.GetWelcome',
+      python: {
+        method: 'get_welcome',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.GetWelcome(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
-      },
-      http: {
-        example: 'curl https://believe.cjav.dev/ \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.get_welcome()\nprint(response)',
       },
       java: {
         method: 'getWelcome',
@@ -89,20 +82,27 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.ClientGetWelcomeParams\nimport com.believe.api.models.ClientGetWelcomeResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: ClientGetWelcomeResponse = client.getWelcome()\n}',
       },
-      python: {
-        method: 'get_welcome',
+      go: {
+        method: 'client.GetWelcome',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.get_welcome()\nprint(response)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.GetWelcome(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'get_welcome',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.get_welcome\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.getWelcome',
+      cli: {
+        method: '$client get_welcome',
+        example: "believe get-welcome \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'GetWelcome',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.getWelcome();\n\nconsole.log(response);",
+          'ClientGetWelcomeParams parameters = new();\n\nvar response = await client.GetWelcome(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example: 'curl https://believe.cjav.dev/ \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -126,23 +126,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.characters.list(limit?: number, min_optimism?: number, role?: string, skip?: number, team_id?: string): { id: string; background: string; emotional_stats: emotional_stats; name: string; personality_traits: string[]; role: character_role; date_of_birth?: string; email?: string; growth_arcs?: growth_arc[]; height_meters?: number; profile_image_url?: string; salary_gbp?: string; signature_quotes?: string[]; team_id?: string; }`\n\n**get** `/characters`\n\nGet a paginated list of Ted Lasso characters.\n\n### Parameters\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `min_optimism?: number`\n  Minimum optimism score\n\n- `role?: string`\n  Filter by role\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n- `team_id?: string`\n  Filter by team ID\n\n### Returns\n\n- `{ id: string; background: string; emotional_stats: { curiosity: number; empathy: number; optimism: number; resilience: number; vulnerability: number; }; name: string; personality_traits: string[]; role: string; date_of_birth?: string; email?: string; growth_arcs?: { breakthrough: string; challenge: string; ending_point: string; season: number; starting_point: string; }[]; height_meters?: number; profile_image_url?: string; salary_gbp?: string; signature_quotes?: string[]; team_id?: string; }`\n  Full character model with ID.\n\n  - `id: string`\n  - `background: string`\n  - `emotional_stats: { curiosity: number; empathy: number; optimism: number; resilience: number; vulnerability: number; }`\n  - `name: string`\n  - `personality_traits: string[]`\n  - `role: string`\n  - `date_of_birth?: string`\n  - `email?: string`\n  - `growth_arcs?: { breakthrough: string; challenge: string; ending_point: string; season: number; starting_point: string; }[]`\n  - `height_meters?: number`\n  - `profile_image_url?: string`\n  - `salary_gbp?: string`\n  - `signature_quotes?: string[]`\n  - `team_id?: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const character of client.characters.list()) {\n  console.log(character);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'characters list',
-        example: "believe characters list \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Characters.List',
+      typescript: {
+        method: 'client.characters.list',
         example:
-          'CharacterListParams parameters = new();\n\nvar page = await client.Characters.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const character of client.characters.list()) {\n  console.log(character.id);\n}",
       },
-      go: {
-        method: 'client.Characters.List',
+      python: {
+        method: 'characters.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Characters.List(context.TODO(), believe.CharacterListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/characters \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.characters.list()\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'characters().list',
@@ -154,20 +146,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.CharacterListPage\nimport com.believe.api.models.characters.CharacterListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: CharacterListPage = client.characters().list()\n}',
       },
-      python: {
-        method: 'characters.list',
+      go: {
+        method: 'client.Characters.List',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.characters.list()\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Characters.List(context.TODO(), believe.CharacterListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'characters.list',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.characters.list\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.characters.list',
+      cli: {
+        method: 'characters list',
+        example: "believe characters list \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Characters.List',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const character of client.characters.list()) {\n  console.log(character.id);\n}",
+          'CharacterListParams parameters = new();\n\nvar page = await client.Characters.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/characters \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -199,24 +199,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.characters.create(background: string, emotional_stats: { curiosity: number; empathy: number; optimism: number; resilience: number; vulnerability: number; }, name: string, personality_traits: string[], role: string, date_of_birth?: string, email?: string, growth_arcs?: { breakthrough: string; challenge: string; ending_point: string; season: number; starting_point: string; }[], height_meters?: number, profile_image_url?: string, salary_gbp?: number | string, signature_quotes?: string[], team_id?: string): { id: string; background: string; emotional_stats: emotional_stats; name: string; personality_traits: string[]; role: character_role; date_of_birth?: string; email?: string; growth_arcs?: growth_arc[]; height_meters?: number; profile_image_url?: string; salary_gbp?: string; signature_quotes?: string[]; team_id?: string; }`\n\n**post** `/characters`\n\nAdd a new character to the Ted Lasso universe.\n\n### Parameters\n\n- `background: string`\n  Character background and history\n\n- `emotional_stats: { curiosity: number; empathy: number; optimism: number; resilience: number; vulnerability: number; }`\n  Emotional intelligence stats\n  - `curiosity: number`\n    Level of curiosity over judgment (0-100)\n  - `empathy: number`\n    Capacity for empathy (0-100)\n  - `optimism: number`\n    Level of optimism (0-100)\n  - `resilience: number`\n    Bounce-back ability (0-100)\n  - `vulnerability: number`\n    Willingness to be vulnerable (0-100)\n\n- `name: string`\n  Character's full name\n\n- `personality_traits: string[]`\n  Key personality traits\n\n- `role: string`\n  Character's role\n\n- `date_of_birth?: string`\n  Character's date of birth\n\n- `email?: string`\n  Character's email address\n\n- `growth_arcs?: { breakthrough: string; challenge: string; ending_point: string; season: number; starting_point: string; }[]`\n  Character development across seasons\n\n- `height_meters?: number`\n  Height in meters\n\n- `profile_image_url?: string`\n  URL to character's profile image\n\n- `salary_gbp?: number | string`\n  Annual salary in GBP\n\n- `signature_quotes?: string[]`\n  Memorable quotes from this character\n\n- `team_id?: string`\n  ID of the team they belong to\n\n### Returns\n\n- `{ id: string; background: string; emotional_stats: { curiosity: number; empathy: number; optimism: number; resilience: number; vulnerability: number; }; name: string; personality_traits: string[]; role: string; date_of_birth?: string; email?: string; growth_arcs?: { breakthrough: string; challenge: string; ending_point: string; season: number; starting_point: string; }[]; height_meters?: number; profile_image_url?: string; salary_gbp?: string; signature_quotes?: string[]; team_id?: string; }`\n  Full character model with ID.\n\n  - `id: string`\n  - `background: string`\n  - `emotional_stats: { curiosity: number; empathy: number; optimism: number; resilience: number; vulnerability: number; }`\n  - `name: string`\n  - `personality_traits: string[]`\n  - `role: string`\n  - `date_of_birth?: string`\n  - `email?: string`\n  - `growth_arcs?: { breakthrough: string; challenge: string; ending_point: string; season: number; starting_point: string; }[]`\n  - `height_meters?: number`\n  - `profile_image_url?: string`\n  - `salary_gbp?: string`\n  - `signature_quotes?: string[]`\n  - `team_id?: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst character = await client.characters.create({\n  background: 'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',\n  emotional_stats: {\n  curiosity: 40,\n  empathy: 85,\n  optimism: 45,\n  resilience: 95,\n  vulnerability: 60,\n},\n  name: 'Roy Kent',\n  personality_traits: ['intense', 'loyal', 'secretly caring', 'profane'],\n  role: 'coach',\n});\n\nconsole.log(character);\n```",
     perLanguage: {
-      cli: {
-        method: 'characters create',
+      typescript: {
+        method: 'client.characters.create',
         example:
-          "believe characters create \\\n  --api-key 'My API Key' \\\n  --background 'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.' \\\n  --emotional-stats '{curiosity: 40, empathy: 85, optimism: 45, resilience: 95, vulnerability: 60}' \\\n  --name 'Roy Kent' \\\n  --personality-trait intense \\\n  --personality-trait loyal \\\n  --personality-trait 'secretly caring' \\\n  --personality-trait profane \\\n  --role coach",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst character = await client.characters.create({\n  background:\n    'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',\n  emotional_stats: {\n    curiosity: 40,\n    empathy: 85,\n    optimism: 45,\n    resilience: 95,\n    vulnerability: 60,\n  },\n  name: 'Roy Kent',\n  personality_traits: ['intense', 'loyal', 'secretly caring', 'profane'],\n  role: 'coach',\n});\n\nconsole.log(character.id);",
       },
-      csharp: {
-        method: 'Characters.Create',
+      python: {
+        method: 'characters.create',
         example:
-          'CharacterCreateParams parameters = new()\n{\n    Background = "Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",\n    EmotionalStats = new()\n    {\n        Curiosity = 40,\n        Empathy = 85,\n        Optimism = 45,\n        Resilience = 95,\n        Vulnerability = 60,\n    },\n    Name = "Roy Kent",\n    PersonalityTraits =\n    [\n        "intense", "loyal", "secretly caring", "profane"\n    ],\n    Role = CharacterRole.Coach,\n};\n\nvar character = await client.Characters.Create(parameters);\n\nConsole.WriteLine(character);',
-      },
-      go: {
-        method: 'client.Characters.New',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tcharacter, err := client.Characters.New(context.TODO(), believe.CharacterNewParams{\n\t\tBackground: "Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",\n\t\tEmotionalStats: believe.EmotionalStatsParam{\n\t\t\tCuriosity:     40,\n\t\t\tEmpathy:       85,\n\t\t\tOptimism:      45,\n\t\t\tResilience:    95,\n\t\t\tVulnerability: 60,\n\t\t},\n\t\tName:              "Roy Kent",\n\t\tPersonalityTraits: []string{"intense", "loyal", "secretly caring", "profane"},\n\t\tRole:              believe.CharacterRoleCoach,\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", character.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/characters \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"background\\": \\"Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.\\",\n          \\"emotional_stats\\": {\n            \\"curiosity\\": 40,\n            \\"empathy\\": 85,\n            \\"optimism\\": 45,\n            \\"resilience\\": 95,\n            \\"vulnerability\\": 60\n          },\n          \\"name\\": \\"Roy Kent\\",\n          \\"personality_traits\\": [\n            \\"intense\\",\n            \\"loyal\\",\n            \\"secretly caring\\",\n            \\"profane\\"\n          ],\n          \\"role\\": \\"coach\\",\n          \\"date_of_birth\\": \\"1977-03-15\\",\n          \\"email\\": \\"roy.kent@afcrichmond.com\\",\n          \\"height_meters\\": 1.78,\n          \\"profile_image_url\\": \\"https://afcrichmond.com/images/roy-kent.jpg\\",\n          \\"salary_gbp\\": \\"175000.00\\",\n          \\"signature_quotes\\": [\n            \\"He\'s here, he\'s there, he\'s every-f***ing-where, Roy Kent!\\",\n            \\"Whistle!\\"\n          ],\n          \\"team_id\\": \\"afc-richmond\\"\n        }"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\ncharacter = client.characters.create(\n    background="Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",\n    emotional_stats={\n        "curiosity": 40,\n        "empathy": 85,\n        "optimism": 45,\n        "resilience": 95,\n        "vulnerability": 60,\n    },\n    name="Roy Kent",\n    personality_traits=["intense", "loyal", "secretly caring", "profane"],\n    role="coach",\n)\nprint(character.id)',
       },
       java: {
         method: 'characters().create',
@@ -228,20 +219,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.Character\nimport com.believe.api.models.characters.CharacterCreateParams\nimport com.believe.api.models.characters.CharacterRole\nimport com.believe.api.models.characters.EmotionalStats\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: CharacterCreateParams = CharacterCreateParams.builder()\n        .background("Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.")\n        .emotionalStats(EmotionalStats.builder()\n            .curiosity(40L)\n            .empathy(85L)\n            .optimism(45L)\n            .resilience(95L)\n            .vulnerability(60L)\n            .build())\n        .name("Roy Kent")\n        .personalityTraits(listOf(\n          "intense",\n          "loyal",\n          "secretly caring",\n          "profane",\n        ))\n        .role(CharacterRole.COACH)\n        .build()\n    val character: Character = client.characters().create(params)\n}',
       },
-      python: {
-        method: 'characters.create',
+      go: {
+        method: 'client.Characters.New',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\ncharacter = client.characters.create(\n    background="Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",\n    emotional_stats={\n        "curiosity": 40,\n        "empathy": 85,\n        "optimism": 45,\n        "resilience": 95,\n        "vulnerability": 60,\n    },\n    name="Roy Kent",\n    personality_traits=["intense", "loyal", "secretly caring", "profane"],\n    role="coach",\n)\nprint(character.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tcharacter, err := client.Characters.New(context.TODO(), believe.CharacterNewParams{\n\t\tBackground: "Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",\n\t\tEmotionalStats: believe.EmotionalStatsParam{\n\t\t\tCuriosity:     40,\n\t\t\tEmpathy:       85,\n\t\t\tOptimism:      45,\n\t\t\tResilience:    95,\n\t\t\tVulnerability: 60,\n\t\t},\n\t\tName:              "Roy Kent",\n\t\tPersonalityTraits: []string{"intense", "loyal", "secretly caring", "profane"},\n\t\tRole:              believe.CharacterRoleCoach,\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", character.ID)\n}\n',
       },
       ruby: {
         method: 'characters.create',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\ncharacter = believe.characters.create(\n  background: "Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",\n  emotional_stats: {curiosity: 40, empathy: 85, optimism: 45, resilience: 95, vulnerability: 60},\n  name: "Roy Kent",\n  personality_traits: ["intense", "loyal", "secretly caring", "profane"],\n  role: :coach\n)\n\nputs(character)',
       },
-      typescript: {
-        method: 'client.characters.create',
+      cli: {
+        method: 'characters create',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst character = await client.characters.create({\n  background:\n    'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',\n  emotional_stats: {\n    curiosity: 40,\n    empathy: 85,\n    optimism: 45,\n    resilience: 95,\n    vulnerability: 60,\n  },\n  name: 'Roy Kent',\n  personality_traits: ['intense', 'loyal', 'secretly caring', 'profane'],\n  role: 'coach',\n});\n\nconsole.log(character.id);",
+          "believe characters create \\\n  --api-key 'My API Key' \\\n  --background 'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.' \\\n  --emotional-stats '{curiosity: 40, empathy: 85, optimism: 45, resilience: 95, vulnerability: 60}' \\\n  --name 'Roy Kent' \\\n  --personality-trait intense \\\n  --personality-trait loyal \\\n  --personality-trait 'secretly caring' \\\n  --personality-trait profane \\\n  --role coach",
+      },
+      csharp: {
+        method: 'Characters.Create',
+        example:
+          'CharacterCreateParams parameters = new()\n{\n    Background = "Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",\n    EmotionalStats = new()\n    {\n        Curiosity = 40,\n        Empathy = 85,\n        Optimism = 45,\n        Resilience = 95,\n        Vulnerability = 60,\n    },\n    Name = "Roy Kent",\n    PersonalityTraits =\n    [\n        "intense", "loyal", "secretly caring", "profane"\n    ],\n    Role = CharacterRole.Coach,\n};\n\nvar character = await client.Characters.Create(parameters);\n\nConsole.WriteLine(character);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/characters \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"background\\": \\"Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.\\",\n          \\"emotional_stats\\": {\n            \\"curiosity\\": 40,\n            \\"empathy\\": 85,\n            \\"optimism\\": 45,\n            \\"resilience\\": 95,\n            \\"vulnerability\\": 60\n          },\n          \\"name\\": \\"Roy Kent\\",\n          \\"personality_traits\\": [\n            \\"intense\\",\n            \\"loyal\\",\n            \\"secretly caring\\",\n            \\"profane\\"\n          ],\n          \\"role\\": \\"coach\\",\n          \\"date_of_birth\\": \\"1977-03-15\\",\n          \\"email\\": \\"roy.kent@afcrichmond.com\\",\n          \\"height_meters\\": 1.78,\n          \\"profile_image_url\\": \\"https://afcrichmond.com/images/roy-kent.jpg\\",\n          \\"salary_gbp\\": \\"175000.00\\",\n          \\"signature_quotes\\": [\n            \\"He\'s here, he\'s there, he\'s every-f***ing-where, Roy Kent!\\",\n            \\"Whistle!\\"\n          ],\n          \\"team_id\\": \\"afc-richmond\\"\n        }"',
       },
     },
   },
@@ -259,23 +259,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.characters.retrieve(character_id: string): { id: string; background: string; emotional_stats: emotional_stats; name: string; personality_traits: string[]; role: character_role; date_of_birth?: string; email?: string; growth_arcs?: growth_arc[]; height_meters?: number; profile_image_url?: string; salary_gbp?: string; signature_quotes?: string[]; team_id?: string; }`\n\n**get** `/characters/{character_id}`\n\nRetrieve detailed information about a specific character.\n\n### Parameters\n\n- `character_id: string`\n\n### Returns\n\n- `{ id: string; background: string; emotional_stats: { curiosity: number; empathy: number; optimism: number; resilience: number; vulnerability: number; }; name: string; personality_traits: string[]; role: string; date_of_birth?: string; email?: string; growth_arcs?: { breakthrough: string; challenge: string; ending_point: string; season: number; starting_point: string; }[]; height_meters?: number; profile_image_url?: string; salary_gbp?: string; signature_quotes?: string[]; team_id?: string; }`\n  Full character model with ID.\n\n  - `id: string`\n  - `background: string`\n  - `emotional_stats: { curiosity: number; empathy: number; optimism: number; resilience: number; vulnerability: number; }`\n  - `name: string`\n  - `personality_traits: string[]`\n  - `role: string`\n  - `date_of_birth?: string`\n  - `email?: string`\n  - `growth_arcs?: { breakthrough: string; challenge: string; ending_point: string; season: number; starting_point: string; }[]`\n  - `height_meters?: number`\n  - `profile_image_url?: string`\n  - `salary_gbp?: string`\n  - `signature_quotes?: string[]`\n  - `team_id?: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst character = await client.characters.retrieve('character_id');\n\nconsole.log(character);\n```",
     perLanguage: {
-      cli: {
-        method: 'characters retrieve',
-        example: "believe characters retrieve \\\n  --api-key 'My API Key' \\\n  --character-id character_id",
-      },
-      csharp: {
-        method: 'Characters.Retrieve',
+      typescript: {
+        method: 'client.characters.retrieve',
         example:
-          'CharacterRetrieveParams parameters = new() { CharacterID = "character_id" };\n\nvar character = await client.Characters.Retrieve(parameters);\n\nConsole.WriteLine(character);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst character = await client.characters.retrieve('character_id');\n\nconsole.log(character.id);",
       },
-      go: {
-        method: 'client.Characters.Get',
+      python: {
+        method: 'characters.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tcharacter, err := client.Characters.Get(context.TODO(), "character_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", character.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/characters/$CHARACTER_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\ncharacter = client.characters.retrieve(\n    "character_id",\n)\nprint(character.id)',
       },
       java: {
         method: 'characters().retrieve',
@@ -287,20 +279,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.Character\nimport com.believe.api.models.characters.CharacterRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val character: Character = client.characters().retrieve("character_id")\n}',
       },
-      python: {
-        method: 'characters.retrieve',
+      go: {
+        method: 'client.Characters.Get',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\ncharacter = client.characters.retrieve(\n    "character_id",\n)\nprint(character.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tcharacter, err := client.Characters.Get(context.TODO(), "character_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", character.ID)\n}\n',
       },
       ruby: {
         method: 'characters.retrieve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\ncharacter = believe.characters.retrieve("character_id")\n\nputs(character)',
       },
-      typescript: {
-        method: 'client.characters.retrieve',
+      cli: {
+        method: 'characters retrieve',
+        example: "believe characters retrieve \\\n  --api-key 'My API Key' \\\n  --character-id character_id",
+      },
+      csharp: {
+        method: 'Characters.Retrieve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst character = await client.characters.retrieve('character_id');\n\nconsole.log(character.id);",
+          'CharacterRetrieveParams parameters = new() { CharacterID = "character_id" };\n\nvar character = await client.Characters.Retrieve(parameters);\n\nConsole.WriteLine(character);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/characters/$CHARACTER_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -333,23 +333,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## update\n\n`client.characters.update(character_id: string, background?: string, date_of_birth?: string, email?: string, emotional_stats?: { curiosity: number; empathy: number; optimism: number; resilience: number; vulnerability: number; }, growth_arcs?: { breakthrough: string; challenge: string; ending_point: string; season: number; starting_point: string; }[], height_meters?: number, name?: string, personality_traits?: string[], profile_image_url?: string, role?: string, salary_gbp?: number | string, signature_quotes?: string[], team_id?: string): { id: string; background: string; emotional_stats: emotional_stats; name: string; personality_traits: string[]; role: character_role; date_of_birth?: string; email?: string; growth_arcs?: growth_arc[]; height_meters?: number; profile_image_url?: string; salary_gbp?: string; signature_quotes?: string[]; team_id?: string; }`\n\n**patch** `/characters/{character_id}`\n\nUpdate specific fields of an existing character.\n\n### Parameters\n\n- `character_id: string`\n\n- `background?: string`\n\n- `date_of_birth?: string`\n\n- `email?: string`\n\n- `emotional_stats?: { curiosity: number; empathy: number; optimism: number; resilience: number; vulnerability: number; }`\n  Emotional intelligence statistics for a character.\n  - `curiosity: number`\n    Level of curiosity over judgment (0-100)\n  - `empathy: number`\n    Capacity for empathy (0-100)\n  - `optimism: number`\n    Level of optimism (0-100)\n  - `resilience: number`\n    Bounce-back ability (0-100)\n  - `vulnerability: number`\n    Willingness to be vulnerable (0-100)\n\n- `growth_arcs?: { breakthrough: string; challenge: string; ending_point: string; season: number; starting_point: string; }[]`\n\n- `height_meters?: number`\n\n- `name?: string`\n\n- `personality_traits?: string[]`\n\n- `profile_image_url?: string`\n\n- `role?: string`\n  Roles characters can have.\n\n- `salary_gbp?: number | string`\n\n- `signature_quotes?: string[]`\n\n- `team_id?: string`\n\n### Returns\n\n- `{ id: string; background: string; emotional_stats: { curiosity: number; empathy: number; optimism: number; resilience: number; vulnerability: number; }; name: string; personality_traits: string[]; role: string; date_of_birth?: string; email?: string; growth_arcs?: { breakthrough: string; challenge: string; ending_point: string; season: number; starting_point: string; }[]; height_meters?: number; profile_image_url?: string; salary_gbp?: string; signature_quotes?: string[]; team_id?: string; }`\n  Full character model with ID.\n\n  - `id: string`\n  - `background: string`\n  - `emotional_stats: { curiosity: number; empathy: number; optimism: number; resilience: number; vulnerability: number; }`\n  - `name: string`\n  - `personality_traits: string[]`\n  - `role: string`\n  - `date_of_birth?: string`\n  - `email?: string`\n  - `growth_arcs?: { breakthrough: string; challenge: string; ending_point: string; season: number; starting_point: string; }[]`\n  - `height_meters?: number`\n  - `profile_image_url?: string`\n  - `salary_gbp?: string`\n  - `signature_quotes?: string[]`\n  - `team_id?: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst character = await client.characters.update('character_id');\n\nconsole.log(character);\n```",
     perLanguage: {
-      cli: {
-        method: 'characters update',
-        example: "believe characters update \\\n  --api-key 'My API Key' \\\n  --character-id character_id",
-      },
-      csharp: {
-        method: 'Characters.Update',
+      typescript: {
+        method: 'client.characters.update',
         example:
-          'CharacterUpdateParams parameters = new() { CharacterID = "character_id" };\n\nvar character = await client.Characters.Update(parameters);\n\nConsole.WriteLine(character);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst character = await client.characters.update('character_id');\n\nconsole.log(character.id);",
       },
-      go: {
-        method: 'client.Characters.Update',
+      python: {
+        method: 'characters.update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tcharacter, err := client.Characters.Update(\n\t\tcontext.TODO(),\n\t\t"character_id",\n\t\tbelieve.CharacterUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", character.ID)\n}\n',
-      },
-      http: {
-        example:
-          "curl https://believe.cjav.dev/characters/$CHARACTER_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -d '{}'",
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\ncharacter = client.characters.update(\n    character_id="character_id",\n)\nprint(character.id)',
       },
       java: {
         method: 'characters().update',
@@ -361,20 +353,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.Character\nimport com.believe.api.models.characters.CharacterUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val character: Character = client.characters().update("character_id")\n}',
       },
-      python: {
-        method: 'characters.update',
+      go: {
+        method: 'client.Characters.Update',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\ncharacter = client.characters.update(\n    character_id="character_id",\n)\nprint(character.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tcharacter, err := client.Characters.Update(\n\t\tcontext.TODO(),\n\t\t"character_id",\n\t\tbelieve.CharacterUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", character.ID)\n}\n',
       },
       ruby: {
         method: 'characters.update',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\ncharacter = believe.characters.update("character_id")\n\nputs(character)',
       },
-      typescript: {
-        method: 'client.characters.update',
+      cli: {
+        method: 'characters update',
+        example: "believe characters update \\\n  --api-key 'My API Key' \\\n  --character-id character_id",
+      },
+      csharp: {
+        method: 'Characters.Update',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst character = await client.characters.update('character_id');\n\nconsole.log(character.id);",
+          'CharacterUpdateParams parameters = new() { CharacterID = "character_id" };\n\nvar character = await client.Characters.Update(parameters);\n\nConsole.WriteLine(character);',
+      },
+      http: {
+        example:
+          "curl https://believe.cjav.dev/characters/$CHARACTER_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -d '{}'",
       },
     },
   },
@@ -390,23 +390,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## delete\n\n`client.characters.delete(character_id: string): void`\n\n**delete** `/characters/{character_id}`\n\nRemove a character from the database.\n\n### Parameters\n\n- `character_id: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nawait client.characters.delete('character_id')\n```",
     perLanguage: {
-      cli: {
-        method: 'characters delete',
-        example: "believe characters delete \\\n  --api-key 'My API Key' \\\n  --character-id character_id",
-      },
-      csharp: {
-        method: 'Characters.Delete',
+      typescript: {
+        method: 'client.characters.delete',
         example:
-          'CharacterDeleteParams parameters = new() { CharacterID = "character_id" };\n\nawait client.Characters.Delete(parameters);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.characters.delete('character_id');",
       },
-      go: {
-        method: 'client.Characters.Delete',
+      python: {
+        method: 'characters.delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Characters.Delete(context.TODO(), "character_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/characters/$CHARACTER_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.characters.delete(\n    "character_id",\n)',
       },
       java: {
         method: 'characters().delete',
@@ -418,20 +410,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.CharacterDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.characters().delete("character_id")\n}',
       },
-      python: {
-        method: 'characters.delete',
+      go: {
+        method: 'client.Characters.Delete',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.characters.delete(\n    "character_id",\n)',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Characters.Delete(context.TODO(), "character_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'characters.delete',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresult = believe.characters.delete("character_id")\n\nputs(result)',
       },
-      typescript: {
-        method: 'client.characters.delete',
+      cli: {
+        method: 'characters delete',
+        example: "believe characters delete \\\n  --api-key 'My API Key' \\\n  --character-id character_id",
+      },
+      csharp: {
+        method: 'Characters.Delete',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.characters.delete('character_id');",
+          'CharacterDeleteParams parameters = new() { CharacterID = "character_id" };\n\nawait client.Characters.Delete(parameters);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/characters/$CHARACTER_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -448,24 +448,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_quotes\n\n`client.characters.getQuotes(character_id: string): string[]`\n\n**get** `/characters/{character_id}/quotes`\n\nGet all signature quotes from a specific character.\n\n### Parameters\n\n- `character_id: string`\n\n### Returns\n\n- `string[]`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.characters.getQuotes('character_id');\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'characters get_quotes',
+      typescript: {
+        method: 'client.characters.getQuotes',
         example:
-          "believe characters get-quotes \\\n  --api-key 'My API Key' \\\n  --character-id character_id",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.characters.getQuotes('character_id');\n\nconsole.log(response);",
       },
-      csharp: {
-        method: 'Characters.GetQuotes',
+      python: {
+        method: 'characters.get_quotes',
         example:
-          'CharacterGetQuotesParams parameters = new() { CharacterID = "character_id" };\n\nvar response = await client.Characters.GetQuotes(parameters);\n\nConsole.WriteLine(response);',
-      },
-      go: {
-        method: 'client.Characters.GetQuotes',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Characters.GetQuotes(context.TODO(), "character_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/characters/$CHARACTER_ID/quotes \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.characters.get_quotes(\n    "character_id",\n)\nprint(response)',
       },
       java: {
         method: 'characters().getQuotes',
@@ -477,20 +468,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.characters.CharacterGetQuotesParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: List<String> = client.characters().getQuotes("character_id")\n}',
       },
-      python: {
-        method: 'characters.get_quotes',
+      go: {
+        method: 'client.Characters.GetQuotes',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.characters.get_quotes(\n    "character_id",\n)\nprint(response)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Characters.GetQuotes(context.TODO(), "character_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'characters.get_quotes',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.characters.get_quotes("character_id")\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.characters.getQuotes',
+      cli: {
+        method: 'characters get_quotes',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.characters.getQuotes('character_id');\n\nconsole.log(response);",
+          "believe characters get-quotes \\\n  --api-key 'My API Key' \\\n  --character-id character_id",
+      },
+      csharp: {
+        method: 'Characters.GetQuotes',
+        example:
+          'CharacterGetQuotesParams parameters = new() { CharacterID = "character_id" };\n\nvar response = await client.Characters.GetQuotes(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/characters/$CHARACTER_ID/quotes \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -508,22 +508,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.teams.list(league?: string, limit?: number, min_culture_score?: number, skip?: number): { id: string; culture_score: number; founded_year: number; league: league; name: string; stadium: string; values: team_values; annual_budget_gbp?: string; average_attendance?: number; contact_email?: string; is_active?: boolean; nickname?: string; primary_color?: string; rival_teams?: string[]; secondary_color?: string; stadium_location?: geo_location; website?: string; win_percentage?: number; }`\n\n**get** `/teams`\n\nGet a paginated list of all teams with optional filtering by league or culture score.\n\n### Parameters\n\n- `league?: string`\n  Filter by league\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `min_culture_score?: number`\n  Minimum culture score\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n### Returns\n\n- `{ id: string; culture_score: number; founded_year: number; league: string; name: string; stadium: string; values: { primary_value: string; secondary_values: string[]; team_motto: string; }; annual_budget_gbp?: string; average_attendance?: number; contact_email?: string; is_active?: boolean; nickname?: string; primary_color?: string; rival_teams?: string[]; secondary_color?: string; stadium_location?: { latitude: number; longitude: number; }; website?: string; win_percentage?: number; }`\n  Full team model with ID.\n\n  - `id: string`\n  - `culture_score: number`\n  - `founded_year: number`\n  - `league: string`\n  - `name: string`\n  - `stadium: string`\n  - `values: { primary_value: string; secondary_values: string[]; team_motto: string; }`\n  - `annual_budget_gbp?: string`\n  - `average_attendance?: number`\n  - `contact_email?: string`\n  - `is_active?: boolean`\n  - `nickname?: string`\n  - `primary_color?: string`\n  - `rival_teams?: string[]`\n  - `secondary_color?: string`\n  - `stadium_location?: { latitude: number; longitude: number; }`\n  - `website?: string`\n  - `win_percentage?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const team of client.teams.list()) {\n  console.log(team);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'teams list',
-        example: "believe teams list \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Teams.List',
+      typescript: {
+        method: 'client.teams.list',
         example:
-          'TeamListParams parameters = new();\n\nvar page = await client.Teams.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const team of client.teams.list()) {\n  console.log(team.id);\n}",
       },
-      go: {
-        method: 'client.Teams.List',
+      python: {
+        method: 'teams.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Teams.List(context.TODO(), believe.TeamListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example: 'curl https://believe.cjav.dev/teams \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.teams.list()\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'teams().list',
@@ -535,20 +528,27 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.TeamListPage\nimport com.believe.api.models.teams.TeamListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamListPage = client.teams().list()\n}',
       },
-      python: {
-        method: 'teams.list',
+      go: {
+        method: 'client.Teams.List',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.teams.list()\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Teams.List(context.TODO(), believe.TeamListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'teams.list',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.teams.list\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.teams.list',
+      cli: {
+        method: 'teams list',
+        example: "believe teams list \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Teams.List',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const team of client.teams.list()) {\n  console.log(team.id);\n}",
+          'TeamListParams parameters = new();\n\nvar page = await client.Teams.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example: 'curl https://believe.cjav.dev/teams \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -584,24 +584,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.teams.create(culture_score: number, founded_year: number, league: string, name: string, stadium: string, values: { primary_value: string; secondary_values: string[]; team_motto: string; }, annual_budget_gbp?: number | string, average_attendance?: number, contact_email?: string, is_active?: boolean, nickname?: string, primary_color?: string, rival_teams?: string[], secondary_color?: string, stadium_location?: { latitude: number; longitude: number; }, website?: string, win_percentage?: number): { id: string; culture_score: number; founded_year: number; league: league; name: string; stadium: string; values: team_values; annual_budget_gbp?: string; average_attendance?: number; contact_email?: string; is_active?: boolean; nickname?: string; primary_color?: string; rival_teams?: string[]; secondary_color?: string; stadium_location?: geo_location; website?: string; win_percentage?: number; }`\n\n**post** `/teams`\n\nAdd a new team to the league.\n\n### Parameters\n\n- `culture_score: number`\n  Team culture/morale score (0-100)\n\n- `founded_year: number`\n  Year the club was founded\n\n- `league: string`\n  Current league\n\n- `name: string`\n  Team name\n\n- `stadium: string`\n  Home stadium name\n\n- `values: { primary_value: string; secondary_values: string[]; team_motto: string; }`\n  Team's core values\n  - `primary_value: string`\n    The team's primary guiding value\n  - `secondary_values: string[]`\n    Supporting values\n  - `team_motto: string`\n    Team's motivational motto\n\n- `annual_budget_gbp?: number | string`\n  Annual budget in GBP\n\n- `average_attendance?: number`\n  Average match attendance\n\n- `contact_email?: string`\n  Team contact email\n\n- `is_active?: boolean`\n  Whether the team is currently active\n\n- `nickname?: string`\n  Team nickname\n\n- `primary_color?: string`\n  Primary team color (hex)\n\n- `rival_teams?: string[]`\n  List of rival team IDs\n\n- `secondary_color?: string`\n  Secondary team color (hex)\n\n- `stadium_location?: { latitude: number; longitude: number; }`\n  Geographic coordinates for a location.\n  - `latitude: number`\n    Latitude in degrees\n  - `longitude: number`\n    Longitude in degrees\n\n- `website?: string`\n  Official team website\n\n- `win_percentage?: number`\n  Season win percentage\n\n### Returns\n\n- `{ id: string; culture_score: number; founded_year: number; league: string; name: string; stadium: string; values: { primary_value: string; secondary_values: string[]; team_motto: string; }; annual_budget_gbp?: string; average_attendance?: number; contact_email?: string; is_active?: boolean; nickname?: string; primary_color?: string; rival_teams?: string[]; secondary_color?: string; stadium_location?: { latitude: number; longitude: number; }; website?: string; win_percentage?: number; }`\n  Full team model with ID.\n\n  - `id: string`\n  - `culture_score: number`\n  - `founded_year: number`\n  - `league: string`\n  - `name: string`\n  - `stadium: string`\n  - `values: { primary_value: string; secondary_values: string[]; team_motto: string; }`\n  - `annual_budget_gbp?: string`\n  - `average_attendance?: number`\n  - `contact_email?: string`\n  - `is_active?: boolean`\n  - `nickname?: string`\n  - `primary_color?: string`\n  - `rival_teams?: string[]`\n  - `secondary_color?: string`\n  - `stadium_location?: { latitude: number; longitude: number; }`\n  - `website?: string`\n  - `win_percentage?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst team = await client.teams.create({\n  culture_score: 70,\n  founded_year: 1895,\n  league: 'Premier League',\n  name: 'West Ham United',\n  stadium: 'London Stadium',\n  values: {\n  primary_value: 'Pride',\n  secondary_values: ['History', 'Community', 'Passion'],\n  team_motto: 'Forever Blowing Bubbles',\n},\n});\n\nconsole.log(team);\n```",
     perLanguage: {
-      cli: {
-        method: 'teams create',
+      typescript: {
+        method: 'client.teams.create',
         example:
-          "believe teams create \\\n  --api-key 'My API Key' \\\n  --culture-score 70 \\\n  --founded-year 1895 \\\n  --league 'Premier League' \\\n  --name 'West Ham United' \\\n  --stadium 'London Stadium' \\\n  --values '{primary_value: Pride, secondary_values: [History, Community, Passion], team_motto: Forever Blowing Bubbles}'",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst team = await client.teams.create({\n  culture_score: 70,\n  founded_year: 1895,\n  league: 'Premier League',\n  name: 'West Ham United',\n  stadium: 'London Stadium',\n  values: {\n    primary_value: 'Pride',\n    secondary_values: ['History', 'Community', 'Passion'],\n    team_motto: 'Forever Blowing Bubbles',\n  },\n});\n\nconsole.log(team.id);",
       },
-      csharp: {
-        method: 'Teams.Create',
+      python: {
+        method: 'teams.create',
         example:
-          'TeamCreateParams parameters = new()\n{\n    CultureScore = 70,\n    FoundedYear = 1895,\n    League = League.PremierLeague,\n    Name = "West Ham United",\n    Stadium = "London Stadium",\n    Values = new()\n    {\n        PrimaryValue = "Pride",\n        SecondaryValues =\n        [\n            "History", "Community", "Passion"\n        ],\n        TeamMotto = "Forever Blowing Bubbles",\n    },\n};\n\nvar team = await client.Teams.Create(parameters);\n\nConsole.WriteLine(team);',
-      },
-      go: {
-        method: 'client.Teams.New',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteam, err := client.Teams.New(context.TODO(), believe.TeamNewParams{\n\t\tCultureScore: 70,\n\t\tFoundedYear:  1895,\n\t\tLeague:       believe.LeaguePremierLeague,\n\t\tName:         "West Ham United",\n\t\tStadium:      "London Stadium",\n\t\tValues: believe.TeamValuesParam{\n\t\t\tPrimaryValue:    "Pride",\n\t\t\tSecondaryValues: []string{"History", "Community", "Passion"},\n\t\t\tTeamMotto:       "Forever Blowing Bubbles",\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", team.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/teams \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "culture_score": 70,\n          "founded_year": 1895,\n          "league": "Premier League",\n          "name": "West Ham United",\n          "stadium": "London Stadium",\n          "values": {\n            "primary_value": "Pride",\n            "secondary_values": [\n              "History",\n              "Community",\n              "Passion"\n            ],\n            "team_motto": "Forever Blowing Bubbles"\n          },\n          "annual_budget_gbp": "150000000.00",\n          "average_attendance": 59988,\n          "contact_email": "info@westhamunited.co.uk",\n          "nickname": "The Hammers",\n          "primary_color": "#7A263A",\n          "rival_teams": [\n            "afc-richmond",\n            "tottenham"\n          ],\n          "secondary_color": "#1BB1E7",\n          "website": "https://www.whufc.com",\n          "win_percentage": 52.3\n        }\'',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteam = client.teams.create(\n    culture_score=70,\n    founded_year=1895,\n    league="Premier League",\n    name="West Ham United",\n    stadium="London Stadium",\n    values={\n        "primary_value": "Pride",\n        "secondary_values": ["History", "Community", "Passion"],\n        "team_motto": "Forever Blowing Bubbles",\n    },\n)\nprint(team.id)',
       },
       java: {
         method: 'teams().create',
@@ -613,20 +604,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.League\nimport com.believe.api.models.teams.Team\nimport com.believe.api.models.teams.TeamCreateParams\nimport com.believe.api.models.teams.TeamValues\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: TeamCreateParams = TeamCreateParams.builder()\n        .cultureScore(70L)\n        .foundedYear(1895L)\n        .league(League.PREMIER_LEAGUE)\n        .name("West Ham United")\n        .stadium("London Stadium")\n        .values(TeamValues.builder()\n            .primaryValue("Pride")\n            .secondaryValues(listOf(\n              "History",\n              "Community",\n              "Passion",\n            ))\n            .teamMotto("Forever Blowing Bubbles")\n            .build())\n        .build()\n    val team: Team = client.teams().create(params)\n}',
       },
-      python: {
-        method: 'teams.create',
+      go: {
+        method: 'client.Teams.New',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteam = client.teams.create(\n    culture_score=70,\n    founded_year=1895,\n    league="Premier League",\n    name="West Ham United",\n    stadium="London Stadium",\n    values={\n        "primary_value": "Pride",\n        "secondary_values": ["History", "Community", "Passion"],\n        "team_motto": "Forever Blowing Bubbles",\n    },\n)\nprint(team.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteam, err := client.Teams.New(context.TODO(), believe.TeamNewParams{\n\t\tCultureScore: 70,\n\t\tFoundedYear:  1895,\n\t\tLeague:       believe.LeaguePremierLeague,\n\t\tName:         "West Ham United",\n\t\tStadium:      "London Stadium",\n\t\tValues: believe.TeamValuesParam{\n\t\t\tPrimaryValue:    "Pride",\n\t\t\tSecondaryValues: []string{"History", "Community", "Passion"},\n\t\t\tTeamMotto:       "Forever Blowing Bubbles",\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", team.ID)\n}\n',
       },
       ruby: {
         method: 'teams.create',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nteam = believe.teams.create(\n  culture_score: 70,\n  founded_year: 1895,\n  league: :"Premier League",\n  name: "West Ham United",\n  stadium: "London Stadium",\n  values: {\n    primary_value: "Pride",\n    secondary_values: ["History", "Community", "Passion"],\n    team_motto: "Forever Blowing Bubbles"\n  }\n)\n\nputs(team)',
       },
-      typescript: {
-        method: 'client.teams.create',
+      cli: {
+        method: 'teams create',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst team = await client.teams.create({\n  culture_score: 70,\n  founded_year: 1895,\n  league: 'Premier League',\n  name: 'West Ham United',\n  stadium: 'London Stadium',\n  values: {\n    primary_value: 'Pride',\n    secondary_values: ['History', 'Community', 'Passion'],\n    team_motto: 'Forever Blowing Bubbles',\n  },\n});\n\nconsole.log(team.id);",
+          "believe teams create \\\n  --api-key 'My API Key' \\\n  --culture-score 70 \\\n  --founded-year 1895 \\\n  --league 'Premier League' \\\n  --name 'West Ham United' \\\n  --stadium 'London Stadium' \\\n  --values '{primary_value: Pride, secondary_values: [History, Community, Passion], team_motto: Forever Blowing Bubbles}'",
+      },
+      csharp: {
+        method: 'Teams.Create',
+        example:
+          'TeamCreateParams parameters = new()\n{\n    CultureScore = 70,\n    FoundedYear = 1895,\n    League = League.PremierLeague,\n    Name = "West Ham United",\n    Stadium = "London Stadium",\n    Values = new()\n    {\n        PrimaryValue = "Pride",\n        SecondaryValues =\n        [\n            "History", "Community", "Passion"\n        ],\n        TeamMotto = "Forever Blowing Bubbles",\n    },\n};\n\nvar team = await client.Teams.Create(parameters);\n\nConsole.WriteLine(team);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/teams \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "culture_score": 70,\n          "founded_year": 1895,\n          "league": "Premier League",\n          "name": "West Ham United",\n          "stadium": "London Stadium",\n          "values": {\n            "primary_value": "Pride",\n            "secondary_values": [\n              "History",\n              "Community",\n              "Passion"\n            ],\n            "team_motto": "Forever Blowing Bubbles"\n          },\n          "annual_budget_gbp": "150000000.00",\n          "average_attendance": 59988,\n          "contact_email": "info@westhamunited.co.uk",\n          "nickname": "The Hammers",\n          "primary_color": "#7A263A",\n          "rival_teams": [\n            "afc-richmond",\n            "tottenham"\n          ],\n          "secondary_color": "#1BB1E7",\n          "website": "https://www.whufc.com",\n          "win_percentage": 52.3\n        }\'',
       },
     },
   },
@@ -644,23 +644,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.teams.retrieve(team_id: string): { id: string; culture_score: number; founded_year: number; league: league; name: string; stadium: string; values: team_values; annual_budget_gbp?: string; average_attendance?: number; contact_email?: string; is_active?: boolean; nickname?: string; primary_color?: string; rival_teams?: string[]; secondary_color?: string; stadium_location?: geo_location; website?: string; win_percentage?: number; }`\n\n**get** `/teams/{team_id}`\n\nRetrieve detailed information about a specific team.\n\n### Parameters\n\n- `team_id: string`\n\n### Returns\n\n- `{ id: string; culture_score: number; founded_year: number; league: string; name: string; stadium: string; values: { primary_value: string; secondary_values: string[]; team_motto: string; }; annual_budget_gbp?: string; average_attendance?: number; contact_email?: string; is_active?: boolean; nickname?: string; primary_color?: string; rival_teams?: string[]; secondary_color?: string; stadium_location?: { latitude: number; longitude: number; }; website?: string; win_percentage?: number; }`\n  Full team model with ID.\n\n  - `id: string`\n  - `culture_score: number`\n  - `founded_year: number`\n  - `league: string`\n  - `name: string`\n  - `stadium: string`\n  - `values: { primary_value: string; secondary_values: string[]; team_motto: string; }`\n  - `annual_budget_gbp?: string`\n  - `average_attendance?: number`\n  - `contact_email?: string`\n  - `is_active?: boolean`\n  - `nickname?: string`\n  - `primary_color?: string`\n  - `rival_teams?: string[]`\n  - `secondary_color?: string`\n  - `stadium_location?: { latitude: number; longitude: number; }`\n  - `website?: string`\n  - `win_percentage?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst team = await client.teams.retrieve('team_id');\n\nconsole.log(team);\n```",
     perLanguage: {
-      cli: {
-        method: 'teams retrieve',
-        example: "believe teams retrieve \\\n  --api-key 'My API Key' \\\n  --team-id team_id",
-      },
-      csharp: {
-        method: 'Teams.Retrieve',
+      typescript: {
+        method: 'client.teams.retrieve',
         example:
-          'TeamRetrieveParams parameters = new() { TeamID = "team_id" };\n\nvar team = await client.Teams.Retrieve(parameters);\n\nConsole.WriteLine(team);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst team = await client.teams.retrieve('team_id');\n\nconsole.log(team.id);",
       },
-      go: {
-        method: 'client.Teams.Get',
+      python: {
+        method: 'teams.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteam, err := client.Teams.Get(context.TODO(), "team_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", team.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/teams/$TEAM_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteam = client.teams.retrieve(\n    "team_id",\n)\nprint(team.id)',
       },
       java: {
         method: 'teams().retrieve',
@@ -672,20 +664,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.Team\nimport com.believe.api.models.teams.TeamRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val team: Team = client.teams().retrieve("team_id")\n}',
       },
-      python: {
-        method: 'teams.retrieve',
+      go: {
+        method: 'client.Teams.Get',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteam = client.teams.retrieve(\n    "team_id",\n)\nprint(team.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteam, err := client.Teams.Get(context.TODO(), "team_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", team.ID)\n}\n',
       },
       ruby: {
         method: 'teams.retrieve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nteam = believe.teams.retrieve("team_id")\n\nputs(team)',
       },
-      typescript: {
-        method: 'client.teams.retrieve',
+      cli: {
+        method: 'teams retrieve',
+        example: "believe teams retrieve \\\n  --api-key 'My API Key' \\\n  --team-id team_id",
+      },
+      csharp: {
+        method: 'Teams.Retrieve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst team = await client.teams.retrieve('team_id');\n\nconsole.log(team.id);",
+          'TeamRetrieveParams parameters = new() { TeamID = "team_id" };\n\nvar team = await client.Teams.Retrieve(parameters);\n\nConsole.WriteLine(team);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/teams/$TEAM_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -722,23 +722,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## update\n\n`client.teams.update(team_id: string, annual_budget_gbp?: number | string, average_attendance?: number, contact_email?: string, culture_score?: number, founded_year?: number, is_active?: boolean, league?: string, name?: string, nickname?: string, primary_color?: string, rival_teams?: string[], secondary_color?: string, stadium?: string, stadium_location?: { latitude: number; longitude: number; }, values?: { primary_value: string; secondary_values: string[]; team_motto: string; }, website?: string, win_percentage?: number): { id: string; culture_score: number; founded_year: number; league: league; name: string; stadium: string; values: team_values; annual_budget_gbp?: string; average_attendance?: number; contact_email?: string; is_active?: boolean; nickname?: string; primary_color?: string; rival_teams?: string[]; secondary_color?: string; stadium_location?: geo_location; website?: string; win_percentage?: number; }`\n\n**patch** `/teams/{team_id}`\n\nUpdate specific fields of an existing team.\n\n### Parameters\n\n- `team_id: string`\n\n- `annual_budget_gbp?: number | string`\n\n- `average_attendance?: number`\n\n- `contact_email?: string`\n\n- `culture_score?: number`\n\n- `founded_year?: number`\n\n- `is_active?: boolean`\n\n- `league?: string`\n  Football leagues.\n\n- `name?: string`\n\n- `nickname?: string`\n\n- `primary_color?: string`\n\n- `rival_teams?: string[]`\n\n- `secondary_color?: string`\n\n- `stadium?: string`\n\n- `stadium_location?: { latitude: number; longitude: number; }`\n  Geographic coordinates for a location.\n  - `latitude: number`\n    Latitude in degrees\n  - `longitude: number`\n    Longitude in degrees\n\n- `values?: { primary_value: string; secondary_values: string[]; team_motto: string; }`\n  Core values that define a team's culture.\n  - `primary_value: string`\n    The team's primary guiding value\n  - `secondary_values: string[]`\n    Supporting values\n  - `team_motto: string`\n    Team's motivational motto\n\n- `website?: string`\n\n- `win_percentage?: number`\n\n### Returns\n\n- `{ id: string; culture_score: number; founded_year: number; league: string; name: string; stadium: string; values: { primary_value: string; secondary_values: string[]; team_motto: string; }; annual_budget_gbp?: string; average_attendance?: number; contact_email?: string; is_active?: boolean; nickname?: string; primary_color?: string; rival_teams?: string[]; secondary_color?: string; stadium_location?: { latitude: number; longitude: number; }; website?: string; win_percentage?: number; }`\n  Full team model with ID.\n\n  - `id: string`\n  - `culture_score: number`\n  - `founded_year: number`\n  - `league: string`\n  - `name: string`\n  - `stadium: string`\n  - `values: { primary_value: string; secondary_values: string[]; team_motto: string; }`\n  - `annual_budget_gbp?: string`\n  - `average_attendance?: number`\n  - `contact_email?: string`\n  - `is_active?: boolean`\n  - `nickname?: string`\n  - `primary_color?: string`\n  - `rival_teams?: string[]`\n  - `secondary_color?: string`\n  - `stadium_location?: { latitude: number; longitude: number; }`\n  - `website?: string`\n  - `win_percentage?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst team = await client.teams.update('team_id');\n\nconsole.log(team);\n```",
     perLanguage: {
-      cli: {
-        method: 'teams update',
-        example: "believe teams update \\\n  --api-key 'My API Key' \\\n  --team-id team_id",
-      },
-      csharp: {
-        method: 'Teams.Update',
+      typescript: {
+        method: 'client.teams.update',
         example:
-          'TeamUpdateParams parameters = new() { TeamID = "team_id" };\n\nvar team = await client.Teams.Update(parameters);\n\nConsole.WriteLine(team);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst team = await client.teams.update('team_id');\n\nconsole.log(team.id);",
       },
-      go: {
-        method: 'client.Teams.Update',
+      python: {
+        method: 'teams.update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteam, err := client.Teams.Update(\n\t\tcontext.TODO(),\n\t\t"team_id",\n\t\tbelieve.TeamUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", team.ID)\n}\n',
-      },
-      http: {
-        example:
-          "curl https://believe.cjav.dev/teams/$TEAM_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -d '{}'",
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteam = client.teams.update(\n    team_id="team_id",\n)\nprint(team.id)',
       },
       java: {
         method: 'teams().update',
@@ -750,20 +742,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.Team\nimport com.believe.api.models.teams.TeamUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val team: Team = client.teams().update("team_id")\n}',
       },
-      python: {
-        method: 'teams.update',
+      go: {
+        method: 'client.Teams.Update',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteam = client.teams.update(\n    team_id="team_id",\n)\nprint(team.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteam, err := client.Teams.Update(\n\t\tcontext.TODO(),\n\t\t"team_id",\n\t\tbelieve.TeamUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", team.ID)\n}\n',
       },
       ruby: {
         method: 'teams.update',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nteam = believe.teams.update("team_id")\n\nputs(team)',
       },
-      typescript: {
-        method: 'client.teams.update',
+      cli: {
+        method: 'teams update',
+        example: "believe teams update \\\n  --api-key 'My API Key' \\\n  --team-id team_id",
+      },
+      csharp: {
+        method: 'Teams.Update',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst team = await client.teams.update('team_id');\n\nconsole.log(team.id);",
+          'TeamUpdateParams parameters = new() { TeamID = "team_id" };\n\nvar team = await client.Teams.Update(parameters);\n\nConsole.WriteLine(team);',
+      },
+      http: {
+        example:
+          "curl https://believe.cjav.dev/teams/$TEAM_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -d '{}'",
       },
     },
   },
@@ -779,23 +779,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## delete\n\n`client.teams.delete(team_id: string): void`\n\n**delete** `/teams/{team_id}`\n\nRemove a team from the database (relegation to oblivion).\n\n### Parameters\n\n- `team_id: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nawait client.teams.delete('team_id')\n```",
     perLanguage: {
-      cli: {
-        method: 'teams delete',
-        example: "believe teams delete \\\n  --api-key 'My API Key' \\\n  --team-id team_id",
-      },
-      csharp: {
-        method: 'Teams.Delete',
+      typescript: {
+        method: 'client.teams.delete',
         example:
-          'TeamDeleteParams parameters = new() { TeamID = "team_id" };\n\nawait client.Teams.Delete(parameters);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.teams.delete('team_id');",
       },
-      go: {
-        method: 'client.Teams.Delete',
+      python: {
+        method: 'teams.delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Teams.Delete(context.TODO(), "team_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/teams/$TEAM_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.teams.delete(\n    "team_id",\n)',
       },
       java: {
         method: 'teams().delete',
@@ -807,20 +799,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.TeamDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.teams().delete("team_id")\n}',
       },
-      python: {
-        method: 'teams.delete',
+      go: {
+        method: 'client.Teams.Delete',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.teams.delete(\n    "team_id",\n)',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Teams.Delete(context.TODO(), "team_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'teams.delete',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresult = believe.teams.delete("team_id")\n\nputs(result)',
       },
-      typescript: {
-        method: 'client.teams.delete',
+      cli: {
+        method: 'teams delete',
+        example: "believe teams delete \\\n  --api-key 'My API Key' \\\n  --team-id team_id",
+      },
+      csharp: {
+        method: 'Teams.Delete',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.teams.delete('team_id');",
+          'TeamDeleteParams parameters = new() { TeamID = "team_id" };\n\nawait client.Teams.Delete(parameters);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/teams/$TEAM_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -838,23 +838,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_rivals\n\n`client.teams.getRivals(team_id: string): object[]`\n\n**get** `/teams/{team_id}/rivals`\n\nGet all rival teams for a specific team.\n\n### Parameters\n\n- `team_id: string`\n\n### Returns\n\n- `{ id: string; culture_score: number; founded_year: number; league: string; name: string; stadium: string; values: object; annual_budget_gbp?: string; average_attendance?: number; contact_email?: string; is_active?: boolean; nickname?: string; primary_color?: string; rival_teams?: string[]; secondary_color?: string; stadium_location?: object; website?: string; win_percentage?: number; }[]`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst teams = await client.teams.getRivals('team_id');\n\nconsole.log(teams);\n```",
     perLanguage: {
-      cli: {
-        method: 'teams get_rivals',
-        example: "believe teams get-rivals \\\n  --api-key 'My API Key' \\\n  --team-id team_id",
-      },
-      csharp: {
-        method: 'Teams.GetRivals',
+      typescript: {
+        method: 'client.teams.getRivals',
         example:
-          'TeamGetRivalsParams parameters = new() { TeamID = "team_id" };\n\nvar teams = await client.Teams.GetRivals(parameters);\n\nConsole.WriteLine(teams);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst teams = await client.teams.getRivals('team_id');\n\nconsole.log(teams);",
       },
-      go: {
-        method: 'client.Teams.GetRivals',
+      python: {
+        method: 'teams.get_rivals',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteams, err := client.Teams.GetRivals(context.TODO(), "team_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", teams)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/teams/$TEAM_ID/rivals \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteams = client.teams.get_rivals(\n    "team_id",\n)\nprint(teams)',
       },
       java: {
         method: 'teams().getRivals',
@@ -866,20 +858,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.Team\nimport com.believe.api.models.teams.TeamGetRivalsParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val teams: List<Team> = client.teams().getRivals("team_id")\n}',
       },
-      python: {
-        method: 'teams.get_rivals',
+      go: {
+        method: 'client.Teams.GetRivals',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteams = client.teams.get_rivals(\n    "team_id",\n)\nprint(teams)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteams, err := client.Teams.GetRivals(context.TODO(), "team_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", teams)\n}\n',
       },
       ruby: {
         method: 'teams.get_rivals',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nteams = believe.teams.get_rivals("team_id")\n\nputs(teams)',
       },
-      typescript: {
-        method: 'client.teams.getRivals',
+      cli: {
+        method: 'teams get_rivals',
+        example: "believe teams get-rivals \\\n  --api-key 'My API Key' \\\n  --team-id team_id",
+      },
+      csharp: {
+        method: 'Teams.GetRivals',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst teams = await client.teams.getRivals('team_id');\n\nconsole.log(teams);",
+          'TeamGetRivalsParams parameters = new() { TeamID = "team_id" };\n\nvar teams = await client.Teams.GetRivals(parameters);\n\nConsole.WriteLine(teams);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/teams/$TEAM_ID/rivals \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -896,23 +896,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_culture\n\n`client.teams.getCulture(team_id: string): object`\n\n**get** `/teams/{team_id}/culture`\n\nGet detailed culture and values information for a team.\n\n### Parameters\n\n- `team_id: string`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.teams.getCulture('team_id');\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'teams get_culture',
-        example: "believe teams get-culture \\\n  --api-key 'My API Key' \\\n  --team-id team_id",
-      },
-      csharp: {
-        method: 'Teams.GetCulture',
+      typescript: {
+        method: 'client.teams.getCulture',
         example:
-          'TeamGetCultureParams parameters = new() { TeamID = "team_id" };\n\nvar response = await client.Teams.GetCulture(parameters);\n\nConsole.WriteLine(response);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.teams.getCulture('team_id');\n\nconsole.log(response);",
       },
-      go: {
-        method: 'client.Teams.GetCulture',
+      python: {
+        method: 'teams.get_culture',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Teams.GetCulture(context.TODO(), "team_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/teams/$TEAM_ID/culture \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.teams.get_culture(\n    "team_id",\n)\nprint(response)',
       },
       java: {
         method: 'teams().getCulture',
@@ -924,20 +916,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.TeamGetCultureParams\nimport com.believe.api.models.teams.TeamGetCultureResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: TeamGetCultureResponse = client.teams().getCulture("team_id")\n}',
       },
-      python: {
-        method: 'teams.get_culture',
+      go: {
+        method: 'client.Teams.GetCulture',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.teams.get_culture(\n    "team_id",\n)\nprint(response)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Teams.GetCulture(context.TODO(), "team_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'teams.get_culture',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.teams.get_culture("team_id")\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.teams.getCulture',
+      cli: {
+        method: 'teams get_culture',
+        example: "believe teams get-culture \\\n  --api-key 'My API Key' \\\n  --team-id team_id",
+      },
+      csharp: {
+        method: 'Teams.GetCulture',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.teams.getCulture('team_id');\n\nconsole.log(response);",
+          'TeamGetCultureParams parameters = new() { TeamID = "team_id" };\n\nvar response = await client.Teams.GetCulture(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/teams/$TEAM_ID/culture \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -955,23 +955,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list_logos\n\n`client.teams.listLogos(team_id: string): object[]`\n\n**get** `/teams/{team_id}/logos`\n\nList all uploaded logos for a team.\n\n### Parameters\n\n- `team_id: string`\n\n### Returns\n\n- `{ checksum_sha256: string; content_type: string; file_id: string; filename: string; size_bytes: number; uploaded_at: string; }[]`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst fileUploads = await client.teams.listLogos('team_id');\n\nconsole.log(fileUploads);\n```",
     perLanguage: {
-      cli: {
-        method: 'teams list_logos',
-        example: "believe teams list-logos \\\n  --api-key 'My API Key' \\\n  --team-id team_id",
-      },
-      csharp: {
-        method: 'Teams.ListLogos',
+      typescript: {
+        method: 'client.teams.listLogos',
         example:
-          'TeamListLogosParams parameters = new() { TeamID = "team_id" };\n\nvar fileUploads = await client.Teams.ListLogos(parameters);\n\nConsole.WriteLine(fileUploads);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst fileUploads = await client.teams.listLogos('team_id');\n\nconsole.log(fileUploads);",
       },
-      go: {
-        method: 'client.Teams.ListLogos',
+      python: {
+        method: 'teams.list_logos',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tfileUploads, err := client.Teams.ListLogos(context.TODO(), "team_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", fileUploads)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/teams/$TEAM_ID/logos \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nfile_uploads = client.teams.list_logos(\n    "team_id",\n)\nprint(file_uploads)',
       },
       java: {
         method: 'teams().listLogos',
@@ -983,20 +975,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.TeamListLogosParams\nimport com.believe.api.models.teams.logo.FileUpload\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val fileUploads: List<FileUpload> = client.teams().listLogos("team_id")\n}',
       },
-      python: {
-        method: 'teams.list_logos',
+      go: {
+        method: 'client.Teams.ListLogos',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nfile_uploads = client.teams.list_logos(\n    "team_id",\n)\nprint(file_uploads)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tfileUploads, err := client.Teams.ListLogos(context.TODO(), "team_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", fileUploads)\n}\n',
       },
       ruby: {
         method: 'teams.list_logos',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nfile_uploads = believe.teams.list_logos("team_id")\n\nputs(file_uploads)',
       },
-      typescript: {
-        method: 'client.teams.listLogos',
+      cli: {
+        method: 'teams list_logos',
+        example: "believe teams list-logos \\\n  --api-key 'My API Key' \\\n  --team-id team_id",
+      },
+      csharp: {
+        method: 'Teams.ListLogos',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst fileUploads = await client.teams.listLogos('team_id');\n\nconsole.log(fileUploads);",
+          'TeamListLogosParams parameters = new() { TeamID = "team_id" };\n\nvar fileUploads = await client.Teams.ListLogos(parameters);\n\nConsole.WriteLine(fileUploads);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/teams/$TEAM_ID/logos \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -1014,24 +1014,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## upload\n\n`client.teams.logo.upload(team_id: string, file: string): { checksum_sha256: string; content_type: string; file_id: string; filename: string; size_bytes: number; uploaded_at: string; }`\n\n**post** `/teams/{team_id}/logo`\n\nUpload a logo image for a team. Accepts image files (jpg, png, gif, webp).\n\n### Parameters\n\n- `team_id: string`\n\n- `file: string`\n  Logo image file\n\n### Returns\n\n- `{ checksum_sha256: string; content_type: string; file_id: string; filename: string; size_bytes: number; uploaded_at: string; }`\n  Response model for file uploads.\n\n  - `checksum_sha256: string`\n  - `content_type: string`\n  - `file_id: string`\n  - `filename: string`\n  - `size_bytes: number`\n  - `uploaded_at: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst fileUpload = await client.teams.logo.upload('team_id', { file: fs.createReadStream('path/to/file') });\n\nconsole.log(fileUpload);\n```",
     perLanguage: {
-      cli: {
-        method: 'logo upload',
+      typescript: {
+        method: 'client.teams.logo.upload',
         example:
-          "believe teams:logo upload \\\n  --api-key 'My API Key' \\\n  --team-id team_id \\\n  --file 'Example data'",
+          "import fs from 'fs';\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst fileUpload = await client.teams.logo.upload('team_id', {\n  file: fs.createReadStream('path/to/file'),\n});\n\nconsole.log(fileUpload.file_id);",
       },
-      csharp: {
-        method: 'Teams.Logo.Upload',
+      python: {
+        method: 'teams.logo.upload',
         example:
-          'LogoUploadParams parameters = new()\n{\n    TeamID = "team_id",\n    File = Encoding.UTF8.GetBytes("Example data"),\n};\n\nvar fileUpload = await client.Teams.Logo.Upload(parameters);\n\nConsole.WriteLine(fileUpload);',
-      },
-      go: {
-        method: 'client.Teams.Logo.Upload',
-        example:
-          'package main\n\nimport (\n\t"bytes"\n\t"context"\n\t"fmt"\n\t"io"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tfileUpload, err := client.Teams.Logo.Upload(\n\t\tcontext.TODO(),\n\t\t"team_id",\n\t\tbelieve.TeamLogoUploadParams{\n\t\t\tFile: io.Reader(bytes.NewBuffer([]byte("Example data"))),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", fileUpload.FileID)\n}\n',
-      },
-      http: {
-        example:
-          "curl https://believe.cjav.dev/teams/$TEAM_ID/logo \\\n    -H 'Content-Type: multipart/form-data' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -F 'file=@/path/to/file'",
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nfile_upload = client.teams.logo.upload(\n    team_id="team_id",\n    file=b"Example data",\n)\nprint(file_upload.file_id)',
       },
       java: {
         method: 'teams().logo().upload',
@@ -1043,20 +1034,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.logo.FileUpload\nimport com.believe.api.models.teams.logo.LogoUploadParams\nimport java.io.ByteArrayInputStream\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: LogoUploadParams = LogoUploadParams.builder()\n        .teamId("team_id")\n        .file("Example data".byteInputStream())\n        .build()\n    val fileUpload: FileUpload = client.teams().logo().upload(params)\n}',
       },
-      python: {
-        method: 'teams.logo.upload',
+      go: {
+        method: 'client.Teams.Logo.Upload',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nfile_upload = client.teams.logo.upload(\n    team_id="team_id",\n    file=b"Example data",\n)\nprint(file_upload.file_id)',
+          'package main\n\nimport (\n\t"bytes"\n\t"context"\n\t"fmt"\n\t"io"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tfileUpload, err := client.Teams.Logo.Upload(\n\t\tcontext.TODO(),\n\t\t"team_id",\n\t\tbelieve.TeamLogoUploadParams{\n\t\t\tFile: io.Reader(bytes.NewBuffer([]byte("Example data"))),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", fileUpload.FileID)\n}\n',
       },
       ruby: {
         method: 'teams.logo.upload',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nfile_upload = believe.teams.logo.upload("team_id", file: StringIO.new("Example data"))\n\nputs(file_upload)',
       },
-      typescript: {
-        method: 'client.teams.logo.upload',
+      cli: {
+        method: 'logo upload',
         example:
-          "import fs from 'fs';\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst fileUpload = await client.teams.logo.upload('team_id', {\n  file: fs.createReadStream('path/to/file'),\n});\n\nconsole.log(fileUpload.file_id);",
+          "believe teams:logo upload \\\n  --api-key 'My API Key' \\\n  --team-id team_id \\\n  --file 'Example data'",
+      },
+      csharp: {
+        method: 'Teams.Logo.Upload',
+        example:
+          'LogoUploadParams parameters = new()\n{\n    TeamID = "team_id",\n    File = Encoding.UTF8.GetBytes("Example data"),\n};\n\nvar fileUpload = await client.Teams.Logo.Upload(parameters);\n\nConsole.WriteLine(fileUpload);',
+      },
+      http: {
+        example:
+          "curl https://believe.cjav.dev/teams/$TEAM_ID/logo \\\n    -H 'Content-Type: multipart/form-data' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -F 'file=@/path/to/file'",
       },
     },
   },
@@ -1073,24 +1073,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## download\n\n`client.teams.logo.download(team_id: string, file_id: string): object`\n\n**get** `/teams/{team_id}/logo/{file_id}`\n\nDownload a team's logo by file ID.\n\n### Parameters\n\n- `team_id: string`\n\n- `file_id: string`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.teams.logo.download('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { team_id: 'team_id' });\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'logo download',
+      typescript: {
+        method: 'client.teams.logo.download',
         example:
-          "believe teams:logo download \\\n  --api-key 'My API Key' \\\n  --team-id team_id \\\n  --file-id 182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.teams.logo.download('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  team_id: 'team_id',\n});\n\nconsole.log(response);",
       },
-      csharp: {
-        method: 'Teams.Logo.Download',
+      python: {
+        method: 'teams.logo.download',
         example:
-          'LogoDownloadParams parameters = new()\n{\n    TeamID = "team_id",\n    FileID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n};\n\nvar response = await client.Teams.Logo.Download(parameters);\n\nConsole.WriteLine(response);',
-      },
-      go: {
-        method: 'client.Teams.Logo.Download',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Teams.Logo.Download(\n\t\tcontext.TODO(),\n\t\t"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n\t\tbelieve.TeamLogoDownloadParams{\n\t\t\tTeamID: "team_id",\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/teams/$TEAM_ID/logo/$FILE_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.teams.logo.download(\n    file_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    team_id="team_id",\n)\nprint(response)',
       },
       java: {
         method: 'teams().logo().download',
@@ -1102,20 +1093,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.logo.LogoDownloadParams\nimport com.believe.api.models.teams.logo.LogoDownloadResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: LogoDownloadParams = LogoDownloadParams.builder()\n        .teamId("team_id")\n        .fileId("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n        .build()\n    val response: LogoDownloadResponse = client.teams().logo().download(params)\n}',
       },
-      python: {
-        method: 'teams.logo.download',
+      go: {
+        method: 'client.Teams.Logo.Download',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.teams.logo.download(\n    file_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    team_id="team_id",\n)\nprint(response)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Teams.Logo.Download(\n\t\tcontext.TODO(),\n\t\t"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n\t\tbelieve.TeamLogoDownloadParams{\n\t\t\tTeamID: "team_id",\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'teams.logo.download',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.teams.logo.download("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e", team_id: "team_id")\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.teams.logo.download',
+      cli: {
+        method: 'logo download',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.teams.logo.download('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  team_id: 'team_id',\n});\n\nconsole.log(response);",
+          "believe teams:logo download \\\n  --api-key 'My API Key' \\\n  --team-id team_id \\\n  --file-id 182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+      },
+      csharp: {
+        method: 'Teams.Logo.Download',
+        example:
+          'LogoDownloadParams parameters = new()\n{\n    TeamID = "team_id",\n    FileID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n};\n\nvar response = await client.Teams.Logo.Download(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/teams/$TEAM_ID/logo/$FILE_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -1131,24 +1131,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## delete\n\n`client.teams.logo.delete(team_id: string, file_id: string): void`\n\n**delete** `/teams/{team_id}/logo/{file_id}`\n\nDelete a team's logo.\n\n### Parameters\n\n- `team_id: string`\n\n- `file_id: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nawait client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { team_id: 'team_id' })\n```",
     perLanguage: {
-      cli: {
-        method: 'logo delete',
+      typescript: {
+        method: 'client.teams.logo.delete',
         example:
-          "believe teams:logo delete \\\n  --api-key 'My API Key' \\\n  --team-id team_id \\\n  --file-id 182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { team_id: 'team_id' });",
       },
-      csharp: {
-        method: 'Teams.Logo.Delete',
+      python: {
+        method: 'teams.logo.delete',
         example:
-          'LogoDeleteParams parameters = new()\n{\n    TeamID = "team_id",\n    FileID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n};\n\nawait client.Teams.Logo.Delete(parameters);',
-      },
-      go: {
-        method: 'client.Teams.Logo.Delete',
-        example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Teams.Logo.Delete(\n\t\tcontext.TODO(),\n\t\t"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n\t\tbelieve.TeamLogoDeleteParams{\n\t\t\tTeamID: "team_id",\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/teams/$TEAM_ID/logo/$FILE_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.teams.logo.delete(\n    file_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    team_id="team_id",\n)',
       },
       java: {
         method: 'teams().logo().delete',
@@ -1160,20 +1151,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teams.logo.LogoDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: LogoDeleteParams = LogoDeleteParams.builder()\n        .teamId("team_id")\n        .fileId("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n        .build()\n    client.teams().logo().delete(params)\n}',
       },
-      python: {
-        method: 'teams.logo.delete',
+      go: {
+        method: 'client.Teams.Logo.Delete',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.teams.logo.delete(\n    file_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    team_id="team_id",\n)',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Teams.Logo.Delete(\n\t\tcontext.TODO(),\n\t\t"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n\t\tbelieve.TeamLogoDeleteParams{\n\t\t\tTeamID: "team_id",\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'teams.logo.delete',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresult = believe.teams.logo.delete("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e", team_id: "team_id")\n\nputs(result)',
       },
-      typescript: {
-        method: 'client.teams.logo.delete',
+      cli: {
+        method: 'logo delete',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { team_id: 'team_id' });",
+          "believe teams:logo delete \\\n  --api-key 'My API Key' \\\n  --team-id team_id \\\n  --file-id 182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+      },
+      csharp: {
+        method: 'Teams.Logo.Delete',
+        example:
+          'LogoDeleteParams parameters = new()\n{\n    TeamID = "team_id",\n    FileID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n};\n\nawait client.Teams.Logo.Delete(parameters);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/teams/$TEAM_ID/logo/$FILE_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -1197,22 +1197,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.matches.list(limit?: number, match_type?: 'league' | 'cup' | 'friendly' | 'playoff' | 'final', result?: 'win' | 'loss' | 'draw' | 'pending', skip?: number, team_id?: string): { id: string; away_team_id: string; date: string; home_team_id: string; match_type: match_type; attendance?: number; away_score?: number; episode_id?: string; home_score?: number; lesson_learned?: string; possession_percentage?: number; result?: match_result; ted_halftime_speech?: string; ticket_revenue_gbp?: string; turning_points?: turning_point[]; weather_temp_celsius?: number; }`\n\n**get** `/matches`\n\nGet a paginated list of all matches with optional filtering.\n\n### Parameters\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `match_type?: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'`\n  Filter by match type\n\n- `result?: 'win' | 'loss' | 'draw' | 'pending'`\n  Filter by result\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n- `team_id?: string`\n  Filter by team (home or away)\n\n### Returns\n\n- `{ id: string; away_team_id: string; date: string; home_team_id: string; match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'; attendance?: number; away_score?: number; episode_id?: string; home_score?: number; lesson_learned?: string; possession_percentage?: number; result?: 'win' | 'loss' | 'draw' | 'pending'; ted_halftime_speech?: string; ticket_revenue_gbp?: string; turning_points?: { description: string; emotional_impact: string; minute: number; character_involved?: string; }[]; weather_temp_celsius?: number; }`\n  Full match model with ID.\n\n  - `id: string`\n  - `away_team_id: string`\n  - `date: string`\n  - `home_team_id: string`\n  - `match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'`\n  - `attendance?: number`\n  - `away_score?: number`\n  - `episode_id?: string`\n  - `home_score?: number`\n  - `lesson_learned?: string`\n  - `possession_percentage?: number`\n  - `result?: 'win' | 'loss' | 'draw' | 'pending'`\n  - `ted_halftime_speech?: string`\n  - `ticket_revenue_gbp?: string`\n  - `turning_points?: { description: string; emotional_impact: string; minute: number; character_involved?: string; }[]`\n  - `weather_temp_celsius?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const match of client.matches.list()) {\n  console.log(match);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'matches list',
-        example: "believe matches list \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Matches.List',
+      typescript: {
+        method: 'client.matches.list',
         example:
-          'MatchListParams parameters = new();\n\nvar page = await client.Matches.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const match of client.matches.list()) {\n  console.log(match.id);\n}",
       },
-      go: {
-        method: 'client.Matches.List',
+      python: {
+        method: 'matches.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Matches.List(context.TODO(), believe.MatchListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example: 'curl https://believe.cjav.dev/matches \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.matches.list()\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'matches().list',
@@ -1224,20 +1217,27 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.MatchListPage\nimport com.believe.api.models.matches.MatchListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: MatchListPage = client.matches().list()\n}',
       },
-      python: {
-        method: 'matches.list',
+      go: {
+        method: 'client.Matches.List',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.matches.list()\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Matches.List(context.TODO(), believe.MatchListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'matches.list',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.matches.list\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.matches.list',
+      cli: {
+        method: 'matches list',
+        example: "believe matches list \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Matches.List',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const match of client.matches.list()) {\n  console.log(match.id);\n}",
+          'MatchListParams parameters = new();\n\nvar page = await client.Matches.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example: 'curl https://believe.cjav.dev/matches \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -1271,24 +1271,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.matches.create(away_team_id: string, date: string, home_team_id: string, match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final', attendance?: number, away_score?: number, episode_id?: string, home_score?: number, lesson_learned?: string, possession_percentage?: number, result?: 'win' | 'loss' | 'draw' | 'pending', ted_halftime_speech?: string, ticket_revenue_gbp?: number | string, turning_points?: { description: string; emotional_impact: string; minute: number; character_involved?: string; }[], weather_temp_celsius?: number): { id: string; away_team_id: string; date: string; home_team_id: string; match_type: match_type; attendance?: number; away_score?: number; episode_id?: string; home_score?: number; lesson_learned?: string; possession_percentage?: number; result?: match_result; ted_halftime_speech?: string; ticket_revenue_gbp?: string; turning_points?: turning_point[]; weather_temp_celsius?: number; }`\n\n**post** `/matches`\n\nSchedule a new match.\n\n### Parameters\n\n- `away_team_id: string`\n  Away team ID\n\n- `date: string`\n  Match date and time\n\n- `home_team_id: string`\n  Home team ID\n\n- `match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'`\n  Type of match\n\n- `attendance?: number`\n  Match attendance\n\n- `away_score?: number`\n  Away team score\n\n- `episode_id?: string`\n  Episode ID where this match is featured\n\n- `home_score?: number`\n  Home team score\n\n- `lesson_learned?: string`\n  The life lesson learned from this match\n\n- `possession_percentage?: number`\n  Home team possession percentage\n\n- `result?: 'win' | 'loss' | 'draw' | 'pending'`\n  Match result from home team perspective\n\n- `ted_halftime_speech?: string`\n  Ted's inspirational halftime speech\n\n- `ticket_revenue_gbp?: number | string`\n  Total ticket revenue in GBP\n\n- `turning_points?: { description: string; emotional_impact: string; minute: number; character_involved?: string; }[]`\n  Key moments that changed the match\n\n- `weather_temp_celsius?: number`\n  Temperature at kickoff in Celsius\n\n### Returns\n\n- `{ id: string; away_team_id: string; date: string; home_team_id: string; match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'; attendance?: number; away_score?: number; episode_id?: string; home_score?: number; lesson_learned?: string; possession_percentage?: number; result?: 'win' | 'loss' | 'draw' | 'pending'; ted_halftime_speech?: string; ticket_revenue_gbp?: string; turning_points?: { description: string; emotional_impact: string; minute: number; character_involved?: string; }[]; weather_temp_celsius?: number; }`\n  Full match model with ID.\n\n  - `id: string`\n  - `away_team_id: string`\n  - `date: string`\n  - `home_team_id: string`\n  - `match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'`\n  - `attendance?: number`\n  - `away_score?: number`\n  - `episode_id?: string`\n  - `home_score?: number`\n  - `lesson_learned?: string`\n  - `possession_percentage?: number`\n  - `result?: 'win' | 'loss' | 'draw' | 'pending'`\n  - `ted_halftime_speech?: string`\n  - `ticket_revenue_gbp?: string`\n  - `turning_points?: { description: string; emotional_impact: string; minute: number; character_involved?: string; }[]`\n  - `weather_temp_celsius?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst match = await client.matches.create({\n  away_team_id: 'tottenham',\n  date: '2024-02-20T19:45:00Z',\n  home_team_id: 'afc-richmond',\n  match_type: 'cup',\n});\n\nconsole.log(match);\n```",
     perLanguage: {
-      cli: {
-        method: 'matches create',
+      typescript: {
+        method: 'client.matches.create',
         example:
-          "believe matches create \\\n  --api-key 'My API Key' \\\n  --away-team-id tottenham \\\n  --date \"'2024-02-20T19:45:00Z'\" \\\n  --home-team-id afc-richmond \\\n  --match-type cup",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst match = await client.matches.create({\n  away_team_id: 'tottenham',\n  date: '2024-02-20T19:45:00Z',\n  home_team_id: 'afc-richmond',\n  match_type: 'cup',\n});\n\nconsole.log(match.id);",
       },
-      csharp: {
-        method: 'Matches.Create',
+      python: {
+        method: 'matches.create',
         example:
-          'MatchCreateParams parameters = new()\n{\n    AwayTeamID = "tottenham",\n    Date = DateTimeOffset.Parse("2024-02-20T19:45:00Z"),\n    HomeTeamID = "afc-richmond",\n    MatchType = MatchType.Cup,\n};\n\nvar match = await client.Matches.Create(parameters);\n\nConsole.WriteLine(match);',
-      },
-      go: {
-        method: 'client.Matches.New',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tmatch, err := client.Matches.New(context.TODO(), believe.MatchNewParams{\n\t\tAwayTeamID: "tottenham",\n\t\tDate:       time.Now(),\n\t\tHomeTeamID: "afc-richmond",\n\t\tMatchType:  believe.MatchTypeCup,\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", match.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/matches \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"away_team_id\\": \\"tottenham\\",\n          \\"date\\": \\"2024-02-20T19:45:00Z\\",\n          \\"home_team_id\\": \\"afc-richmond\\",\n          \\"match_type\\": \\"cup\\",\n          \\"attendance\\": 24500,\n          \\"episode_id\\": \\"s02e05\\",\n          \\"lesson_learned\\": \\"It\'s not about the wins and losses, it\'s about helping these young fellas be the best versions of themselves.\\",\n          \\"possession_percentage\\": 50,\n          \\"ted_halftime_speech\\": \\"You know what the happiest animal on Earth is? It\'s a goldfish. You know why? It\'s got a 10-second memory.\\",\n          \\"ticket_revenue_gbp\\": \\"735000.00\\",\n          \\"weather_temp_celsius\\": 8.5\n        }"',
+          'import os\nfrom datetime import datetime\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nmatch = client.matches.create(\n    away_team_id="tottenham",\n    date=datetime.fromisoformat("2024-02-20T19:45:00"),\n    home_team_id="afc-richmond",\n    match_type="cup",\n)\nprint(match.id)',
       },
       java: {
         method: 'matches().create',
@@ -1300,20 +1291,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.Match\nimport com.believe.api.models.matches.MatchCreateParams\nimport com.believe.api.models.matches.MatchType\nimport java.time.OffsetDateTime\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: MatchCreateParams = MatchCreateParams.builder()\n        .awayTeamId("tottenham")\n        .date(OffsetDateTime.parse("2024-02-20T19:45:00Z"))\n        .homeTeamId("afc-richmond")\n        .matchType(MatchType.CUP)\n        .build()\n    val match: Match = client.matches().create(params)\n}',
       },
-      python: {
-        method: 'matches.create',
+      go: {
+        method: 'client.Matches.New',
         example:
-          'import os\nfrom datetime import datetime\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nmatch = client.matches.create(\n    away_team_id="tottenham",\n    date=datetime.fromisoformat("2024-02-20T19:45:00"),\n    home_team_id="afc-richmond",\n    match_type="cup",\n)\nprint(match.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tmatch, err := client.Matches.New(context.TODO(), believe.MatchNewParams{\n\t\tAwayTeamID: "tottenham",\n\t\tDate:       time.Now(),\n\t\tHomeTeamID: "afc-richmond",\n\t\tMatchType:  believe.MatchTypeCup,\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", match.ID)\n}\n',
       },
       ruby: {
         method: 'matches.create',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nmatch = believe.matches.create(\n  away_team_id: "tottenham",\n  date: "2024-02-20T19:45:00Z",\n  home_team_id: "afc-richmond",\n  match_type: :cup\n)\n\nputs(match)',
       },
-      typescript: {
-        method: 'client.matches.create',
+      cli: {
+        method: 'matches create',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst match = await client.matches.create({\n  away_team_id: 'tottenham',\n  date: '2024-02-20T19:45:00Z',\n  home_team_id: 'afc-richmond',\n  match_type: 'cup',\n});\n\nconsole.log(match.id);",
+          "believe matches create \\\n  --api-key 'My API Key' \\\n  --away-team-id tottenham \\\n  --date \"'2024-02-20T19:45:00Z'\" \\\n  --home-team-id afc-richmond \\\n  --match-type cup",
+      },
+      csharp: {
+        method: 'Matches.Create',
+        example:
+          'MatchCreateParams parameters = new()\n{\n    AwayTeamID = "tottenham",\n    Date = DateTimeOffset.Parse("2024-02-20T19:45:00Z"),\n    HomeTeamID = "afc-richmond",\n    MatchType = MatchType.Cup,\n};\n\nvar match = await client.Matches.Create(parameters);\n\nConsole.WriteLine(match);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/matches \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"away_team_id\\": \\"tottenham\\",\n          \\"date\\": \\"2024-02-20T19:45:00Z\\",\n          \\"home_team_id\\": \\"afc-richmond\\",\n          \\"match_type\\": \\"cup\\",\n          \\"attendance\\": 24500,\n          \\"episode_id\\": \\"s02e05\\",\n          \\"lesson_learned\\": \\"It\'s not about the wins and losses, it\'s about helping these young fellas be the best versions of themselves.\\",\n          \\"possession_percentage\\": 50,\n          \\"ted_halftime_speech\\": \\"You know what the happiest animal on Earth is? It\'s a goldfish. You know why? It\'s got a 10-second memory.\\",\n          \\"ticket_revenue_gbp\\": \\"735000.00\\",\n          \\"weather_temp_celsius\\": 8.5\n        }"',
       },
     },
   },
@@ -1331,23 +1331,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.matches.retrieve(match_id: string): { id: string; away_team_id: string; date: string; home_team_id: string; match_type: match_type; attendance?: number; away_score?: number; episode_id?: string; home_score?: number; lesson_learned?: string; possession_percentage?: number; result?: match_result; ted_halftime_speech?: string; ticket_revenue_gbp?: string; turning_points?: turning_point[]; weather_temp_celsius?: number; }`\n\n**get** `/matches/{match_id}`\n\nRetrieve detailed information about a specific match.\n\n### Parameters\n\n- `match_id: string`\n\n### Returns\n\n- `{ id: string; away_team_id: string; date: string; home_team_id: string; match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'; attendance?: number; away_score?: number; episode_id?: string; home_score?: number; lesson_learned?: string; possession_percentage?: number; result?: 'win' | 'loss' | 'draw' | 'pending'; ted_halftime_speech?: string; ticket_revenue_gbp?: string; turning_points?: { description: string; emotional_impact: string; minute: number; character_involved?: string; }[]; weather_temp_celsius?: number; }`\n  Full match model with ID.\n\n  - `id: string`\n  - `away_team_id: string`\n  - `date: string`\n  - `home_team_id: string`\n  - `match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'`\n  - `attendance?: number`\n  - `away_score?: number`\n  - `episode_id?: string`\n  - `home_score?: number`\n  - `lesson_learned?: string`\n  - `possession_percentage?: number`\n  - `result?: 'win' | 'loss' | 'draw' | 'pending'`\n  - `ted_halftime_speech?: string`\n  - `ticket_revenue_gbp?: string`\n  - `turning_points?: { description: string; emotional_impact: string; minute: number; character_involved?: string; }[]`\n  - `weather_temp_celsius?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst match = await client.matches.retrieve('match_id');\n\nconsole.log(match);\n```",
     perLanguage: {
-      cli: {
-        method: 'matches retrieve',
-        example: "believe matches retrieve \\\n  --api-key 'My API Key' \\\n  --match-id match_id",
-      },
-      csharp: {
-        method: 'Matches.Retrieve',
+      typescript: {
+        method: 'client.matches.retrieve',
         example:
-          'MatchRetrieveParams parameters = new() { MatchID = "match_id" };\n\nvar match = await client.Matches.Retrieve(parameters);\n\nConsole.WriteLine(match);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst match = await client.matches.retrieve('match_id');\n\nconsole.log(match.id);",
       },
-      go: {
-        method: 'client.Matches.Get',
+      python: {
+        method: 'matches.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tmatch, err := client.Matches.Get(context.TODO(), "match_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", match.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/matches/$MATCH_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nmatch = client.matches.retrieve(\n    "match_id",\n)\nprint(match.id)',
       },
       java: {
         method: 'matches().retrieve',
@@ -1359,20 +1351,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.Match\nimport com.believe.api.models.matches.MatchRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val match: Match = client.matches().retrieve("match_id")\n}',
       },
-      python: {
-        method: 'matches.retrieve',
+      go: {
+        method: 'client.Matches.Get',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nmatch = client.matches.retrieve(\n    "match_id",\n)\nprint(match.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tmatch, err := client.Matches.Get(context.TODO(), "match_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", match.ID)\n}\n',
       },
       ruby: {
         method: 'matches.retrieve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nmatch = believe.matches.retrieve("match_id")\n\nputs(match)',
       },
-      typescript: {
-        method: 'client.matches.retrieve',
+      cli: {
+        method: 'matches retrieve',
+        example: "believe matches retrieve \\\n  --api-key 'My API Key' \\\n  --match-id match_id",
+      },
+      csharp: {
+        method: 'Matches.Retrieve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst match = await client.matches.retrieve('match_id');\n\nconsole.log(match.id);",
+          'MatchRetrieveParams parameters = new() { MatchID = "match_id" };\n\nvar match = await client.Matches.Retrieve(parameters);\n\nConsole.WriteLine(match);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/matches/$MATCH_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -1407,23 +1407,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## update\n\n`client.matches.update(match_id: string, attendance?: number, away_score?: number, away_team_id?: string, date?: string, episode_id?: string, home_score?: number, home_team_id?: string, lesson_learned?: string, match_type?: 'league' | 'cup' | 'friendly' | 'playoff' | 'final', possession_percentage?: number, result?: 'win' | 'loss' | 'draw' | 'pending', ted_halftime_speech?: string, ticket_revenue_gbp?: number | string, turning_points?: { description: string; emotional_impact: string; minute: number; character_involved?: string; }[], weather_temp_celsius?: number): { id: string; away_team_id: string; date: string; home_team_id: string; match_type: match_type; attendance?: number; away_score?: number; episode_id?: string; home_score?: number; lesson_learned?: string; possession_percentage?: number; result?: match_result; ted_halftime_speech?: string; ticket_revenue_gbp?: string; turning_points?: turning_point[]; weather_temp_celsius?: number; }`\n\n**patch** `/matches/{match_id}`\n\nUpdate specific fields of an existing match (e.g., update score).\n\n### Parameters\n\n- `match_id: string`\n\n- `attendance?: number`\n\n- `away_score?: number`\n\n- `away_team_id?: string`\n\n- `date?: string`\n\n- `episode_id?: string`\n\n- `home_score?: number`\n\n- `home_team_id?: string`\n\n- `lesson_learned?: string`\n\n- `match_type?: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'`\n  Types of matches.\n\n- `possession_percentage?: number`\n\n- `result?: 'win' | 'loss' | 'draw' | 'pending'`\n  Match result types.\n\n- `ted_halftime_speech?: string`\n\n- `ticket_revenue_gbp?: number | string`\n\n- `turning_points?: { description: string; emotional_impact: string; minute: number; character_involved?: string; }[]`\n\n- `weather_temp_celsius?: number`\n\n### Returns\n\n- `{ id: string; away_team_id: string; date: string; home_team_id: string; match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'; attendance?: number; away_score?: number; episode_id?: string; home_score?: number; lesson_learned?: string; possession_percentage?: number; result?: 'win' | 'loss' | 'draw' | 'pending'; ted_halftime_speech?: string; ticket_revenue_gbp?: string; turning_points?: { description: string; emotional_impact: string; minute: number; character_involved?: string; }[]; weather_temp_celsius?: number; }`\n  Full match model with ID.\n\n  - `id: string`\n  - `away_team_id: string`\n  - `date: string`\n  - `home_team_id: string`\n  - `match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'`\n  - `attendance?: number`\n  - `away_score?: number`\n  - `episode_id?: string`\n  - `home_score?: number`\n  - `lesson_learned?: string`\n  - `possession_percentage?: number`\n  - `result?: 'win' | 'loss' | 'draw' | 'pending'`\n  - `ted_halftime_speech?: string`\n  - `ticket_revenue_gbp?: string`\n  - `turning_points?: { description: string; emotional_impact: string; minute: number; character_involved?: string; }[]`\n  - `weather_temp_celsius?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst match = await client.matches.update('match_id');\n\nconsole.log(match);\n```",
     perLanguage: {
-      cli: {
-        method: 'matches update',
-        example: "believe matches update \\\n  --api-key 'My API Key' \\\n  --match-id match_id",
-      },
-      csharp: {
-        method: 'Matches.Update',
+      typescript: {
+        method: 'client.matches.update',
         example:
-          'MatchUpdateParams parameters = new() { MatchID = "match_id" };\n\nvar match = await client.Matches.Update(parameters);\n\nConsole.WriteLine(match);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst match = await client.matches.update('match_id');\n\nconsole.log(match.id);",
       },
-      go: {
-        method: 'client.Matches.Update',
+      python: {
+        method: 'matches.update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tmatch, err := client.Matches.Update(\n\t\tcontext.TODO(),\n\t\t"match_id",\n\t\tbelieve.MatchUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", match.ID)\n}\n',
-      },
-      http: {
-        example:
-          "curl https://believe.cjav.dev/matches/$MATCH_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -d '{}'",
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nmatch = client.matches.update(\n    match_id="match_id",\n)\nprint(match.id)',
       },
       java: {
         method: 'matches().update',
@@ -1435,20 +1427,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.Match\nimport com.believe.api.models.matches.MatchUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val match: Match = client.matches().update("match_id")\n}',
       },
-      python: {
-        method: 'matches.update',
+      go: {
+        method: 'client.Matches.Update',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nmatch = client.matches.update(\n    match_id="match_id",\n)\nprint(match.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tmatch, err := client.Matches.Update(\n\t\tcontext.TODO(),\n\t\t"match_id",\n\t\tbelieve.MatchUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", match.ID)\n}\n',
       },
       ruby: {
         method: 'matches.update',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nmatch = believe.matches.update("match_id")\n\nputs(match)',
       },
-      typescript: {
-        method: 'client.matches.update',
+      cli: {
+        method: 'matches update',
+        example: "believe matches update \\\n  --api-key 'My API Key' \\\n  --match-id match_id",
+      },
+      csharp: {
+        method: 'Matches.Update',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst match = await client.matches.update('match_id');\n\nconsole.log(match.id);",
+          'MatchUpdateParams parameters = new() { MatchID = "match_id" };\n\nvar match = await client.Matches.Update(parameters);\n\nConsole.WriteLine(match);',
+      },
+      http: {
+        example:
+          "curl https://believe.cjav.dev/matches/$MATCH_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -d '{}'",
       },
     },
   },
@@ -1464,23 +1464,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## delete\n\n`client.matches.delete(match_id: string): void`\n\n**delete** `/matches/{match_id}`\n\nRemove a match from the database.\n\n### Parameters\n\n- `match_id: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nawait client.matches.delete('match_id')\n```",
     perLanguage: {
-      cli: {
-        method: 'matches delete',
-        example: "believe matches delete \\\n  --api-key 'My API Key' \\\n  --match-id match_id",
-      },
-      csharp: {
-        method: 'Matches.Delete',
+      typescript: {
+        method: 'client.matches.delete',
         example:
-          'MatchDeleteParams parameters = new() { MatchID = "match_id" };\n\nawait client.Matches.Delete(parameters);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.matches.delete('match_id');",
       },
-      go: {
-        method: 'client.Matches.Delete',
+      python: {
+        method: 'matches.delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Matches.Delete(context.TODO(), "match_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/matches/$MATCH_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.matches.delete(\n    "match_id",\n)',
       },
       java: {
         method: 'matches().delete',
@@ -1492,20 +1484,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.MatchDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.matches().delete("match_id")\n}',
       },
-      python: {
-        method: 'matches.delete',
+      go: {
+        method: 'client.Matches.Delete',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.matches.delete(\n    "match_id",\n)',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Matches.Delete(context.TODO(), "match_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'matches.delete',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresult = believe.matches.delete("match_id")\n\nputs(result)',
       },
-      typescript: {
-        method: 'client.matches.delete',
+      cli: {
+        method: 'matches delete',
+        example: "believe matches delete \\\n  --api-key 'My API Key' \\\n  --match-id match_id",
+      },
+      csharp: {
+        method: 'Matches.Delete',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.matches.delete('match_id');",
+          'MatchDeleteParams parameters = new() { MatchID = "match_id" };\n\nawait client.Matches.Delete(parameters);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/matches/$MATCH_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -1522,23 +1522,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_turning_points\n\n`client.matches.getTurningPoints(match_id: string): object[]`\n\n**get** `/matches/{match_id}/turning-points`\n\nGet all turning points from a specific match.\n\n### Parameters\n\n- `match_id: string`\n\n### Returns\n\n- `object[]`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.matches.getTurningPoints('match_id');\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'matches get_turning_points',
-        example: "believe matches get-turning-points \\\n  --api-key 'My API Key' \\\n  --match-id match_id",
-      },
-      csharp: {
-        method: 'Matches.GetTurningPoints',
+      typescript: {
+        method: 'client.matches.getTurningPoints',
         example:
-          'MatchGetTurningPointsParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.GetTurningPoints(parameters);\n\nConsole.WriteLine(response);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.matches.getTurningPoints('match_id');\n\nconsole.log(response);",
       },
-      go: {
-        method: 'client.Matches.GetTurningPoints',
+      python: {
+        method: 'matches.get_turning_points',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Matches.GetTurningPoints(context.TODO(), "match_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/matches/$MATCH_ID/turning-points \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.matches.get_turning_points(\n    "match_id",\n)\nprint(response)',
       },
       java: {
         method: 'matches().getTurningPoints',
@@ -1550,20 +1542,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.MatchGetTurningPointsParams\nimport com.believe.api.models.matches.MatchGetTurningPointsResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: List<MatchGetTurningPointsResponse> = client.matches().getTurningPoints("match_id")\n}',
       },
-      python: {
-        method: 'matches.get_turning_points',
+      go: {
+        method: 'client.Matches.GetTurningPoints',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.matches.get_turning_points(\n    "match_id",\n)\nprint(response)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Matches.GetTurningPoints(context.TODO(), "match_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'matches.get_turning_points',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.matches.get_turning_points("match_id")\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.matches.getTurningPoints',
+      cli: {
+        method: 'matches get_turning_points',
+        example: "believe matches get-turning-points \\\n  --api-key 'My API Key' \\\n  --match-id match_id",
+      },
+      csharp: {
+        method: 'Matches.GetTurningPoints',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.matches.getTurningPoints('match_id');\n\nconsole.log(response);",
+          'MatchGetTurningPointsParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.GetTurningPoints(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/matches/$MATCH_ID/turning-points \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -1580,23 +1580,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_lesson\n\n`client.matches.getLesson(match_id: string): object`\n\n**get** `/matches/{match_id}/lesson`\n\nGet the life lesson learned from a specific match.\n\n### Parameters\n\n- `match_id: string`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.matches.getLesson('match_id');\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'matches get_lesson',
-        example: "believe matches get-lesson \\\n  --api-key 'My API Key' \\\n  --match-id match_id",
-      },
-      csharp: {
-        method: 'Matches.GetLesson',
+      typescript: {
+        method: 'client.matches.getLesson',
         example:
-          'MatchGetLessonParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.GetLesson(parameters);\n\nConsole.WriteLine(response);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.matches.getLesson('match_id');\n\nconsole.log(response);",
       },
-      go: {
-        method: 'client.Matches.GetLesson',
+      python: {
+        method: 'matches.get_lesson',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Matches.GetLesson(context.TODO(), "match_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/matches/$MATCH_ID/lesson \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.matches.get_lesson(\n    "match_id",\n)\nprint(response)',
       },
       java: {
         method: 'matches().getLesson',
@@ -1608,20 +1600,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.MatchGetLessonParams\nimport com.believe.api.models.matches.MatchGetLessonResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: MatchGetLessonResponse = client.matches().getLesson("match_id")\n}',
       },
-      python: {
-        method: 'matches.get_lesson',
+      go: {
+        method: 'client.Matches.GetLesson',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.matches.get_lesson(\n    "match_id",\n)\nprint(response)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Matches.GetLesson(context.TODO(), "match_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'matches.get_lesson',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.matches.get_lesson("match_id")\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.matches.getLesson',
+      cli: {
+        method: 'matches get_lesson',
+        example: "believe matches get-lesson \\\n  --api-key 'My API Key' \\\n  --match-id match_id",
+      },
+      csharp: {
+        method: 'Matches.GetLesson',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.matches.getLesson('match_id');\n\nconsole.log(response);",
+          'MatchGetLessonParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.GetLesson(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/matches/$MATCH_ID/lesson \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -1638,22 +1638,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       '## stream_live\n\n`client.matches.streamLive(away_team?: string, excitement_level?: number, home_team?: string, speed?: number): void`\n\n**get** `/matches/live`\n\nWebSocket endpoint for real-time live match simulation.\n\nConnect to receive a stream of match events as they happen in a simulated football match.\n\n## Connection\n\nConnect via WebSocket with optional query parameters to customize the simulation.\n\n## Example WebSocket URL\n\n```\nws://localhost:8000/matches/live?home_team=AFC%20Richmond&away_team=Manchester%20City&speed=2.0&excitement_level=7\n```\n\n## Server Messages\n\nThe server sends JSON messages with these types:\n- `match_start` - When the match begins\n- `match_event` - For each match event (goals, fouls, cards, etc.)\n- `match_end` - When the match concludes\n- `error` - If an error occurs\n- `pong` - Response to client ping\n\n## Client Messages\n\nSend JSON to control the simulation:\n- `{"action": "ping"}` - Keep-alive, server responds with `{"type": "pong"}`\n- `{"action": "pause"}` - Pause the simulation\n- `{"action": "resume"}` - Resume a paused simulation\n- `{"action": "set_speed", "speed": 2.0}` - Change playback speed (0.1-10.0)\n- `{"action": "get_status"}` - Request current match status\n\n\n### Parameters\n\n- `away_team?: string`\n  Away team name\n\n- `excitement_level?: number`\n  How eventful the match should be (1=boring, 10=chaos)\n\n- `home_team?: string`\n  Home team name\n\n- `speed?: number`\n  Simulation speed multiplier (1.0 = real-time)\n\n### Example\n\n```typescript\nimport Believe from \'@cjavdev/believe\';\n\nconst client = new Believe();\n\nawait client.matches.streamLive()\n```',
     perLanguage: {
-      cli: {
-        method: 'matches stream_live',
-        example: "believe matches stream-live \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Matches.StreamLive',
-        example: 'MatchStreamLiveParams parameters = new();\n\nawait client.Matches.StreamLive(parameters);',
-      },
-      go: {
-        method: 'client.Matches.StreamLive',
+      typescript: {
+        method: 'client.matches.streamLive',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Matches.StreamLive(context.TODO(), believe.MatchStreamLiveParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.matches.streamLive();",
       },
-      http: {
+      python: {
+        method: 'matches.stream_live',
         example:
-          'curl https://believe.cjav.dev/matches/live \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.matches.stream_live()',
       },
       java: {
         method: 'matches().streamLive',
@@ -1665,20 +1658,27 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.MatchStreamLiveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.matches().streamLive()\n}',
       },
-      python: {
-        method: 'matches.stream_live',
+      go: {
+        method: 'client.Matches.StreamLive',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.matches.stream_live()',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Matches.StreamLive(context.TODO(), believe.MatchStreamLiveParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'matches.stream_live',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresult = believe.matches.stream_live\n\nputs(result)',
       },
-      typescript: {
-        method: 'client.matches.streamLive',
+      cli: {
+        method: 'matches stream_live',
+        example: "believe matches stream-live \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Matches.StreamLive',
+        example: 'MatchStreamLiveParams parameters = new();\n\nawait client.Matches.StreamLive(parameters);',
+      },
+      http: {
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.matches.streamLive();",
+          'curl https://believe.cjav.dev/matches/live \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -1696,23 +1696,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## stream\n\n`client.matches.commentary.stream(match_id: string): object`\n\n**post** `/matches/{match_id}/commentary/stream`\n\nStream live match commentary for a specific match. Uses Server-Sent Events (SSE) to stream commentary events in real-time.\n\n### Parameters\n\n- `match_id: string`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.matches.commentary.stream('match_id');\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'commentary stream',
-        example: "believe matches:commentary stream \\\n  --api-key 'My API Key' \\\n  --match-id match_id",
-      },
-      csharp: {
-        method: 'Matches.Commentary.Stream',
+      typescript: {
+        method: 'client.matches.commentary.stream',
         example:
-          'CommentaryStreamParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.Commentary.Stream(parameters);\n\nConsole.WriteLine(response);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.matches.commentary.stream('match_id');\n\nconsole.log(response);",
       },
-      go: {
-        method: 'client.Matches.Commentary.Stream',
+      python: {
+        method: 'matches.commentary.stream',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Matches.Commentary.Stream(context.TODO(), "match_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/matches/$MATCH_ID/commentary/stream \\\n    -X POST \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.matches.commentary.stream(\n    "match_id",\n)\nprint(response)',
       },
       java: {
         method: 'matches().commentary().stream',
@@ -1724,20 +1716,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.matches.commentary.CommentaryStreamParams\nimport com.believe.api.models.matches.commentary.CommentaryStreamResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: CommentaryStreamResponse = client.matches().commentary().stream("match_id")\n}',
       },
-      python: {
-        method: 'matches.commentary.stream',
+      go: {
+        method: 'client.Matches.Commentary.Stream',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.matches.commentary.stream(\n    "match_id",\n)\nprint(response)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Matches.Commentary.Stream(context.TODO(), "match_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'matches.commentary.stream',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.matches.commentary.stream("match_id")\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.matches.commentary.stream',
+      cli: {
+        method: 'commentary stream',
+        example: "believe matches:commentary stream \\\n  --api-key 'My API Key' \\\n  --match-id match_id",
+      },
+      csharp: {
+        method: 'Matches.Commentary.Stream',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.matches.commentary.stream('match_id');\n\nconsole.log(response);",
+          'CommentaryStreamParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.Commentary.Stream(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/matches/$MATCH_ID/commentary/stream \\\n    -X POST \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -1755,22 +1755,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.episodes.list(character_focus?: string, limit?: number, season?: number, skip?: number): { id: string; air_date: string; character_focus: string[]; director: string; episode_number: number; main_theme: string; runtime_minutes: number; season: number; synopsis: string; ted_wisdom: string; title: string; writer: string; biscuits_with_boss_moment?: string; memorable_moments?: string[]; us_viewers_millions?: number; viewer_rating?: number; }`\n\n**get** `/episodes`\n\nGet a paginated list of all Ted Lasso episodes with optional filtering by season.\n\n### Parameters\n\n- `character_focus?: string`\n  Filter by character focus (character ID)\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `season?: number`\n  Filter by season\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n### Returns\n\n- `{ id: string; air_date: string; character_focus: string[]; director: string; episode_number: number; main_theme: string; runtime_minutes: number; season: number; synopsis: string; ted_wisdom: string; title: string; writer: string; biscuits_with_boss_moment?: string; memorable_moments?: string[]; us_viewers_millions?: number; viewer_rating?: number; }`\n  Full episode model with ID.\n\n  - `id: string`\n  - `air_date: string`\n  - `character_focus: string[]`\n  - `director: string`\n  - `episode_number: number`\n  - `main_theme: string`\n  - `runtime_minutes: number`\n  - `season: number`\n  - `synopsis: string`\n  - `ted_wisdom: string`\n  - `title: string`\n  - `writer: string`\n  - `biscuits_with_boss_moment?: string`\n  - `memorable_moments?: string[]`\n  - `us_viewers_millions?: number`\n  - `viewer_rating?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const episode of client.episodes.list()) {\n  console.log(episode);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'episodes list',
-        example: "believe episodes list \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Episodes.List',
+      typescript: {
+        method: 'client.episodes.list',
         example:
-          'EpisodeListParams parameters = new();\n\nvar page = await client.Episodes.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const episode of client.episodes.list()) {\n  console.log(episode.id);\n}",
       },
-      go: {
-        method: 'client.Episodes.List',
+      python: {
+        method: 'episodes.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Episodes.List(context.TODO(), believe.EpisodeListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example: 'curl https://believe.cjav.dev/episodes \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.episodes.list()\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'episodes().list',
@@ -1782,20 +1775,27 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.episodes.EpisodeListPage\nimport com.believe.api.models.episodes.EpisodeListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: EpisodeListPage = client.episodes().list()\n}',
       },
-      python: {
-        method: 'episodes.list',
+      go: {
+        method: 'client.Episodes.List',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.episodes.list()\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Episodes.List(context.TODO(), believe.EpisodeListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'episodes.list',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.episodes.list\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.episodes.list',
+      cli: {
+        method: 'episodes list',
+        example: "believe episodes list \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Episodes.List',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const episode of client.episodes.list()) {\n  console.log(episode.id);\n}",
+          'EpisodeListParams parameters = new();\n\nvar page = await client.Episodes.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example: 'curl https://believe.cjav.dev/episodes \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -1829,24 +1829,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.episodes.create(air_date: string, character_focus: string[], director: string, episode_number: number, main_theme: string, runtime_minutes: number, season: number, synopsis: string, ted_wisdom: string, title: string, writer: string, biscuits_with_boss_moment?: string, memorable_moments?: string[], us_viewers_millions?: number, viewer_rating?: number): { id: string; air_date: string; character_focus: string[]; director: string; episode_number: number; main_theme: string; runtime_minutes: number; season: number; synopsis: string; ted_wisdom: string; title: string; writer: string; biscuits_with_boss_moment?: string; memorable_moments?: string[]; us_viewers_millions?: number; viewer_rating?: number; }`\n\n**post** `/episodes`\n\nAdd a new episode to the series.\n\n### Parameters\n\n- `air_date: string`\n  Original air date\n\n- `character_focus: string[]`\n  Characters with significant development\n\n- `director: string`\n  Episode director\n\n- `episode_number: number`\n  Episode number within season\n\n- `main_theme: string`\n  Central theme of the episode\n\n- `runtime_minutes: number`\n  Episode runtime in minutes\n\n- `season: number`\n  Season number\n\n- `synopsis: string`\n  Brief plot synopsis\n\n- `ted_wisdom: string`\n  Key piece of Ted wisdom from the episode\n\n- `title: string`\n  Episode title\n\n- `writer: string`\n  Episode writer(s)\n\n- `biscuits_with_boss_moment?: string`\n  Notable biscuits with the boss scene\n\n- `memorable_moments?: string[]`\n  Standout moments from the episode\n\n- `us_viewers_millions?: number`\n  US viewership in millions\n\n- `viewer_rating?: number`\n  Viewer rating out of 10\n\n### Returns\n\n- `{ id: string; air_date: string; character_focus: string[]; director: string; episode_number: number; main_theme: string; runtime_minutes: number; season: number; synopsis: string; ted_wisdom: string; title: string; writer: string; biscuits_with_boss_moment?: string; memorable_moments?: string[]; us_viewers_millions?: number; viewer_rating?: number; }`\n  Full episode model with ID.\n\n  - `id: string`\n  - `air_date: string`\n  - `character_focus: string[]`\n  - `director: string`\n  - `episode_number: number`\n  - `main_theme: string`\n  - `runtime_minutes: number`\n  - `season: number`\n  - `synopsis: string`\n  - `ted_wisdom: string`\n  - `title: string`\n  - `writer: string`\n  - `biscuits_with_boss_moment?: string`\n  - `memorable_moments?: string[]`\n  - `us_viewers_millions?: number`\n  - `viewer_rating?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst episode = await client.episodes.create({\n  air_date: '2020-10-02',\n  character_focus: ['ted-lasso', 'coach-beard', 'higgins', 'nate'],\n  director: 'MJ Delaney',\n  episode_number: 8,\n  main_theme: 'The power of vulnerability and male friendship',\n  runtime_minutes: 29,\n  season: 1,\n  synopsis: 'Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.',\n  ted_wisdom: 'There\\'s two buttons I never like to hit: that\\'s panic and snooze.',\n  title: 'The Diamond Dogs',\n  writer: 'Jason Sudeikis, Brendan Hunt, Joe Kelly',\n});\n\nconsole.log(episode);\n```",
     perLanguage: {
-      cli: {
-        method: 'episodes create',
+      typescript: {
+        method: 'client.episodes.create',
         example:
-          "believe episodes create \\\n  --api-key 'My API Key' \\\n  --air-date \"'2020-10-02'\" \\\n  --character-focus ted-lasso \\\n  --character-focus coach-beard \\\n  --character-focus higgins \\\n  --character-focus nate \\\n  --director 'MJ Delaney' \\\n  --episode-number 8 \\\n  --main-theme 'The power of vulnerability and male friendship' \\\n  --runtime-minutes 29 \\\n  --season 1 \\\n  --synopsis 'Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.' \\\n  --ted-wisdom \"There's two buttons I never like to hit: that's panic and snooze.\" \\\n  --title 'The Diamond Dogs' \\\n  --writer 'Jason Sudeikis, Brendan Hunt, Joe Kelly'",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst episode = await client.episodes.create({\n  air_date: '2020-10-02',\n  character_focus: ['ted-lasso', 'coach-beard', 'higgins', 'nate'],\n  director: 'MJ Delaney',\n  episode_number: 8,\n  main_theme: 'The power of vulnerability and male friendship',\n  runtime_minutes: 29,\n  season: 1,\n  synopsis:\n    'Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.',\n  ted_wisdom: \"There's two buttons I never like to hit: that's panic and snooze.\",\n  title: 'The Diamond Dogs',\n  writer: 'Jason Sudeikis, Brendan Hunt, Joe Kelly',\n});\n\nconsole.log(episode.id);",
       },
-      csharp: {
-        method: 'Episodes.Create',
+      python: {
+        method: 'episodes.create',
         example:
-          'EpisodeCreateParams parameters = new()\n{\n    AirDate = "2020-10-02",\n    CharacterFocus =\n    [\n        "ted-lasso", "coach-beard", "higgins", "nate"\n    ],\n    Director = "MJ Delaney",\n    EpisodeNumber = 8,\n    MainTheme = "The power of vulnerability and male friendship",\n    RuntimeMinutes = 29,\n    Season = 1,\n    Synopsis = "Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.",\n    TedWisdom = "There\'s two buttons I never like to hit: that\'s panic and snooze.",\n    Title = "The Diamond Dogs",\n    Writer = "Jason Sudeikis, Brendan Hunt, Joe Kelly",\n};\n\nvar episode = await client.Episodes.Create(parameters);\n\nConsole.WriteLine(episode);',
-      },
-      go: {
-        method: 'client.Episodes.New',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tepisode, err := client.Episodes.New(context.TODO(), believe.EpisodeNewParams{\n\t\tAirDate:        time.Now(),\n\t\tCharacterFocus: []string{"ted-lasso", "coach-beard", "higgins", "nate"},\n\t\tDirector:       "MJ Delaney",\n\t\tEpisodeNumber:  8,\n\t\tMainTheme:      "The power of vulnerability and male friendship",\n\t\tRuntimeMinutes: 29,\n\t\tSeason:         1,\n\t\tSynopsis:       "Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.",\n\t\tTedWisdom:      "There\'s two buttons I never like to hit: that\'s panic and snooze.",\n\t\tTitle:          "The Diamond Dogs",\n\t\tWriter:         "Jason Sudeikis, Brendan Hunt, Joe Kelly",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", episode.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/episodes \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"air_date\\": \\"2020-10-02\\",\n          \\"character_focus\\": [\n            \\"ted-lasso\\",\n            \\"coach-beard\\",\n            \\"higgins\\",\n            \\"nate\\"\n          ],\n          \\"director\\": \\"MJ Delaney\\",\n          \\"episode_number\\": 8,\n          \\"main_theme\\": \\"The power of vulnerability and male friendship\\",\n          \\"runtime_minutes\\": 29,\n          \\"season\\": 1,\n          \\"synopsis\\": \\"Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.\\",\n          \\"ted_wisdom\\": \\"There\'s two buttons I never like to hit: that\'s panic and snooze.\\",\n          \\"title\\": \\"The Diamond Dogs\\",\n          \\"writer\\": \\"Jason Sudeikis, Brendan Hunt, Joe Kelly\\",\n          \\"biscuits_with_boss_moment\\": \\"Ted and Rebecca have an honest conversation about trust.\\",\n          \\"memorable_moments\\": [\n            \\"First Diamond Dogs meeting\\",\n            \\"The famous dart scene with Rupert\\",\n            \\"Be curious, not judgmental speech\\"\n          ],\n          \\"us_viewers_millions\\": 1.42,\n          \\"viewer_rating\\": 9.1\n        }"',
+          'import os\nfrom datetime import date\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nepisode = client.episodes.create(\n    air_date=date.fromisoformat("2020-10-02"),\n    character_focus=["ted-lasso", "coach-beard", "higgins", "nate"],\n    director="MJ Delaney",\n    episode_number=8,\n    main_theme="The power of vulnerability and male friendship",\n    runtime_minutes=29,\n    season=1,\n    synopsis="Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.",\n    ted_wisdom="There\'s two buttons I never like to hit: that\'s panic and snooze.",\n    title="The Diamond Dogs",\n    writer="Jason Sudeikis, Brendan Hunt, Joe Kelly",\n)\nprint(episode.id)',
       },
       java: {
         method: 'episodes().create',
@@ -1858,20 +1849,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.episodes.Episode\nimport com.believe.api.models.episodes.EpisodeCreateParams\nimport java.time.LocalDate\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: EpisodeCreateParams = EpisodeCreateParams.builder()\n        .airDate(LocalDate.parse("2020-10-02"))\n        .characterFocus(listOf(\n          "ted-lasso",\n          "coach-beard",\n          "higgins",\n          "nate",\n        ))\n        .director("MJ Delaney")\n        .episodeNumber(8L)\n        .mainTheme("The power of vulnerability and male friendship")\n        .runtimeMinutes(29L)\n        .season(1L)\n        .synopsis("Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.")\n        .tedWisdom("There\'s two buttons I never like to hit: that\'s panic and snooze.")\n        .title("The Diamond Dogs")\n        .writer("Jason Sudeikis, Brendan Hunt, Joe Kelly")\n        .build()\n    val episode: Episode = client.episodes().create(params)\n}',
       },
-      python: {
-        method: 'episodes.create',
+      go: {
+        method: 'client.Episodes.New',
         example:
-          'import os\nfrom datetime import date\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nepisode = client.episodes.create(\n    air_date=date.fromisoformat("2020-10-02"),\n    character_focus=["ted-lasso", "coach-beard", "higgins", "nate"],\n    director="MJ Delaney",\n    episode_number=8,\n    main_theme="The power of vulnerability and male friendship",\n    runtime_minutes=29,\n    season=1,\n    synopsis="Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.",\n    ted_wisdom="There\'s two buttons I never like to hit: that\'s panic and snooze.",\n    title="The Diamond Dogs",\n    writer="Jason Sudeikis, Brendan Hunt, Joe Kelly",\n)\nprint(episode.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\t"time"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tepisode, err := client.Episodes.New(context.TODO(), believe.EpisodeNewParams{\n\t\tAirDate:        time.Now(),\n\t\tCharacterFocus: []string{"ted-lasso", "coach-beard", "higgins", "nate"},\n\t\tDirector:       "MJ Delaney",\n\t\tEpisodeNumber:  8,\n\t\tMainTheme:      "The power of vulnerability and male friendship",\n\t\tRuntimeMinutes: 29,\n\t\tSeason:         1,\n\t\tSynopsis:       "Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.",\n\t\tTedWisdom:      "There\'s two buttons I never like to hit: that\'s panic and snooze.",\n\t\tTitle:          "The Diamond Dogs",\n\t\tWriter:         "Jason Sudeikis, Brendan Hunt, Joe Kelly",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", episode.ID)\n}\n',
       },
       ruby: {
         method: 'episodes.create',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nepisode = believe.episodes.create(\n  air_date: "2020-10-02",\n  character_focus: ["ted-lasso", "coach-beard", "higgins", "nate"],\n  director: "MJ Delaney",\n  episode_number: 8,\n  main_theme: "The power of vulnerability and male friendship",\n  runtime_minutes: 29,\n  season: 1,\n  synopsis: "Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.",\n  ted_wisdom: "There\'s two buttons I never like to hit: that\'s panic and snooze.",\n  title: "The Diamond Dogs",\n  writer: "Jason Sudeikis, Brendan Hunt, Joe Kelly"\n)\n\nputs(episode)',
       },
-      typescript: {
-        method: 'client.episodes.create',
+      cli: {
+        method: 'episodes create',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst episode = await client.episodes.create({\n  air_date: '2020-10-02',\n  character_focus: ['ted-lasso', 'coach-beard', 'higgins', 'nate'],\n  director: 'MJ Delaney',\n  episode_number: 8,\n  main_theme: 'The power of vulnerability and male friendship',\n  runtime_minutes: 29,\n  season: 1,\n  synopsis:\n    'Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.',\n  ted_wisdom: \"There's two buttons I never like to hit: that's panic and snooze.\",\n  title: 'The Diamond Dogs',\n  writer: 'Jason Sudeikis, Brendan Hunt, Joe Kelly',\n});\n\nconsole.log(episode.id);",
+          "believe episodes create \\\n  --api-key 'My API Key' \\\n  --air-date \"'2020-10-02'\" \\\n  --character-focus ted-lasso \\\n  --character-focus coach-beard \\\n  --character-focus higgins \\\n  --character-focus nate \\\n  --director 'MJ Delaney' \\\n  --episode-number 8 \\\n  --main-theme 'The power of vulnerability and male friendship' \\\n  --runtime-minutes 29 \\\n  --season 1 \\\n  --synopsis 'Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.' \\\n  --ted-wisdom \"There's two buttons I never like to hit: that's panic and snooze.\" \\\n  --title 'The Diamond Dogs' \\\n  --writer 'Jason Sudeikis, Brendan Hunt, Joe Kelly'",
+      },
+      csharp: {
+        method: 'Episodes.Create',
+        example:
+          'EpisodeCreateParams parameters = new()\n{\n    AirDate = "2020-10-02",\n    CharacterFocus =\n    [\n        "ted-lasso", "coach-beard", "higgins", "nate"\n    ],\n    Director = "MJ Delaney",\n    EpisodeNumber = 8,\n    MainTheme = "The power of vulnerability and male friendship",\n    RuntimeMinutes = 29,\n    Season = 1,\n    Synopsis = "Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.",\n    TedWisdom = "There\'s two buttons I never like to hit: that\'s panic and snooze.",\n    Title = "The Diamond Dogs",\n    Writer = "Jason Sudeikis, Brendan Hunt, Joe Kelly",\n};\n\nvar episode = await client.Episodes.Create(parameters);\n\nConsole.WriteLine(episode);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/episodes \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"air_date\\": \\"2020-10-02\\",\n          \\"character_focus\\": [\n            \\"ted-lasso\\",\n            \\"coach-beard\\",\n            \\"higgins\\",\n            \\"nate\\"\n          ],\n          \\"director\\": \\"MJ Delaney\\",\n          \\"episode_number\\": 8,\n          \\"main_theme\\": \\"The power of vulnerability and male friendship\\",\n          \\"runtime_minutes\\": 29,\n          \\"season\\": 1,\n          \\"synopsis\\": \\"Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.\\",\n          \\"ted_wisdom\\": \\"There\'s two buttons I never like to hit: that\'s panic and snooze.\\",\n          \\"title\\": \\"The Diamond Dogs\\",\n          \\"writer\\": \\"Jason Sudeikis, Brendan Hunt, Joe Kelly\\",\n          \\"biscuits_with_boss_moment\\": \\"Ted and Rebecca have an honest conversation about trust.\\",\n          \\"memorable_moments\\": [\n            \\"First Diamond Dogs meeting\\",\n            \\"The famous dart scene with Rupert\\",\n            \\"Be curious, not judgmental speech\\"\n          ],\n          \\"us_viewers_millions\\": 1.42,\n          \\"viewer_rating\\": 9.1\n        }"',
       },
     },
   },
@@ -1889,23 +1889,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.episodes.retrieve(episode_id: string): { id: string; air_date: string; character_focus: string[]; director: string; episode_number: number; main_theme: string; runtime_minutes: number; season: number; synopsis: string; ted_wisdom: string; title: string; writer: string; biscuits_with_boss_moment?: string; memorable_moments?: string[]; us_viewers_millions?: number; viewer_rating?: number; }`\n\n**get** `/episodes/{episode_id}`\n\nRetrieve detailed information about a specific episode.\n\n### Parameters\n\n- `episode_id: string`\n\n### Returns\n\n- `{ id: string; air_date: string; character_focus: string[]; director: string; episode_number: number; main_theme: string; runtime_minutes: number; season: number; synopsis: string; ted_wisdom: string; title: string; writer: string; biscuits_with_boss_moment?: string; memorable_moments?: string[]; us_viewers_millions?: number; viewer_rating?: number; }`\n  Full episode model with ID.\n\n  - `id: string`\n  - `air_date: string`\n  - `character_focus: string[]`\n  - `director: string`\n  - `episode_number: number`\n  - `main_theme: string`\n  - `runtime_minutes: number`\n  - `season: number`\n  - `synopsis: string`\n  - `ted_wisdom: string`\n  - `title: string`\n  - `writer: string`\n  - `biscuits_with_boss_moment?: string`\n  - `memorable_moments?: string[]`\n  - `us_viewers_millions?: number`\n  - `viewer_rating?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst episode = await client.episodes.retrieve('episode_id');\n\nconsole.log(episode);\n```",
     perLanguage: {
-      cli: {
-        method: 'episodes retrieve',
-        example: "believe episodes retrieve \\\n  --api-key 'My API Key' \\\n  --episode-id episode_id",
-      },
-      csharp: {
-        method: 'Episodes.Retrieve',
+      typescript: {
+        method: 'client.episodes.retrieve',
         example:
-          'EpisodeRetrieveParams parameters = new() { EpisodeID = "episode_id" };\n\nvar episode = await client.Episodes.Retrieve(parameters);\n\nConsole.WriteLine(episode);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst episode = await client.episodes.retrieve('episode_id');\n\nconsole.log(episode.id);",
       },
-      go: {
-        method: 'client.Episodes.Get',
+      python: {
+        method: 'episodes.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tepisode, err := client.Episodes.Get(context.TODO(), "episode_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", episode.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/episodes/$EPISODE_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nepisode = client.episodes.retrieve(\n    "episode_id",\n)\nprint(episode.id)',
       },
       java: {
         method: 'episodes().retrieve',
@@ -1917,20 +1909,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.episodes.Episode\nimport com.believe.api.models.episodes.EpisodeRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val episode: Episode = client.episodes().retrieve("episode_id")\n}',
       },
-      python: {
-        method: 'episodes.retrieve',
+      go: {
+        method: 'client.Episodes.Get',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nepisode = client.episodes.retrieve(\n    "episode_id",\n)\nprint(episode.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tepisode, err := client.Episodes.Get(context.TODO(), "episode_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", episode.ID)\n}\n',
       },
       ruby: {
         method: 'episodes.retrieve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nepisode = believe.episodes.retrieve("episode_id")\n\nputs(episode)',
       },
-      typescript: {
-        method: 'client.episodes.retrieve',
+      cli: {
+        method: 'episodes retrieve',
+        example: "believe episodes retrieve \\\n  --api-key 'My API Key' \\\n  --episode-id episode_id",
+      },
+      csharp: {
+        method: 'Episodes.Retrieve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst episode = await client.episodes.retrieve('episode_id');\n\nconsole.log(episode.id);",
+          'EpisodeRetrieveParams parameters = new() { EpisodeID = "episode_id" };\n\nvar episode = await client.Episodes.Retrieve(parameters);\n\nConsole.WriteLine(episode);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/episodes/$EPISODE_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -1965,23 +1965,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## update\n\n`client.episodes.update(episode_id: string, air_date?: string, biscuits_with_boss_moment?: string, character_focus?: string[], director?: string, episode_number?: number, main_theme?: string, memorable_moments?: string[], runtime_minutes?: number, season?: number, synopsis?: string, ted_wisdom?: string, title?: string, us_viewers_millions?: number, viewer_rating?: number, writer?: string): { id: string; air_date: string; character_focus: string[]; director: string; episode_number: number; main_theme: string; runtime_minutes: number; season: number; synopsis: string; ted_wisdom: string; title: string; writer: string; biscuits_with_boss_moment?: string; memorable_moments?: string[]; us_viewers_millions?: number; viewer_rating?: number; }`\n\n**patch** `/episodes/{episode_id}`\n\nUpdate specific fields of an existing episode.\n\n### Parameters\n\n- `episode_id: string`\n\n- `air_date?: string`\n\n- `biscuits_with_boss_moment?: string`\n\n- `character_focus?: string[]`\n\n- `director?: string`\n\n- `episode_number?: number`\n\n- `main_theme?: string`\n\n- `memorable_moments?: string[]`\n\n- `runtime_minutes?: number`\n\n- `season?: number`\n\n- `synopsis?: string`\n\n- `ted_wisdom?: string`\n\n- `title?: string`\n\n- `us_viewers_millions?: number`\n\n- `viewer_rating?: number`\n\n- `writer?: string`\n\n### Returns\n\n- `{ id: string; air_date: string; character_focus: string[]; director: string; episode_number: number; main_theme: string; runtime_minutes: number; season: number; synopsis: string; ted_wisdom: string; title: string; writer: string; biscuits_with_boss_moment?: string; memorable_moments?: string[]; us_viewers_millions?: number; viewer_rating?: number; }`\n  Full episode model with ID.\n\n  - `id: string`\n  - `air_date: string`\n  - `character_focus: string[]`\n  - `director: string`\n  - `episode_number: number`\n  - `main_theme: string`\n  - `runtime_minutes: number`\n  - `season: number`\n  - `synopsis: string`\n  - `ted_wisdom: string`\n  - `title: string`\n  - `writer: string`\n  - `biscuits_with_boss_moment?: string`\n  - `memorable_moments?: string[]`\n  - `us_viewers_millions?: number`\n  - `viewer_rating?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst episode = await client.episodes.update('episode_id');\n\nconsole.log(episode);\n```",
     perLanguage: {
-      cli: {
-        method: 'episodes update',
-        example: "believe episodes update \\\n  --api-key 'My API Key' \\\n  --episode-id episode_id",
-      },
-      csharp: {
-        method: 'Episodes.Update',
+      typescript: {
+        method: 'client.episodes.update',
         example:
-          'EpisodeUpdateParams parameters = new() { EpisodeID = "episode_id" };\n\nvar episode = await client.Episodes.Update(parameters);\n\nConsole.WriteLine(episode);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst episode = await client.episodes.update('episode_id');\n\nconsole.log(episode.id);",
       },
-      go: {
-        method: 'client.Episodes.Update',
+      python: {
+        method: 'episodes.update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tepisode, err := client.Episodes.Update(\n\t\tcontext.TODO(),\n\t\t"episode_id",\n\t\tbelieve.EpisodeUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", episode.ID)\n}\n',
-      },
-      http: {
-        example:
-          "curl https://believe.cjav.dev/episodes/$EPISODE_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -d '{}'",
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nepisode = client.episodes.update(\n    episode_id="episode_id",\n)\nprint(episode.id)',
       },
       java: {
         method: 'episodes().update',
@@ -1993,20 +1985,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.episodes.Episode\nimport com.believe.api.models.episodes.EpisodeUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val episode: Episode = client.episodes().update("episode_id")\n}',
       },
-      python: {
-        method: 'episodes.update',
+      go: {
+        method: 'client.Episodes.Update',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nepisode = client.episodes.update(\n    episode_id="episode_id",\n)\nprint(episode.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tepisode, err := client.Episodes.Update(\n\t\tcontext.TODO(),\n\t\t"episode_id",\n\t\tbelieve.EpisodeUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", episode.ID)\n}\n',
       },
       ruby: {
         method: 'episodes.update',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nepisode = believe.episodes.update("episode_id")\n\nputs(episode)',
       },
-      typescript: {
-        method: 'client.episodes.update',
+      cli: {
+        method: 'episodes update',
+        example: "believe episodes update \\\n  --api-key 'My API Key' \\\n  --episode-id episode_id",
+      },
+      csharp: {
+        method: 'Episodes.Update',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst episode = await client.episodes.update('episode_id');\n\nconsole.log(episode.id);",
+          'EpisodeUpdateParams parameters = new() { EpisodeID = "episode_id" };\n\nvar episode = await client.Episodes.Update(parameters);\n\nConsole.WriteLine(episode);',
+      },
+      http: {
+        example:
+          "curl https://believe.cjav.dev/episodes/$EPISODE_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -d '{}'",
       },
     },
   },
@@ -2022,23 +2022,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## delete\n\n`client.episodes.delete(episode_id: string): void`\n\n**delete** `/episodes/{episode_id}`\n\nRemove an episode from the database.\n\n### Parameters\n\n- `episode_id: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nawait client.episodes.delete('episode_id')\n```",
     perLanguage: {
-      cli: {
-        method: 'episodes delete',
-        example: "believe episodes delete \\\n  --api-key 'My API Key' \\\n  --episode-id episode_id",
-      },
-      csharp: {
-        method: 'Episodes.Delete',
+      typescript: {
+        method: 'client.episodes.delete',
         example:
-          'EpisodeDeleteParams parameters = new() { EpisodeID = "episode_id" };\n\nawait client.Episodes.Delete(parameters);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.episodes.delete('episode_id');",
       },
-      go: {
-        method: 'client.Episodes.Delete',
+      python: {
+        method: 'episodes.delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Episodes.Delete(context.TODO(), "episode_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/episodes/$EPISODE_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.episodes.delete(\n    "episode_id",\n)',
       },
       java: {
         method: 'episodes().delete',
@@ -2050,20 +2042,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.episodes.EpisodeDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.episodes().delete("episode_id")\n}',
       },
-      python: {
-        method: 'episodes.delete',
+      go: {
+        method: 'client.Episodes.Delete',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.episodes.delete(\n    "episode_id",\n)',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Episodes.Delete(context.TODO(), "episode_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'episodes.delete',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresult = believe.episodes.delete("episode_id")\n\nputs(result)',
       },
-      typescript: {
-        method: 'client.episodes.delete',
+      cli: {
+        method: 'episodes delete',
+        example: "believe episodes delete \\\n  --api-key 'My API Key' \\\n  --episode-id episode_id",
+      },
+      csharp: {
+        method: 'Episodes.Delete',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.episodes.delete('episode_id');",
+          'EpisodeDeleteParams parameters = new() { EpisodeID = "episode_id" };\n\nawait client.Episodes.Delete(parameters);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/episodes/$EPISODE_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -2080,23 +2080,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_wisdom\n\n`client.episodes.getWisdom(episode_id: string): object`\n\n**get** `/episodes/{episode_id}/wisdom`\n\nGet Ted's wisdom and memorable moments from a specific episode.\n\n### Parameters\n\n- `episode_id: string`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.episodes.getWisdom('episode_id');\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'episodes get_wisdom',
-        example: "believe episodes get-wisdom \\\n  --api-key 'My API Key' \\\n  --episode-id episode_id",
-      },
-      csharp: {
-        method: 'Episodes.GetWisdom',
+      typescript: {
+        method: 'client.episodes.getWisdom',
         example:
-          'EpisodeGetWisdomParams parameters = new() { EpisodeID = "episode_id" };\n\nvar response = await client.Episodes.GetWisdom(parameters);\n\nConsole.WriteLine(response);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.episodes.getWisdom('episode_id');\n\nconsole.log(response);",
       },
-      go: {
-        method: 'client.Episodes.GetWisdom',
+      python: {
+        method: 'episodes.get_wisdom',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Episodes.GetWisdom(context.TODO(), "episode_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/episodes/$EPISODE_ID/wisdom \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.episodes.get_wisdom(\n    "episode_id",\n)\nprint(response)',
       },
       java: {
         method: 'episodes().getWisdom',
@@ -2108,20 +2100,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.episodes.EpisodeGetWisdomParams\nimport com.believe.api.models.episodes.EpisodeGetWisdomResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: EpisodeGetWisdomResponse = client.episodes().getWisdom("episode_id")\n}',
       },
-      python: {
-        method: 'episodes.get_wisdom',
+      go: {
+        method: 'client.Episodes.GetWisdom',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.episodes.get_wisdom(\n    "episode_id",\n)\nprint(response)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Episodes.GetWisdom(context.TODO(), "episode_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'episodes.get_wisdom',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.episodes.get_wisdom("episode_id")\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.episodes.getWisdom',
+      cli: {
+        method: 'episodes get_wisdom',
+        example: "believe episodes get-wisdom \\\n  --api-key 'My API Key' \\\n  --episode-id episode_id",
+      },
+      csharp: {
+        method: 'Episodes.GetWisdom',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.episodes.getWisdom('episode_id');\n\nconsole.log(response);",
+          'EpisodeGetWisdomParams parameters = new() { EpisodeID = "episode_id" };\n\nvar response = await client.Episodes.GetWisdom(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/episodes/$EPISODE_ID/wisdom \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -2147,22 +2147,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.quotes.list(character_id?: string, funny?: boolean, inspirational?: boolean, limit?: number, moment_type?: string, skip?: number, theme?: string): { id: string; character_id: string; context: string; moment_type: quote_moment; text: string; theme: quote_theme; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: quote_theme[]; times_shared?: number; }`\n\n**get** `/quotes`\n\nGet a paginated list of all memorable Ted Lasso quotes with optional filtering.\n\n### Parameters\n\n- `character_id?: string`\n  Filter by character\n\n- `funny?: boolean`\n  Filter funny quotes\n\n- `inspirational?: boolean`\n  Filter inspirational quotes\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `moment_type?: string`\n  Filter by moment type\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n- `theme?: string`\n  Filter by theme\n\n### Returns\n\n- `{ id: string; character_id: string; context: string; moment_type: string; text: string; theme: string; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: string[]; times_shared?: number; }`\n  Full quote model with ID.\n\n  - `id: string`\n  - `character_id: string`\n  - `context: string`\n  - `moment_type: string`\n  - `text: string`\n  - `theme: string`\n  - `episode_id?: string`\n  - `is_funny?: boolean`\n  - `is_inspirational?: boolean`\n  - `popularity_score?: number`\n  - `secondary_themes?: string[]`\n  - `times_shared?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const quote of client.quotes.list()) {\n  console.log(quote);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'quotes list',
-        example: "believe quotes list \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Quotes.List',
+      typescript: {
+        method: 'client.quotes.list',
         example:
-          'QuoteListParams parameters = new();\n\nvar page = await client.Quotes.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const quote of client.quotes.list()) {\n  console.log(quote.id);\n}",
       },
-      go: {
-        method: 'client.Quotes.List',
+      python: {
+        method: 'quotes.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Quotes.List(context.TODO(), believe.QuoteListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example: 'curl https://believe.cjav.dev/quotes \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.quotes.list()\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'quotes().list',
@@ -2174,20 +2167,27 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.QuoteListPage\nimport com.believe.api.models.quotes.QuoteListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: QuoteListPage = client.quotes().list()\n}',
       },
-      python: {
-        method: 'quotes.list',
+      go: {
+        method: 'client.Quotes.List',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.quotes.list()\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Quotes.List(context.TODO(), believe.QuoteListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'quotes.list',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.quotes.list\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.quotes.list',
+      cli: {
+        method: 'quotes list',
+        example: "believe quotes list \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Quotes.List',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const quote of client.quotes.list()) {\n  console.log(quote.id);\n}",
+          'QuoteListParams parameters = new();\n\nvar page = await client.Quotes.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example: 'curl https://believe.cjav.dev/quotes \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -2217,24 +2217,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.quotes.create(character_id: string, context: string, moment_type: string, text: string, theme: string, episode_id?: string, is_funny?: boolean, is_inspirational?: boolean, popularity_score?: number, secondary_themes?: string[], times_shared?: number): { id: string; character_id: string; context: string; moment_type: quote_moment; text: string; theme: quote_theme; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: quote_theme[]; times_shared?: number; }`\n\n**post** `/quotes`\n\nAdd a new memorable quote to the collection.\n\n### Parameters\n\n- `character_id: string`\n  ID of the character who said it\n\n- `context: string`\n  Context in which the quote was said\n\n- `moment_type: string`\n  Type of moment when the quote was said\n\n- `text: string`\n  The quote text\n\n- `theme: string`\n  Primary theme of the quote\n\n- `episode_id?: string`\n  Episode where the quote appears\n\n- `is_funny?: boolean`\n  Whether this quote is humorous\n\n- `is_inspirational?: boolean`\n  Whether this quote is inspirational\n\n- `popularity_score?: number`\n  Popularity/virality score (0-100)\n\n- `secondary_themes?: string[]`\n  Additional themes\n\n- `times_shared?: number`\n  Number of times shared on social media\n\n### Returns\n\n- `{ id: string; character_id: string; context: string; moment_type: string; text: string; theme: string; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: string[]; times_shared?: number; }`\n  Full quote model with ID.\n\n  - `id: string`\n  - `character_id: string`\n  - `context: string`\n  - `moment_type: string`\n  - `text: string`\n  - `theme: string`\n  - `episode_id?: string`\n  - `is_funny?: boolean`\n  - `is_inspirational?: boolean`\n  - `popularity_score?: number`\n  - `secondary_themes?: string[]`\n  - `times_shared?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst quote = await client.quotes.create({\n  character_id: 'ted-lasso',\n  context: 'Ted\\'s first team meeting, revealing his coaching philosophy',\n  moment_type: 'locker_room',\n  text: 'I believe in believe.',\n  theme: 'belief',\n});\n\nconsole.log(quote);\n```",
     perLanguage: {
-      cli: {
-        method: 'quotes create',
+      typescript: {
+        method: 'client.quotes.create',
         example:
-          "believe quotes create \\\n  --api-key 'My API Key' \\\n  --character-id ted-lasso \\\n  --context \"Ted's first team meeting, revealing his coaching philosophy\" \\\n  --moment-type locker_room \\\n  --text 'I believe in believe.' \\\n  --theme belief",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst quote = await client.quotes.create({\n  character_id: 'ted-lasso',\n  context: \"Ted's first team meeting, revealing his coaching philosophy\",\n  moment_type: 'locker_room',\n  text: 'I believe in believe.',\n  theme: 'belief',\n});\n\nconsole.log(quote.id);",
       },
-      csharp: {
-        method: 'Quotes.Create',
+      python: {
+        method: 'quotes.create',
         example:
-          'QuoteCreateParams parameters = new()\n{\n    CharacterID = "ted-lasso",\n    Context = "Ted\'s first team meeting, revealing his coaching philosophy",\n    MomentType = QuoteMoment.LockerRoom,\n    Text = "I believe in believe.",\n    Theme = QuoteTheme.Belief,\n};\n\nvar quote = await client.Quotes.Create(parameters);\n\nConsole.WriteLine(quote);',
-      },
-      go: {
-        method: 'client.Quotes.New',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tquote, err := client.Quotes.New(context.TODO(), believe.QuoteNewParams{\n\t\tCharacterID: "ted-lasso",\n\t\tContext:     "Ted\'s first team meeting, revealing his coaching philosophy",\n\t\tMomentType:  believe.QuoteMomentLockerRoom,\n\t\tText:        "I believe in believe.",\n\t\tTheme:       believe.QuoteThemeBelief,\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", quote.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/quotes \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"character_id\\": \\"ted-lasso\\",\n          \\"context\\": \\"Ted\'s first team meeting, revealing his coaching philosophy\\",\n          \\"moment_type\\": \\"locker_room\\",\n          \\"text\\": \\"I believe in believe.\\",\n          \\"theme\\": \\"belief\\",\n          \\"episode_id\\": \\"s01e01\\",\n          \\"popularity_score\\": 98.5,\n          \\"secondary_themes\\": [\n            \\"leadership\\",\n            \\"teamwork\\"\n          ],\n          \\"times_shared\\": 250000\n        }"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nquote = client.quotes.create(\n    character_id="ted-lasso",\n    context="Ted\'s first team meeting, revealing his coaching philosophy",\n    moment_type="locker_room",\n    text="I believe in believe.",\n    theme="belief",\n)\nprint(quote.id)',
       },
       java: {
         method: 'quotes().create',
@@ -2246,20 +2237,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.Quote\nimport com.believe.api.models.quotes.QuoteCreateParams\nimport com.believe.api.models.quotes.QuoteMoment\nimport com.believe.api.models.quotes.QuoteTheme\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: QuoteCreateParams = QuoteCreateParams.builder()\n        .characterId("ted-lasso")\n        .context("Ted\'s first team meeting, revealing his coaching philosophy")\n        .momentType(QuoteMoment.LOCKER_ROOM)\n        .text("I believe in believe.")\n        .theme(QuoteTheme.BELIEF)\n        .build()\n    val quote: Quote = client.quotes().create(params)\n}',
       },
-      python: {
-        method: 'quotes.create',
+      go: {
+        method: 'client.Quotes.New',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nquote = client.quotes.create(\n    character_id="ted-lasso",\n    context="Ted\'s first team meeting, revealing his coaching philosophy",\n    moment_type="locker_room",\n    text="I believe in believe.",\n    theme="belief",\n)\nprint(quote.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tquote, err := client.Quotes.New(context.TODO(), believe.QuoteNewParams{\n\t\tCharacterID: "ted-lasso",\n\t\tContext:     "Ted\'s first team meeting, revealing his coaching philosophy",\n\t\tMomentType:  believe.QuoteMomentLockerRoom,\n\t\tText:        "I believe in believe.",\n\t\tTheme:       believe.QuoteThemeBelief,\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", quote.ID)\n}\n',
       },
       ruby: {
         method: 'quotes.create',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nquote = believe.quotes.create(\n  character_id: "ted-lasso",\n  context: "Ted\'s first team meeting, revealing his coaching philosophy",\n  moment_type: :locker_room,\n  text: "I believe in believe.",\n  theme: :belief\n)\n\nputs(quote)',
       },
-      typescript: {
-        method: 'client.quotes.create',
+      cli: {
+        method: 'quotes create',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst quote = await client.quotes.create({\n  character_id: 'ted-lasso',\n  context: \"Ted's first team meeting, revealing his coaching philosophy\",\n  moment_type: 'locker_room',\n  text: 'I believe in believe.',\n  theme: 'belief',\n});\n\nconsole.log(quote.id);",
+          "believe quotes create \\\n  --api-key 'My API Key' \\\n  --character-id ted-lasso \\\n  --context \"Ted's first team meeting, revealing his coaching philosophy\" \\\n  --moment-type locker_room \\\n  --text 'I believe in believe.' \\\n  --theme belief",
+      },
+      csharp: {
+        method: 'Quotes.Create',
+        example:
+          'QuoteCreateParams parameters = new()\n{\n    CharacterID = "ted-lasso",\n    Context = "Ted\'s first team meeting, revealing his coaching philosophy",\n    MomentType = QuoteMoment.LockerRoom,\n    Text = "I believe in believe.",\n    Theme = QuoteTheme.Belief,\n};\n\nvar quote = await client.Quotes.Create(parameters);\n\nConsole.WriteLine(quote);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/quotes \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"character_id\\": \\"ted-lasso\\",\n          \\"context\\": \\"Ted\'s first team meeting, revealing his coaching philosophy\\",\n          \\"moment_type\\": \\"locker_room\\",\n          \\"text\\": \\"I believe in believe.\\",\n          \\"theme\\": \\"belief\\",\n          \\"episode_id\\": \\"s01e01\\",\n          \\"popularity_score\\": 98.5,\n          \\"secondary_themes\\": [\n            \\"leadership\\",\n            \\"teamwork\\"\n          ],\n          \\"times_shared\\": 250000\n        }"',
       },
     },
   },
@@ -2277,23 +2277,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_random\n\n`client.quotes.getRandom(character_id?: string, inspirational?: boolean, theme?: string): { id: string; character_id: string; context: string; moment_type: quote_moment; text: string; theme: quote_theme; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: quote_theme[]; times_shared?: number; }`\n\n**get** `/quotes/random`\n\nGet a random Ted Lasso quote, optionally filtered.\n\n### Parameters\n\n- `character_id?: string`\n  Filter by character\n\n- `inspirational?: boolean`\n  Filter inspirational quotes\n\n- `theme?: string`\n  Filter by theme\n\n### Returns\n\n- `{ id: string; character_id: string; context: string; moment_type: string; text: string; theme: string; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: string[]; times_shared?: number; }`\n  Full quote model with ID.\n\n  - `id: string`\n  - `character_id: string`\n  - `context: string`\n  - `moment_type: string`\n  - `text: string`\n  - `theme: string`\n  - `episode_id?: string`\n  - `is_funny?: boolean`\n  - `is_inspirational?: boolean`\n  - `popularity_score?: number`\n  - `secondary_themes?: string[]`\n  - `times_shared?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst quote = await client.quotes.getRandom();\n\nconsole.log(quote);\n```",
     perLanguage: {
-      cli: {
-        method: 'quotes get_random',
-        example: "believe quotes get-random \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Quotes.GetRandom',
+      typescript: {
+        method: 'client.quotes.getRandom',
         example:
-          'QuoteGetRandomParams parameters = new();\n\nvar quote = await client.Quotes.GetRandom(parameters);\n\nConsole.WriteLine(quote);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst quote = await client.quotes.getRandom();\n\nconsole.log(quote.id);",
       },
-      go: {
-        method: 'client.Quotes.GetRandom',
+      python: {
+        method: 'quotes.get_random',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tquote, err := client.Quotes.GetRandom(context.TODO(), believe.QuoteGetRandomParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", quote.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/quotes/random \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nquote = client.quotes.get_random()\nprint(quote.id)',
       },
       java: {
         method: 'quotes().getRandom',
@@ -2305,20 +2297,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.Quote\nimport com.believe.api.models.quotes.QuoteGetRandomParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val quote: Quote = client.quotes().getRandom()\n}',
       },
-      python: {
-        method: 'quotes.get_random',
+      go: {
+        method: 'client.Quotes.GetRandom',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nquote = client.quotes.get_random()\nprint(quote.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tquote, err := client.Quotes.GetRandom(context.TODO(), believe.QuoteGetRandomParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", quote.ID)\n}\n',
       },
       ruby: {
         method: 'quotes.get_random',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nquote = believe.quotes.get_random\n\nputs(quote)',
       },
-      typescript: {
-        method: 'client.quotes.getRandom',
+      cli: {
+        method: 'quotes get_random',
+        example: "believe quotes get-random \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Quotes.GetRandom',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst quote = await client.quotes.getRandom();\n\nconsole.log(quote.id);",
+          'QuoteGetRandomParams parameters = new();\n\nvar quote = await client.Quotes.GetRandom(parameters);\n\nConsole.WriteLine(quote);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/quotes/random \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -2336,23 +2336,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.quotes.retrieve(quote_id: string): { id: string; character_id: string; context: string; moment_type: quote_moment; text: string; theme: quote_theme; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: quote_theme[]; times_shared?: number; }`\n\n**get** `/quotes/{quote_id}`\n\nRetrieve a specific quote by its ID.\n\n### Parameters\n\n- `quote_id: string`\n\n### Returns\n\n- `{ id: string; character_id: string; context: string; moment_type: string; text: string; theme: string; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: string[]; times_shared?: number; }`\n  Full quote model with ID.\n\n  - `id: string`\n  - `character_id: string`\n  - `context: string`\n  - `moment_type: string`\n  - `text: string`\n  - `theme: string`\n  - `episode_id?: string`\n  - `is_funny?: boolean`\n  - `is_inspirational?: boolean`\n  - `popularity_score?: number`\n  - `secondary_themes?: string[]`\n  - `times_shared?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst quote = await client.quotes.retrieve('quote_id');\n\nconsole.log(quote);\n```",
     perLanguage: {
-      cli: {
-        method: 'quotes retrieve',
-        example: "believe quotes retrieve \\\n  --api-key 'My API Key' \\\n  --quote-id quote_id",
-      },
-      csharp: {
-        method: 'Quotes.Retrieve',
+      typescript: {
+        method: 'client.quotes.retrieve',
         example:
-          'QuoteRetrieveParams parameters = new() { QuoteID = "quote_id" };\n\nvar quote = await client.Quotes.Retrieve(parameters);\n\nConsole.WriteLine(quote);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst quote = await client.quotes.retrieve('quote_id');\n\nconsole.log(quote.id);",
       },
-      go: {
-        method: 'client.Quotes.Get',
+      python: {
+        method: 'quotes.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tquote, err := client.Quotes.Get(context.TODO(), "quote_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", quote.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/quotes/$QUOTE_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nquote = client.quotes.retrieve(\n    "quote_id",\n)\nprint(quote.id)',
       },
       java: {
         method: 'quotes().retrieve',
@@ -2364,20 +2356,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.Quote\nimport com.believe.api.models.quotes.QuoteRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val quote: Quote = client.quotes().retrieve("quote_id")\n}',
       },
-      python: {
-        method: 'quotes.retrieve',
+      go: {
+        method: 'client.Quotes.Get',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nquote = client.quotes.retrieve(\n    "quote_id",\n)\nprint(quote.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tquote, err := client.Quotes.Get(context.TODO(), "quote_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", quote.ID)\n}\n',
       },
       ruby: {
         method: 'quotes.retrieve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nquote = believe.quotes.retrieve("quote_id")\n\nputs(quote)',
       },
-      typescript: {
-        method: 'client.quotes.retrieve',
+      cli: {
+        method: 'quotes retrieve',
+        example: "believe quotes retrieve \\\n  --api-key 'My API Key' \\\n  --quote-id quote_id",
+      },
+      csharp: {
+        method: 'Quotes.Retrieve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst quote = await client.quotes.retrieve('quote_id');\n\nconsole.log(quote.id);",
+          'QuoteRetrieveParams parameters = new() { QuoteID = "quote_id" };\n\nvar quote = await client.Quotes.Retrieve(parameters);\n\nConsole.WriteLine(quote);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/quotes/$QUOTE_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -2408,23 +2408,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## update\n\n`client.quotes.update(quote_id: string, character_id?: string, context?: string, episode_id?: string, is_funny?: boolean, is_inspirational?: boolean, moment_type?: string, popularity_score?: number, secondary_themes?: string[], text?: string, theme?: string, times_shared?: number): { id: string; character_id: string; context: string; moment_type: quote_moment; text: string; theme: quote_theme; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: quote_theme[]; times_shared?: number; }`\n\n**patch** `/quotes/{quote_id}`\n\nUpdate specific fields of an existing quote.\n\n### Parameters\n\n- `quote_id: string`\n\n- `character_id?: string`\n\n- `context?: string`\n\n- `episode_id?: string`\n\n- `is_funny?: boolean`\n\n- `is_inspirational?: boolean`\n\n- `moment_type?: string`\n  Types of moments when quotes occur.\n\n- `popularity_score?: number`\n\n- `secondary_themes?: string[]`\n\n- `text?: string`\n\n- `theme?: string`\n  Themes that quotes can be categorized under.\n\n- `times_shared?: number`\n\n### Returns\n\n- `{ id: string; character_id: string; context: string; moment_type: string; text: string; theme: string; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: string[]; times_shared?: number; }`\n  Full quote model with ID.\n\n  - `id: string`\n  - `character_id: string`\n  - `context: string`\n  - `moment_type: string`\n  - `text: string`\n  - `theme: string`\n  - `episode_id?: string`\n  - `is_funny?: boolean`\n  - `is_inspirational?: boolean`\n  - `popularity_score?: number`\n  - `secondary_themes?: string[]`\n  - `times_shared?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst quote = await client.quotes.update('quote_id');\n\nconsole.log(quote);\n```",
     perLanguage: {
-      cli: {
-        method: 'quotes update',
-        example: "believe quotes update \\\n  --api-key 'My API Key' \\\n  --quote-id quote_id",
-      },
-      csharp: {
-        method: 'Quotes.Update',
+      typescript: {
+        method: 'client.quotes.update',
         example:
-          'QuoteUpdateParams parameters = new() { QuoteID = "quote_id" };\n\nvar quote = await client.Quotes.Update(parameters);\n\nConsole.WriteLine(quote);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst quote = await client.quotes.update('quote_id');\n\nconsole.log(quote.id);",
       },
-      go: {
-        method: 'client.Quotes.Update',
+      python: {
+        method: 'quotes.update',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tquote, err := client.Quotes.Update(\n\t\tcontext.TODO(),\n\t\t"quote_id",\n\t\tbelieve.QuoteUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", quote.ID)\n}\n',
-      },
-      http: {
-        example:
-          "curl https://believe.cjav.dev/quotes/$QUOTE_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -d '{}'",
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nquote = client.quotes.update(\n    quote_id="quote_id",\n)\nprint(quote.id)',
       },
       java: {
         method: 'quotes().update',
@@ -2436,20 +2428,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.Quote\nimport com.believe.api.models.quotes.QuoteUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val quote: Quote = client.quotes().update("quote_id")\n}',
       },
-      python: {
-        method: 'quotes.update',
+      go: {
+        method: 'client.Quotes.Update',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nquote = client.quotes.update(\n    quote_id="quote_id",\n)\nprint(quote.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tquote, err := client.Quotes.Update(\n\t\tcontext.TODO(),\n\t\t"quote_id",\n\t\tbelieve.QuoteUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", quote.ID)\n}\n',
       },
       ruby: {
         method: 'quotes.update',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nquote = believe.quotes.update("quote_id")\n\nputs(quote)',
       },
-      typescript: {
-        method: 'client.quotes.update',
+      cli: {
+        method: 'quotes update',
+        example: "believe quotes update \\\n  --api-key 'My API Key' \\\n  --quote-id quote_id",
+      },
+      csharp: {
+        method: 'Quotes.Update',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst quote = await client.quotes.update('quote_id');\n\nconsole.log(quote.id);",
+          'QuoteUpdateParams parameters = new() { QuoteID = "quote_id" };\n\nvar quote = await client.Quotes.Update(parameters);\n\nConsole.WriteLine(quote);',
+      },
+      http: {
+        example:
+          "curl https://believe.cjav.dev/quotes/$QUOTE_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -d '{}'",
       },
     },
   },
@@ -2465,23 +2465,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## delete\n\n`client.quotes.delete(quote_id: string): void`\n\n**delete** `/quotes/{quote_id}`\n\nRemove a quote from the collection.\n\n### Parameters\n\n- `quote_id: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nawait client.quotes.delete('quote_id')\n```",
     perLanguage: {
-      cli: {
-        method: 'quotes delete',
-        example: "believe quotes delete \\\n  --api-key 'My API Key' \\\n  --quote-id quote_id",
-      },
-      csharp: {
-        method: 'Quotes.Delete',
+      typescript: {
+        method: 'client.quotes.delete',
         example:
-          'QuoteDeleteParams parameters = new() { QuoteID = "quote_id" };\n\nawait client.Quotes.Delete(parameters);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.quotes.delete('quote_id');",
       },
-      go: {
-        method: 'client.Quotes.Delete',
+      python: {
+        method: 'quotes.delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Quotes.Delete(context.TODO(), "quote_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/quotes/$QUOTE_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.quotes.delete(\n    "quote_id",\n)',
       },
       java: {
         method: 'quotes().delete',
@@ -2493,20 +2485,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.QuoteDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.quotes().delete("quote_id")\n}',
       },
-      python: {
-        method: 'quotes.delete',
+      go: {
+        method: 'client.Quotes.Delete',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.quotes.delete(\n    "quote_id",\n)',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Quotes.Delete(context.TODO(), "quote_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'quotes.delete',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresult = believe.quotes.delete("quote_id")\n\nputs(result)',
       },
-      typescript: {
-        method: 'client.quotes.delete',
+      cli: {
+        method: 'quotes delete',
+        example: "believe quotes delete \\\n  --api-key 'My API Key' \\\n  --quote-id quote_id",
+      },
+      csharp: {
+        method: 'Quotes.Delete',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.quotes.delete('quote_id');",
+          'QuoteDeleteParams parameters = new() { QuoteID = "quote_id" };\n\nawait client.Quotes.Delete(parameters);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/quotes/$QUOTE_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -2524,23 +2524,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list_by_theme\n\n`client.quotes.listByTheme(theme: string, limit?: number, skip?: number): { id: string; character_id: string; context: string; moment_type: quote_moment; text: string; theme: quote_theme; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: quote_theme[]; times_shared?: number; }`\n\n**get** `/quotes/themes/{theme}`\n\nGet a paginated list of quotes related to a specific theme.\n\n### Parameters\n\n- `theme: string`\n  Themes that quotes can be categorized under.\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n### Returns\n\n- `{ id: string; character_id: string; context: string; moment_type: string; text: string; theme: string; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: string[]; times_shared?: number; }`\n  Full quote model with ID.\n\n  - `id: string`\n  - `character_id: string`\n  - `context: string`\n  - `moment_type: string`\n  - `text: string`\n  - `theme: string`\n  - `episode_id?: string`\n  - `is_funny?: boolean`\n  - `is_inspirational?: boolean`\n  - `popularity_score?: number`\n  - `secondary_themes?: string[]`\n  - `times_shared?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const quote of client.quotes.listByTheme('belief')) {\n  console.log(quote);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'quotes list_by_theme',
-        example: "believe quotes list-by-theme \\\n  --api-key 'My API Key' \\\n  --theme belief",
-      },
-      csharp: {
-        method: 'Quotes.ListByTheme',
+      typescript: {
+        method: 'client.quotes.listByTheme',
         example:
-          'QuoteListByThemeParams parameters = new() { Theme = QuoteTheme.Belief };\n\nvar page = await client.Quotes.ListByTheme(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const quote of client.quotes.listByTheme('belief')) {\n  console.log(quote.id);\n}",
       },
-      go: {
-        method: 'client.Quotes.ListByTheme',
+      python: {
+        method: 'quotes.list_by_theme',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Quotes.ListByTheme(\n\t\tcontext.TODO(),\n\t\tbelieve.QuoteThemeBelief,\n\t\tbelieve.QuoteListByThemeParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/quotes/themes/$THEME \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.quotes.list_by_theme(\n    theme="belief",\n)\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'quotes().listByTheme',
@@ -2552,20 +2544,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.QuoteListByThemePage\nimport com.believe.api.models.quotes.QuoteListByThemeParams\nimport com.believe.api.models.quotes.QuoteTheme\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: QuoteListByThemePage = client.quotes().listByTheme(QuoteTheme.BELIEF)\n}',
       },
-      python: {
-        method: 'quotes.list_by_theme',
+      go: {
+        method: 'client.Quotes.ListByTheme',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.quotes.list_by_theme(\n    theme="belief",\n)\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Quotes.ListByTheme(\n\t\tcontext.TODO(),\n\t\tbelieve.QuoteThemeBelief,\n\t\tbelieve.QuoteListByThemeParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'quotes.list_by_theme',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.quotes.list_by_theme(:belief)\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.quotes.listByTheme',
+      cli: {
+        method: 'quotes list_by_theme',
+        example: "believe quotes list-by-theme \\\n  --api-key 'My API Key' \\\n  --theme belief",
+      },
+      csharp: {
+        method: 'Quotes.ListByTheme',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const quote of client.quotes.listByTheme('belief')) {\n  console.log(quote.id);\n}",
+          'QuoteListByThemeParams parameters = new() { Theme = QuoteTheme.Belief };\n\nvar page = await client.Quotes.ListByTheme(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/quotes/themes/$THEME \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -2583,24 +2583,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list_by_character\n\n`client.quotes.listByCharacter(character_id: string, limit?: number, skip?: number): { id: string; character_id: string; context: string; moment_type: quote_moment; text: string; theme: quote_theme; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: quote_theme[]; times_shared?: number; }`\n\n**get** `/quotes/characters/{character_id}`\n\nGet a paginated list of quotes from a specific character.\n\n### Parameters\n\n- `character_id: string`\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n### Returns\n\n- `{ id: string; character_id: string; context: string; moment_type: string; text: string; theme: string; episode_id?: string; is_funny?: boolean; is_inspirational?: boolean; popularity_score?: number; secondary_themes?: string[]; times_shared?: number; }`\n  Full quote model with ID.\n\n  - `id: string`\n  - `character_id: string`\n  - `context: string`\n  - `moment_type: string`\n  - `text: string`\n  - `theme: string`\n  - `episode_id?: string`\n  - `is_funny?: boolean`\n  - `is_inspirational?: boolean`\n  - `popularity_score?: number`\n  - `secondary_themes?: string[]`\n  - `times_shared?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const quote of client.quotes.listByCharacter('character_id')) {\n  console.log(quote);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'quotes list_by_character',
+      typescript: {
+        method: 'client.quotes.listByCharacter',
         example:
-          "believe quotes list-by-character \\\n  --api-key 'My API Key' \\\n  --character-id character_id",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const quote of client.quotes.listByCharacter('character_id')) {\n  console.log(quote.id);\n}",
       },
-      csharp: {
-        method: 'Quotes.ListByCharacter',
+      python: {
+        method: 'quotes.list_by_character',
         example:
-          'QuoteListByCharacterParams parameters = new() { CharacterID = "character_id" };\n\nvar page = await client.Quotes.ListByCharacter(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
-      go: {
-        method: 'client.Quotes.ListByCharacter',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Quotes.ListByCharacter(\n\t\tcontext.TODO(),\n\t\t"character_id",\n\t\tbelieve.QuoteListByCharacterParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/quotes/characters/$CHARACTER_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.quotes.list_by_character(\n    character_id="character_id",\n)\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'quotes().listByCharacter',
@@ -2612,20 +2603,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.quotes.QuoteListByCharacterPage\nimport com.believe.api.models.quotes.QuoteListByCharacterParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: QuoteListByCharacterPage = client.quotes().listByCharacter("character_id")\n}',
       },
-      python: {
-        method: 'quotes.list_by_character',
+      go: {
+        method: 'client.Quotes.ListByCharacter',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.quotes.list_by_character(\n    character_id="character_id",\n)\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Quotes.ListByCharacter(\n\t\tcontext.TODO(),\n\t\t"character_id",\n\t\tbelieve.QuoteListByCharacterParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'quotes.list_by_character',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.quotes.list_by_character("character_id")\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.quotes.listByCharacter',
+      cli: {
+        method: 'quotes list_by_character',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const quote of client.quotes.listByCharacter('character_id')) {\n  console.log(quote.id);\n}",
+          "believe quotes list-by-character \\\n  --api-key 'My API Key' \\\n  --character-id character_id",
+      },
+      csharp: {
+        method: 'Quotes.ListByCharacter',
+        example:
+          'QuoteListByCharacterParams parameters = new() { CharacterID = "character_id" };\n\nvar page = await client.Quotes.ListByCharacter(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/quotes/characters/$CHARACTER_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -2643,24 +2643,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## submit\n\n`client.believe.submit(situation: string, situation_type: string, context?: string, intensity?: number): { action_suggestion: string; believe_score: number; goldfish_wisdom: string; relevant_quote: string; ted_response: string; }`\n\n**post** `/believe`\n\nSubmit your situation and receive Ted Lasso-style motivational guidance.\n\n### Parameters\n\n- `situation: string`\n  Describe your situation\n\n- `situation_type: string`\n  Type of situation\n\n- `context?: string`\n  Additional context\n\n- `intensity?: number`\n  How intense is the response needed (1=gentle, 10=full Ted)\n\n### Returns\n\n- `{ action_suggestion: string; believe_score: number; goldfish_wisdom: string; relevant_quote: string; ted_response: string; }`\n  Response from the Believe Engine.\n\n  - `action_suggestion: string`\n  - `believe_score: number`\n  - `goldfish_wisdom: string`\n  - `relevant_quote: string`\n  - `ted_response: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.believe.submit({ situation: 'I just got passed over for a promotion I\\'ve been working toward for two years.', situation_type: 'work_challenge' });\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'believe submit',
+      typescript: {
+        method: 'client.believe.submit',
         example:
-          "believe believe submit \\\n  --api-key 'My API Key' \\\n  --situation \"I just got passed over for a promotion I've been working toward for two years.\" \\\n  --situation-type work_challenge",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.believe.submit({\n  situation: \"I just got passed over for a promotion I've been working toward for two years.\",\n  situation_type: 'work_challenge',\n});\n\nconsole.log(response.action_suggestion);",
       },
-      csharp: {
-        method: 'Believe.Submit',
+      python: {
+        method: 'believe.submit',
         example:
-          'BelieveSubmitParams parameters = new()\n{\n    Situation = "I just got passed over for a promotion I\'ve been working toward for two years.",\n    SituationType = SituationType.WorkChallenge,\n};\n\nvar response = await client.Believe.Submit(parameters);\n\nConsole.WriteLine(response);',
-      },
-      go: {
-        method: 'client.Believe.Submit',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Believe.Submit(context.TODO(), believe.BelieveSubmitParams{\n\t\tSituation:     "I just got passed over for a promotion I\'ve been working toward for two years.",\n\t\tSituationType: believe.BelieveSubmitParamsSituationTypeWorkChallenge,\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.ActionSuggestion)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/believe \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"situation\\": \\"I just got passed over for a promotion I\'ve been working toward for two years.\\",\n          \\"situation_type\\": \\"work_challenge\\",\n          \\"context\\": \\"I\'ve always tried to be a team player and support my colleagues.\\"\n        }"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.believe.submit(\n    situation="I just got passed over for a promotion I\'ve been working toward for two years.",\n    situation_type="work_challenge",\n)\nprint(response.action_suggestion)',
       },
       java: {
         method: 'believe().submit',
@@ -2672,20 +2663,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.believe.BelieveSubmitParams\nimport com.believe.api.models.believe.BelieveSubmitResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: BelieveSubmitParams = BelieveSubmitParams.builder()\n        .situation("I just got passed over for a promotion I\'ve been working toward for two years.")\n        .situationType(BelieveSubmitParams.SituationType.WORK_CHALLENGE)\n        .build()\n    val response: BelieveSubmitResponse = client.believe().submit(params)\n}',
       },
-      python: {
-        method: 'believe.submit',
+      go: {
+        method: 'client.Believe.Submit',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.believe.submit(\n    situation="I just got passed over for a promotion I\'ve been working toward for two years.",\n    situation_type="work_challenge",\n)\nprint(response.action_suggestion)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Believe.Submit(context.TODO(), believe.BelieveSubmitParams{\n\t\tSituation:     "I just got passed over for a promotion I\'ve been working toward for two years.",\n\t\tSituationType: believe.BelieveSubmitParamsSituationTypeWorkChallenge,\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.ActionSuggestion)\n}\n',
       },
       ruby: {
         method: 'believe.submit',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.believe.submit(\n  situation: "I just got passed over for a promotion I\'ve been working toward for two years.",\n  situation_type: :work_challenge\n)\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.believe.submit',
+      cli: {
+        method: 'believe submit',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.believe.submit({\n  situation: \"I just got passed over for a promotion I've been working toward for two years.\",\n  situation_type: 'work_challenge',\n});\n\nconsole.log(response.action_suggestion);",
+          "believe believe submit \\\n  --api-key 'My API Key' \\\n  --situation \"I just got passed over for a promotion I've been working toward for two years.\" \\\n  --situation-type work_challenge",
+      },
+      csharp: {
+        method: 'Believe.Submit',
+        example:
+          'BelieveSubmitParams parameters = new()\n{\n    Situation = "I just got passed over for a promotion I\'ve been working toward for two years.",\n    SituationType = SituationType.WorkChallenge,\n};\n\nvar response = await client.Believe.Submit(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/believe \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"situation\\": \\"I just got passed over for a promotion I\'ve been working toward for two years.\\",\n          \\"situation_type\\": \\"work_challenge\\",\n          \\"context\\": \\"I\'ve always tried to be a team player and support my colleagues.\\"\n        }"',
       },
     },
   },
@@ -2708,24 +2708,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## resolve\n\n`client.conflicts.resolve(conflict_type: 'interpersonal' | 'team_dynamics' | 'leadership' | 'ego' | 'miscommunication' | 'competition', description: string, parties_involved: string[], attempts_made?: string[]): { barbecue_sauce_wisdom: string; diagnosis: string; diamond_dogs_advice: string; potential_outcome: string; steps_to_resolution: string[]; ted_approach: string; }`\n\n**post** `/conflicts/resolve`\n\nGet Ted Lasso-style advice for resolving conflicts.\n\n### Parameters\n\n- `conflict_type: 'interpersonal' | 'team_dynamics' | 'leadership' | 'ego' | 'miscommunication' | 'competition'`\n  Type of conflict\n\n- `description: string`\n  Describe the conflict\n\n- `parties_involved: string[]`\n  Who is involved in the conflict\n\n- `attempts_made?: string[]`\n  What you've already tried\n\n### Returns\n\n- `{ barbecue_sauce_wisdom: string; diagnosis: string; diamond_dogs_advice: string; potential_outcome: string; steps_to_resolution: string[]; ted_approach: string; }`\n  Conflict resolution response.\n\n  - `barbecue_sauce_wisdom: string`\n  - `diagnosis: string`\n  - `diamond_dogs_advice: string`\n  - `potential_outcome: string`\n  - `steps_to_resolution: string[]`\n  - `ted_approach: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.conflicts.resolve({\n  conflict_type: 'interpersonal',\n  description: 'Alex keeps taking credit for my ideas in meetings and I\\'m getting resentful.',\n  parties_involved: ['Me', 'My teammate Alex'],\n});\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'conflicts resolve',
+      typescript: {
+        method: 'client.conflicts.resolve',
         example:
-          "believe conflicts resolve \\\n  --api-key 'My API Key' \\\n  --conflict-type interpersonal \\\n  --description \"Alex keeps taking credit for my ideas in meetings and I'm getting resentful.\" \\\n  --parties-involved Me \\\n  --parties-involved 'My teammate Alex'",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.conflicts.resolve({\n  conflict_type: 'interpersonal',\n  description: \"Alex keeps taking credit for my ideas in meetings and I'm getting resentful.\",\n  parties_involved: ['Me', 'My teammate Alex'],\n});\n\nconsole.log(response.barbecue_sauce_wisdom);",
       },
-      csharp: {
-        method: 'Conflicts.Resolve',
+      python: {
+        method: 'conflicts.resolve',
         example:
-          'ConflictResolveParams parameters = new()\n{\n    ConflictType = ConflictType.Interpersonal,\n    Description = "Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.",\n    PartiesInvolved =\n    [\n        "Me", "My teammate Alex"\n    ],\n};\n\nvar response = await client.Conflicts.Resolve(parameters);\n\nConsole.WriteLine(response);',
-      },
-      go: {
-        method: 'client.Conflicts.Resolve',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Conflicts.Resolve(context.TODO(), believe.ConflictResolveParams{\n\t\tConflictType:    believe.ConflictResolveParamsConflictTypeInterpersonal,\n\t\tDescription:     "Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.",\n\t\tPartiesInvolved: []string{"Me", "My teammate Alex"},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.BarbecueSauceWisdom)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/conflicts/resolve \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"conflict_type\\": \\"interpersonal\\",\n          \\"description\\": \\"Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.\\",\n          \\"parties_involved\\": [\n            \\"Me\\",\n            \\"My teammate Alex\\"\n          ],\n          \\"attempts_made\\": [\n            \\"Mentioned it casually\\",\n            \\"Avoided them\\"\n          ]\n        }"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.conflicts.resolve(\n    conflict_type="interpersonal",\n    description="Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.",\n    parties_involved=["Me", "My teammate Alex"],\n)\nprint(response.barbecue_sauce_wisdom)',
       },
       java: {
         method: 'conflicts().resolve',
@@ -2737,20 +2728,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.conflicts.ConflictResolveParams\nimport com.believe.api.models.conflicts.ConflictResolveResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: ConflictResolveParams = ConflictResolveParams.builder()\n        .conflictType(ConflictResolveParams.ConflictType.INTERPERSONAL)\n        .description("Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.")\n        .addPartiesInvolved("Me")\n        .addPartiesInvolved("My teammate Alex")\n        .build()\n    val response: ConflictResolveResponse = client.conflicts().resolve(params)\n}',
       },
-      python: {
-        method: 'conflicts.resolve',
+      go: {
+        method: 'client.Conflicts.Resolve',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.conflicts.resolve(\n    conflict_type="interpersonal",\n    description="Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.",\n    parties_involved=["Me", "My teammate Alex"],\n)\nprint(response.barbecue_sauce_wisdom)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Conflicts.Resolve(context.TODO(), believe.ConflictResolveParams{\n\t\tConflictType:    believe.ConflictResolveParamsConflictTypeInterpersonal,\n\t\tDescription:     "Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.",\n\t\tPartiesInvolved: []string{"Me", "My teammate Alex"},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.BarbecueSauceWisdom)\n}\n',
       },
       ruby: {
         method: 'conflicts.resolve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.conflicts.resolve(\n  conflict_type: :interpersonal,\n  description: "Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.",\n  parties_involved: ["Me", "My teammate Alex"]\n)\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.conflicts.resolve',
+      cli: {
+        method: 'conflicts resolve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.conflicts.resolve({\n  conflict_type: 'interpersonal',\n  description: \"Alex keeps taking credit for my ideas in meetings and I'm getting resentful.\",\n  parties_involved: ['Me', 'My teammate Alex'],\n});\n\nconsole.log(response.barbecue_sauce_wisdom);",
+          "believe conflicts resolve \\\n  --api-key 'My API Key' \\\n  --conflict-type interpersonal \\\n  --description \"Alex keeps taking credit for my ideas in meetings and I'm getting resentful.\" \\\n  --parties-involved Me \\\n  --parties-involved 'My teammate Alex'",
+      },
+      csharp: {
+        method: 'Conflicts.Resolve',
+        example:
+          'ConflictResolveParams parameters = new()\n{\n    ConflictType = ConflictType.Interpersonal,\n    Description = "Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.",\n    PartiesInvolved =\n    [\n        "Me", "My teammate Alex"\n    ],\n};\n\nvar response = await client.Conflicts.Resolve(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/conflicts/resolve \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"conflict_type\\": \\"interpersonal\\",\n          \\"description\\": \\"Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.\\",\n          \\"parties_involved\\": [\n            \\"Me\\",\n            \\"My teammate Alex\\"\n          ],\n          \\"attempts_made\\": [\n            \\"Mentioned it casually\\",\n            \\"Avoided them\\"\n          ]\n        }"',
       },
     },
   },
@@ -2768,24 +2768,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## transform_negative_thoughts\n\n`client.reframe.transformNegativeThoughts(negative_thought: string, recurring?: boolean): { daily_affirmation: string; original_thought: string; reframed_thought: string; ted_perspective: string; dr_sharon_insight?: string; }`\n\n**post** `/reframe`\n\nTransform negative thoughts into positive perspectives with Ted's help.\n\n### Parameters\n\n- `negative_thought: string`\n  The negative thought to reframe\n\n- `recurring?: boolean`\n  Is this a recurring thought?\n\n### Returns\n\n- `{ daily_affirmation: string; original_thought: string; reframed_thought: string; ted_perspective: string; dr_sharon_insight?: string; }`\n  Reframed perspective response.\n\n  - `daily_affirmation: string`\n  - `original_thought: string`\n  - `reframed_thought: string`\n  - `ted_perspective: string`\n  - `dr_sharon_insight?: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.reframe.transformNegativeThoughts({ negative_thought: 'I\\'m not good enough for this job.' });\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'reframe transform_negative_thoughts',
+      typescript: {
+        method: 'client.reframe.transformNegativeThoughts',
         example:
-          "believe reframe transform-negative-thoughts \\\n  --api-key 'My API Key' \\\n  --negative-thought \"I'm not good enough for this job.\"",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reframe.transformNegativeThoughts({\n  negative_thought: \"I'm not good enough for this job.\",\n});\n\nconsole.log(response.daily_affirmation);",
       },
-      csharp: {
-        method: 'Reframe.TransformNegativeThoughts',
+      python: {
+        method: 'reframe.transform_negative_thoughts',
         example:
-          'ReframeTransformNegativeThoughtsParams parameters = new()\n{\n    NegativeThought = "I\'m not good enough for this job."\n};\n\nvar response = await client.Reframe.TransformNegativeThoughts(parameters);\n\nConsole.WriteLine(response);',
-      },
-      go: {
-        method: 'client.Reframe.TransformNegativeThoughts',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Reframe.TransformNegativeThoughts(context.TODO(), believe.ReframeTransformNegativeThoughtsParams{\n\t\tNegativeThought: "I\'m not good enough for this job.",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.DailyAffirmation)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/reframe \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"negative_thought\\": \\"I\'m not good enough for this job.\\"\n        }"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reframe.transform_negative_thoughts(\n    negative_thought="I\'m not good enough for this job.",\n)\nprint(response.daily_affirmation)',
       },
       java: {
         method: 'reframe().transformNegativeThoughts',
@@ -2797,20 +2788,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.reframe.ReframeTransformNegativeThoughtsParams\nimport com.believe.api.models.reframe.ReframeTransformNegativeThoughtsResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: ReframeTransformNegativeThoughtsParams = ReframeTransformNegativeThoughtsParams.builder()\n        .negativeThought("I\'m not good enough for this job.")\n        .build()\n    val response: ReframeTransformNegativeThoughtsResponse = client.reframe().transformNegativeThoughts(params)\n}',
       },
-      python: {
-        method: 'reframe.transform_negative_thoughts',
+      go: {
+        method: 'client.Reframe.TransformNegativeThoughts',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reframe.transform_negative_thoughts(\n    negative_thought="I\'m not good enough for this job.",\n)\nprint(response.daily_affirmation)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Reframe.TransformNegativeThoughts(context.TODO(), believe.ReframeTransformNegativeThoughtsParams{\n\t\tNegativeThought: "I\'m not good enough for this job.",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.DailyAffirmation)\n}\n',
       },
       ruby: {
         method: 'reframe.transform_negative_thoughts',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.reframe.transform_negative_thoughts(negative_thought: "I\'m not good enough for this job.")\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.reframe.transformNegativeThoughts',
+      cli: {
+        method: 'reframe transform_negative_thoughts',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reframe.transformNegativeThoughts({\n  negative_thought: \"I'm not good enough for this job.\",\n});\n\nconsole.log(response.daily_affirmation);",
+          "believe reframe transform-negative-thoughts \\\n  --api-key 'My API Key' \\\n  --negative-thought \"I'm not good enough for this job.\"",
+      },
+      csharp: {
+        method: 'Reframe.TransformNegativeThoughts',
+        example:
+          'ReframeTransformNegativeThoughtsParams parameters = new()\n{\n    NegativeThought = "I\'m not good enough for this job."\n};\n\nvar response = await client.Reframe.TransformNegativeThoughts(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/reframe \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"negative_thought\\": \\"I\'m not good enough for this job.\\"\n        }"',
       },
     },
   },
@@ -2828,24 +2828,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## simulate\n\n`client.press.simulate(question: string, hostile?: boolean, topic?: string): { actual_wisdom: string; follow_up_dodge: string; reporter_reaction: string; response: string; deflection_humor?: string; }`\n\n**post** `/press`\n\nGet Ted's response to press conference questions.\n\n### Parameters\n\n- `question: string`\n  The press question to answer\n\n- `hostile?: boolean`\n  Is this a hostile question from Trent Crimm?\n\n- `topic?: string`\n  Topic category\n\n### Returns\n\n- `{ actual_wisdom: string; follow_up_dodge: string; reporter_reaction: string; response: string; deflection_humor?: string; }`\n  Ted's press conference response.\n\n  - `actual_wisdom: string`\n  - `follow_up_dodge: string`\n  - `reporter_reaction: string`\n  - `response: string`\n  - `deflection_humor?: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.press.simulate({ question: 'Ted, your team just lost 5-0. How do you explain this embarrassing defeat?' });\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'press simulate',
+      typescript: {
+        method: 'client.press.simulate',
         example:
-          "believe press simulate \\\n  --api-key 'My API Key' \\\n  --question 'Ted, your team just lost 5-0. How do you explain this embarrassing defeat?'",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.press.simulate({\n  question: 'Ted, your team just lost 5-0. How do you explain this embarrassing defeat?',\n});\n\nconsole.log(response.actual_wisdom);",
       },
-      csharp: {
-        method: 'Press.Simulate',
+      python: {
+        method: 'press.simulate',
         example:
-          'PressSimulateParams parameters = new()\n{\n    Question = "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n};\n\nvar response = await client.Press.Simulate(parameters);\n\nConsole.WriteLine(response);',
-      },
-      go: {
-        method: 'client.Press.Simulate',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Press.Simulate(context.TODO(), believe.PressSimulateParams{\n\t\tQuestion: "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.ActualWisdom)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/press \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "question": "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n          "topic": "match_result"\n        }\'',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.press.simulate(\n    question="Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n)\nprint(response.actual_wisdom)',
       },
       java: {
         method: 'press().simulate',
@@ -2857,20 +2848,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.press.PressSimulateParams\nimport com.believe.api.models.press.PressSimulateResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: PressSimulateParams = PressSimulateParams.builder()\n        .question("Ted, your team just lost 5-0. How do you explain this embarrassing defeat?")\n        .build()\n    val response: PressSimulateResponse = client.press().simulate(params)\n}',
       },
-      python: {
-        method: 'press.simulate',
+      go: {
+        method: 'client.Press.Simulate',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.press.simulate(\n    question="Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n)\nprint(response.actual_wisdom)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Press.Simulate(context.TODO(), believe.PressSimulateParams{\n\t\tQuestion: "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.ActualWisdom)\n}\n',
       },
       ruby: {
         method: 'press.simulate',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.press.simulate(\n  question: "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?"\n)\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.press.simulate',
+      cli: {
+        method: 'press simulate',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.press.simulate({\n  question: 'Ted, your team just lost 5-0. How do you explain this embarrassing defeat?',\n});\n\nconsole.log(response.actual_wisdom);",
+          "believe press simulate \\\n  --api-key 'My API Key' \\\n  --question 'Ted, your team just lost 5-0. How do you explain this embarrassing defeat?'",
+      },
+      csharp: {
+        method: 'Press.Simulate',
+        example:
+          'PressSimulateParams parameters = new()\n{\n    Question = "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n};\n\nvar response = await client.Press.Simulate(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/press \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "question": "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n          "topic": "match_result"\n        }\'',
       },
     },
   },
@@ -2888,23 +2888,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.coaching.principles.list(limit?: number, skip?: number): { id: string; application: string; example_from_show: string; explanation: string; principle: string; ted_quote: string; }`\n\n**get** `/coaching/principles`\n\nGet a paginated list of Ted Lasso's core coaching principles and philosophy.\n\n### Parameters\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n### Returns\n\n- `{ id: string; application: string; example_from_show: string; explanation: string; principle: string; ted_quote: string; }`\n  A Ted Lasso coaching principle.\n\n  - `id: string`\n  - `application: string`\n  - `example_from_show: string`\n  - `explanation: string`\n  - `principle: string`\n  - `ted_quote: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const coachingPrinciple of client.coaching.principles.list()) {\n  console.log(coachingPrinciple);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'principles list',
-        example: "believe coaching:principles list \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Coaching.Principles.List',
+      typescript: {
+        method: 'client.coaching.principles.list',
         example:
-          'PrincipleListParams parameters = new();\n\nvar page = await client.Coaching.Principles.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const coachingPrinciple of client.coaching.principles.list()) {\n  console.log(coachingPrinciple.id);\n}",
       },
-      go: {
-        method: 'client.Coaching.Principles.List',
+      python: {
+        method: 'coaching.principles.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Coaching.Principles.List(context.TODO(), believe.CoachingPrincipleListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/coaching/principles \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.coaching.principles.list()\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'coaching().principles().list',
@@ -2916,20 +2908,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.coaching.principles.PrincipleListPage\nimport com.believe.api.models.coaching.principles.PrincipleListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: PrincipleListPage = client.coaching().principles().list()\n}',
       },
-      python: {
-        method: 'coaching.principles.list',
+      go: {
+        method: 'client.Coaching.Principles.List',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.coaching.principles.list()\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Coaching.Principles.List(context.TODO(), believe.CoachingPrincipleListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'coaching.principles.list',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.coaching.principles.list\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.coaching.principles.list',
+      cli: {
+        method: 'principles list',
+        example: "believe coaching:principles list \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Coaching.Principles.List',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const coachingPrinciple of client.coaching.principles.list()) {\n  console.log(coachingPrinciple.id);\n}",
+          'PrincipleListParams parameters = new();\n\nvar page = await client.Coaching.Principles.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/coaching/principles \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -2947,24 +2947,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.coaching.principles.retrieve(principle_id: string): { id: string; application: string; example_from_show: string; explanation: string; principle: string; ted_quote: string; }`\n\n**get** `/coaching/principles/{principle_id}`\n\nGet details about a specific coaching principle.\n\n### Parameters\n\n- `principle_id: string`\n\n### Returns\n\n- `{ id: string; application: string; example_from_show: string; explanation: string; principle: string; ted_quote: string; }`\n  A Ted Lasso coaching principle.\n\n  - `id: string`\n  - `application: string`\n  - `example_from_show: string`\n  - `explanation: string`\n  - `principle: string`\n  - `ted_quote: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst coachingPrinciple = await client.coaching.principles.retrieve('principle_id');\n\nconsole.log(coachingPrinciple);\n```",
     perLanguage: {
-      cli: {
-        method: 'principles retrieve',
+      typescript: {
+        method: 'client.coaching.principles.retrieve',
         example:
-          "believe coaching:principles retrieve \\\n  --api-key 'My API Key' \\\n  --principle-id principle_id",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst coachingPrinciple = await client.coaching.principles.retrieve('principle_id');\n\nconsole.log(coachingPrinciple.id);",
       },
-      csharp: {
-        method: 'Coaching.Principles.Retrieve',
+      python: {
+        method: 'coaching.principles.retrieve',
         example:
-          'PrincipleRetrieveParams parameters = new() { PrincipleID = "principle_id" };\n\nvar coachingPrinciple = await client.Coaching.Principles.Retrieve(parameters);\n\nConsole.WriteLine(coachingPrinciple);',
-      },
-      go: {
-        method: 'client.Coaching.Principles.Get',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tcoachingPrinciple, err := client.Coaching.Principles.Get(context.TODO(), "principle_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", coachingPrinciple.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/coaching/principles/$PRINCIPLE_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\ncoaching_principle = client.coaching.principles.retrieve(\n    "principle_id",\n)\nprint(coaching_principle.id)',
       },
       java: {
         method: 'coaching().principles().retrieve',
@@ -2976,20 +2967,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.coaching.principles.CoachingPrinciple\nimport com.believe.api.models.coaching.principles.PrincipleRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val coachingPrinciple: CoachingPrinciple = client.coaching().principles().retrieve("principle_id")\n}',
       },
-      python: {
-        method: 'coaching.principles.retrieve',
+      go: {
+        method: 'client.Coaching.Principles.Get',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\ncoaching_principle = client.coaching.principles.retrieve(\n    "principle_id",\n)\nprint(coaching_principle.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tcoachingPrinciple, err := client.Coaching.Principles.Get(context.TODO(), "principle_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", coachingPrinciple.ID)\n}\n',
       },
       ruby: {
         method: 'coaching.principles.retrieve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\ncoaching_principle = believe.coaching.principles.retrieve("principle_id")\n\nputs(coaching_principle)',
       },
-      typescript: {
-        method: 'client.coaching.principles.retrieve',
+      cli: {
+        method: 'principles retrieve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst coachingPrinciple = await client.coaching.principles.retrieve('principle_id');\n\nconsole.log(coachingPrinciple.id);",
+          "believe coaching:principles retrieve \\\n  --api-key 'My API Key' \\\n  --principle-id principle_id",
+      },
+      csharp: {
+        method: 'Coaching.Principles.Retrieve',
+        example:
+          'PrincipleRetrieveParams parameters = new() { PrincipleID = "principle_id" };\n\nvar coachingPrinciple = await client.Coaching.Principles.Retrieve(parameters);\n\nConsole.WriteLine(coachingPrinciple);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/coaching/principles/$PRINCIPLE_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3006,23 +3006,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_random\n\n`client.coaching.principles.getRandom(): { id: string; application: string; example_from_show: string; explanation: string; principle: string; ted_quote: string; }`\n\n**get** `/coaching/principles/random`\n\nGet a random coaching principle to inspire your day.\n\n### Returns\n\n- `{ id: string; application: string; example_from_show: string; explanation: string; principle: string; ted_quote: string; }`\n  A Ted Lasso coaching principle.\n\n  - `id: string`\n  - `application: string`\n  - `example_from_show: string`\n  - `explanation: string`\n  - `principle: string`\n  - `ted_quote: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst coachingPrinciple = await client.coaching.principles.getRandom();\n\nconsole.log(coachingPrinciple);\n```",
     perLanguage: {
-      cli: {
-        method: 'principles get_random',
-        example: "believe coaching:principles get-random \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Coaching.Principles.GetRandom',
+      typescript: {
+        method: 'client.coaching.principles.getRandom',
         example:
-          'PrincipleGetRandomParams parameters = new();\n\nvar coachingPrinciple = await client.Coaching.Principles.GetRandom(parameters);\n\nConsole.WriteLine(coachingPrinciple);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst coachingPrinciple = await client.coaching.principles.getRandom();\n\nconsole.log(coachingPrinciple.id);",
       },
-      go: {
-        method: 'client.Coaching.Principles.GetRandom',
+      python: {
+        method: 'coaching.principles.get_random',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tcoachingPrinciple, err := client.Coaching.Principles.GetRandom(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", coachingPrinciple.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/coaching/principles/random \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\ncoaching_principle = client.coaching.principles.get_random()\nprint(coaching_principle.id)',
       },
       java: {
         method: 'coaching().principles().getRandom',
@@ -3034,20 +3026,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.coaching.principles.CoachingPrinciple\nimport com.believe.api.models.coaching.principles.PrincipleGetRandomParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val coachingPrinciple: CoachingPrinciple = client.coaching().principles().getRandom()\n}',
       },
-      python: {
-        method: 'coaching.principles.get_random',
+      go: {
+        method: 'client.Coaching.Principles.GetRandom',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\ncoaching_principle = client.coaching.principles.get_random()\nprint(coaching_principle.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tcoachingPrinciple, err := client.Coaching.Principles.GetRandom(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", coachingPrinciple.ID)\n}\n',
       },
       ruby: {
         method: 'coaching.principles.get_random',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\ncoaching_principle = believe.coaching.principles.get_random\n\nputs(coaching_principle)',
       },
-      typescript: {
-        method: 'client.coaching.principles.getRandom',
+      cli: {
+        method: 'principles get_random',
+        example: "believe coaching:principles get-random \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Coaching.Principles.GetRandom',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst coachingPrinciple = await client.coaching.principles.getRandom();\n\nconsole.log(coachingPrinciple.id);",
+          'PrincipleGetRandomParams parameters = new();\n\nvar coachingPrinciple = await client.Coaching.Principles.GetRandom(parameters);\n\nConsole.WriteLine(coachingPrinciple);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/coaching/principles/random \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3066,22 +3066,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.biscuits.list(limit?: number, skip?: number): { id: string; message: string; pairs_well_with: string; ted_note: string; type: 'classic' | 'shortbread' | 'chocolate_chip' | 'oatmeal_raisin' | 'snickerdoodle' | 'lemon_drizzle'; warmth_level: number; }`\n\n**get** `/biscuits`\n\nGet a paginated list of Ted's famous homemade biscuits! Each comes with a heartwarming message.\n\n### Parameters\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n### Returns\n\n- `{ id: string; message: string; pairs_well_with: string; ted_note: string; type: 'classic' | 'shortbread' | 'chocolate_chip' | 'oatmeal_raisin' | 'snickerdoodle' | 'lemon_drizzle'; warmth_level: number; }`\n  A biscuit from Ted.\n\n  - `id: string`\n  - `message: string`\n  - `pairs_well_with: string`\n  - `ted_note: string`\n  - `type: 'classic' | 'shortbread' | 'chocolate_chip' | 'oatmeal_raisin' | 'snickerdoodle' | 'lemon_drizzle'`\n  - `warmth_level: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const biscuit of client.biscuits.list()) {\n  console.log(biscuit);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'biscuits list',
-        example: "believe biscuits list \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Biscuits.List',
+      typescript: {
+        method: 'client.biscuits.list',
         example:
-          'BiscuitListParams parameters = new();\n\nvar page = await client.Biscuits.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const biscuit of client.biscuits.list()) {\n  console.log(biscuit.id);\n}",
       },
-      go: {
-        method: 'client.Biscuits.List',
+      python: {
+        method: 'biscuits.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Biscuits.List(context.TODO(), believe.BiscuitListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example: 'curl https://believe.cjav.dev/biscuits \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.biscuits.list()\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'biscuits().list',
@@ -3093,20 +3086,27 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.biscuits.BiscuitListPage\nimport com.believe.api.models.biscuits.BiscuitListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: BiscuitListPage = client.biscuits().list()\n}',
       },
-      python: {
-        method: 'biscuits.list',
+      go: {
+        method: 'client.Biscuits.List',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.biscuits.list()\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.Biscuits.List(context.TODO(), believe.BiscuitListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'biscuits.list',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.biscuits.list\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.biscuits.list',
+      cli: {
+        method: 'biscuits list',
+        example: "believe biscuits list \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Biscuits.List',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const biscuit of client.biscuits.list()) {\n  console.log(biscuit.id);\n}",
+          'BiscuitListParams parameters = new();\n\nvar page = await client.Biscuits.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example: 'curl https://believe.cjav.dev/biscuits \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3123,23 +3123,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_fresh\n\n`client.biscuits.getFresh(): { id: string; message: string; pairs_well_with: string; ted_note: string; type: 'classic' | 'shortbread' | 'chocolate_chip' | 'oatmeal_raisin' | 'snickerdoodle' | 'lemon_drizzle'; warmth_level: number; }`\n\n**get** `/biscuits/fresh`\n\nGet a single fresh biscuit with a personalized message from Ted.\n\n### Returns\n\n- `{ id: string; message: string; pairs_well_with: string; ted_note: string; type: 'classic' | 'shortbread' | 'chocolate_chip' | 'oatmeal_raisin' | 'snickerdoodle' | 'lemon_drizzle'; warmth_level: number; }`\n  A biscuit from Ted.\n\n  - `id: string`\n  - `message: string`\n  - `pairs_well_with: string`\n  - `ted_note: string`\n  - `type: 'classic' | 'shortbread' | 'chocolate_chip' | 'oatmeal_raisin' | 'snickerdoodle' | 'lemon_drizzle'`\n  - `warmth_level: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst biscuit = await client.biscuits.getFresh();\n\nconsole.log(biscuit);\n```",
     perLanguage: {
-      cli: {
-        method: 'biscuits get_fresh',
-        example: "believe biscuits get-fresh \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Biscuits.GetFresh',
+      typescript: {
+        method: 'client.biscuits.getFresh',
         example:
-          'BiscuitGetFreshParams parameters = new();\n\nvar biscuit = await client.Biscuits.GetFresh(parameters);\n\nConsole.WriteLine(biscuit);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst biscuit = await client.biscuits.getFresh();\n\nconsole.log(biscuit.id);",
       },
-      go: {
-        method: 'client.Biscuits.GetFresh',
+      python: {
+        method: 'biscuits.get_fresh',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tbiscuit, err := client.Biscuits.GetFresh(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", biscuit.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/biscuits/fresh \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nbiscuit = client.biscuits.get_fresh()\nprint(biscuit.id)',
       },
       java: {
         method: 'biscuits().getFresh',
@@ -3151,20 +3143,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.biscuits.Biscuit\nimport com.believe.api.models.biscuits.BiscuitGetFreshParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val biscuit: Biscuit = client.biscuits().getFresh()\n}',
       },
-      python: {
-        method: 'biscuits.get_fresh',
+      go: {
+        method: 'client.Biscuits.GetFresh',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nbiscuit = client.biscuits.get_fresh()\nprint(biscuit.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tbiscuit, err := client.Biscuits.GetFresh(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", biscuit.ID)\n}\n',
       },
       ruby: {
         method: 'biscuits.get_fresh',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nbiscuit = believe.biscuits.get_fresh\n\nputs(biscuit)',
       },
-      typescript: {
-        method: 'client.biscuits.getFresh',
+      cli: {
+        method: 'biscuits get_fresh',
+        example: "believe biscuits get-fresh \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Biscuits.GetFresh',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst biscuit = await client.biscuits.getFresh();\n\nconsole.log(biscuit.id);",
+          'BiscuitGetFreshParams parameters = new();\n\nvar biscuit = await client.Biscuits.GetFresh(parameters);\n\nConsole.WriteLine(biscuit);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/biscuits/fresh \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3182,23 +3182,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.biscuits.retrieve(biscuit_id: string): { id: string; message: string; pairs_well_with: string; ted_note: string; type: 'classic' | 'shortbread' | 'chocolate_chip' | 'oatmeal_raisin' | 'snickerdoodle' | 'lemon_drizzle'; warmth_level: number; }`\n\n**get** `/biscuits/{biscuit_id}`\n\nGet a specific type of biscuit by ID.\n\n### Parameters\n\n- `biscuit_id: string`\n\n### Returns\n\n- `{ id: string; message: string; pairs_well_with: string; ted_note: string; type: 'classic' | 'shortbread' | 'chocolate_chip' | 'oatmeal_raisin' | 'snickerdoodle' | 'lemon_drizzle'; warmth_level: number; }`\n  A biscuit from Ted.\n\n  - `id: string`\n  - `message: string`\n  - `pairs_well_with: string`\n  - `ted_note: string`\n  - `type: 'classic' | 'shortbread' | 'chocolate_chip' | 'oatmeal_raisin' | 'snickerdoodle' | 'lemon_drizzle'`\n  - `warmth_level: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst biscuit = await client.biscuits.retrieve('biscuit_id');\n\nconsole.log(biscuit);\n```",
     perLanguage: {
-      cli: {
-        method: 'biscuits retrieve',
-        example: "believe biscuits retrieve \\\n  --api-key 'My API Key' \\\n  --biscuit-id biscuit_id",
-      },
-      csharp: {
-        method: 'Biscuits.Retrieve',
+      typescript: {
+        method: 'client.biscuits.retrieve',
         example:
-          'BiscuitRetrieveParams parameters = new() { BiscuitID = "biscuit_id" };\n\nvar biscuit = await client.Biscuits.Retrieve(parameters);\n\nConsole.WriteLine(biscuit);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst biscuit = await client.biscuits.retrieve('biscuit_id');\n\nconsole.log(biscuit.id);",
       },
-      go: {
-        method: 'client.Biscuits.Get',
+      python: {
+        method: 'biscuits.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tbiscuit, err := client.Biscuits.Get(context.TODO(), "biscuit_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", biscuit.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/biscuits/$BISCUIT_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nbiscuit = client.biscuits.retrieve(\n    "biscuit_id",\n)\nprint(biscuit.id)',
       },
       java: {
         method: 'biscuits().retrieve',
@@ -3210,20 +3202,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.biscuits.Biscuit\nimport com.believe.api.models.biscuits.BiscuitRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val biscuit: Biscuit = client.biscuits().retrieve("biscuit_id")\n}',
       },
-      python: {
-        method: 'biscuits.retrieve',
+      go: {
+        method: 'client.Biscuits.Get',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nbiscuit = client.biscuits.retrieve(\n    "biscuit_id",\n)\nprint(biscuit.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tbiscuit, err := client.Biscuits.Get(context.TODO(), "biscuit_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", biscuit.ID)\n}\n',
       },
       ruby: {
         method: 'biscuits.retrieve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nbiscuit = believe.biscuits.retrieve("biscuit_id")\n\nputs(biscuit)',
       },
-      typescript: {
-        method: 'client.biscuits.retrieve',
+      cli: {
+        method: 'biscuits retrieve',
+        example: "believe biscuits retrieve \\\n  --api-key 'My API Key' \\\n  --biscuit-id biscuit_id",
+      },
+      csharp: {
+        method: 'Biscuits.Retrieve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst biscuit = await client.biscuits.retrieve('biscuit_id');\n\nconsole.log(biscuit.id);",
+          'BiscuitRetrieveParams parameters = new() { BiscuitID = "biscuit_id" };\n\nvar biscuit = await client.Biscuits.Retrieve(parameters);\n\nConsole.WriteLine(biscuit);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/biscuits/$BISCUIT_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3242,22 +3242,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.pepTalk.retrieve(stream?: boolean): { chunks: object[]; text: string; }`\n\n**get** `/pep-talk`\n\nGet a motivational pep talk from Ted Lasso himself. By default returns the complete pep talk. Add `?stream=true` to get Server-Sent Events (SSE) streaming the pep talk chunk by chunk.\n\n### Parameters\n\n- `stream?: boolean`\n  If true, returns SSE stream instead of full response\n\n### Returns\n\n- `{ chunks: { chunk_id: number; is_final: boolean; text: string; emotional_beat?: string; }[]; text: string; }`\n  A complete pep talk response.\n\n  - `chunks: { chunk_id: number; is_final: boolean; text: string; emotional_beat?: string; }[]`\n  - `text: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst pepTalk = await client.pepTalk.retrieve();\n\nconsole.log(pepTalk);\n```",
     perLanguage: {
-      cli: {
-        method: 'pep_talk retrieve',
-        example: "believe pep-talk retrieve \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'PepTalk.Retrieve',
+      typescript: {
+        method: 'client.pepTalk.retrieve',
         example:
-          'PepTalkRetrieveParams parameters = new();\n\nvar pepTalk = await client.PepTalk.Retrieve(parameters);\n\nConsole.WriteLine(pepTalk);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst pepTalk = await client.pepTalk.retrieve();\n\nconsole.log(pepTalk.chunks);",
       },
-      go: {
-        method: 'client.PepTalk.Get',
+      python: {
+        method: 'pep_talk.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpepTalk, err := client.PepTalk.Get(context.TODO(), believe.PepTalkGetParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", pepTalk.Chunks)\n}\n',
-      },
-      http: {
-        example: 'curl https://believe.cjav.dev/pep-talk \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npep_talk = client.pep_talk.retrieve()\nprint(pep_talk.chunks)',
       },
       java: {
         method: 'pepTalk().retrieve',
@@ -3269,20 +3262,27 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.peptalk.PepTalkRetrieveParams\nimport com.believe.api.models.peptalk.PepTalkRetrieveResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val pepTalk: PepTalkRetrieveResponse = client.pepTalk().retrieve()\n}',
       },
-      python: {
-        method: 'pep_talk.retrieve',
+      go: {
+        method: 'client.PepTalk.Get',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npep_talk = client.pep_talk.retrieve()\nprint(pep_talk.chunks)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpepTalk, err := client.PepTalk.Get(context.TODO(), believe.PepTalkGetParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", pepTalk.Chunks)\n}\n',
       },
       ruby: {
         method: 'pep_talk.retrieve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npep_talk = believe.pep_talk.retrieve\n\nputs(pep_talk)',
       },
-      typescript: {
-        method: 'client.pepTalk.retrieve',
+      cli: {
+        method: 'pep_talk retrieve',
+        example: "believe pep-talk retrieve \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'PepTalk.Retrieve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst pepTalk = await client.pepTalk.retrieve();\n\nconsole.log(pepTalk.chunks);",
+          'PepTalkRetrieveParams parameters = new();\n\nvar pepTalk = await client.PepTalk.Retrieve(parameters);\n\nConsole.WriteLine(pepTalk);',
+      },
+      http: {
+        example: 'curl https://believe.cjav.dev/pep-talk \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3298,23 +3298,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## test_connection\n\n`client.stream.testConnection(): object`\n\n**get** `/stream/test`\n\nA simple SSE test endpoint that streams numbers 1-5.\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.stream.testConnection();\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'stream test_connection',
-        example: "believe stream test-connection \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Stream.TestConnection',
+      typescript: {
+        method: 'client.stream.testConnection',
         example:
-          'StreamTestConnectionParams parameters = new();\n\nvar response = await client.Stream.TestConnection(parameters);\n\nConsole.WriteLine(response);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.stream.testConnection();\n\nconsole.log(response);",
       },
-      go: {
-        method: 'client.Stream.TestConnection',
+      python: {
+        method: 'stream.test_connection',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Stream.TestConnection(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/stream/test \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.stream.test_connection()\nprint(response)',
       },
       java: {
         method: 'stream().testConnection',
@@ -3326,20 +3318,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.stream.StreamTestConnectionParams\nimport com.believe.api.models.stream.StreamTestConnectionResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: StreamTestConnectionResponse = client.stream().testConnection()\n}',
       },
-      python: {
-        method: 'stream.test_connection',
+      go: {
+        method: 'client.Stream.TestConnection',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.stream.test_connection()\nprint(response)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Stream.TestConnection(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'stream.test_connection',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.stream.test_connection\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.stream.testConnection',
+      cli: {
+        method: 'stream test_connection',
+        example: "believe stream test-connection \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Stream.TestConnection',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.stream.testConnection();\n\nconsole.log(response);",
+          'StreamTestConnectionParams parameters = new();\n\nvar response = await client.Stream.TestConnection(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/stream/test \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3363,23 +3363,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.teamMembers.list(limit?: number, member_type?: 'player' | 'coach' | 'medical_staff' | 'equipment_manager', skip?: number, team_id?: string): object | object | object | object`\n\n**get** `/team-members`\n\nGet a paginated list of all team members.\n\nThis endpoint demonstrates **union types (oneOf)** in the response.\nEach team member can be one of: Player, Coach, MedicalStaff, or EquipmentManager.\nThe `member_type` field acts as a discriminator to determine the shape of each object.\n\n### Parameters\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `member_type?: 'player' | 'coach' | 'medical_staff' | 'equipment_manager'`\n  Filter by member type\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n- `team_id?: string`\n  Filter by team ID\n\n### Returns\n\n- `{ id: string; character_id: string; jersey_number: number; position: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'; team_id: string; years_with_team: number; assists?: number; goals_scored?: number; is_captain?: boolean; member_type?: 'player'; } | { id: string; character_id: string; specialty: 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst'; team_id: string; years_with_team: number; certifications?: string[]; member_type?: 'coach'; win_rate?: number; } | { id: string; character_id: string; specialty: 'team_doctor' | 'physiotherapist' | 'sports_psychologist' | 'nutritionist' | 'massage_therapist'; team_id: string; years_with_team: number; license_number?: string; member_type?: 'medical_staff'; qualifications?: string[]; } | { id: string; character_id: string; team_id: string; years_with_team: number; is_head_kitman?: boolean; member_type?: 'equipment_manager'; responsibilities?: string[]; }`\n  Full player model with ID.\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const teamMemberListResponse of client.teamMembers.list()) {\n  console.log(teamMemberListResponse);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'team_members list',
-        example: "believe team-members list \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'TeamMembers.List',
+      typescript: {
+        method: 'client.teamMembers.list',
         example:
-          'TeamMemberListParams parameters = new();\n\nvar page = await client.TeamMembers.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const teamMemberListResponse of client.teamMembers.list()) {\n  console.log(teamMemberListResponse);\n}",
       },
-      go: {
-        method: 'client.TeamMembers.List',
+      python: {
+        method: 'team_members.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.TeamMembers.List(context.TODO(), believe.TeamMemberListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/team-members \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.team_members.list()\npage = page.data[0]\nprint(page)',
       },
       java: {
         method: 'teamMembers().list',
@@ -3391,20 +3383,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberListPage\nimport com.believe.api.models.teammembers.TeamMemberListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamMemberListPage = client.teamMembers().list()\n}',
       },
-      python: {
-        method: 'team_members.list',
+      go: {
+        method: 'client.TeamMembers.List',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.team_members.list()\npage = page.data[0]\nprint(page)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.TeamMembers.List(context.TODO(), believe.TeamMemberListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'team_members.list',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.team_members.list\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.teamMembers.list',
+      cli: {
+        method: 'team_members list',
+        example: "believe team-members list \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'TeamMembers.List',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const teamMemberListResponse of client.teamMembers.list()) {\n  console.log(teamMemberListResponse);\n}",
+          'TeamMemberListParams parameters = new();\n\nvar page = await client.TeamMembers.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/team-members \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3425,24 +3425,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.teamMembers.create(member: { character_id: string; jersey_number: number; position: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'; team_id: string; years_with_team: number; assists?: number; goals_scored?: number; is_captain?: boolean; member_type?: 'player'; } | { character_id: string; specialty: 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst'; team_id: string; years_with_team: number; certifications?: string[]; member_type?: 'coach'; win_rate?: number; } | { character_id: string; specialty: 'team_doctor' | 'physiotherapist' | 'sports_psychologist' | 'nutritionist' | 'massage_therapist'; team_id: string; years_with_team: number; license_number?: string; member_type?: 'medical_staff'; qualifications?: string[]; } | { character_id: string; team_id: string; years_with_team: number; is_head_kitman?: boolean; member_type?: 'equipment_manager'; responsibilities?: string[]; }): object | object | object | object`\n\n**post** `/team-members`\n\nAdd a new team member to a team.\n\nThe request body is a **union type (oneOf)** - you must include the `member_type` discriminator field:\n- `\"member_type\": \"player\"` - Creates a player (requires position, jersey_number, etc.)\n- `\"member_type\": \"coach\"` - Creates a coach (requires specialty, etc.)\n- `\"member_type\": \"medical_staff\"` - Creates medical staff (requires medical specialty, etc.)\n- `\"member_type\": \"equipment_manager\"` - Creates equipment manager (requires responsibilities, etc.)\n\nThe `character_id` field references an existing character from `/characters/{id}`.\n\n**Example for creating a player:**\n```json\n{\n  \"member_type\": \"player\",\n  \"character_id\": \"sam-obisanya\",\n  \"team_id\": \"afc-richmond\",\n  \"years_with_team\": 2,\n  \"position\": \"midfielder\",\n  \"jersey_number\": 24,\n  \"goals_scored\": 12,\n  \"assists\": 15\n}\n```\n\n### Parameters\n\n- `member: { character_id: string; jersey_number: number; position: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'; team_id: string; years_with_team: number; assists?: number; goals_scored?: number; is_captain?: boolean; member_type?: 'player'; } | { character_id: string; specialty: 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst'; team_id: string; years_with_team: number; certifications?: string[]; member_type?: 'coach'; win_rate?: number; } | { character_id: string; specialty: 'team_doctor' | 'physiotherapist' | 'sports_psychologist' | 'nutritionist' | 'massage_therapist'; team_id: string; years_with_team: number; license_number?: string; member_type?: 'medical_staff'; qualifications?: string[]; } | { character_id: string; team_id: string; years_with_team: number; is_head_kitman?: boolean; member_type?: 'equipment_manager'; responsibilities?: string[]; }`\n  A football player on the team.\n\n### Returns\n\n- `{ id: string; character_id: string; jersey_number: number; position: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'; team_id: string; years_with_team: number; assists?: number; goals_scored?: number; is_captain?: boolean; member_type?: 'player'; } | { id: string; character_id: string; specialty: 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst'; team_id: string; years_with_team: number; certifications?: string[]; member_type?: 'coach'; win_rate?: number; } | { id: string; character_id: string; specialty: 'team_doctor' | 'physiotherapist' | 'sports_psychologist' | 'nutritionist' | 'massage_therapist'; team_id: string; years_with_team: number; license_number?: string; member_type?: 'medical_staff'; qualifications?: string[]; } | { id: string; character_id: string; team_id: string; years_with_team: number; is_head_kitman?: boolean; member_type?: 'equipment_manager'; responsibilities?: string[]; }`\n  Full player model with ID.\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst teamMember = await client.teamMembers.create({ member: {\n  character_id: 'jamie-tartt',\n  jersey_number: 9,\n  position: 'forward',\n  team_id: 'afc-richmond',\n  years_with_team: 3,\n  member_type: 'player',\n} });\n\nconsole.log(teamMember);\n```",
     perLanguage: {
-      cli: {
-        method: 'team_members create',
+      typescript: {
+        method: 'client.teamMembers.create',
         example:
-          "believe team-members create \\\n  --api-key 'My API Key' \\\n  --member '{character_id: jamie-tartt, jersey_number: 9, position: forward, team_id: afc-richmond, years_with_team: 3, member_type: player}'",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst teamMember = await client.teamMembers.create({\n  member: {\n    character_id: 'jamie-tartt',\n    jersey_number: 9,\n    position: 'forward',\n    team_id: 'afc-richmond',\n    years_with_team: 3,\n    member_type: 'player',\n  },\n});\n\nconsole.log(teamMember);",
       },
-      csharp: {
-        method: 'TeamMembers.Create',
+      python: {
+        method: 'team_members.create',
         example:
-          'TeamMemberCreateParams parameters = new()\n{\n    Member = new Player()\n    {\n        CharacterID = "jamie-tartt",\n        JerseyNumber = 9,\n        Position = Position.Forward,\n        TeamID = "afc-richmond",\n        YearsWithTeam = 3,\n        Assists = 23,\n        GoalsScored = 47,\n        IsCaptain = false,\n        MemberType = MemberType.Player,\n    },\n};\n\nvar teamMember = await client.TeamMembers.Create(parameters);\n\nConsole.WriteLine(teamMember);',
-      },
-      go: {
-        method: 'client.TeamMembers.New',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteamMember, err := client.TeamMembers.New(context.TODO(), believe.TeamMemberNewParams{\n\t\tOfPlayer: &believe.TeamMemberNewParamsMemberPlayer{\n\t\t\tCharacterID:   "jamie-tartt",\n\t\t\tJerseyNumber:  9,\n\t\t\tPosition:      believe.PositionForward,\n\t\t\tTeamID:        "afc-richmond",\n\t\t\tYearsWithTeam: 3,\n\t\t\tMemberType:    "player",\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", teamMember)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/team-members \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "character_id": "jamie-tartt",\n          "jersey_number": 9,\n          "position": "forward",\n          "team_id": "afc-richmond",\n          "years_with_team": 3,\n          "assists": 23,\n          "goals_scored": 47,\n          "is_captain": false,\n          "member_type": "player"\n        }\'',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteam_member = client.team_members.create(\n    member={\n        "character_id": "jamie-tartt",\n        "jersey_number": 9,\n        "position": "forward",\n        "team_id": "afc-richmond",\n        "years_with_team": 3,\n        "member_type": "player",\n    },\n)\nprint(team_member)',
       },
       java: {
         method: 'teamMembers().create',
@@ -3454,20 +3445,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.Position\nimport com.believe.api.models.teammembers.TeamMemberCreateParams\nimport com.believe.api.models.teammembers.TeamMemberCreateResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: TeamMemberCreateParams.Member.Player = TeamMemberCreateParams.Member.Player.builder()\n        .characterId("jamie-tartt")\n        .jerseyNumber(9L)\n        .position(Position.FORWARD)\n        .teamId("afc-richmond")\n        .yearsWithTeam(3L)\n        .memberType(TeamMemberCreateParams.Member.Player.MemberType.PLAYER)\n        .build()\n    val teamMember: TeamMemberCreateResponse = client.teamMembers().create(params)\n}',
       },
-      python: {
-        method: 'team_members.create',
+      go: {
+        method: 'client.TeamMembers.New',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteam_member = client.team_members.create(\n    member={\n        "character_id": "jamie-tartt",\n        "jersey_number": 9,\n        "position": "forward",\n        "team_id": "afc-richmond",\n        "years_with_team": 3,\n        "member_type": "player",\n    },\n)\nprint(team_member)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteamMember, err := client.TeamMembers.New(context.TODO(), believe.TeamMemberNewParams{\n\t\tOfPlayer: &believe.TeamMemberNewParamsMemberPlayer{\n\t\t\tCharacterID:   "jamie-tartt",\n\t\t\tJerseyNumber:  9,\n\t\t\tPosition:      believe.PositionForward,\n\t\t\tTeamID:        "afc-richmond",\n\t\t\tYearsWithTeam: 3,\n\t\t\tMemberType:    "player",\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", teamMember)\n}\n',
       },
       ruby: {
         method: 'team_members.create',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nteam_member = believe.team_members.create(\n  member: {\n    character_id: "jamie-tartt",\n    jersey_number: 9,\n    position: :forward,\n    team_id: "afc-richmond",\n    years_with_team: 3,\n    member_type: :player\n  }\n)\n\nputs(team_member)',
       },
-      typescript: {
-        method: 'client.teamMembers.create',
+      cli: {
+        method: 'team_members create',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst teamMember = await client.teamMembers.create({\n  member: {\n    character_id: 'jamie-tartt',\n    jersey_number: 9,\n    position: 'forward',\n    team_id: 'afc-richmond',\n    years_with_team: 3,\n    member_type: 'player',\n  },\n});\n\nconsole.log(teamMember);",
+          "believe team-members create \\\n  --api-key 'My API Key' \\\n  --member '{character_id: jamie-tartt, jersey_number: 9, position: forward, team_id: afc-richmond, years_with_team: 3, member_type: player}'",
+      },
+      csharp: {
+        method: 'TeamMembers.Create',
+        example:
+          'TeamMemberCreateParams parameters = new()\n{\n    Member = new Player()\n    {\n        CharacterID = "jamie-tartt",\n        JerseyNumber = 9,\n        Position = Position.Forward,\n        TeamID = "afc-richmond",\n        YearsWithTeam = 3,\n        Assists = 23,\n        GoalsScored = 47,\n        IsCaptain = false,\n        MemberType = MemberType.Player,\n    },\n};\n\nvar teamMember = await client.TeamMembers.Create(parameters);\n\nConsole.WriteLine(teamMember);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/team-members \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "character_id": "jamie-tartt",\n          "jersey_number": 9,\n          "position": "forward",\n          "team_id": "afc-richmond",\n          "years_with_team": 3,\n          "assists": 23,\n          "goals_scored": 47,\n          "is_captain": false,\n          "member_type": "player"\n        }\'',
       },
     },
   },
@@ -3486,23 +3486,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.teamMembers.retrieve(member_id: string): object | object | object | object`\n\n**get** `/team-members/{member_id}`\n\nRetrieve detailed information about a specific team member.\n\nThe response is a **union type (oneOf)** - the actual shape depends on the member's type:\n- **player**: Includes position, jersey_number, goals_scored, assists, is_captain\n- **coach**: Includes specialty, certifications, win_rate\n- **medical_staff**: Includes specialty, qualifications, license_number\n- **equipment_manager**: Includes responsibilities, is_head_kitman\n\nUse `character_id` to fetch full character details from `/characters/{character_id}`.\n\n### Parameters\n\n- `member_id: string`\n\n### Returns\n\n- `{ id: string; character_id: string; jersey_number: number; position: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'; team_id: string; years_with_team: number; assists?: number; goals_scored?: number; is_captain?: boolean; member_type?: 'player'; } | { id: string; character_id: string; specialty: 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst'; team_id: string; years_with_team: number; certifications?: string[]; member_type?: 'coach'; win_rate?: number; } | { id: string; character_id: string; specialty: 'team_doctor' | 'physiotherapist' | 'sports_psychologist' | 'nutritionist' | 'massage_therapist'; team_id: string; years_with_team: number; license_number?: string; member_type?: 'medical_staff'; qualifications?: string[]; } | { id: string; character_id: string; team_id: string; years_with_team: number; is_head_kitman?: boolean; member_type?: 'equipment_manager'; responsibilities?: string[]; }`\n  Full player model with ID.\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst teamMember = await client.teamMembers.retrieve('member_id');\n\nconsole.log(teamMember);\n```",
     perLanguage: {
-      cli: {
-        method: 'team_members retrieve',
-        example: "believe team-members retrieve \\\n  --api-key 'My API Key' \\\n  --member-id member_id",
-      },
-      csharp: {
-        method: 'TeamMembers.Retrieve',
+      typescript: {
+        method: 'client.teamMembers.retrieve',
         example:
-          'TeamMemberRetrieveParams parameters = new() { MemberID = "member_id" };\n\nvar teamMember = await client.TeamMembers.Retrieve(parameters);\n\nConsole.WriteLine(teamMember);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst teamMember = await client.teamMembers.retrieve('member_id');\n\nconsole.log(teamMember);",
       },
-      go: {
-        method: 'client.TeamMembers.Get',
+      python: {
+        method: 'team_members.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteamMember, err := client.TeamMembers.Get(context.TODO(), "member_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", teamMember)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/team-members/$MEMBER_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteam_member = client.team_members.retrieve(\n    "member_id",\n)\nprint(team_member)',
       },
       java: {
         method: 'teamMembers().retrieve',
@@ -3514,20 +3506,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberRetrieveParams\nimport com.believe.api.models.teammembers.TeamMemberRetrieveResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val teamMember: TeamMemberRetrieveResponse = client.teamMembers().retrieve("member_id")\n}',
       },
-      python: {
-        method: 'team_members.retrieve',
+      go: {
+        method: 'client.TeamMembers.Get',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteam_member = client.team_members.retrieve(\n    "member_id",\n)\nprint(team_member)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteamMember, err := client.TeamMembers.Get(context.TODO(), "member_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", teamMember)\n}\n',
       },
       ruby: {
         method: 'team_members.retrieve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nteam_member = believe.team_members.retrieve("member_id")\n\nputs(team_member)',
       },
-      typescript: {
-        method: 'client.teamMembers.retrieve',
+      cli: {
+        method: 'team_members retrieve',
+        example: "believe team-members retrieve \\\n  --api-key 'My API Key' \\\n  --member-id member_id",
+      },
+      csharp: {
+        method: 'TeamMembers.Retrieve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst teamMember = await client.teamMembers.retrieve('member_id');\n\nconsole.log(teamMember);",
+          'TeamMemberRetrieveParams parameters = new() { MemberID = "member_id" };\n\nvar teamMember = await client.TeamMembers.Retrieve(parameters);\n\nConsole.WriteLine(teamMember);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/team-members/$MEMBER_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3548,24 +3548,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## update\n\n`client.teamMembers.update(member_id: string, updates: { assists?: number; goals_scored?: number; is_captain?: boolean; jersey_number?: number; position?: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'; team_id?: string; years_with_team?: number; } | { certifications?: string[]; specialty?: 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst'; team_id?: string; win_rate?: number; years_with_team?: number; } | { license_number?: string; qualifications?: string[]; specialty?: 'team_doctor' | 'physiotherapist' | 'sports_psychologist' | 'nutritionist' | 'massage_therapist'; team_id?: string; years_with_team?: number; } | { is_head_kitman?: boolean; responsibilities?: string[]; team_id?: string; years_with_team?: number; }): object | object | object | object`\n\n**patch** `/team-members/{member_id}`\n\nUpdate specific fields of an existing team member. Fields vary by member type.\n\n### Parameters\n\n- `member_id: string`\n\n- `updates: { assists?: number; goals_scored?: number; is_captain?: boolean; jersey_number?: number; position?: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'; team_id?: string; years_with_team?: number; } | { certifications?: string[]; specialty?: 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst'; team_id?: string; win_rate?: number; years_with_team?: number; } | { license_number?: string; qualifications?: string[]; specialty?: 'team_doctor' | 'physiotherapist' | 'sports_psychologist' | 'nutritionist' | 'massage_therapist'; team_id?: string; years_with_team?: number; } | { is_head_kitman?: boolean; responsibilities?: string[]; team_id?: string; years_with_team?: number; }`\n  Update model for players.\n\n### Returns\n\n- `{ id: string; character_id: string; jersey_number: number; position: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'; team_id: string; years_with_team: number; assists?: number; goals_scored?: number; is_captain?: boolean; member_type?: 'player'; } | { id: string; character_id: string; specialty: 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst'; team_id: string; years_with_team: number; certifications?: string[]; member_type?: 'coach'; win_rate?: number; } | { id: string; character_id: string; specialty: 'team_doctor' | 'physiotherapist' | 'sports_psychologist' | 'nutritionist' | 'massage_therapist'; team_id: string; years_with_team: number; license_number?: string; member_type?: 'medical_staff'; qualifications?: string[]; } | { id: string; character_id: string; team_id: string; years_with_team: number; is_head_kitman?: boolean; member_type?: 'equipment_manager'; responsibilities?: string[]; }`\n  Full player model with ID.\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst teamMember = await client.teamMembers.update('member_id', { updates: {} });\n\nconsole.log(teamMember);\n```",
     perLanguage: {
-      cli: {
-        method: 'team_members update',
+      typescript: {
+        method: 'client.teamMembers.update',
         example:
-          "believe team-members update \\\n  --api-key 'My API Key' \\\n  --member-id member_id \\\n  --updates '{}'",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst teamMember = await client.teamMembers.update('member_id', { updates: {} });\n\nconsole.log(teamMember);",
       },
-      csharp: {
-        method: 'TeamMembers.Update',
+      python: {
+        method: 'team_members.update',
         example:
-          'TeamMemberUpdateParams parameters = new()\n{\n    MemberID = "member_id",\n    Updates = new PlayerUpdate()\n    {\n        Assists = 0,\n        GoalsScored = 0,\n        IsCaptain = true,\n        JerseyNumber = 1,\n        Position = Position.Goalkeeper,\n        TeamID = "team_id",\n        YearsWithTeam = 0,\n    },\n};\n\nvar teamMember = await client.TeamMembers.Update(parameters);\n\nConsole.WriteLine(teamMember);',
-      },
-      go: {
-        method: 'client.TeamMembers.Update',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteamMember, err := client.TeamMembers.Update(\n\t\tcontext.TODO(),\n\t\t"member_id",\n\t\tbelieve.TeamMemberUpdateParams{\n\t\t\tOfPlayerUpdate: &believe.TeamMemberUpdateParamsUpdatesPlayerUpdate{},\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", teamMember)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/team-members/$MEMBER_ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "assists": 0,\n          "goals_scored": 0,\n          "is_captain": true,\n          "jersey_number": 1,\n          "position": "goalkeeper",\n          "team_id": "team_id",\n          "years_with_team": 0\n        }\'',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteam_member = client.team_members.update(\n    member_id="member_id",\n    updates={},\n)\nprint(team_member)',
       },
       java: {
         method: 'teamMembers().update',
@@ -3577,20 +3568,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberUpdateParams\nimport com.believe.api.models.teammembers.TeamMemberUpdateResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: TeamMemberUpdateParams = TeamMemberUpdateParams.builder()\n        .memberId("member_id")\n        .updates(TeamMemberUpdateParams.Updates.PlayerUpdate.builder().build())\n        .build()\n    val teamMember: TeamMemberUpdateResponse = client.teamMembers().update(params)\n}',
       },
-      python: {
-        method: 'team_members.update',
+      go: {
+        method: 'client.TeamMembers.Update',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nteam_member = client.team_members.update(\n    member_id="member_id",\n    updates={},\n)\nprint(team_member)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tteamMember, err := client.TeamMembers.Update(\n\t\tcontext.TODO(),\n\t\t"member_id",\n\t\tbelieve.TeamMemberUpdateParams{\n\t\t\tOfPlayerUpdate: &believe.TeamMemberUpdateParamsUpdatesPlayerUpdate{},\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", teamMember)\n}\n',
       },
       ruby: {
         method: 'team_members.update',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nteam_member = believe.team_members.update("member_id", updates: {})\n\nputs(team_member)',
       },
-      typescript: {
-        method: 'client.teamMembers.update',
+      cli: {
+        method: 'team_members update',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst teamMember = await client.teamMembers.update('member_id', { updates: {} });\n\nconsole.log(teamMember);",
+          "believe team-members update \\\n  --api-key 'My API Key' \\\n  --member-id member_id \\\n  --updates '{}'",
+      },
+      csharp: {
+        method: 'TeamMembers.Update',
+        example:
+          'TeamMemberUpdateParams parameters = new()\n{\n    MemberID = "member_id",\n    Updates = new PlayerUpdate()\n    {\n        Assists = 0,\n        GoalsScored = 0,\n        IsCaptain = true,\n        JerseyNumber = 1,\n        Position = Position.Goalkeeper,\n        TeamID = "team_id",\n        YearsWithTeam = 0,\n    },\n};\n\nvar teamMember = await client.TeamMembers.Update(parameters);\n\nConsole.WriteLine(teamMember);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/team-members/$MEMBER_ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "assists": 0,\n          "goals_scored": 0,\n          "is_captain": true,\n          "jersey_number": 1,\n          "position": "goalkeeper",\n          "team_id": "team_id",\n          "years_with_team": 0\n        }\'',
       },
     },
   },
@@ -3606,23 +3606,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## delete\n\n`client.teamMembers.delete(member_id: string): void`\n\n**delete** `/team-members/{member_id}`\n\nRemove a team member from the roster.\n\n### Parameters\n\n- `member_id: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nawait client.teamMembers.delete('member_id')\n```",
     perLanguage: {
-      cli: {
-        method: 'team_members delete',
-        example: "believe team-members delete \\\n  --api-key 'My API Key' \\\n  --member-id member_id",
-      },
-      csharp: {
-        method: 'TeamMembers.Delete',
+      typescript: {
+        method: 'client.teamMembers.delete',
         example:
-          'TeamMemberDeleteParams parameters = new() { MemberID = "member_id" };\n\nawait client.TeamMembers.Delete(parameters);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.teamMembers.delete('member_id');",
       },
-      go: {
-        method: 'client.TeamMembers.Delete',
+      python: {
+        method: 'team_members.delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.TeamMembers.Delete(context.TODO(), "member_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/team-members/$MEMBER_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.team_members.delete(\n    "member_id",\n)',
       },
       java: {
         method: 'teamMembers().delete',
@@ -3634,20 +3626,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.teamMembers().delete("member_id")\n}',
       },
-      python: {
-        method: 'team_members.delete',
+      go: {
+        method: 'client.TeamMembers.Delete',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.team_members.delete(\n    "member_id",\n)',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.TeamMembers.Delete(context.TODO(), "member_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'team_members.delete',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresult = believe.team_members.delete("member_id")\n\nputs(result)',
       },
-      typescript: {
-        method: 'client.teamMembers.delete',
+      cli: {
+        method: 'team_members delete',
+        example: "believe team-members delete \\\n  --api-key 'My API Key' \\\n  --member-id member_id",
+      },
+      csharp: {
+        method: 'TeamMembers.Delete',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.teamMembers.delete('member_id');",
+          'TeamMemberDeleteParams parameters = new() { MemberID = "member_id" };\n\nawait client.TeamMembers.Delete(parameters);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/team-members/$MEMBER_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3670,23 +3670,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list_players\n\n`client.teamMembers.listPlayers(limit?: number, position?: 'goalkeeper' | 'defender' | 'midfielder' | 'forward', skip?: number, team_id?: string): { id: string; character_id: string; jersey_number: number; position: position; team_id: string; years_with_team: number; assists?: number; goals_scored?: number; is_captain?: boolean; member_type?: 'player'; }`\n\n**get** `/team-members/players/`\n\nGet only players (filtered subset of team members).\n\n### Parameters\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `position?: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'`\n  Filter by position\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n- `team_id?: string`\n  Filter by team ID\n\n### Returns\n\n- `{ id: string; character_id: string; jersey_number: number; position: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'; team_id: string; years_with_team: number; assists?: number; goals_scored?: number; is_captain?: boolean; member_type?: 'player'; }`\n  Full player model with ID.\n\n  - `id: string`\n  - `character_id: string`\n  - `jersey_number: number`\n  - `position: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'`\n  - `team_id: string`\n  - `years_with_team: number`\n  - `assists?: number`\n  - `goals_scored?: number`\n  - `is_captain?: boolean`\n  - `member_type?: 'player'`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const player of client.teamMembers.listPlayers()) {\n  console.log(player);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'team_members list_players',
-        example: "believe team-members list-players \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'TeamMembers.ListPlayers',
+      typescript: {
+        method: 'client.teamMembers.listPlayers',
         example:
-          'TeamMemberListPlayersParams parameters = new();\n\nvar page = await client.TeamMembers.ListPlayers(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const player of client.teamMembers.listPlayers()) {\n  console.log(player.id);\n}",
       },
-      go: {
-        method: 'client.TeamMembers.ListPlayers',
+      python: {
+        method: 'team_members.list_players',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.TeamMembers.ListPlayers(context.TODO(), believe.TeamMemberListPlayersParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/team-members/players/ \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.team_members.list_players()\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'teamMembers().listPlayers',
@@ -3698,20 +3690,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberListPlayersPage\nimport com.believe.api.models.teammembers.TeamMemberListPlayersParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamMemberListPlayersPage = client.teamMembers().listPlayers()\n}',
       },
-      python: {
-        method: 'team_members.list_players',
+      go: {
+        method: 'client.TeamMembers.ListPlayers',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.team_members.list_players()\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.TeamMembers.ListPlayers(context.TODO(), believe.TeamMemberListPlayersParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'team_members.list_players',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.team_members.list_players\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.teamMembers.listPlayers',
+      cli: {
+        method: 'team_members list_players',
+        example: "believe team-members list-players \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'TeamMembers.ListPlayers',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const player of client.teamMembers.listPlayers()) {\n  console.log(player.id);\n}",
+          'TeamMemberListPlayersParams parameters = new();\n\nvar page = await client.TeamMembers.ListPlayers(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/team-members/players/ \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3734,23 +3734,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list_coaches\n\n`client.teamMembers.listCoaches(limit?: number, skip?: number, specialty?: 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst', team_id?: string): { id: string; character_id: string; specialty: coach_specialty; team_id: string; years_with_team: number; certifications?: string[]; member_type?: 'coach'; win_rate?: number; }`\n\n**get** `/team-members/coaches/`\n\nGet only coaches (filtered subset of team members).\n\n### Parameters\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n- `specialty?: 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst'`\n  Filter by specialty\n\n- `team_id?: string`\n  Filter by team ID\n\n### Returns\n\n- `{ id: string; character_id: string; specialty: 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst'; team_id: string; years_with_team: number; certifications?: string[]; member_type?: 'coach'; win_rate?: number; }`\n  Full coach model with ID.\n\n  - `id: string`\n  - `character_id: string`\n  - `specialty: 'head_coach' | 'assistant_coach' | 'goalkeeping_coach' | 'fitness_coach' | 'tactical_analyst'`\n  - `team_id: string`\n  - `years_with_team: number`\n  - `certifications?: string[]`\n  - `member_type?: 'coach'`\n  - `win_rate?: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const coach of client.teamMembers.listCoaches()) {\n  console.log(coach);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'team_members list_coaches',
-        example: "believe team-members list-coaches \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'TeamMembers.ListCoaches',
+      typescript: {
+        method: 'client.teamMembers.listCoaches',
         example:
-          'TeamMemberListCoachesParams parameters = new();\n\nvar page = await client.TeamMembers.ListCoaches(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const coach of client.teamMembers.listCoaches()) {\n  console.log(coach.id);\n}",
       },
-      go: {
-        method: 'client.TeamMembers.ListCoaches',
+      python: {
+        method: 'team_members.list_coaches',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.TeamMembers.ListCoaches(context.TODO(), believe.TeamMemberListCoachesParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/team-members/coaches/ \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.team_members.list_coaches()\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'teamMembers().listCoaches',
@@ -3762,20 +3754,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberListCoachesPage\nimport com.believe.api.models.teammembers.TeamMemberListCoachesParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamMemberListCoachesPage = client.teamMembers().listCoaches()\n}',
       },
-      python: {
-        method: 'team_members.list_coaches',
+      go: {
+        method: 'client.TeamMembers.ListCoaches',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.team_members.list_coaches()\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.TeamMembers.ListCoaches(context.TODO(), believe.TeamMemberListCoachesParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'team_members.list_coaches',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.team_members.list_coaches\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.teamMembers.listCoaches',
+      cli: {
+        method: 'team_members list_coaches',
+        example: "believe team-members list-coaches \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'TeamMembers.ListCoaches',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const coach of client.teamMembers.listCoaches()) {\n  console.log(coach.id);\n}",
+          'TeamMemberListCoachesParams parameters = new();\n\nvar page = await client.TeamMembers.ListCoaches(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/team-members/coaches/ \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3794,23 +3794,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list_staff\n\n`client.teamMembers.listStaff(limit?: number, skip?: number, team_id?: string): object | object`\n\n**get** `/team-members/staff/`\n\nGet all staff members (medical staff and equipment managers).\n\nThis demonstrates a **narrower union type** - the response is oneOf MedicalStaff or EquipmentManager.\n\n### Parameters\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n- `team_id?: string`\n  Filter by team ID\n\n### Returns\n\n- `{ id: string; character_id: string; specialty: 'team_doctor' | 'physiotherapist' | 'sports_psychologist' | 'nutritionist' | 'massage_therapist'; team_id: string; years_with_team: number; license_number?: string; member_type?: 'medical_staff'; qualifications?: string[]; } | { id: string; character_id: string; team_id: string; years_with_team: number; is_head_kitman?: boolean; member_type?: 'equipment_manager'; responsibilities?: string[]; }`\n  Full medical staff model with ID.\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const teamMemberListStaffResponse of client.teamMembers.listStaff()) {\n  console.log(teamMemberListStaffResponse);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'team_members list_staff',
-        example: "believe team-members list-staff \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'TeamMembers.ListStaff',
+      typescript: {
+        method: 'client.teamMembers.listStaff',
         example:
-          'TeamMemberListStaffParams parameters = new();\n\nvar page = await client.TeamMembers.ListStaff(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const teamMemberListStaffResponse of client.teamMembers.listStaff()) {\n  console.log(teamMemberListStaffResponse);\n}",
       },
-      go: {
-        method: 'client.TeamMembers.ListStaff',
+      python: {
+        method: 'team_members.list_staff',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.TeamMembers.ListStaff(context.TODO(), believe.TeamMemberListStaffParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/team-members/staff/ \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.team_members.list_staff()\npage = page.data[0]\nprint(page)',
       },
       java: {
         method: 'teamMembers().listStaff',
@@ -3822,20 +3814,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.teammembers.TeamMemberListStaffPage\nimport com.believe.api.models.teammembers.TeamMemberListStaffParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamMemberListStaffPage = client.teamMembers().listStaff()\n}',
       },
-      python: {
-        method: 'team_members.list_staff',
+      go: {
+        method: 'client.TeamMembers.ListStaff',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.team_members.list_staff()\npage = page.data[0]\nprint(page)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.TeamMembers.ListStaff(context.TODO(), believe.TeamMemberListStaffParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'team_members.list_staff',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.team_members.list_staff\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.teamMembers.listStaff',
+      cli: {
+        method: 'team_members list_staff',
+        example: "believe team-members list-staff \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'TeamMembers.ListStaff',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const teamMemberListStaffResponse of client.teamMembers.listStaff()) {\n  console.log(teamMemberListStaffResponse);\n}",
+          'TeamMemberListStaffParams parameters = new();\n\nvar page = await client.TeamMembers.ListStaff(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/team-members/staff/ \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3852,22 +3852,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.webhooks.list(): object[]`\n\n**get** `/webhooks`\n\nGet a list of all registered webhook endpoints.\n\n### Returns\n\n- `{ id: string; created_at: string; event_types: 'match.completed' | 'team_member.transferred'[]; secret: string; url: string; description?: string; }[]`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst registeredWebhooks = await client.webhooks.list();\n\nconsole.log(registeredWebhooks);\n```",
     perLanguage: {
-      cli: {
-        method: 'webhooks list',
-        example: "believe webhooks list \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Webhooks.List',
+      typescript: {
+        method: 'client.webhooks.list',
         example:
-          'WebhookListParams parameters = new();\n\nvar registeredWebhooks = await client.Webhooks.List(parameters);\n\nConsole.WriteLine(registeredWebhooks);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst registeredWebhooks = await client.webhooks.list();\n\nconsole.log(registeredWebhooks);",
       },
-      go: {
-        method: 'client.Webhooks.List',
+      python: {
+        method: 'webhooks.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tregisteredWebhooks, err := client.Webhooks.List(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", registeredWebhooks)\n}\n',
-      },
-      http: {
-        example: 'curl https://believe.cjav.dev/webhooks \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nregistered_webhooks = client.webhooks.list()\nprint(registered_webhooks)',
       },
       java: {
         method: 'webhooks().list',
@@ -3879,20 +3872,27 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.webhooks.RegisteredWebhook\nimport com.believe.api.models.webhooks.WebhookListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val registeredWebhooks: List<RegisteredWebhook> = client.webhooks().list()\n}',
       },
-      python: {
-        method: 'webhooks.list',
+      go: {
+        method: 'client.Webhooks.List',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nregistered_webhooks = client.webhooks.list()\nprint(registered_webhooks)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tregisteredWebhooks, err := client.Webhooks.List(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", registeredWebhooks)\n}\n',
       },
       ruby: {
         method: 'webhooks.list',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nregistered_webhooks = believe.webhooks.list\n\nputs(registered_webhooks)',
       },
-      typescript: {
-        method: 'client.webhooks.list',
+      cli: {
+        method: 'webhooks list',
+        example: "believe webhooks list \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Webhooks.List',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst registeredWebhooks = await client.webhooks.list();\n\nconsole.log(registeredWebhooks);",
+          'WebhookListParams parameters = new();\n\nvar registeredWebhooks = await client.Webhooks.List(parameters);\n\nConsole.WriteLine(registeredWebhooks);',
+      },
+      http: {
+        example: 'curl https://believe.cjav.dev/webhooks \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -3915,24 +3915,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.webhooks.create(url: string, description?: string, event_types?: 'match.completed' | 'team_member.transferred'[]): { webhook: registered_webhook; message?: string; ted_says?: string; }`\n\n**post** `/webhooks`\n\nRegister a new webhook endpoint to receive event notifications.\n\n## Event Types\n\nAvailable event types to subscribe to:\n- `match.completed` - Fired when a football match ends\n- `team_member.transferred` - Fired when a player/coach joins or leaves a team\n\nIf no event types are specified, the webhook will receive all event types.\n\n## Webhook Signatures\n\nAll webhook deliveries include Standard Webhooks signature headers:\n- `webhook-id` - Unique message identifier\n- `webhook-timestamp` - Unix timestamp of when the webhook was sent\n- `webhook-signature` - HMAC-SHA256 signature in format `v1,{base64_signature}`\n\nStore the returned `secret` securely - you'll need it to verify webhook signatures.\n\n### Parameters\n\n- `url: string`\n  The URL to send webhook events to\n\n- `description?: string`\n  Optional description for this webhook\n\n- `event_types?: 'match.completed' | 'team_member.transferred'[]`\n  List of event types to subscribe to. If not provided, subscribes to all events.\n\n### Returns\n\n- `{ webhook: { id: string; created_at: string; event_types: 'match.completed' | 'team_member.transferred'[]; secret: string; url: string; description?: string; }; message?: string; ted_says?: string; }`\n  Response after registering a webhook.\n\n  - `webhook: { id: string; created_at: string; event_types: 'match.completed' | 'team_member.transferred'[]; secret: string; url: string; description?: string; }`\n  - `message?: string`\n  - `ted_says?: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst webhook = await client.webhooks.create({ url: 'https://example.com/webhooks' });\n\nconsole.log(webhook);\n```",
     perLanguage: {
-      cli: {
-        method: 'webhooks create',
+      typescript: {
+        method: 'client.webhooks.create',
         example:
-          "believe webhooks create \\\n  --api-key 'My API Key' \\\n  --url https://example.com/webhooks",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst webhook = await client.webhooks.create({ url: 'https://example.com/webhooks' });\n\nconsole.log(webhook.webhook);",
       },
-      csharp: {
-        method: 'Webhooks.Create',
+      python: {
+        method: 'webhooks.create',
         example:
-          'WebhookCreateParams parameters = new() { Url = "https://example.com/webhooks" };\n\nvar webhook = await client.Webhooks.Create(parameters);\n\nConsole.WriteLine(webhook);',
-      },
-      go: {
-        method: 'client.Webhooks.New',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\twebhook, err := client.Webhooks.New(context.TODO(), believe.WebhookNewParams{\n\t\tURL: "https://example.com/webhooks",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", webhook.Webhook)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/webhooks \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "url": "https://example.com/webhooks"\n        }\'',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nwebhook = client.webhooks.create(\n    url="https://example.com/webhooks",\n)\nprint(webhook.webhook)',
       },
       java: {
         method: 'webhooks().create',
@@ -3944,20 +3935,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.webhooks.WebhookCreateParams\nimport com.believe.api.models.webhooks.WebhookCreateResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: WebhookCreateParams = WebhookCreateParams.builder()\n        .url("https://example.com/webhooks")\n        .build()\n    val webhook: WebhookCreateResponse = client.webhooks().create(params)\n}',
       },
-      python: {
-        method: 'webhooks.create',
+      go: {
+        method: 'client.Webhooks.New',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nwebhook = client.webhooks.create(\n    url="https://example.com/webhooks",\n)\nprint(webhook.webhook)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\twebhook, err := client.Webhooks.New(context.TODO(), believe.WebhookNewParams{\n\t\tURL: "https://example.com/webhooks",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", webhook.Webhook)\n}\n',
       },
       ruby: {
         method: 'webhooks.create',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nwebhook = believe.webhooks.create(url: "https://example.com/webhooks")\n\nputs(webhook)',
       },
-      typescript: {
-        method: 'client.webhooks.create',
+      cli: {
+        method: 'webhooks create',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst webhook = await client.webhooks.create({ url: 'https://example.com/webhooks' });\n\nconsole.log(webhook.webhook);",
+          "believe webhooks create \\\n  --api-key 'My API Key' \\\n  --url https://example.com/webhooks",
+      },
+      csharp: {
+        method: 'Webhooks.Create',
+        example:
+          'WebhookCreateParams parameters = new() { Url = "https://example.com/webhooks" };\n\nvar webhook = await client.Webhooks.Create(parameters);\n\nConsole.WriteLine(webhook);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/webhooks \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "url": "https://example.com/webhooks"\n        }\'',
       },
     },
   },
@@ -3975,23 +3975,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.webhooks.retrieve(webhook_id: string): { id: string; created_at: string; event_types: 'match.completed' | 'team_member.transferred'[]; secret: string; url: string; description?: string; }`\n\n**get** `/webhooks/{webhook_id}`\n\nGet details of a specific webhook endpoint.\n\n### Parameters\n\n- `webhook_id: string`\n\n### Returns\n\n- `{ id: string; created_at: string; event_types: 'match.completed' | 'team_member.transferred'[]; secret: string; url: string; description?: string; }`\n  A registered webhook endpoint.\n\n  - `id: string`\n  - `created_at: string`\n  - `event_types: 'match.completed' | 'team_member.transferred'[]`\n  - `secret: string`\n  - `url: string`\n  - `description?: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst registeredWebhook = await client.webhooks.retrieve('webhook_id');\n\nconsole.log(registeredWebhook);\n```",
     perLanguage: {
-      cli: {
-        method: 'webhooks retrieve',
-        example: "believe webhooks retrieve \\\n  --api-key 'My API Key' \\\n  --webhook-id webhook_id",
-      },
-      csharp: {
-        method: 'Webhooks.Retrieve',
+      typescript: {
+        method: 'client.webhooks.retrieve',
         example:
-          'WebhookRetrieveParams parameters = new() { WebhookID = "webhook_id" };\n\nvar registeredWebhook = await client.Webhooks.Retrieve(parameters);\n\nConsole.WriteLine(registeredWebhook);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst registeredWebhook = await client.webhooks.retrieve('webhook_id');\n\nconsole.log(registeredWebhook.id);",
       },
-      go: {
-        method: 'client.Webhooks.Get',
+      python: {
+        method: 'webhooks.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tregisteredWebhook, err := client.Webhooks.Get(context.TODO(), "webhook_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", registeredWebhook.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/webhooks/$WEBHOOK_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nregistered_webhook = client.webhooks.retrieve(\n    "webhook_id",\n)\nprint(registered_webhook.id)',
       },
       java: {
         method: 'webhooks().retrieve',
@@ -4003,20 +3995,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.webhooks.RegisteredWebhook\nimport com.believe.api.models.webhooks.WebhookRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val registeredWebhook: RegisteredWebhook = client.webhooks().retrieve("webhook_id")\n}',
       },
-      python: {
-        method: 'webhooks.retrieve',
+      go: {
+        method: 'client.Webhooks.Get',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nregistered_webhook = client.webhooks.retrieve(\n    "webhook_id",\n)\nprint(registered_webhook.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tregisteredWebhook, err := client.Webhooks.Get(context.TODO(), "webhook_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", registeredWebhook.ID)\n}\n',
       },
       ruby: {
         method: 'webhooks.retrieve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nregistered_webhook = believe.webhooks.retrieve("webhook_id")\n\nputs(registered_webhook)',
       },
-      typescript: {
-        method: 'client.webhooks.retrieve',
+      cli: {
+        method: 'webhooks retrieve',
+        example: "believe webhooks retrieve \\\n  --api-key 'My API Key' \\\n  --webhook-id webhook_id",
+      },
+      csharp: {
+        method: 'Webhooks.Retrieve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst registeredWebhook = await client.webhooks.retrieve('webhook_id');\n\nconsole.log(registeredWebhook.id);",
+          'WebhookRetrieveParams parameters = new() { WebhookID = "webhook_id" };\n\nvar registeredWebhook = await client.Webhooks.Retrieve(parameters);\n\nConsole.WriteLine(registeredWebhook);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/webhooks/$WEBHOOK_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -4033,23 +4033,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## delete\n\n`client.webhooks.delete(webhook_id: string): object`\n\n**delete** `/webhooks/{webhook_id}`\n\nUnregister a webhook endpoint. It will no longer receive events.\n\n### Parameters\n\n- `webhook_id: string`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst webhook = await client.webhooks.delete('webhook_id');\n\nconsole.log(webhook);\n```",
     perLanguage: {
-      cli: {
-        method: 'webhooks delete',
-        example: "believe webhooks delete \\\n  --api-key 'My API Key' \\\n  --webhook-id webhook_id",
-      },
-      csharp: {
-        method: 'Webhooks.Delete',
+      typescript: {
+        method: 'client.webhooks.delete',
         example:
-          'WebhookDeleteParams parameters = new() { WebhookID = "webhook_id" };\n\nvar webhook = await client.Webhooks.Delete(parameters);\n\nConsole.WriteLine(webhook);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst webhook = await client.webhooks.delete('webhook_id');\n\nconsole.log(webhook);",
       },
-      go: {
-        method: 'client.Webhooks.Delete',
+      python: {
+        method: 'webhooks.delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\twebhook, err := client.Webhooks.Delete(context.TODO(), "webhook_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", webhook)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/webhooks/$WEBHOOK_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nwebhook = client.webhooks.delete(\n    "webhook_id",\n)\nprint(webhook)',
       },
       java: {
         method: 'webhooks().delete',
@@ -4061,20 +4053,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.webhooks.WebhookDeleteParams\nimport com.believe.api.models.webhooks.WebhookDeleteResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val webhook: WebhookDeleteResponse = client.webhooks().delete("webhook_id")\n}',
       },
-      python: {
-        method: 'webhooks.delete',
+      go: {
+        method: 'client.Webhooks.Delete',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nwebhook = client.webhooks.delete(\n    "webhook_id",\n)\nprint(webhook)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\twebhook, err := client.Webhooks.Delete(context.TODO(), "webhook_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", webhook)\n}\n',
       },
       ruby: {
         method: 'webhooks.delete',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nwebhook = believe.webhooks.delete("webhook_id")\n\nputs(webhook)',
       },
-      typescript: {
-        method: 'client.webhooks.delete',
+      cli: {
+        method: 'webhooks delete',
+        example: "believe webhooks delete \\\n  --api-key 'My API Key' \\\n  --webhook-id webhook_id",
+      },
+      csharp: {
+        method: 'Webhooks.Delete',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst webhook = await client.webhooks.delete('webhook_id');\n\nconsole.log(webhook);",
+          'WebhookDeleteParams parameters = new() { WebhookID = "webhook_id" };\n\nvar webhook = await client.Webhooks.Delete(parameters);\n\nConsole.WriteLine(webhook);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/webhooks/$WEBHOOK_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -4096,24 +4096,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## trigger_event\n\n`client.webhooks.triggerEvent(event_type: 'match.completed' | 'team_member.transferred', payload?: { data: { away_score: number; away_team_id: string; completed_at: string; home_score: number; home_team_id: string; match_id: string; match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'; result: 'home_win' | 'away_win' | 'draw'; ted_post_match_quote: string; lesson_learned?: string; man_of_the_match?: string; }; event_type?: 'match.completed'; } | { data: { character_id: string; character_name: string; member_type: 'player' | 'coach' | 'medical_staff' | 'equipment_manager'; team_id: string; team_member_id: string; team_name: string; ted_reaction: string; transfer_type: 'joined' | 'departed'; previous_team_id?: string; previous_team_name?: string; transfer_fee_gbp?: string; years_with_previous_team?: number; }; event_type?: 'team_member.transferred'; }): { deliveries: object[]; event_id: string; event_type: 'match.completed' | 'team_member.transferred'; successful_deliveries: number; ted_says: string; total_webhooks: number; }`\n\n**post** `/webhooks/trigger`\n\nTrigger a webhook event and deliver it to all subscribed endpoints.\n\nThis endpoint is useful for testing your webhook integration. It will:\n1. Generate an event with the specified type and payload\n2. Find all webhooks subscribed to that event type\n3. Send a POST request to each webhook URL with signature headers\n4. Return the delivery results\n\n## Event Payload\n\nYou can provide a custom payload, or leave it empty to use a sample payload.\n\n## Webhook Signature Headers\n\nEach webhook delivery includes:\n- `webhook-id` - Unique event identifier (e.g., `evt_abc123...`)\n- `webhook-timestamp` - Unix timestamp\n- `webhook-signature` - HMAC-SHA256 signature (`v1,{base64}`)\n\nTo verify signatures, compute:\n```\nsignature = HMAC-SHA256(\n    key = base64_decode(secret_without_prefix),\n    message = \"{timestamp}.{raw_json_payload}\"\n)\n```\n\n### Parameters\n\n- `event_type: 'match.completed' | 'team_member.transferred'`\n  The type of event to trigger\n\n- `payload?: { data: { away_score: number; away_team_id: string; completed_at: string; home_score: number; home_team_id: string; match_id: string; match_type: 'league' | 'cup' | 'friendly' | 'playoff' | 'final'; result: 'home_win' | 'away_win' | 'draw'; ted_post_match_quote: string; lesson_learned?: string; man_of_the_match?: string; }; event_type?: 'match.completed'; } | { data: { character_id: string; character_name: string; member_type: 'player' | 'coach' | 'medical_staff' | 'equipment_manager'; team_id: string; team_member_id: string; team_name: string; ted_reaction: string; transfer_type: 'joined' | 'departed'; previous_team_id?: string; previous_team_name?: string; transfer_fee_gbp?: string; years_with_previous_team?: number; }; event_type?: 'team_member.transferred'; }`\n  Optional event payload. If not provided, a sample payload will be generated.\n\n### Returns\n\n- `{ deliveries: { success: boolean; url: string; webhook_id: string; error?: string; status_code?: number; }[]; event_id: string; event_type: 'match.completed' | 'team_member.transferred'; successful_deliveries: number; ted_says: string; total_webhooks: number; }`\n  Response after triggering webhook events.\n\n  - `deliveries: { success: boolean; url: string; webhook_id: string; error?: string; status_code?: number; }[]`\n  - `event_id: string`\n  - `event_type: 'match.completed' | 'team_member.transferred'`\n  - `successful_deliveries: number`\n  - `ted_says: string`\n  - `total_webhooks: number`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.webhooks.triggerEvent({ event_type: 'match.completed' });\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'webhooks trigger_event',
+      typescript: {
+        method: 'client.webhooks.triggerEvent',
         example:
-          "believe webhooks trigger-event \\\n  --api-key 'My API Key' \\\n  --event-type match.completed",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.webhooks.triggerEvent({ event_type: 'match.completed' });\n\nconsole.log(response.event_id);",
       },
-      csharp: {
-        method: 'Webhooks.TriggerEvent',
+      python: {
+        method: 'webhooks.trigger_event',
         example:
-          'WebhookTriggerEventParams parameters = new()\n{\n    EventType = EventType.MatchCompleted\n};\n\nvar response = await client.Webhooks.TriggerEvent(parameters);\n\nConsole.WriteLine(response);',
-      },
-      go: {
-        method: 'client.Webhooks.TriggerEvent',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Webhooks.TriggerEvent(context.TODO(), believe.WebhookTriggerEventParams{\n\t\tEventType: believe.WebhookTriggerEventParamsEventTypeMatchCompleted,\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.EventID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/webhooks/trigger \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "event_type": "match.completed"\n        }\'',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.webhooks.trigger_event(\n    event_type="match.completed",\n)\nprint(response.event_id)',
       },
       java: {
         method: 'webhooks().triggerEvent',
@@ -4125,20 +4116,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.webhooks.WebhookTriggerEventParams\nimport com.believe.api.models.webhooks.WebhookTriggerEventResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: WebhookTriggerEventParams = WebhookTriggerEventParams.builder()\n        .eventType(WebhookTriggerEventParams.EventType.MATCH_COMPLETED)\n        .build()\n    val response: WebhookTriggerEventResponse = client.webhooks().triggerEvent(params)\n}',
       },
-      python: {
-        method: 'webhooks.trigger_event',
+      go: {
+        method: 'client.Webhooks.TriggerEvent',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.webhooks.trigger_event(\n    event_type="match.completed",\n)\nprint(response.event_id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Webhooks.TriggerEvent(context.TODO(), believe.WebhookTriggerEventParams{\n\t\tEventType: believe.WebhookTriggerEventParamsEventTypeMatchCompleted,\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response.EventID)\n}\n',
       },
       ruby: {
         method: 'webhooks.trigger_event',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.webhooks.trigger_event(event_type: :"match.completed")\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.webhooks.triggerEvent',
+      cli: {
+        method: 'webhooks trigger_event',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.webhooks.triggerEvent({ event_type: 'match.completed' });\n\nconsole.log(response.event_id);",
+          "believe webhooks trigger-event \\\n  --api-key 'My API Key' \\\n  --event-type match.completed",
+      },
+      csharp: {
+        method: 'Webhooks.TriggerEvent',
+        example:
+          'WebhookTriggerEventParams parameters = new()\n{\n    EventType = EventType.MatchCompleted\n};\n\nvar response = await client.Webhooks.TriggerEvent(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/webhooks/trigger \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "event_type": "match.completed"\n        }\'',
       },
     },
   },
@@ -4151,8 +4151,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     stainlessPath: '(resource) webhooks > (method) unwrap',
     qualified: 'client.webhooks.unwrap',
     perLanguage: {
-      csharp: {
-        example: 'WebhookUnwrapParams parameters = new();\n\nawait client.Webhooks.Unwrap(parameters);',
+      typescript: {
+        method: 'client.webhooks.unwrap',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.webhooks.unwrap();",
+      },
+      python: {
+        method: 'webhooks.unwrap',
+        example:
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.webhooks.unwrap()',
       },
       java: {
         example:
@@ -4162,20 +4169,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.webhooks.WebhookUnwrapParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.webhooks().unwrap()\n}',
       },
-      python: {
-        method: 'webhooks.unwrap',
-        example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.webhooks.unwrap()',
-      },
       ruby: {
         method: 'webhooks.unwrap',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresult = believe.webhooks.unwrap\n\nputs(result)',
       },
-      typescript: {
-        method: 'client.webhooks.unwrap',
-        example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.webhooks.unwrap();",
+      csharp: {
+        example: 'WebhookUnwrapParams parameters = new();\n\nawait client.Webhooks.Unwrap(parameters);',
       },
     },
   },
@@ -4201,23 +4201,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.ticketSales.list(coupon_code?: string, currency?: string, limit?: number, match_id?: string, purchase_method?: 'online' | 'box_office' | 'will_call' | 'phone', skip?: number): { id: string; buyer_name: string; currency: string; discount: string; match_id: string; purchase_method: purchase_method; quantity: number; subtotal: string; tax: string; total: string; unit_price: string; buyer_email?: string; coupon_code?: string; }`\n\n**get** `/ticket-sales`\n\nGet a paginated list of all ticket sales with optional filtering. With 300 records, this endpoint is ideal for practicing pagination.\n\n### Parameters\n\n- `coupon_code?: string`\n  Filter by coupon code (use 'none' for sales without coupons)\n\n- `currency?: string`\n  Filter by currency (GBP, USD, EUR)\n\n- `limit?: number`\n  Maximum number of items to return (max: 100)\n\n- `match_id?: string`\n  Filter by match ID\n\n- `purchase_method?: 'online' | 'box_office' | 'will_call' | 'phone'`\n  Filter by purchase method\n\n- `skip?: number`\n  Number of items to skip (offset)\n\n### Returns\n\n- `{ id: string; buyer_name: string; currency: string; discount: string; match_id: string; purchase_method: 'online' | 'box_office' | 'will_call' | 'phone'; quantity: number; subtotal: string; tax: string; total: string; unit_price: string; buyer_email?: string; coupon_code?: string; }`\n  Full ticket sale model with ID.\n\n  - `id: string`\n  - `buyer_name: string`\n  - `currency: string`\n  - `discount: string`\n  - `match_id: string`\n  - `purchase_method: 'online' | 'box_office' | 'will_call' | 'phone'`\n  - `quantity: number`\n  - `subtotal: string`\n  - `tax: string`\n  - `total: string`\n  - `unit_price: string`\n  - `buyer_email?: string`\n  - `coupon_code?: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// Automatically fetches more pages as needed.\nfor await (const ticketSale of client.ticketSales.list()) {\n  console.log(ticketSale);\n}\n```",
     perLanguage: {
-      cli: {
-        method: 'ticket_sales list',
-        example: "believe ticket-sales list \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'TicketSales.List',
+      typescript: {
+        method: 'client.ticketSales.list',
         example:
-          'TicketSaleListParams parameters = new();\n\nvar page = await client.TicketSales.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const ticketSale of client.ticketSales.list()) {\n  console.log(ticketSale.id);\n}",
       },
-      go: {
-        method: 'client.TicketSales.List',
+      python: {
+        method: 'ticket_sales.list',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.TicketSales.List(context.TODO(), believe.TicketSaleListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/ticket-sales \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.ticket_sales.list()\npage = page.data[0]\nprint(page.id)',
       },
       java: {
         method: 'ticketSales().list',
@@ -4229,20 +4221,28 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.ticketsales.TicketSaleListPage\nimport com.believe.api.models.ticketsales.TicketSaleListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TicketSaleListPage = client.ticketSales().list()\n}',
       },
-      python: {
-        method: 'ticket_sales.list',
+      go: {
+        method: 'client.TicketSales.List',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\npage = client.ticket_sales.list()\npage = page.data[0]\nprint(page.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tpage, err := client.TicketSales.List(context.TODO(), believe.TicketSaleListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
       },
       ruby: {
         method: 'ticket_sales.list',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\npage = believe.ticket_sales.list\n\nputs(page)',
       },
-      typescript: {
-        method: 'client.ticketSales.list',
+      cli: {
+        method: 'ticket_sales list',
+        example: "believe ticket-sales list \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'TicketSales.List',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const ticketSale of client.ticketSales.list()) {\n  console.log(ticketSale.id);\n}",
+          'TicketSaleListParams parameters = new();\n\nvar page = await client.TicketSales.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/ticket-sales \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -4273,24 +4273,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.ticketSales.create(buyer_name: string, currency: string, discount: string, match_id: string, purchase_method: 'online' | 'box_office' | 'will_call' | 'phone', quantity: number, subtotal: string, tax: string, total: string, unit_price: string, buyer_email?: string, coupon_code?: string): { id: string; buyer_name: string; currency: string; discount: string; match_id: string; purchase_method: purchase_method; quantity: number; subtotal: string; tax: string; total: string; unit_price: string; buyer_email?: string; coupon_code?: string; }`\n\n**post** `/ticket-sales`\n\nRecord a new ticket sale.\n\n### Parameters\n\n- `buyer_name: string`\n  Name of the ticket buyer\n\n- `currency: string`\n  Currency code (GBP, USD, or EUR)\n\n- `discount: string`\n  Discount amount applied from coupon\n\n- `match_id: string`\n  ID of the match\n\n- `purchase_method: 'online' | 'box_office' | 'will_call' | 'phone'`\n  How the ticket was purchased\n\n- `quantity: number`\n  Number of tickets purchased\n\n- `subtotal: string`\n  Subtotal before discount and tax (unit_price * quantity)\n\n- `tax: string`\n  Tax amount (20% UK VAT on discounted subtotal)\n\n- `total: string`\n  Final total (subtotal - discount + tax)\n\n- `unit_price: string`\n  Price per ticket (decimal string)\n\n- `buyer_email?: string`\n  Email of the ticket buyer\n\n- `coupon_code?: string`\n  Coupon code applied, if any\n\n### Returns\n\n- `{ id: string; buyer_name: string; currency: string; discount: string; match_id: string; purchase_method: 'online' | 'box_office' | 'will_call' | 'phone'; quantity: number; subtotal: string; tax: string; total: string; unit_price: string; buyer_email?: string; coupon_code?: string; }`\n  Full ticket sale model with ID.\n\n  - `id: string`\n  - `buyer_name: string`\n  - `currency: string`\n  - `discount: string`\n  - `match_id: string`\n  - `purchase_method: 'online' | 'box_office' | 'will_call' | 'phone'`\n  - `quantity: number`\n  - `subtotal: string`\n  - `tax: string`\n  - `total: string`\n  - `unit_price: string`\n  - `buyer_email?: string`\n  - `coupon_code?: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst ticketSale = await client.ticketSales.create({\n  buyer_name: 'Mae Green',\n  currency: 'GBP',\n  discount: '9.00',\n  match_id: 'match-001',\n  purchase_method: 'online',\n  quantity: 2,\n  subtotal: '90.00',\n  tax: '16.20',\n  total: '97.20',\n  unit_price: '45.00',\n});\n\nconsole.log(ticketSale);\n```",
     perLanguage: {
-      cli: {
-        method: 'ticket_sales create',
+      typescript: {
+        method: 'client.ticketSales.create',
         example:
-          "believe ticket-sales create \\\n  --api-key 'My API Key' \\\n  --buyer-name 'Mae Green' \\\n  --currency GBP \\\n  --discount 9.00 \\\n  --match-id match-001 \\\n  --purchase-method online \\\n  --quantity 2 \\\n  --subtotal 90.00 \\\n  --tax 16.20 \\\n  --total 97.20 \\\n  --unit-price 45.00",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst ticketSale = await client.ticketSales.create({\n  buyer_name: 'Mae Green',\n  currency: 'GBP',\n  discount: '9.00',\n  match_id: 'match-001',\n  purchase_method: 'online',\n  quantity: 2,\n  subtotal: '90.00',\n  tax: '16.20',\n  total: '97.20',\n  unit_price: '45.00',\n});\n\nconsole.log(ticketSale.id);",
       },
-      csharp: {
-        method: 'TicketSales.Create',
+      python: {
+        method: 'ticket_sales.create',
         example:
-          'TicketSaleCreateParams parameters = new()\n{\n    BuyerName = "Mae Green",\n    Currency = "GBP",\n    Discount = "9.00",\n    MatchID = "match-001",\n    PurchaseMethod = PurchaseMethod.Online,\n    Quantity = 2,\n    Subtotal = "90.00",\n    Tax = "16.20",\n    Total = "97.20",\n    UnitPrice = "45.00",\n};\n\nvar ticketSale = await client.TicketSales.Create(parameters);\n\nConsole.WriteLine(ticketSale);',
-      },
-      go: {
-        method: 'client.TicketSales.New',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tticketSale, err := client.TicketSales.New(context.TODO(), believe.TicketSaleNewParams{\n\t\tBuyerName:      "Mae Green",\n\t\tCurrency:       "GBP",\n\t\tDiscount:       "9.00",\n\t\tMatchID:        "match-001",\n\t\tPurchaseMethod: believe.PurchaseMethodOnline,\n\t\tQuantity:       2,\n\t\tSubtotal:       "90.00",\n\t\tTax:            "16.20",\n\t\tTotal:          "97.20",\n\t\tUnitPrice:      "45.00",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ticketSale.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/ticket-sales \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "buyer_name": "Mae Green",\n          "currency": "GBP",\n          "discount": "9.00",\n          "match_id": "match-001",\n          "purchase_method": "online",\n          "quantity": 2,\n          "subtotal": "90.00",\n          "tax": "16.20",\n          "total": "97.20",\n          "unit_price": "45.00",\n          "buyer_email": "mae.green@example.com",\n          "coupon_code": "BELIEVE10"\n        }\'',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nticket_sale = client.ticket_sales.create(\n    buyer_name="Mae Green",\n    currency="GBP",\n    discount="9.00",\n    match_id="match-001",\n    purchase_method="online",\n    quantity=2,\n    subtotal="90.00",\n    tax="16.20",\n    total="97.20",\n    unit_price="45.00",\n)\nprint(ticket_sale.id)',
       },
       java: {
         method: 'ticketSales().create',
@@ -4302,20 +4293,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.ticketsales.PurchaseMethod\nimport com.believe.api.models.ticketsales.TicketSale\nimport com.believe.api.models.ticketsales.TicketSaleCreateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: TicketSaleCreateParams = TicketSaleCreateParams.builder()\n        .buyerName("Mae Green")\n        .currency("GBP")\n        .discount("9.00")\n        .matchId("match-001")\n        .purchaseMethod(PurchaseMethod.ONLINE)\n        .quantity(2L)\n        .subtotal("90.00")\n        .tax("16.20")\n        .total("97.20")\n        .unitPrice("45.00")\n        .build()\n    val ticketSale: TicketSale = client.ticketSales().create(params)\n}',
       },
-      python: {
-        method: 'ticket_sales.create',
+      go: {
+        method: 'client.TicketSales.New',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nticket_sale = client.ticket_sales.create(\n    buyer_name="Mae Green",\n    currency="GBP",\n    discount="9.00",\n    match_id="match-001",\n    purchase_method="online",\n    quantity=2,\n    subtotal="90.00",\n    tax="16.20",\n    total="97.20",\n    unit_price="45.00",\n)\nprint(ticket_sale.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tticketSale, err := client.TicketSales.New(context.TODO(), believe.TicketSaleNewParams{\n\t\tBuyerName:      "Mae Green",\n\t\tCurrency:       "GBP",\n\t\tDiscount:       "9.00",\n\t\tMatchID:        "match-001",\n\t\tPurchaseMethod: believe.PurchaseMethodOnline,\n\t\tQuantity:       2,\n\t\tSubtotal:       "90.00",\n\t\tTax:            "16.20",\n\t\tTotal:          "97.20",\n\t\tUnitPrice:      "45.00",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ticketSale.ID)\n}\n',
       },
       ruby: {
         method: 'ticket_sales.create',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nticket_sale = believe.ticket_sales.create(\n  buyer_name: "Mae Green",\n  currency: "GBP",\n  discount: "9.00",\n  match_id: "match-001",\n  purchase_method: :online,\n  quantity: 2,\n  subtotal: "90.00",\n  tax: "16.20",\n  total: "97.20",\n  unit_price: "45.00"\n)\n\nputs(ticket_sale)',
       },
-      typescript: {
-        method: 'client.ticketSales.create',
+      cli: {
+        method: 'ticket_sales create',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst ticketSale = await client.ticketSales.create({\n  buyer_name: 'Mae Green',\n  currency: 'GBP',\n  discount: '9.00',\n  match_id: 'match-001',\n  purchase_method: 'online',\n  quantity: 2,\n  subtotal: '90.00',\n  tax: '16.20',\n  total: '97.20',\n  unit_price: '45.00',\n});\n\nconsole.log(ticketSale.id);",
+          "believe ticket-sales create \\\n  --api-key 'My API Key' \\\n  --buyer-name 'Mae Green' \\\n  --currency GBP \\\n  --discount 9.00 \\\n  --match-id match-001 \\\n  --purchase-method online \\\n  --quantity 2 \\\n  --subtotal 90.00 \\\n  --tax 16.20 \\\n  --total 97.20 \\\n  --unit-price 45.00",
+      },
+      csharp: {
+        method: 'TicketSales.Create',
+        example:
+          'TicketSaleCreateParams parameters = new()\n{\n    BuyerName = "Mae Green",\n    Currency = "GBP",\n    Discount = "9.00",\n    MatchID = "match-001",\n    PurchaseMethod = PurchaseMethod.Online,\n    Quantity = 2,\n    Subtotal = "90.00",\n    Tax = "16.20",\n    Total = "97.20",\n    UnitPrice = "45.00",\n};\n\nvar ticketSale = await client.TicketSales.Create(parameters);\n\nConsole.WriteLine(ticketSale);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/ticket-sales \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "buyer_name": "Mae Green",\n          "currency": "GBP",\n          "discount": "9.00",\n          "match_id": "match-001",\n          "purchase_method": "online",\n          "quantity": 2,\n          "subtotal": "90.00",\n          "tax": "16.20",\n          "total": "97.20",\n          "unit_price": "45.00",\n          "buyer_email": "mae.green@example.com",\n          "coupon_code": "BELIEVE10"\n        }\'',
       },
     },
   },
@@ -4331,24 +4331,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## delete\n\n`client.ticketSales.delete(ticket_sale_id: string): void`\n\n**delete** `/ticket-sales/{ticket_sale_id}`\n\nRemove a ticket sale from the database.\n\n### Parameters\n\n- `ticket_sale_id: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nawait client.ticketSales.delete('ticket_sale_id')\n```",
     perLanguage: {
-      cli: {
-        method: 'ticket_sales delete',
+      typescript: {
+        method: 'client.ticketSales.delete',
         example:
-          "believe ticket-sales delete \\\n  --api-key 'My API Key' \\\n  --ticket-sale-id ticket_sale_id",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.ticketSales.delete('ticket_sale_id');",
       },
-      csharp: {
-        method: 'TicketSales.Delete',
+      python: {
+        method: 'ticket_sales.delete',
         example:
-          'TicketSaleDeleteParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nawait client.TicketSales.Delete(parameters);',
-      },
-      go: {
-        method: 'client.TicketSales.Delete',
-        example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.TicketSales.Delete(context.TODO(), "ticket_sale_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/ticket-sales/$TICKET_SALE_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.ticket_sales.delete(\n    "ticket_sale_id",\n)',
       },
       java: {
         method: 'ticketSales().delete',
@@ -4360,20 +4351,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.ticketsales.TicketSaleDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.ticketSales().delete("ticket_sale_id")\n}',
       },
-      python: {
-        method: 'ticket_sales.delete',
+      go: {
+        method: 'client.TicketSales.Delete',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.ticket_sales.delete(\n    "ticket_sale_id",\n)',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.TicketSales.Delete(context.TODO(), "ticket_sale_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'ticket_sales.delete',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresult = believe.ticket_sales.delete("ticket_sale_id")\n\nputs(result)',
       },
-      typescript: {
-        method: 'client.ticketSales.delete',
+      cli: {
+        method: 'ticket_sales delete',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.ticketSales.delete('ticket_sale_id');",
+          "believe ticket-sales delete \\\n  --api-key 'My API Key' \\\n  --ticket-sale-id ticket_sale_id",
+      },
+      csharp: {
+        method: 'TicketSales.Delete',
+        example:
+          'TicketSaleDeleteParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nawait client.TicketSales.Delete(parameters);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/ticket-sales/$TICKET_SALE_ID \\\n    -X DELETE \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -4391,24 +4391,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.ticketSales.retrieve(ticket_sale_id: string): { id: string; buyer_name: string; currency: string; discount: string; match_id: string; purchase_method: purchase_method; quantity: number; subtotal: string; tax: string; total: string; unit_price: string; buyer_email?: string; coupon_code?: string; }`\n\n**get** `/ticket-sales/{ticket_sale_id}`\n\nRetrieve detailed information about a specific ticket sale.\n\n### Parameters\n\n- `ticket_sale_id: string`\n\n### Returns\n\n- `{ id: string; buyer_name: string; currency: string; discount: string; match_id: string; purchase_method: 'online' | 'box_office' | 'will_call' | 'phone'; quantity: number; subtotal: string; tax: string; total: string; unit_price: string; buyer_email?: string; coupon_code?: string; }`\n  Full ticket sale model with ID.\n\n  - `id: string`\n  - `buyer_name: string`\n  - `currency: string`\n  - `discount: string`\n  - `match_id: string`\n  - `purchase_method: 'online' | 'box_office' | 'will_call' | 'phone'`\n  - `quantity: number`\n  - `subtotal: string`\n  - `tax: string`\n  - `total: string`\n  - `unit_price: string`\n  - `buyer_email?: string`\n  - `coupon_code?: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst ticketSale = await client.ticketSales.retrieve('ticket_sale_id');\n\nconsole.log(ticketSale);\n```",
     perLanguage: {
-      cli: {
-        method: 'ticket_sales retrieve',
+      typescript: {
+        method: 'client.ticketSales.retrieve',
         example:
-          "believe ticket-sales retrieve \\\n  --api-key 'My API Key' \\\n  --ticket-sale-id ticket_sale_id",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst ticketSale = await client.ticketSales.retrieve('ticket_sale_id');\n\nconsole.log(ticketSale.id);",
       },
-      csharp: {
-        method: 'TicketSales.Retrieve',
+      python: {
+        method: 'ticket_sales.retrieve',
         example:
-          'TicketSaleRetrieveParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nvar ticketSale = await client.TicketSales.Retrieve(parameters);\n\nConsole.WriteLine(ticketSale);',
-      },
-      go: {
-        method: 'client.TicketSales.Get',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tticketSale, err := client.TicketSales.Get(context.TODO(), "ticket_sale_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ticketSale.ID)\n}\n',
-      },
-      http: {
-        example:
-          'curl https://believe.cjav.dev/ticket-sales/$TICKET_SALE_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nticket_sale = client.ticket_sales.retrieve(\n    "ticket_sale_id",\n)\nprint(ticket_sale.id)',
       },
       java: {
         method: 'ticketSales().retrieve',
@@ -4420,20 +4411,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.ticketsales.TicketSale\nimport com.believe.api.models.ticketsales.TicketSaleRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val ticketSale: TicketSale = client.ticketSales().retrieve("ticket_sale_id")\n}',
       },
-      python: {
-        method: 'ticket_sales.retrieve',
+      go: {
+        method: 'client.TicketSales.Get',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nticket_sale = client.ticket_sales.retrieve(\n    "ticket_sale_id",\n)\nprint(ticket_sale.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tticketSale, err := client.TicketSales.Get(context.TODO(), "ticket_sale_id")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ticketSale.ID)\n}\n',
       },
       ruby: {
         method: 'ticket_sales.retrieve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nticket_sale = believe.ticket_sales.retrieve("ticket_sale_id")\n\nputs(ticket_sale)',
       },
-      typescript: {
-        method: 'client.ticketSales.retrieve',
+      cli: {
+        method: 'ticket_sales retrieve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst ticketSale = await client.ticketSales.retrieve('ticket_sale_id');\n\nconsole.log(ticketSale.id);",
+          "believe ticket-sales retrieve \\\n  --api-key 'My API Key' \\\n  --ticket-sale-id ticket_sale_id",
+      },
+      csharp: {
+        method: 'TicketSales.Retrieve',
+        example:
+          'TicketSaleRetrieveParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nvar ticketSale = await client.TicketSales.Retrieve(parameters);\n\nConsole.WriteLine(ticketSale);',
+      },
+      http: {
+        example:
+          'curl https://believe.cjav.dev/ticket-sales/$TICKET_SALE_ID \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -4465,24 +4465,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## update\n\n`client.ticketSales.update(ticket_sale_id: string, buyer_email?: string, buyer_name?: string, coupon_code?: string, currency?: string, discount?: string, match_id?: string, purchase_method?: 'online' | 'box_office' | 'will_call' | 'phone', quantity?: number, subtotal?: string, tax?: string, total?: string, unit_price?: string): { id: string; buyer_name: string; currency: string; discount: string; match_id: string; purchase_method: purchase_method; quantity: number; subtotal: string; tax: string; total: string; unit_price: string; buyer_email?: string; coupon_code?: string; }`\n\n**patch** `/ticket-sales/{ticket_sale_id}`\n\nUpdate specific fields of an existing ticket sale.\n\n### Parameters\n\n- `ticket_sale_id: string`\n\n- `buyer_email?: string`\n\n- `buyer_name?: string`\n\n- `coupon_code?: string`\n\n- `currency?: string`\n\n- `discount?: string`\n\n- `match_id?: string`\n\n- `purchase_method?: 'online' | 'box_office' | 'will_call' | 'phone'`\n  How the ticket was purchased.\n\n- `quantity?: number`\n\n- `subtotal?: string`\n\n- `tax?: string`\n\n- `total?: string`\n\n- `unit_price?: string`\n\n### Returns\n\n- `{ id: string; buyer_name: string; currency: string; discount: string; match_id: string; purchase_method: 'online' | 'box_office' | 'will_call' | 'phone'; quantity: number; subtotal: string; tax: string; total: string; unit_price: string; buyer_email?: string; coupon_code?: string; }`\n  Full ticket sale model with ID.\n\n  - `id: string`\n  - `buyer_name: string`\n  - `currency: string`\n  - `discount: string`\n  - `match_id: string`\n  - `purchase_method: 'online' | 'box_office' | 'will_call' | 'phone'`\n  - `quantity: number`\n  - `subtotal: string`\n  - `tax: string`\n  - `total: string`\n  - `unit_price: string`\n  - `buyer_email?: string`\n  - `coupon_code?: string`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst ticketSale = await client.ticketSales.update('ticket_sale_id');\n\nconsole.log(ticketSale);\n```",
     perLanguage: {
-      cli: {
-        method: 'ticket_sales update',
+      typescript: {
+        method: 'client.ticketSales.update',
         example:
-          "believe ticket-sales update \\\n  --api-key 'My API Key' \\\n  --ticket-sale-id ticket_sale_id",
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst ticketSale = await client.ticketSales.update('ticket_sale_id');\n\nconsole.log(ticketSale.id);",
       },
-      csharp: {
-        method: 'TicketSales.Update',
+      python: {
+        method: 'ticket_sales.update',
         example:
-          'TicketSaleUpdateParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nvar ticketSale = await client.TicketSales.Update(parameters);\n\nConsole.WriteLine(ticketSale);',
-      },
-      go: {
-        method: 'client.TicketSales.Update',
-        example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tticketSale, err := client.TicketSales.Update(\n\t\tcontext.TODO(),\n\t\t"ticket_sale_id",\n\t\tbelieve.TicketSaleUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ticketSale.ID)\n}\n',
-      },
-      http: {
-        example:
-          "curl https://believe.cjav.dev/ticket-sales/$TICKET_SALE_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -d '{}'",
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nticket_sale = client.ticket_sales.update(\n    ticket_sale_id="ticket_sale_id",\n)\nprint(ticket_sale.id)',
       },
       java: {
         method: 'ticketSales().update',
@@ -4494,20 +4485,29 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.ticketsales.TicketSale\nimport com.believe.api.models.ticketsales.TicketSaleUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val ticketSale: TicketSale = client.ticketSales().update("ticket_sale_id")\n}',
       },
-      python: {
-        method: 'ticket_sales.update',
+      go: {
+        method: 'client.TicketSales.Update',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nticket_sale = client.ticket_sales.update(\n    ticket_sale_id="ticket_sale_id",\n)\nprint(ticket_sale.id)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tticketSale, err := client.TicketSales.Update(\n\t\tcontext.TODO(),\n\t\t"ticket_sale_id",\n\t\tbelieve.TicketSaleUpdateParams{},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", ticketSale.ID)\n}\n',
       },
       ruby: {
         method: 'ticket_sales.update',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nticket_sale = believe.ticket_sales.update("ticket_sale_id")\n\nputs(ticket_sale)',
       },
-      typescript: {
-        method: 'client.ticketSales.update',
+      cli: {
+        method: 'ticket_sales update',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst ticketSale = await client.ticketSales.update('ticket_sale_id');\n\nconsole.log(ticketSale.id);",
+          "believe ticket-sales update \\\n  --api-key 'My API Key' \\\n  --ticket-sale-id ticket_sale_id",
+      },
+      csharp: {
+        method: 'TicketSales.Update',
+        example:
+          'TicketSaleUpdateParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nvar ticketSale = await client.TicketSales.Update(parameters);\n\nConsole.WriteLine(ticketSale);',
+      },
+      http: {
+        example:
+          "curl https://believe.cjav.dev/ticket-sales/$TICKET_SALE_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $BELIEVE_API_KEY\" \\\n    -d '{}'",
       },
     },
   },
@@ -4523,22 +4523,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## check\n\n`client.health.check(): object`\n\n**get** `/health`\n\nCheck if the API is running and healthy.\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst response = await client.health.check();\n\nconsole.log(response);\n```",
     perLanguage: {
-      cli: {
-        method: 'health check',
-        example: "believe health check \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Health.Check',
+      typescript: {
+        method: 'client.health.check',
         example:
-          'HealthCheckParams parameters = new();\n\nvar response = await client.Health.Check(parameters);\n\nConsole.WriteLine(response);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.health.check();\n\nconsole.log(response);",
       },
-      go: {
-        method: 'client.Health.Check',
+      python: {
+        method: 'health.check',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Health.Check(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
-      },
-      http: {
-        example: 'curl https://believe.cjav.dev/health \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.health.check()\nprint(response)',
       },
       java: {
         method: 'health().check',
@@ -4550,20 +4543,27 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.health.HealthCheckParams\nimport com.believe.api.models.health.HealthCheckResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: HealthCheckResponse = client.health().check()\n}',
       },
-      python: {
-        method: 'health.check',
+      go: {
+        method: 'client.Health.Check',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.health.check()\nprint(response)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tresponse, err := client.Health.Check(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", response)\n}\n',
       },
       ruby: {
         method: 'health.check',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresponse = believe.health.check\n\nputs(response)',
       },
-      typescript: {
-        method: 'client.health.check',
+      cli: {
+        method: 'health check',
+        example: "believe health check \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Health.Check',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.health.check();\n\nconsole.log(response);",
+          'HealthCheckParams parameters = new();\n\nvar response = await client.Health.Check(parameters);\n\nConsole.WriteLine(response);',
+      },
+      http: {
+        example: 'curl https://believe.cjav.dev/health \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -4579,22 +4579,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.version.retrieve(): object`\n\n**get** `/version`\n\nGet detailed information about API versioning.\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nconst version = await client.version.retrieve();\n\nconsole.log(version);\n```",
     perLanguage: {
-      cli: {
-        method: 'version retrieve',
-        example: "believe version retrieve \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Version.Retrieve',
+      typescript: {
+        method: 'client.version.retrieve',
         example:
-          'VersionRetrieveParams parameters = new();\n\nvar version = await client.Version.Retrieve(parameters);\n\nConsole.WriteLine(version);',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst version = await client.version.retrieve();\n\nconsole.log(version);",
       },
-      go: {
-        method: 'client.Version.Get',
+      python: {
+        method: 'version.retrieve',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tversion, err := client.Version.Get(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", version)\n}\n',
-      },
-      http: {
-        example: 'curl https://believe.cjav.dev/version \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nversion = client.version.retrieve()\nprint(version)',
       },
       java: {
         method: 'version().retrieve',
@@ -4606,20 +4599,27 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.version.VersionRetrieveParams\nimport com.believe.api.models.version.VersionRetrieveResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val version: VersionRetrieveResponse = client.version().retrieve()\n}',
       },
-      python: {
-        method: 'version.retrieve',
+      go: {
+        method: 'client.Version.Get',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nversion = client.version.retrieve()\nprint(version)',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\tversion, err := client.Version.Get(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", version)\n}\n',
       },
       ruby: {
         method: 'version.retrieve',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nversion = believe.version.retrieve\n\nputs(version)',
       },
-      typescript: {
-        method: 'client.version.retrieve',
+      cli: {
+        method: 'version retrieve',
+        example: "believe version retrieve \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Version.Retrieve',
         example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst version = await client.version.retrieve();\n\nconsole.log(version);",
+          'VersionRetrieveParams parameters = new();\n\nvar version = await client.Version.Retrieve(parameters);\n\nConsole.WriteLine(version);',
+      },
+      http: {
+        example: 'curl https://believe.cjav.dev/version \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
@@ -4635,21 +4635,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## test\n\n`client.client.ws.test(): void`\n\n**get** `/ws/test`\n\nSimple WebSocket test endpoint for connectivity testing.\n\nConnect to test WebSocket functionality. The server will:\n1. Send a welcome message on connection\n2. Echo back any message you send\n\n## Example\n\n```javascript\nconst ws = new WebSocket('ws://localhost:8000/ws/test');\nws.onmessage = (event) => console.log(event.data);\nws.send('Hello!');  // Server responds with echo\n```\n\n\n### Example\n\n```typescript\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe();\n\nawait client.client.ws.test()\n```",
     perLanguage: {
-      cli: {
-        method: 'ws test',
-        example: "believe client:ws test \\\n  --api-key 'My API Key'",
-      },
-      csharp: {
-        method: 'Client.Ws.Test',
-        example: 'WTestParams parameters = new();\n\nawait client.Client.Ws.Test(parameters);',
-      },
-      go: {
-        method: 'client.Client.Ws.Test',
+      typescript: {
+        method: 'client.client.ws.test',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Client.Ws.Test(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.client.ws.test();",
       },
-      http: {
-        example: 'curl https://believe.cjav.dev/ws/test \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
+      python: {
+        method: 'client.ws.test',
+        example:
+          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.client.ws.test()',
       },
       java: {
         method: 'client().ws().test',
@@ -4661,20 +4655,26 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package com.believe.api.example\n\nimport com.believe.api.client.BelieveClient\nimport com.believe.api.client.okhttp.BelieveOkHttpClient\nimport com.believe.api.models.client.ws.WTestParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.client().ws().test()\n}',
       },
-      python: {
-        method: 'client.ws.test',
+      go: {
+        method: 'client.Client.Ws.Test',
         example:
-          'import os\nfrom believe import Believe\n\nclient = Believe(\n    api_key=os.environ.get("BELIEVE_API_KEY"),  # This is the default and can be omitted\n)\nclient.client.ws.test()',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/cjavdev/believe-go"\n\t"github.com/cjavdev/believe-go/option"\n)\n\nfunc main() {\n\tclient := believe.NewClient(\n\t\toption.WithAPIKey("My API Key"),\n\t)\n\terr := client.Client.Ws.Test(context.TODO())\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       ruby: {
         method: 'client_.ws.test_',
         example:
           'require "believe"\n\nbelieve = ::Believe::Client.new(api_key: "My API Key")\n\nresult = believe.client_.ws.test_\n\nputs(result)',
       },
-      typescript: {
-        method: 'client.client.ws.test',
-        example:
-          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.client.ws.test();",
+      cli: {
+        method: 'ws test',
+        example: "believe client:ws test \\\n  --api-key 'My API Key'",
+      },
+      csharp: {
+        method: 'Client.Ws.Test',
+        example: 'WTestParams parameters = new();\n\nawait client.Client.Ws.Test(parameters);',
+      },
+      http: {
+        example: 'curl https://believe.cjav.dev/ws/test \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY"',
       },
     },
   },
