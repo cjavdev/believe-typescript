@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.30.0 (2026-04-28)
+
+Full Changelog: [v0.29.0...v0.30.0](https://github.com/cjavdev/believe-typescript/compare/v0.29.0...v0.30.0)
+
+### Features
+
+* support setting headers via env ([d281a19](https://github.com/cjavdev/believe-typescript/commit/d281a19e80ce13c601e258e01d87e72becffb3f3))
+
+
+### Chores
+
+* **internal:** codegen related update ([6f4b742](https://github.com/cjavdev/believe-typescript/commit/6f4b7427f870d724eb9bb541d75a66bc8ac97823))
+* restructure docs search code ([40ecc58](https://github.com/cjavdev/believe-typescript/commit/40ecc587137e3b9f1daca296935858d24808d688))
+
 ## 0.29.0 (2026-04-27)
 
 Full Changelog: [v0.28.0...v0.29.0](https://github.com/cjavdev/believe-typescript/compare/v0.28.0...v0.29.0)
