@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.30.1 (2026-05-01)
+
+Full Changelog: [v0.30.0...v0.30.1](https://github.com/cjavdev/believe-typescript/compare/v0.30.0...v0.30.1)
+
+### Chores
+
+* avoid formatting file that gets changed during releases ([f28fa9a](https://github.com/cjavdev/believe-typescript/commit/f28fa9af010185c8edd6735f81bae1d1cd6d12d6))
+* **format:** run eslint and prettier separately ([5aa9b13](https://github.com/cjavdev/believe-typescript/commit/5aa9b13b86226e5b7b968bd47baf797a4e7c84fa))
+
 ## 0.30.0 (2026-04-28)
 
 Full Changelog: [v0.29.0...v0.30.0](https://github.com/cjavdev/believe-typescript/compare/v0.29.0...v0.30.0)
