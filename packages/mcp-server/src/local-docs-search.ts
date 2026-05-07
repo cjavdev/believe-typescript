@@ -241,7 +241,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://believe.cjav.dev/characters \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"background\\": \\"Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.\\",\n          \\"emotional_stats\\": {\n            \\"curiosity\\": 40,\n            \\"empathy\\": 85,\n            \\"optimism\\": 45,\n            \\"resilience\\": 95,\n            \\"vulnerability\\": 60\n          },\n          \\"name\\": \\"Roy Kent\\",\n          \\"personality_traits\\": [\n            \\"intense\\",\n            \\"loyal\\",\n            \\"secretly caring\\",\n            \\"profane\\"\n          ],\n          \\"role\\": \\"coach\\",\n          \\"date_of_birth\\": \\"1977-03-15\\",\n          \\"email\\": \\"roy.kent@afcrichmond.com\\",\n          \\"height_meters\\": 1.78,\n          \\"profile_image_url\\": \\"https://afcrichmond.com/images/roy-kent.jpg\\",\n          \\"salary_gbp\\": \\"175000.00\\",\n          \\"signature_quotes\\": [\n            \\"He\'s here, he\'s there, he\'s every-f***ing-where, Roy Kent!\\",\n            \\"Whistle!\\"\n          ],\n          \\"team_id\\": \\"afc-richmond\\"\n        }"',
+          'curl https://believe.cjav.dev/characters \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"background\\": \\"Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.\\",\n          \\"emotional_stats\\": {\n            \\"curiosity\\": 40,\n            \\"empathy\\": 85,\n            \\"optimism\\": 45,\n            \\"resilience\\": 95,\n            \\"vulnerability\\": 60\n          },\n          \\"name\\": \\"Roy Kent\\",\n          \\"personality_traits\\": [\n            \\"intense\\",\n            \\"loyal\\",\n            \\"secretly caring\\",\n            \\"profane\\"\n          ],\n          \\"role\\": \\"coach\\",\n          \\"date_of_birth\\": \\"1977-03-15\\",\n          \\"email\\": \\"roy.kent@afcrichmond.com\\",\n          \\"growth_arcs\\": [\n            {\n              \\"breakthrough\\": \\"Finding purpose beyond playing\\",\n              \\"challenge\\": \\"Accepting his body\'s limitations\\",\n              \\"ending_point\\": \\"Retired but lost\\",\n              \\"season\\": 1,\n              \\"starting_point\\": \\"Aging footballer facing retirement\\"\n            }\n          ],\n          \\"height_meters\\": 1.78,\n          \\"profile_image_url\\": \\"https://afcrichmond.com/images/roy-kent.jpg\\",\n          \\"salary_gbp\\": \\"175000.00\\",\n          \\"signature_quotes\\": [\n            \\"He\'s here, he\'s there, he\'s every-f***ing-where, Roy Kent!\\",\n            \\"Whistle!\\"\n          ],\n          \\"team_id\\": \\"afc-richmond\\"\n        }"',
       },
     },
   },
@@ -626,7 +626,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://believe.cjav.dev/teams \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "culture_score": 70,\n          "founded_year": 1895,\n          "league": "Premier League",\n          "name": "West Ham United",\n          "stadium": "London Stadium",\n          "values": {\n            "primary_value": "Pride",\n            "secondary_values": [\n              "History",\n              "Community",\n              "Passion"\n            ],\n            "team_motto": "Forever Blowing Bubbles"\n          },\n          "annual_budget_gbp": "150000000.00",\n          "average_attendance": 59988,\n          "contact_email": "info@westhamunited.co.uk",\n          "nickname": "The Hammers",\n          "primary_color": "#7A263A",\n          "rival_teams": [\n            "afc-richmond",\n            "tottenham"\n          ],\n          "secondary_color": "#1BB1E7",\n          "website": "https://www.whufc.com",\n          "win_percentage": 52.3\n        }\'',
+          'curl https://believe.cjav.dev/teams \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "culture_score": 70,\n          "founded_year": 1895,\n          "league": "Premier League",\n          "name": "West Ham United",\n          "stadium": "London Stadium",\n          "values": {\n            "primary_value": "Pride",\n            "secondary_values": [\n              "History",\n              "Community",\n              "Passion"\n            ],\n            "team_motto": "Forever Blowing Bubbles"\n          },\n          "annual_budget_gbp": "150000000.00",\n          "average_attendance": 59988,\n          "contact_email": "info@westhamunited.co.uk",\n          "is_active": true,\n          "nickname": "The Hammers",\n          "primary_color": "#7A263A",\n          "rival_teams": [\n            "afc-richmond",\n            "tottenham"\n          ],\n          "secondary_color": "#1BB1E7",\n          "stadium_location": {\n            "latitude": 51.5387,\n            "longitude": -0.0166\n          },\n          "website": "https://www.whufc.com",\n          "win_percentage": 52.3\n        }\'',
       },
     },
   },
@@ -1313,7 +1313,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://believe.cjav.dev/matches \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"away_team_id\\": \\"tottenham\\",\n          \\"date\\": \\"2024-02-20T19:45:00Z\\",\n          \\"home_team_id\\": \\"afc-richmond\\",\n          \\"match_type\\": \\"cup\\",\n          \\"attendance\\": 24500,\n          \\"episode_id\\": \\"s02e05\\",\n          \\"lesson_learned\\": \\"It\'s not about the wins and losses, it\'s about helping these young fellas be the best versions of themselves.\\",\n          \\"possession_percentage\\": 50,\n          \\"ted_halftime_speech\\": \\"You know what the happiest animal on Earth is? It\'s a goldfish. You know why? It\'s got a 10-second memory.\\",\n          \\"ticket_revenue_gbp\\": \\"735000.00\\",\n          \\"weather_temp_celsius\\": 8.5\n        }"',
+          'curl https://believe.cjav.dev/matches \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"away_team_id\\": \\"tottenham\\",\n          \\"date\\": \\"2024-02-20T19:45:00Z\\",\n          \\"home_team_id\\": \\"afc-richmond\\",\n          \\"match_type\\": \\"cup\\",\n          \\"attendance\\": 24500,\n          \\"away_score\\": 0,\n          \\"episode_id\\": \\"s02e05\\",\n          \\"home_score\\": 0,\n          \\"lesson_learned\\": \\"It\'s not about the wins and losses, it\'s about helping these young fellas be the best versions of themselves.\\",\n          \\"possession_percentage\\": 50,\n          \\"result\\": \\"pending\\",\n          \\"ted_halftime_speech\\": \\"You know what the happiest animal on Earth is? It\'s a goldfish. You know why? It\'s got a 10-second memory.\\",\n          \\"ticket_revenue_gbp\\": \\"735000.00\\",\n          \\"turning_points\\": [\n            {\n              \\"description\\": \\"description\\",\n              \\"emotional_impact\\": \\"Galvanized the team\'s fighting spirit\\",\n              \\"minute\\": 0\n            }\n          ],\n          \\"weather_temp_celsius\\": 8.5\n        }"',
       },
     },
   },
@@ -2259,7 +2259,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://believe.cjav.dev/quotes \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"character_id\\": \\"ted-lasso\\",\n          \\"context\\": \\"Ted\'s first team meeting, revealing his coaching philosophy\\",\n          \\"moment_type\\": \\"locker_room\\",\n          \\"text\\": \\"I believe in believe.\\",\n          \\"theme\\": \\"belief\\",\n          \\"episode_id\\": \\"s01e01\\",\n          \\"popularity_score\\": 98.5,\n          \\"secondary_themes\\": [\n            \\"leadership\\",\n            \\"teamwork\\"\n          ],\n          \\"times_shared\\": 250000\n        }"',
+          'curl https://believe.cjav.dev/quotes \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"character_id\\": \\"ted-lasso\\",\n          \\"context\\": \\"Ted\'s first team meeting, revealing his coaching philosophy\\",\n          \\"moment_type\\": \\"locker_room\\",\n          \\"text\\": \\"I believe in believe.\\",\n          \\"theme\\": \\"belief\\",\n          \\"episode_id\\": \\"s01e01\\",\n          \\"is_funny\\": false,\n          \\"is_inspirational\\": true,\n          \\"popularity_score\\": 98.5,\n          \\"secondary_themes\\": [\n            \\"leadership\\",\n            \\"teamwork\\"\n          ],\n          \\"times_shared\\": 250000\n        }"',
       },
     },
   },
@@ -2685,7 +2685,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://believe.cjav.dev/believe \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"situation\\": \\"I just got passed over for a promotion I\'ve been working toward for two years.\\",\n          \\"situation_type\\": \\"work_challenge\\",\n          \\"context\\": \\"I\'ve always tried to be a team player and support my colleagues.\\"\n        }"',
+          'curl https://believe.cjav.dev/believe \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"situation\\": \\"I just got passed over for a promotion I\'ve been working toward for two years.\\",\n          \\"situation_type\\": \\"work_challenge\\",\n          \\"context\\": \\"I\'ve always tried to be a team player and support my colleagues.\\",\n          \\"intensity\\": 7\n        }"',
       },
     },
   },
@@ -2810,7 +2810,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://believe.cjav.dev/reframe \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"negative_thought\\": \\"I\'m not good enough for this job.\\"\n        }"',
+          'curl https://believe.cjav.dev/reframe \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d "{\n          \\"negative_thought\\": \\"I\'m not good enough for this job.\\",\n          \\"recurring\\": true\n        }"',
       },
     },
   },
@@ -2870,7 +2870,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://believe.cjav.dev/press \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "question": "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n          "topic": "match_result"\n        }\'',
+          'curl https://believe.cjav.dev/press \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "question": "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n          "hostile": true,\n          "topic": "match_result"\n        }\'',
       },
     },
   },
@@ -3957,7 +3957,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://believe.cjav.dev/webhooks \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "url": "https://example.com/webhooks"\n        }\'',
+          'curl https://believe.cjav.dev/webhooks \\\n    -H \'Content-Type: application/json\' \\\n    -H "Authorization: Bearer $BELIEVE_API_KEY" \\\n    -d \'{\n          "url": "https://example.com/webhooks",\n          "description": "Production webhook for match notifications",\n          "event_types": [\n            "match.completed",\n            "team_member.transferred"\n          ]\n        }\'',
       },
     },
   },
