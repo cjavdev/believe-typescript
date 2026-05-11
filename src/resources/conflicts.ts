@@ -47,12 +47,12 @@ export interface ConflictResolveResponse {
   diagnosis: string;
 
   /**
-   * Advice from the Diamond Dogs support group
+   * Advice from the Diamond Dogs support groups
    */
   diamond_dogs_advice: string;
 
   /**
-   * What resolution could look like
+   * What resolution could look like if successful
    */
   potential_outcome: string;
 
