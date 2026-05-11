@@ -1011,9 +1011,9 @@ export declare namespace Believe {
     type GrowthArc as GrowthArc,
     type CharacterGetQuotesResponse as CharacterGetQuotesResponse,
     type CharactersSkipLimitPage as CharactersSkipLimitPage,
+    type CharacterListParams as CharacterListParams,
     type CharacterCreateParams as CharacterCreateParams,
     type CharacterUpdateParams as CharacterUpdateParams,
-    type CharacterListParams as CharacterListParams,
   };
 
   export {
@@ -1026,9 +1026,9 @@ export declare namespace Believe {
     type TeamGetRivalsResponse as TeamGetRivalsResponse,
     type TeamListLogosResponse as TeamListLogosResponse,
     type TeamsSkipLimitPage as TeamsSkipLimitPage,
+    type TeamListParams as TeamListParams,
     type TeamCreateParams as TeamCreateParams,
     type TeamUpdateParams as TeamUpdateParams,
-    type TeamListParams as TeamListParams,
   };
 
   export {
@@ -1040,9 +1040,9 @@ export declare namespace Believe {
     type MatchGetLessonResponse as MatchGetLessonResponse,
     type MatchGetTurningPointsResponse as MatchGetTurningPointsResponse,
     type MatchesSkipLimitPage as MatchesSkipLimitPage,
+    type MatchListParams as MatchListParams,
     type MatchCreateParams as MatchCreateParams,
     type MatchUpdateParams as MatchUpdateParams,
-    type MatchListParams as MatchListParams,
     type MatchStreamLiveParams as MatchStreamLiveParams,
   };
 
@@ -1052,9 +1052,9 @@ export declare namespace Believe {
     type PaginatedResponse as PaginatedResponse,
     type EpisodeGetWisdomResponse as EpisodeGetWisdomResponse,
     type EpisodesSkipLimitPage as EpisodesSkipLimitPage,
+    type EpisodeListParams as EpisodeListParams,
     type EpisodeCreateParams as EpisodeCreateParams,
     type EpisodeUpdateParams as EpisodeUpdateParams,
-    type EpisodeListParams as EpisodeListParams,
   };
 
   export {
@@ -1064,12 +1064,12 @@ export declare namespace Believe {
     type QuoteMoment as QuoteMoment,
     type QuoteTheme as QuoteTheme,
     type QuotesSkipLimitPage as QuotesSkipLimitPage,
-    type QuoteCreateParams as QuoteCreateParams,
-    type QuoteUpdateParams as QuoteUpdateParams,
     type QuoteListParams as QuoteListParams,
+    type QuoteCreateParams as QuoteCreateParams,
     type QuoteGetRandomParams as QuoteGetRandomParams,
-    type QuoteListByCharacterParams as QuoteListByCharacterParams,
+    type QuoteUpdateParams as QuoteUpdateParams,
     type QuoteListByThemeParams as QuoteListByThemeParams,
+    type QuoteListByCharacterParams as QuoteListByCharacterParams,
   };
 
   export {
@@ -1128,14 +1128,14 @@ export declare namespace Believe {
     type TeamMemberListResponse as TeamMemberListResponse,
     type TeamMemberListStaffResponse as TeamMemberListStaffResponse,
     type TeamMemberListResponsesSkipLimitPage as TeamMemberListResponsesSkipLimitPage,
-    type CoachesSkipLimitPage as CoachesSkipLimitPage,
     type PlayersSkipLimitPage as PlayersSkipLimitPage,
+    type CoachesSkipLimitPage as CoachesSkipLimitPage,
     type TeamMemberListStaffResponsesSkipLimitPage as TeamMemberListStaffResponsesSkipLimitPage,
+    type TeamMemberListParams as TeamMemberListParams,
     type TeamMemberCreateParams as TeamMemberCreateParams,
     type TeamMemberUpdateParams as TeamMemberUpdateParams,
-    type TeamMemberListParams as TeamMemberListParams,
-    type TeamMemberListCoachesParams as TeamMemberListCoachesParams,
     type TeamMemberListPlayersParams as TeamMemberListPlayersParams,
+    type TeamMemberListCoachesParams as TeamMemberListCoachesParams,
     type TeamMemberListStaffParams as TeamMemberListStaffParams,
   };
 
@@ -1158,9 +1158,9 @@ export declare namespace Believe {
     type PurchaseMethod as PurchaseMethod,
     type TicketSale as TicketSale,
     type TicketSalesSkipLimitPage as TicketSalesSkipLimitPage,
+    type TicketSaleListParams as TicketSaleListParams,
     type TicketSaleCreateParams as TicketSaleCreateParams,
     type TicketSaleUpdateParams as TicketSaleUpdateParams,
-    type TicketSaleListParams as TicketSaleListParams,
   };
 
   export { Health as Health, type HealthCheckResponse as HealthCheckResponse };
