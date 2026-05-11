@@ -12,6 +12,18 @@ export class BaseWebhooks extends APIResource {
   static override readonly _key: readonly ['webhooks'] = Object.freeze(['webhooks'] as const);
 
   /**
+   * Get a list of all registered webhook endpoints.
+   *
+   * @example
+   * ```ts
+   * const registeredWebhooks = await client.webhooks.list();
+   * ```
+   */
+  list(options?: RequestOptions): APIPromise<WebhookListResponse> {
+    return this._client.get('/webhooks', options);
+  }
+
+  /**
    * Register a new webhook endpoint to receive event notifications.
    *
    * ## Event Types
@@ -57,18 +69,6 @@ export class BaseWebhooks extends APIResource {
    */
   retrieve(webhookID: string, options?: RequestOptions): APIPromise<RegisteredWebhook> {
     return this._client.get(path`/webhooks/${webhookID}`, options);
-  }
-
-  /**
-   * Get a list of all registered webhook endpoints.
-   *
-   * @example
-   * ```ts
-   * const registeredWebhooks = await client.webhooks.list();
-   * ```
-   */
-  list(options?: RequestOptions): APIPromise<WebhookListResponse> {
-    return this._client.get('/webhooks', options);
   }
 
   /**
