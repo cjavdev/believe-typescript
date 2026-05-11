@@ -25,18 +25,6 @@ const parentPartialClient = createClient({
 
 const runTests = (client: PartialBelieve<{ coaching: { principles: BasePrinciples } }>) => {
   // Mock server tests are disabled
-  test.skip('retrieve', async () => {
-    const responsePromise = client.coaching.principles.retrieve('principle_id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.coaching.principles.list();
     const rawResponse = await responsePromise.asResponse();
@@ -54,6 +42,18 @@ const runTests = (client: PartialBelieve<{ coaching: { principles: BasePrinciple
     await expect(
       client.coaching.principles.list({ limit: 10, skip: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Believe.NotFoundError);
+  });
+
+  // Mock server tests are disabled
+  test.skip('retrieve', async () => {
+    const responsePromise = client.coaching.principles.retrieve('principle_id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   // Mock server tests are disabled
