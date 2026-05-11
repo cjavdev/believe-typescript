@@ -14,6 +14,24 @@ export class BaseCharacters extends APIResource {
   static override readonly _key: readonly ['characters'] = Object.freeze(['characters'] as const);
 
   /**
+   * Get a paginated list of Ted Lasso characters.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const character of client.characters.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: CharacterListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<CharactersSkipLimitPage, Character> {
+    return this._client.getAPIList('/characters', SkipLimitPage<Character>, { query, ...options });
+  }
+
+  /**
    * Add a new character to the Ted Lasso universe.
    *
    * @example
@@ -69,24 +87,6 @@ export class BaseCharacters extends APIResource {
    */
   update(characterID: string, body: CharacterUpdateParams, options?: RequestOptions): APIPromise<Character> {
     return this._client.patch(path`/characters/${characterID}`, { body, ...options });
-  }
-
-  /**
-   * Get a paginated list of Ted Lasso characters.
-   *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const character of client.characters.list()) {
-   *   // ...
-   * }
-   * ```
-   */
-  list(
-    query: CharacterListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<CharactersSkipLimitPage, Character> {
-    return this._client.getAPIList('/characters', SkipLimitPage<Character>, { query, ...options });
   }
 
   /**
@@ -277,6 +277,23 @@ export interface GrowthArc {
 
 export type CharacterGetQuotesResponse = Array<string>;
 
+export interface CharacterListParams extends SkipLimitPageParams {
+  /**
+   * Minimum optimism score
+   */
+  min_optimism?: number | null;
+
+  /**
+   * Filter by role
+   */
+  role?: CharacterRole | null;
+
+  /**
+   * Filter by team ID
+   */
+  team_id?: string | null;
+}
+
 export interface CharacterCreateParams {
   /**
    * Character background and history
@@ -378,23 +395,6 @@ export interface CharacterUpdateParams {
   team_id?: string | null;
 }
 
-export interface CharacterListParams extends SkipLimitPageParams {
-  /**
-   * Minimum optimism score
-   */
-  min_optimism?: number | null;
-
-  /**
-   * Filter by role
-   */
-  role?: CharacterRole | null;
-
-  /**
-   * Filter by team ID
-   */
-  team_id?: string | null;
-}
-
 export declare namespace Characters {
   export {
     type Character as Character,
@@ -403,8 +403,8 @@ export declare namespace Characters {
     type GrowthArc as GrowthArc,
     type CharacterGetQuotesResponse as CharacterGetQuotesResponse,
     type CharactersSkipLimitPage as CharactersSkipLimitPage,
+    type CharacterListParams as CharacterListParams,
     type CharacterCreateParams as CharacterCreateParams,
     type CharacterUpdateParams as CharacterUpdateParams,
-    type CharacterListParams as CharacterListParams,
   };
 }
