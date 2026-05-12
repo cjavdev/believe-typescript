@@ -82,11 +82,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.ClientGetWelcomeParams;\nimport dev.cjav.believe.models.ClientGetWelcomeResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        ClientGetWelcomeResponse response = client.getWelcome();\n    }\n}',
       },
-      csharp: {
-        method: 'GetWelcome',
-        example:
-          'ClientGetWelcomeParams parameters = new();\n\nvar response = await client.GetWelcome(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.getWelcome',
         example:
@@ -96,6 +91,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'getWelcome',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.ClientGetWelcomeParams\nimport dev.cjav.believe.models.ClientGetWelcomeResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: ClientGetWelcomeResponse = client.getWelcome()\n}',
+      },
+      csharp: {
+        method: 'GetWelcome',
+        example:
+          'ClientGetWelcomeParams parameters = new();\n\nvar response = await client.GetWelcome(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -139,11 +139,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.characters.CharacterListPage;\nimport dev.cjav.believe.models.characters.CharacterListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        CharacterListPage page = client.characters().list();\n    }\n}',
       },
-      csharp: {
-        method: 'Characters.List',
-        example:
-          'CharacterListParams parameters = new();\n\nvar page = await client.Characters.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.characters.list',
         example:
@@ -153,6 +148,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'characters().list',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.characters.CharacterListPage\nimport dev.cjav.believe.models.characters.CharacterListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: CharacterListPage = client.characters().list()\n}',
+      },
+      csharp: {
+        method: 'Characters.List',
+        example:
+          'CharacterListParams parameters = new();\n\nvar page = await client.Characters.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -204,11 +204,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.characters.Character;\nimport dev.cjav.believe.models.characters.CharacterCreateParams;\nimport dev.cjav.believe.models.characters.CharacterRole;\nimport dev.cjav.believe.models.characters.EmotionalStats;\nimport java.util.List;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        CharacterCreateParams params = CharacterCreateParams.builder()\n            .background("Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.")\n            .emotionalStats(EmotionalStats.builder()\n                .curiosity(40L)\n                .empathy(85L)\n                .optimism(45L)\n                .resilience(95L)\n                .vulnerability(60L)\n                .build())\n            .name("Roy Kent")\n            .personalityTraits(List.of(\n              "intense",\n              "loyal",\n              "secretly caring",\n              "profane"\n            ))\n            .role(CharacterRole.COACH)\n            .build();\n        Character character = client.characters().create(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Characters.Create',
-        example:
-          'CharacterCreateParams parameters = new()\n{\n    Background = "Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",\n    EmotionalStats = new()\n    {\n        Curiosity = 40,\n        Empathy = 85,\n        Optimism = 45,\n        Resilience = 95,\n        Vulnerability = 60,\n    },\n    Name = "Roy Kent",\n    PersonalityTraits =\n    [\n        "intense", "loyal", "secretly caring", "profane"\n    ],\n    Role = CharacterRole.Coach,\n};\n\nvar character = await client.Characters.Create(parameters);\n\nConsole.WriteLine(character);',
-      },
       typescript: {
         method: 'client.characters.create',
         example:
@@ -218,6 +213,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'characters().create',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.characters.Character\nimport dev.cjav.believe.models.characters.CharacterCreateParams\nimport dev.cjav.believe.models.characters.CharacterRole\nimport dev.cjav.believe.models.characters.EmotionalStats\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: CharacterCreateParams = CharacterCreateParams.builder()\n        .background("Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.")\n        .emotionalStats(EmotionalStats.builder()\n            .curiosity(40L)\n            .empathy(85L)\n            .optimism(45L)\n            .resilience(95L)\n            .vulnerability(60L)\n            .build())\n        .name("Roy Kent")\n        .personalityTraits(listOf(\n          "intense",\n          "loyal",\n          "secretly caring",\n          "profane",\n        ))\n        .role(CharacterRole.COACH)\n        .build()\n    val character: Character = client.characters().create(params)\n}',
+      },
+      csharp: {
+        method: 'Characters.Create',
+        example:
+          'CharacterCreateParams parameters = new()\n{\n    Background = "Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",\n    EmotionalStats = new()\n    {\n        Curiosity = 40,\n        Empathy = 85,\n        Optimism = 45,\n        Resilience = 95,\n        Vulnerability = 60,\n    },\n    Name = "Roy Kent",\n    PersonalityTraits =\n    [\n        "intense", "loyal", "secretly caring", "profane"\n    ],\n    Role = CharacterRole.Coach,\n};\n\nvar character = await client.Characters.Create(parameters);\n\nConsole.WriteLine(character);',
       },
     },
   },
@@ -255,11 +255,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.characters.Character;\nimport dev.cjav.believe.models.characters.CharacterRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Character character = client.characters().retrieve("character_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Characters.Retrieve',
-        example:
-          'CharacterRetrieveParams parameters = new() { CharacterID = "character_id" };\n\nvar character = await client.Characters.Retrieve(parameters);\n\nConsole.WriteLine(character);',
-      },
       typescript: {
         method: 'client.characters.retrieve',
         example:
@@ -269,6 +264,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'characters().retrieve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.characters.Character\nimport dev.cjav.believe.models.characters.CharacterRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val character: Character = client.characters().retrieve("character_id")\n}',
+      },
+      csharp: {
+        method: 'Characters.Retrieve',
+        example:
+          'CharacterRetrieveParams parameters = new() { CharacterID = "character_id" };\n\nvar character = await client.Characters.Retrieve(parameters);\n\nConsole.WriteLine(character);',
       },
     },
   },
@@ -321,11 +321,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.characters.Character;\nimport dev.cjav.believe.models.characters.CharacterUpdateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Character character = client.characters().update("character_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Characters.Update',
-        example:
-          'CharacterUpdateParams parameters = new() { CharacterID = "character_id" };\n\nvar character = await client.Characters.Update(parameters);\n\nConsole.WriteLine(character);',
-      },
       typescript: {
         method: 'client.characters.update',
         example:
@@ -335,6 +330,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'characters().update',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.characters.Character\nimport dev.cjav.believe.models.characters.CharacterUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val character: Character = client.characters().update("character_id")\n}',
+      },
+      csharp: {
+        method: 'Characters.Update',
+        example:
+          'CharacterUpdateParams parameters = new() { CharacterID = "character_id" };\n\nvar character = await client.Characters.Update(parameters);\n\nConsole.WriteLine(character);',
       },
     },
   },
@@ -370,11 +370,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.characters.CharacterDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        client.characters().delete("character_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Characters.Delete',
-        example:
-          'CharacterDeleteParams parameters = new() { CharacterID = "character_id" };\n\nawait client.Characters.Delete(parameters);',
-      },
       typescript: {
         method: 'client.characters.delete',
         example:
@@ -384,6 +379,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'characters().delete',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.characters.CharacterDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.characters().delete("character_id")\n}',
+      },
+      csharp: {
+        method: 'Characters.Delete',
+        example:
+          'CharacterDeleteParams parameters = new() { CharacterID = "character_id" };\n\nawait client.Characters.Delete(parameters);',
       },
     },
   },
@@ -420,11 +420,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.characters.CharacterGetQuotesParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        List<String> response = client.characters().getQuotes("character_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Characters.GetQuotes',
-        example:
-          'CharacterGetQuotesParams parameters = new() { CharacterID = "character_id" };\n\nvar response = await client.Characters.GetQuotes(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.characters.getQuotes',
         example:
@@ -434,6 +429,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'characters().getQuotes',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.characters.CharacterGetQuotesParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: List<String> = client.characters().getQuotes("character_id")\n}',
+      },
+      csharp: {
+        method: 'Characters.GetQuotes',
+        example:
+          'CharacterGetQuotesParams parameters = new() { CharacterID = "character_id" };\n\nvar response = await client.Characters.GetQuotes(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -471,11 +471,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teams.TeamListPage;\nimport dev.cjav.believe.models.teams.TeamListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TeamListPage page = client.teams().list();\n    }\n}',
       },
-      csharp: {
-        method: 'Teams.List',
-        example:
-          'TeamListParams parameters = new();\n\nvar page = await client.Teams.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.teams.list',
         example:
@@ -485,6 +480,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().list',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teams.TeamListPage\nimport dev.cjav.believe.models.teams.TeamListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamListPage = client.teams().list()\n}',
+      },
+      csharp: {
+        method: 'Teams.List',
+        example:
+          'TeamListParams parameters = new();\n\nvar page = await client.Teams.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -540,11 +540,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teams.League;\nimport dev.cjav.believe.models.teams.Team;\nimport dev.cjav.believe.models.teams.TeamCreateParams;\nimport dev.cjav.believe.models.teams.TeamValues;\nimport java.util.List;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TeamCreateParams params = TeamCreateParams.builder()\n            .cultureScore(70L)\n            .foundedYear(1895L)\n            .league(League.PREMIER_LEAGUE)\n            .name("West Ham United")\n            .stadium("London Stadium")\n            .values(TeamValues.builder()\n                .primaryValue("Pride")\n                .secondaryValues(List.of(\n                  "History",\n                  "Community",\n                  "Passion"\n                ))\n                .teamMotto("Forever Blowing Bubbles")\n                .build())\n            .build();\n        Team team = client.teams().create(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Teams.Create',
-        example:
-          'TeamCreateParams parameters = new()\n{\n    CultureScore = 70,\n    FoundedYear = 1895,\n    League = League.PremierLeague,\n    Name = "West Ham United",\n    Stadium = "London Stadium",\n    Values = new()\n    {\n        PrimaryValue = "Pride",\n        SecondaryValues =\n        [\n            "History", "Community", "Passion"\n        ],\n        TeamMotto = "Forever Blowing Bubbles",\n    },\n};\n\nvar team = await client.Teams.Create(parameters);\n\nConsole.WriteLine(team);',
-      },
       typescript: {
         method: 'client.teams.create',
         example:
@@ -554,6 +549,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().create',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teams.League\nimport dev.cjav.believe.models.teams.Team\nimport dev.cjav.believe.models.teams.TeamCreateParams\nimport dev.cjav.believe.models.teams.TeamValues\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: TeamCreateParams = TeamCreateParams.builder()\n        .cultureScore(70L)\n        .foundedYear(1895L)\n        .league(League.PREMIER_LEAGUE)\n        .name("West Ham United")\n        .stadium("London Stadium")\n        .values(TeamValues.builder()\n            .primaryValue("Pride")\n            .secondaryValues(listOf(\n              "History",\n              "Community",\n              "Passion",\n            ))\n            .teamMotto("Forever Blowing Bubbles")\n            .build())\n        .build()\n    val team: Team = client.teams().create(params)\n}',
+      },
+      csharp: {
+        method: 'Teams.Create',
+        example:
+          'TeamCreateParams parameters = new()\n{\n    CultureScore = 70,\n    FoundedYear = 1895,\n    League = League.PremierLeague,\n    Name = "West Ham United",\n    Stadium = "London Stadium",\n    Values = new()\n    {\n        PrimaryValue = "Pride",\n        SecondaryValues =\n        [\n            "History", "Community", "Passion"\n        ],\n        TeamMotto = "Forever Blowing Bubbles",\n    },\n};\n\nvar team = await client.Teams.Create(parameters);\n\nConsole.WriteLine(team);',
       },
     },
   },
@@ -591,11 +591,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teams.Team;\nimport dev.cjav.believe.models.teams.TeamRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Team team = client.teams().retrieve("team_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Teams.Retrieve',
-        example:
-          'TeamRetrieveParams parameters = new() { TeamID = "team_id" };\n\nvar team = await client.Teams.Retrieve(parameters);\n\nConsole.WriteLine(team);',
-      },
       typescript: {
         method: 'client.teams.retrieve',
         example:
@@ -605,6 +600,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().retrieve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teams.Team\nimport dev.cjav.believe.models.teams.TeamRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val team: Team = client.teams().retrieve("team_id")\n}',
+      },
+      csharp: {
+        method: 'Teams.Retrieve',
+        example:
+          'TeamRetrieveParams parameters = new() { TeamID = "team_id" };\n\nvar team = await client.Teams.Retrieve(parameters);\n\nConsole.WriteLine(team);',
       },
     },
   },
@@ -661,11 +661,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teams.Team;\nimport dev.cjav.believe.models.teams.TeamUpdateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Team team = client.teams().update("team_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Teams.Update',
-        example:
-          'TeamUpdateParams parameters = new() { TeamID = "team_id" };\n\nvar team = await client.Teams.Update(parameters);\n\nConsole.WriteLine(team);',
-      },
       typescript: {
         method: 'client.teams.update',
         example:
@@ -675,6 +670,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().update',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teams.Team\nimport dev.cjav.believe.models.teams.TeamUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val team: Team = client.teams().update("team_id")\n}',
+      },
+      csharp: {
+        method: 'Teams.Update',
+        example:
+          'TeamUpdateParams parameters = new() { TeamID = "team_id" };\n\nvar team = await client.Teams.Update(parameters);\n\nConsole.WriteLine(team);',
       },
     },
   },
@@ -710,11 +710,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teams.TeamDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        client.teams().delete("team_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Teams.Delete',
-        example:
-          'TeamDeleteParams parameters = new() { TeamID = "team_id" };\n\nawait client.Teams.Delete(parameters);',
-      },
       typescript: {
         method: 'client.teams.delete',
         example:
@@ -724,6 +719,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().delete',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teams.TeamDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.teams().delete("team_id")\n}',
+      },
+      csharp: {
+        method: 'Teams.Delete',
+        example:
+          'TeamDeleteParams parameters = new() { TeamID = "team_id" };\n\nawait client.Teams.Delete(parameters);',
       },
     },
   },
@@ -761,11 +761,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teams.Team;\nimport dev.cjav.believe.models.teams.TeamGetRivalsParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        List<Team> teams = client.teams().getRivals("team_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Teams.GetRivals',
-        example:
-          'TeamGetRivalsParams parameters = new() { TeamID = "team_id" };\n\nvar teams = await client.Teams.GetRivals(parameters);\n\nConsole.WriteLine(teams);',
-      },
       typescript: {
         method: 'client.teams.getRivals',
         example:
@@ -775,6 +770,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().getRivals',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teams.Team\nimport dev.cjav.believe.models.teams.TeamGetRivalsParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val teams: List<Team> = client.teams().getRivals("team_id")\n}',
+      },
+      csharp: {
+        method: 'Teams.GetRivals',
+        example:
+          'TeamGetRivalsParams parameters = new() { TeamID = "team_id" };\n\nvar teams = await client.Teams.GetRivals(parameters);\n\nConsole.WriteLine(teams);',
       },
     },
   },
@@ -811,11 +811,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teams.TeamGetCultureParams;\nimport dev.cjav.believe.models.teams.TeamGetCultureResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TeamGetCultureResponse response = client.teams().getCulture("team_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Teams.GetCulture',
-        example:
-          'TeamGetCultureParams parameters = new() { TeamID = "team_id" };\n\nvar response = await client.Teams.GetCulture(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.teams.getCulture',
         example:
@@ -825,6 +820,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().getCulture',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teams.TeamGetCultureParams\nimport dev.cjav.believe.models.teams.TeamGetCultureResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: TeamGetCultureResponse = client.teams().getCulture("team_id")\n}',
+      },
+      csharp: {
+        method: 'Teams.GetCulture',
+        example:
+          'TeamGetCultureParams parameters = new() { TeamID = "team_id" };\n\nvar response = await client.Teams.GetCulture(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -862,11 +862,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teams.TeamListLogosParams;\nimport dev.cjav.believe.models.teams.logo.FileUpload;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        List<FileUpload> fileUploads = client.teams().listLogos("team_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Teams.ListLogos',
-        example:
-          'TeamListLogosParams parameters = new() { TeamID = "team_id" };\n\nvar fileUploads = await client.Teams.ListLogos(parameters);\n\nConsole.WriteLine(fileUploads);',
-      },
       typescript: {
         method: 'client.teams.listLogos',
         example:
@@ -876,6 +871,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().listLogos',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teams.TeamListLogosParams\nimport dev.cjav.believe.models.teams.logo.FileUpload\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val fileUploads: List<FileUpload> = client.teams().listLogos("team_id")\n}',
+      },
+      csharp: {
+        method: 'Teams.ListLogos',
+        example:
+          'TeamListLogosParams parameters = new() { TeamID = "team_id" };\n\nvar fileUploads = await client.Teams.ListLogos(parameters);\n\nConsole.WriteLine(fileUploads);',
       },
     },
   },
@@ -913,11 +913,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teams.logo.FileUpload;\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams;\nimport java.io.ByteArrayInputStream;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        LogoUploadParams params = LogoUploadParams.builder()\n            .teamId("team_id")\n            .file(new ByteArrayInputStream("Example data".getBytes()))\n            .build();\n        FileUpload fileUpload = client.teams().logo().upload(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Teams.Logo.Upload',
-        example:
-          'LogoUploadParams parameters = new()\n{\n    TeamID = "team_id",\n    File = Encoding.UTF8.GetBytes("Example data"),\n};\n\nvar fileUpload = await client.Teams.Logo.Upload(parameters);\n\nConsole.WriteLine(fileUpload);',
-      },
       typescript: {
         method: 'client.teams.logo.upload',
         example:
@@ -927,6 +922,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().logo().upload',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teams.logo.FileUpload\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams\nimport java.io.ByteArrayInputStream\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: LogoUploadParams = LogoUploadParams.builder()\n        .teamId("team_id")\n        .file("Example data".byteInputStream())\n        .build()\n    val fileUpload: FileUpload = client.teams().logo().upload(params)\n}',
+      },
+      csharp: {
+        method: 'Teams.Logo.Upload',
+        example:
+          'LogoUploadParams parameters = new()\n{\n    TeamID = "team_id",\n    File = Encoding.UTF8.GetBytes("Example data"),\n};\n\nvar fileUpload = await client.Teams.Logo.Upload(parameters);\n\nConsole.WriteLine(fileUpload);',
       },
     },
   },
@@ -963,11 +963,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teams.logo.LogoDownloadParams;\nimport dev.cjav.believe.models.teams.logo.LogoDownloadResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        LogoDownloadParams params = LogoDownloadParams.builder()\n            .teamId("team_id")\n            .fileId("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n            .build();\n        LogoDownloadResponse response = client.teams().logo().download(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Teams.Logo.Download',
-        example:
-          'LogoDownloadParams parameters = new()\n{\n    TeamID = "team_id",\n    FileID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n};\n\nvar response = await client.Teams.Logo.Download(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.teams.logo.download',
         example:
@@ -977,6 +972,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().logo().download',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teams.logo.LogoDownloadParams\nimport dev.cjav.believe.models.teams.logo.LogoDownloadResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: LogoDownloadParams = LogoDownloadParams.builder()\n        .teamId("team_id")\n        .fileId("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n        .build()\n    val response: LogoDownloadResponse = client.teams().logo().download(params)\n}',
+      },
+      csharp: {
+        method: 'Teams.Logo.Download',
+        example:
+          'LogoDownloadParams parameters = new()\n{\n    TeamID = "team_id",\n    FileID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n};\n\nvar response = await client.Teams.Logo.Download(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -1012,11 +1012,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teams.logo.LogoDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        LogoDeleteParams params = LogoDeleteParams.builder()\n            .teamId("team_id")\n            .fileId("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n            .build();\n        client.teams().logo().delete(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Teams.Logo.Delete',
-        example:
-          'LogoDeleteParams parameters = new()\n{\n    TeamID = "team_id",\n    FileID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n};\n\nawait client.Teams.Logo.Delete(parameters);',
-      },
       typescript: {
         method: 'client.teams.logo.delete',
         example:
@@ -1026,6 +1021,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teams().logo().delete',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teams.logo.LogoDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: LogoDeleteParams = LogoDeleteParams.builder()\n        .teamId("team_id")\n        .fileId("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n        .build()\n    client.teams().logo().delete(params)\n}',
+      },
+      csharp: {
+        method: 'Teams.Logo.Delete',
+        example:
+          'LogoDeleteParams parameters = new()\n{\n    TeamID = "team_id",\n    FileID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n};\n\nawait client.Teams.Logo.Delete(parameters);',
       },
     },
   },
@@ -1069,11 +1069,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.matches.MatchListPage;\nimport dev.cjav.believe.models.matches.MatchListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        MatchListPage page = client.matches().list();\n    }\n}',
       },
-      csharp: {
-        method: 'Matches.List',
-        example:
-          'MatchListParams parameters = new();\n\nvar page = await client.Matches.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.matches.list',
         example:
@@ -1083,6 +1078,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().list',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.matches.MatchListPage\nimport dev.cjav.believe.models.matches.MatchListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: MatchListPage = client.matches().list()\n}',
+      },
+      csharp: {
+        method: 'Matches.List',
+        example:
+          'MatchListParams parameters = new();\n\nvar page = await client.Matches.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -1136,11 +1136,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.matches.Match;\nimport dev.cjav.believe.models.matches.MatchCreateParams;\nimport dev.cjav.believe.models.matches.MatchType;\nimport java.time.OffsetDateTime;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        MatchCreateParams params = MatchCreateParams.builder()\n            .awayTeamId("tottenham")\n            .date(OffsetDateTime.parse("2024-02-20T19:45:00Z"))\n            .homeTeamId("afc-richmond")\n            .matchType(MatchType.CUP)\n            .build();\n        Match match = client.matches().create(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Matches.Create',
-        example:
-          'MatchCreateParams parameters = new()\n{\n    AwayTeamID = "tottenham",\n    Date = DateTimeOffset.Parse("2024-02-20T19:45:00Z"),\n    HomeTeamID = "afc-richmond",\n    MatchType = MatchType.Cup,\n};\n\nvar match = await client.Matches.Create(parameters);\n\nConsole.WriteLine(match);',
-      },
       typescript: {
         method: 'client.matches.create',
         example:
@@ -1150,6 +1145,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().create',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.matches.Match\nimport dev.cjav.believe.models.matches.MatchCreateParams\nimport dev.cjav.believe.models.matches.MatchType\nimport java.time.OffsetDateTime\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: MatchCreateParams = MatchCreateParams.builder()\n        .awayTeamId("tottenham")\n        .date(OffsetDateTime.parse("2024-02-20T19:45:00Z"))\n        .homeTeamId("afc-richmond")\n        .matchType(MatchType.CUP)\n        .build()\n    val match: Match = client.matches().create(params)\n}',
+      },
+      csharp: {
+        method: 'Matches.Create',
+        example:
+          'MatchCreateParams parameters = new()\n{\n    AwayTeamID = "tottenham",\n    Date = DateTimeOffset.Parse("2024-02-20T19:45:00Z"),\n    HomeTeamID = "afc-richmond",\n    MatchType = MatchType.Cup,\n};\n\nvar match = await client.Matches.Create(parameters);\n\nConsole.WriteLine(match);',
       },
     },
   },
@@ -1187,11 +1187,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.matches.Match;\nimport dev.cjav.believe.models.matches.MatchRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Match match = client.matches().retrieve("match_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Matches.Retrieve',
-        example:
-          'MatchRetrieveParams parameters = new() { MatchID = "match_id" };\n\nvar match = await client.Matches.Retrieve(parameters);\n\nConsole.WriteLine(match);',
-      },
       typescript: {
         method: 'client.matches.retrieve',
         example:
@@ -1201,6 +1196,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().retrieve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.matches.Match\nimport dev.cjav.believe.models.matches.MatchRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val match: Match = client.matches().retrieve("match_id")\n}',
+      },
+      csharp: {
+        method: 'Matches.Retrieve',
+        example:
+          'MatchRetrieveParams parameters = new() { MatchID = "match_id" };\n\nvar match = await client.Matches.Retrieve(parameters);\n\nConsole.WriteLine(match);',
       },
     },
   },
@@ -1255,11 +1255,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.matches.Match;\nimport dev.cjav.believe.models.matches.MatchUpdateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Match match = client.matches().update("match_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Matches.Update',
-        example:
-          'MatchUpdateParams parameters = new() { MatchID = "match_id" };\n\nvar match = await client.Matches.Update(parameters);\n\nConsole.WriteLine(match);',
-      },
       typescript: {
         method: 'client.matches.update',
         example:
@@ -1269,6 +1264,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().update',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.matches.Match\nimport dev.cjav.believe.models.matches.MatchUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val match: Match = client.matches().update("match_id")\n}',
+      },
+      csharp: {
+        method: 'Matches.Update',
+        example:
+          'MatchUpdateParams parameters = new() { MatchID = "match_id" };\n\nvar match = await client.Matches.Update(parameters);\n\nConsole.WriteLine(match);',
       },
     },
   },
@@ -1304,11 +1304,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.matches.MatchDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        client.matches().delete("match_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Matches.Delete',
-        example:
-          'MatchDeleteParams parameters = new() { MatchID = "match_id" };\n\nawait client.Matches.Delete(parameters);',
-      },
       typescript: {
         method: 'client.matches.delete',
         example:
@@ -1318,6 +1313,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().delete',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.matches.MatchDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.matches().delete("match_id")\n}',
+      },
+      csharp: {
+        method: 'Matches.Delete',
+        example:
+          'MatchDeleteParams parameters = new() { MatchID = "match_id" };\n\nawait client.Matches.Delete(parameters);',
       },
     },
   },
@@ -1354,11 +1354,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.matches.MatchGetTurningPointsParams;\nimport dev.cjav.believe.models.matches.MatchGetTurningPointsResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        List<MatchGetTurningPointsResponse> response = client.matches().getTurningPoints("match_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Matches.GetTurningPoints',
-        example:
-          'MatchGetTurningPointsParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.GetTurningPoints(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.matches.getTurningPoints',
         example:
@@ -1368,6 +1363,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().getTurningPoints',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.matches.MatchGetTurningPointsParams\nimport dev.cjav.believe.models.matches.MatchGetTurningPointsResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: List<MatchGetTurningPointsResponse> = client.matches().getTurningPoints("match_id")\n}',
+      },
+      csharp: {
+        method: 'Matches.GetTurningPoints',
+        example:
+          'MatchGetTurningPointsParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.GetTurningPoints(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -1404,11 +1404,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.matches.MatchGetLessonParams;\nimport dev.cjav.believe.models.matches.MatchGetLessonResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        MatchGetLessonResponse response = client.matches().getLesson("match_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Matches.GetLesson',
-        example:
-          'MatchGetLessonParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.GetLesson(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.matches.getLesson',
         example:
@@ -1418,6 +1413,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().getLesson',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.matches.MatchGetLessonParams\nimport dev.cjav.believe.models.matches.MatchGetLessonResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: MatchGetLessonResponse = client.matches().getLesson("match_id")\n}',
+      },
+      csharp: {
+        method: 'Matches.GetLesson',
+        example:
+          'MatchGetLessonParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.GetLesson(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -1454,10 +1454,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.matches.MatchStreamLiveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        client.matches().streamLive();\n    }\n}',
       },
-      csharp: {
-        method: 'Matches.StreamLive',
-        example: 'MatchStreamLiveParams parameters = new();\n\nawait client.Matches.StreamLive(parameters);',
-      },
       typescript: {
         method: 'client.matches.streamLive',
         example:
@@ -1467,6 +1463,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().streamLive',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.matches.MatchStreamLiveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.matches().streamLive()\n}',
+      },
+      csharp: {
+        method: 'Matches.StreamLive',
+        example: 'MatchStreamLiveParams parameters = new();\n\nawait client.Matches.StreamLive(parameters);',
       },
     },
   },
@@ -1504,11 +1504,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.matches.commentary.CommentaryStreamParams;\nimport dev.cjav.believe.models.matches.commentary.CommentaryStreamResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        CommentaryStreamResponse response = client.matches().commentary().stream("match_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Matches.Commentary.Stream',
-        example:
-          'CommentaryStreamParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.Commentary.Stream(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.matches.commentary.stream',
         example:
@@ -1518,6 +1513,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'matches().commentary().stream',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.matches.commentary.CommentaryStreamParams\nimport dev.cjav.believe.models.matches.commentary.CommentaryStreamResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: CommentaryStreamResponse = client.matches().commentary().stream("match_id")\n}',
+      },
+      csharp: {
+        method: 'Matches.Commentary.Stream',
+        example:
+          'CommentaryStreamParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.Commentary.Stream(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -1555,11 +1555,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.episodes.EpisodeListPage;\nimport dev.cjav.believe.models.episodes.EpisodeListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        EpisodeListPage page = client.episodes().list();\n    }\n}',
       },
-      csharp: {
-        method: 'Episodes.List',
-        example:
-          'EpisodeListParams parameters = new();\n\nvar page = await client.Episodes.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.episodes.list',
         example:
@@ -1569,6 +1564,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'episodes().list',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.episodes.EpisodeListPage\nimport dev.cjav.believe.models.episodes.EpisodeListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: EpisodeListPage = client.episodes().list()\n}',
+      },
+      csharp: {
+        method: 'Episodes.List',
+        example:
+          'EpisodeListParams parameters = new();\n\nvar page = await client.Episodes.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -1622,11 +1622,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.episodes.Episode;\nimport dev.cjav.believe.models.episodes.EpisodeCreateParams;\nimport java.time.LocalDate;\nimport java.util.List;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        EpisodeCreateParams params = EpisodeCreateParams.builder()\n            .airDate(LocalDate.parse("2020-10-02"))\n            .characterFocus(List.of(\n              "ted-lasso",\n              "coach-beard",\n              "higgins",\n              "nate"\n            ))\n            .director("MJ Delaney")\n            .episodeNumber(8L)\n            .mainTheme("The power of vulnerability and male friendship")\n            .runtimeMinutes(29L)\n            .season(1L)\n            .synopsis("Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.")\n            .tedWisdom("There\'s two buttons I never like to hit: that\'s panic and snooze.")\n            .title("The Diamond Dogs")\n            .writer("Jason Sudeikis, Brendan Hunt, Joe Kelly")\n            .build();\n        Episode episode = client.episodes().create(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Episodes.Create',
-        example:
-          'EpisodeCreateParams parameters = new()\n{\n    AirDate = "2020-10-02",\n    CharacterFocus =\n    [\n        "ted-lasso", "coach-beard", "higgins", "nate"\n    ],\n    Director = "MJ Delaney",\n    EpisodeNumber = 8,\n    MainTheme = "The power of vulnerability and male friendship",\n    RuntimeMinutes = 29,\n    Season = 1,\n    Synopsis = "Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.",\n    TedWisdom = "There\'s two buttons I never like to hit: that\'s panic and snooze.",\n    Title = "The Diamond Dogs",\n    Writer = "Jason Sudeikis, Brendan Hunt, Joe Kelly",\n};\n\nvar episode = await client.Episodes.Create(parameters);\n\nConsole.WriteLine(episode);',
-      },
       typescript: {
         method: 'client.episodes.create',
         example:
@@ -1636,6 +1631,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'episodes().create',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.episodes.Episode\nimport dev.cjav.believe.models.episodes.EpisodeCreateParams\nimport java.time.LocalDate\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: EpisodeCreateParams = EpisodeCreateParams.builder()\n        .airDate(LocalDate.parse("2020-10-02"))\n        .characterFocus(listOf(\n          "ted-lasso",\n          "coach-beard",\n          "higgins",\n          "nate",\n        ))\n        .director("MJ Delaney")\n        .episodeNumber(8L)\n        .mainTheme("The power of vulnerability and male friendship")\n        .runtimeMinutes(29L)\n        .season(1L)\n        .synopsis("Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.")\n        .tedWisdom("There\'s two buttons I never like to hit: that\'s panic and snooze.")\n        .title("The Diamond Dogs")\n        .writer("Jason Sudeikis, Brendan Hunt, Joe Kelly")\n        .build()\n    val episode: Episode = client.episodes().create(params)\n}',
+      },
+      csharp: {
+        method: 'Episodes.Create',
+        example:
+          'EpisodeCreateParams parameters = new()\n{\n    AirDate = "2020-10-02",\n    CharacterFocus =\n    [\n        "ted-lasso", "coach-beard", "higgins", "nate"\n    ],\n    Director = "MJ Delaney",\n    EpisodeNumber = 8,\n    MainTheme = "The power of vulnerability and male friendship",\n    RuntimeMinutes = 29,\n    Season = 1,\n    Synopsis = "Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.",\n    TedWisdom = "There\'s two buttons I never like to hit: that\'s panic and snooze.",\n    Title = "The Diamond Dogs",\n    Writer = "Jason Sudeikis, Brendan Hunt, Joe Kelly",\n};\n\nvar episode = await client.Episodes.Create(parameters);\n\nConsole.WriteLine(episode);',
       },
     },
   },
@@ -1673,11 +1673,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.episodes.Episode;\nimport dev.cjav.believe.models.episodes.EpisodeRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Episode episode = client.episodes().retrieve("episode_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Episodes.Retrieve',
-        example:
-          'EpisodeRetrieveParams parameters = new() { EpisodeID = "episode_id" };\n\nvar episode = await client.Episodes.Retrieve(parameters);\n\nConsole.WriteLine(episode);',
-      },
       typescript: {
         method: 'client.episodes.retrieve',
         example:
@@ -1687,6 +1682,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'episodes().retrieve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.episodes.Episode\nimport dev.cjav.believe.models.episodes.EpisodeRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val episode: Episode = client.episodes().retrieve("episode_id")\n}',
+      },
+      csharp: {
+        method: 'Episodes.Retrieve',
+        example:
+          'EpisodeRetrieveParams parameters = new() { EpisodeID = "episode_id" };\n\nvar episode = await client.Episodes.Retrieve(parameters);\n\nConsole.WriteLine(episode);',
       },
     },
   },
@@ -1741,11 +1741,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.episodes.Episode;\nimport dev.cjav.believe.models.episodes.EpisodeUpdateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Episode episode = client.episodes().update("episode_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Episodes.Update',
-        example:
-          'EpisodeUpdateParams parameters = new() { EpisodeID = "episode_id" };\n\nvar episode = await client.Episodes.Update(parameters);\n\nConsole.WriteLine(episode);',
-      },
       typescript: {
         method: 'client.episodes.update',
         example:
@@ -1755,6 +1750,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'episodes().update',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.episodes.Episode\nimport dev.cjav.believe.models.episodes.EpisodeUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val episode: Episode = client.episodes().update("episode_id")\n}',
+      },
+      csharp: {
+        method: 'Episodes.Update',
+        example:
+          'EpisodeUpdateParams parameters = new() { EpisodeID = "episode_id" };\n\nvar episode = await client.Episodes.Update(parameters);\n\nConsole.WriteLine(episode);',
       },
     },
   },
@@ -1790,11 +1790,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.episodes.EpisodeDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        client.episodes().delete("episode_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Episodes.Delete',
-        example:
-          'EpisodeDeleteParams parameters = new() { EpisodeID = "episode_id" };\n\nawait client.Episodes.Delete(parameters);',
-      },
       typescript: {
         method: 'client.episodes.delete',
         example:
@@ -1804,6 +1799,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'episodes().delete',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.episodes.EpisodeDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.episodes().delete("episode_id")\n}',
+      },
+      csharp: {
+        method: 'Episodes.Delete',
+        example:
+          'EpisodeDeleteParams parameters = new() { EpisodeID = "episode_id" };\n\nawait client.Episodes.Delete(parameters);',
       },
     },
   },
@@ -1840,11 +1840,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.episodes.EpisodeGetWisdomParams;\nimport dev.cjav.believe.models.episodes.EpisodeGetWisdomResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        EpisodeGetWisdomResponse response = client.episodes().getWisdom("episode_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Episodes.GetWisdom',
-        example:
-          'EpisodeGetWisdomParams parameters = new() { EpisodeID = "episode_id" };\n\nvar response = await client.Episodes.GetWisdom(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.episodes.getWisdom',
         example:
@@ -1854,6 +1849,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'episodes().getWisdom',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.episodes.EpisodeGetWisdomParams\nimport dev.cjav.believe.models.episodes.EpisodeGetWisdomResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: EpisodeGetWisdomResponse = client.episodes().getWisdom("episode_id")\n}',
+      },
+      csharp: {
+        method: 'Episodes.GetWisdom',
+        example:
+          'EpisodeGetWisdomParams parameters = new() { EpisodeID = "episode_id" };\n\nvar response = await client.Episodes.GetWisdom(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -1899,11 +1899,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.quotes.QuoteListPage;\nimport dev.cjav.believe.models.quotes.QuoteListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        QuoteListPage page = client.quotes().list();\n    }\n}',
       },
-      csharp: {
-        method: 'Quotes.List',
-        example:
-          'QuoteListParams parameters = new();\n\nvar page = await client.Quotes.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.quotes.list',
         example:
@@ -1913,6 +1908,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'quotes().list',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.quotes.QuoteListPage\nimport dev.cjav.believe.models.quotes.QuoteListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: QuoteListPage = client.quotes().list()\n}',
+      },
+      csharp: {
+        method: 'Quotes.List',
+        example:
+          'QuoteListParams parameters = new();\n\nvar page = await client.Quotes.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -1963,11 +1963,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.quotes.Quote;\nimport dev.cjav.believe.models.quotes.QuoteCreateParams;\nimport dev.cjav.believe.models.quotes.QuoteMoment;\nimport dev.cjav.believe.models.quotes.QuoteTheme;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        QuoteCreateParams params = QuoteCreateParams.builder()\n            .characterId("ted-lasso")\n            .context("Ted\'s first team meeting, revealing his coaching philosophy")\n            .momentType(QuoteMoment.LOCKER_ROOM)\n            .text("I believe in believe.")\n            .theme(QuoteTheme.BELIEF)\n            .build();\n        Quote quote = client.quotes().create(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Quotes.Create',
-        example:
-          'QuoteCreateParams parameters = new()\n{\n    CharacterID = "ted-lasso",\n    Context = "Ted\'s first team meeting, revealing his coaching philosophy",\n    MomentType = QuoteMoment.LockerRoom,\n    Text = "I believe in believe.",\n    Theme = QuoteTheme.Belief,\n};\n\nvar quote = await client.Quotes.Create(parameters);\n\nConsole.WriteLine(quote);',
-      },
       typescript: {
         method: 'client.quotes.create',
         example:
@@ -1977,6 +1972,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'quotes().create',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.quotes.Quote\nimport dev.cjav.believe.models.quotes.QuoteCreateParams\nimport dev.cjav.believe.models.quotes.QuoteMoment\nimport dev.cjav.believe.models.quotes.QuoteTheme\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: QuoteCreateParams = QuoteCreateParams.builder()\n        .characterId("ted-lasso")\n        .context("Ted\'s first team meeting, revealing his coaching philosophy")\n        .momentType(QuoteMoment.LOCKER_ROOM)\n        .text("I believe in believe.")\n        .theme(QuoteTheme.BELIEF)\n        .build()\n    val quote: Quote = client.quotes().create(params)\n}',
+      },
+      csharp: {
+        method: 'Quotes.Create',
+        example:
+          'QuoteCreateParams parameters = new()\n{\n    CharacterID = "ted-lasso",\n    Context = "Ted\'s first team meeting, revealing his coaching philosophy",\n    MomentType = QuoteMoment.LockerRoom,\n    Text = "I believe in believe.",\n    Theme = QuoteTheme.Belief,\n};\n\nvar quote = await client.Quotes.Create(parameters);\n\nConsole.WriteLine(quote);',
       },
     },
   },
@@ -2014,11 +2014,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.quotes.Quote;\nimport dev.cjav.believe.models.quotes.QuoteGetRandomParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Quote quote = client.quotes().getRandom();\n    }\n}',
       },
-      csharp: {
-        method: 'Quotes.GetRandom',
-        example:
-          'QuoteGetRandomParams parameters = new();\n\nvar quote = await client.Quotes.GetRandom(parameters);\n\nConsole.WriteLine(quote);',
-      },
       typescript: {
         method: 'client.quotes.getRandom',
         example:
@@ -2028,6 +2023,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'quotes().getRandom',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.quotes.Quote\nimport dev.cjav.believe.models.quotes.QuoteGetRandomParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val quote: Quote = client.quotes().getRandom()\n}',
+      },
+      csharp: {
+        method: 'Quotes.GetRandom',
+        example:
+          'QuoteGetRandomParams parameters = new();\n\nvar quote = await client.Quotes.GetRandom(parameters);\n\nConsole.WriteLine(quote);',
       },
     },
   },
@@ -2065,11 +2065,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.quotes.Quote;\nimport dev.cjav.believe.models.quotes.QuoteRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Quote quote = client.quotes().retrieve("quote_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Quotes.Retrieve',
-        example:
-          'QuoteRetrieveParams parameters = new() { QuoteID = "quote_id" };\n\nvar quote = await client.Quotes.Retrieve(parameters);\n\nConsole.WriteLine(quote);',
-      },
       typescript: {
         method: 'client.quotes.retrieve',
         example:
@@ -2079,6 +2074,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'quotes().retrieve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.quotes.Quote\nimport dev.cjav.believe.models.quotes.QuoteRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val quote: Quote = client.quotes().retrieve("quote_id")\n}',
+      },
+      csharp: {
+        method: 'Quotes.Retrieve',
+        example:
+          'QuoteRetrieveParams parameters = new() { QuoteID = "quote_id" };\n\nvar quote = await client.Quotes.Retrieve(parameters);\n\nConsole.WriteLine(quote);',
       },
     },
   },
@@ -2130,11 +2130,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.quotes.Quote;\nimport dev.cjav.believe.models.quotes.QuoteUpdateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Quote quote = client.quotes().update("quote_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Quotes.Update',
-        example:
-          'QuoteUpdateParams parameters = new() { QuoteID = "quote_id" };\n\nvar quote = await client.Quotes.Update(parameters);\n\nConsole.WriteLine(quote);',
-      },
       typescript: {
         method: 'client.quotes.update',
         example:
@@ -2144,6 +2139,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'quotes().update',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.quotes.Quote\nimport dev.cjav.believe.models.quotes.QuoteUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val quote: Quote = client.quotes().update("quote_id")\n}',
+      },
+      csharp: {
+        method: 'Quotes.Update',
+        example:
+          'QuoteUpdateParams parameters = new() { QuoteID = "quote_id" };\n\nvar quote = await client.Quotes.Update(parameters);\n\nConsole.WriteLine(quote);',
       },
     },
   },
@@ -2179,11 +2179,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.quotes.QuoteDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        client.quotes().delete("quote_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Quotes.Delete',
-        example:
-          'QuoteDeleteParams parameters = new() { QuoteID = "quote_id" };\n\nawait client.Quotes.Delete(parameters);',
-      },
       typescript: {
         method: 'client.quotes.delete',
         example:
@@ -2193,6 +2188,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'quotes().delete',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.quotes.QuoteDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.quotes().delete("quote_id")\n}',
+      },
+      csharp: {
+        method: 'Quotes.Delete',
+        example:
+          'QuoteDeleteParams parameters = new() { QuoteID = "quote_id" };\n\nawait client.Quotes.Delete(parameters);',
       },
     },
   },
@@ -2230,11 +2230,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.quotes.QuoteListByThemePage;\nimport dev.cjav.believe.models.quotes.QuoteListByThemeParams;\nimport dev.cjav.believe.models.quotes.QuoteTheme;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        QuoteListByThemePage page = client.quotes().listByTheme(QuoteTheme.BELIEF);\n    }\n}',
       },
-      csharp: {
-        method: 'Quotes.ListByTheme',
-        example:
-          'QuoteListByThemeParams parameters = new() { Theme = QuoteTheme.Belief };\n\nvar page = await client.Quotes.ListByTheme(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.quotes.listByTheme',
         example:
@@ -2244,6 +2239,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'quotes().listByTheme',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.quotes.QuoteListByThemePage\nimport dev.cjav.believe.models.quotes.QuoteListByThemeParams\nimport dev.cjav.believe.models.quotes.QuoteTheme\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: QuoteListByThemePage = client.quotes().listByTheme(QuoteTheme.BELIEF)\n}',
+      },
+      csharp: {
+        method: 'Quotes.ListByTheme',
+        example:
+          'QuoteListByThemeParams parameters = new() { Theme = QuoteTheme.Belief };\n\nvar page = await client.Quotes.ListByTheme(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -2281,11 +2281,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.quotes.QuoteListByCharacterPage;\nimport dev.cjav.believe.models.quotes.QuoteListByCharacterParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        QuoteListByCharacterPage page = client.quotes().listByCharacter("character_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Quotes.ListByCharacter',
-        example:
-          'QuoteListByCharacterParams parameters = new() { CharacterID = "character_id" };\n\nvar page = await client.Quotes.ListByCharacter(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.quotes.listByCharacter',
         example:
@@ -2295,6 +2290,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'quotes().listByCharacter',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.quotes.QuoteListByCharacterPage\nimport dev.cjav.believe.models.quotes.QuoteListByCharacterParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: QuoteListByCharacterPage = client.quotes().listByCharacter("character_id")\n}',
+      },
+      csharp: {
+        method: 'Quotes.ListByCharacter',
+        example:
+          'QuoteListByCharacterParams parameters = new() { CharacterID = "character_id" };\n\nvar page = await client.Quotes.ListByCharacter(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -2332,11 +2332,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.believe.BelieveSubmitParams;\nimport dev.cjav.believe.models.believe.BelieveSubmitResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        BelieveSubmitParams params = BelieveSubmitParams.builder()\n            .situation("I just got passed over for a promotion I\'ve been working toward for two years.")\n            .situationType(BelieveSubmitParams.SituationType.WORK_CHALLENGE)\n            .build();\n        BelieveSubmitResponse response = client.believe().submit(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Believe.Submit',
-        example:
-          'BelieveSubmitParams parameters = new()\n{\n    Situation = "I just got passed over for a promotion I\'ve been working toward for two years.",\n    SituationType = SituationType.WorkChallenge,\n};\n\nvar response = await client.Believe.Submit(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.believe.submit',
         example:
@@ -2346,6 +2341,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'believe().submit',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.believe.BelieveSubmitParams\nimport dev.cjav.believe.models.believe.BelieveSubmitResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: BelieveSubmitParams = BelieveSubmitParams.builder()\n        .situation("I just got passed over for a promotion I\'ve been working toward for two years.")\n        .situationType(BelieveSubmitParams.SituationType.WORK_CHALLENGE)\n        .build()\n    val response: BelieveSubmitResponse = client.believe().submit(params)\n}',
+      },
+      csharp: {
+        method: 'Believe.Submit',
+        example:
+          'BelieveSubmitParams parameters = new()\n{\n    Situation = "I just got passed over for a promotion I\'ve been working toward for two years.",\n    SituationType = SituationType.WorkChallenge,\n};\n\nvar response = await client.Believe.Submit(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -2388,11 +2388,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.conflicts.ConflictResolveParams;\nimport dev.cjav.believe.models.conflicts.ConflictResolveResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        ConflictResolveParams params = ConflictResolveParams.builder()\n            .conflictType(ConflictResolveParams.ConflictType.INTERPERSONAL)\n            .description("Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.")\n            .addPartiesInvolved("Me")\n            .addPartiesInvolved("My teammate Alex")\n            .build();\n        ConflictResolveResponse response = client.conflicts().resolve(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Conflicts.Resolve',
-        example:
-          'ConflictResolveParams parameters = new()\n{\n    ConflictType = ConflictType.Interpersonal,\n    Description = "Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.",\n    PartiesInvolved =\n    [\n        "Me", "My teammate Alex"\n    ],\n};\n\nvar response = await client.Conflicts.Resolve(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.conflicts.resolve',
         example:
@@ -2402,6 +2397,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'conflicts().resolve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.conflicts.ConflictResolveParams\nimport dev.cjav.believe.models.conflicts.ConflictResolveResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: ConflictResolveParams = ConflictResolveParams.builder()\n        .conflictType(ConflictResolveParams.ConflictType.INTERPERSONAL)\n        .description("Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.")\n        .addPartiesInvolved("Me")\n        .addPartiesInvolved("My teammate Alex")\n        .build()\n    val response: ConflictResolveResponse = client.conflicts().resolve(params)\n}',
+      },
+      csharp: {
+        method: 'Conflicts.Resolve',
+        example:
+          'ConflictResolveParams parameters = new()\n{\n    ConflictType = ConflictType.Interpersonal,\n    Description = "Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.",\n    PartiesInvolved =\n    [\n        "Me", "My teammate Alex"\n    ],\n};\n\nvar response = await client.Conflicts.Resolve(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -2439,11 +2439,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.reframe.ReframeTransformNegativeThoughtsParams;\nimport dev.cjav.believe.models.reframe.ReframeTransformNegativeThoughtsResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        ReframeTransformNegativeThoughtsParams params = ReframeTransformNegativeThoughtsParams.builder()\n            .negativeThought("I\'m not good enough for this job.")\n            .build();\n        ReframeTransformNegativeThoughtsResponse response = client.reframe().transformNegativeThoughts(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Reframe.TransformNegativeThoughts',
-        example:
-          'ReframeTransformNegativeThoughtsParams parameters = new()\n{\n    NegativeThought = "I\'m not good enough for this job."\n};\n\nvar response = await client.Reframe.TransformNegativeThoughts(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.reframe.transformNegativeThoughts',
         example:
@@ -2453,6 +2448,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'reframe().transformNegativeThoughts',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.reframe.ReframeTransformNegativeThoughtsParams\nimport dev.cjav.believe.models.reframe.ReframeTransformNegativeThoughtsResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: ReframeTransformNegativeThoughtsParams = ReframeTransformNegativeThoughtsParams.builder()\n        .negativeThought("I\'m not good enough for this job.")\n        .build()\n    val response: ReframeTransformNegativeThoughtsResponse = client.reframe().transformNegativeThoughts(params)\n}',
+      },
+      csharp: {
+        method: 'Reframe.TransformNegativeThoughts',
+        example:
+          'ReframeTransformNegativeThoughtsParams parameters = new()\n{\n    NegativeThought = "I\'m not good enough for this job."\n};\n\nvar response = await client.Reframe.TransformNegativeThoughts(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -2490,11 +2490,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.press.PressSimulateParams;\nimport dev.cjav.believe.models.press.PressSimulateResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        PressSimulateParams params = PressSimulateParams.builder()\n            .question("Ted, your team just lost 5-0. How do you explain this embarrassing defeat?")\n            .build();\n        PressSimulateResponse response = client.press().simulate(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Press.Simulate',
-        example:
-          'PressSimulateParams parameters = new()\n{\n    Question = "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n};\n\nvar response = await client.Press.Simulate(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.press.simulate',
         example:
@@ -2504,6 +2499,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'press().simulate',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.press.PressSimulateParams\nimport dev.cjav.believe.models.press.PressSimulateResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: PressSimulateParams = PressSimulateParams.builder()\n        .question("Ted, your team just lost 5-0. How do you explain this embarrassing defeat?")\n        .build()\n    val response: PressSimulateResponse = client.press().simulate(params)\n}',
+      },
+      csharp: {
+        method: 'Press.Simulate',
+        example:
+          'PressSimulateParams parameters = new()\n{\n    Question = "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n};\n\nvar response = await client.Press.Simulate(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -2541,11 +2541,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.coaching.principles.PrincipleListPage;\nimport dev.cjav.believe.models.coaching.principles.PrincipleListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        PrincipleListPage page = client.coaching().principles().list();\n    }\n}',
       },
-      csharp: {
-        method: 'Coaching.Principles.List',
-        example:
-          'PrincipleListParams parameters = new();\n\nvar page = await client.Coaching.Principles.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.coaching.principles.list',
         example:
@@ -2555,6 +2550,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'coaching().principles().list',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.coaching.principles.PrincipleListPage\nimport dev.cjav.believe.models.coaching.principles.PrincipleListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: PrincipleListPage = client.coaching().principles().list()\n}',
+      },
+      csharp: {
+        method: 'Coaching.Principles.List',
+        example:
+          'PrincipleListParams parameters = new();\n\nvar page = await client.Coaching.Principles.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -2592,11 +2592,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.coaching.principles.CoachingPrinciple;\nimport dev.cjav.believe.models.coaching.principles.PrincipleRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        CoachingPrinciple coachingPrinciple = client.coaching().principles().retrieve("principle_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Coaching.Principles.Retrieve',
-        example:
-          'PrincipleRetrieveParams parameters = new() { PrincipleID = "principle_id" };\n\nvar coachingPrinciple = await client.Coaching.Principles.Retrieve(parameters);\n\nConsole.WriteLine(coachingPrinciple);',
-      },
       typescript: {
         method: 'client.coaching.principles.retrieve',
         example:
@@ -2606,6 +2601,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'coaching().principles().retrieve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.coaching.principles.CoachingPrinciple\nimport dev.cjav.believe.models.coaching.principles.PrincipleRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val coachingPrinciple: CoachingPrinciple = client.coaching().principles().retrieve("principle_id")\n}',
+      },
+      csharp: {
+        method: 'Coaching.Principles.Retrieve',
+        example:
+          'PrincipleRetrieveParams parameters = new() { PrincipleID = "principle_id" };\n\nvar coachingPrinciple = await client.Coaching.Principles.Retrieve(parameters);\n\nConsole.WriteLine(coachingPrinciple);',
       },
     },
   },
@@ -2642,11 +2642,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.coaching.principles.CoachingPrinciple;\nimport dev.cjav.believe.models.coaching.principles.PrincipleGetRandomParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        CoachingPrinciple coachingPrinciple = client.coaching().principles().getRandom();\n    }\n}',
       },
-      csharp: {
-        method: 'Coaching.Principles.GetRandom',
-        example:
-          'PrincipleGetRandomParams parameters = new();\n\nvar coachingPrinciple = await client.Coaching.Principles.GetRandom(parameters);\n\nConsole.WriteLine(coachingPrinciple);',
-      },
       typescript: {
         method: 'client.coaching.principles.getRandom',
         example:
@@ -2656,6 +2651,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'coaching().principles().getRandom',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.coaching.principles.CoachingPrinciple\nimport dev.cjav.believe.models.coaching.principles.PrincipleGetRandomParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val coachingPrinciple: CoachingPrinciple = client.coaching().principles().getRandom()\n}',
+      },
+      csharp: {
+        method: 'Coaching.Principles.GetRandom',
+        example:
+          'PrincipleGetRandomParams parameters = new();\n\nvar coachingPrinciple = await client.Coaching.Principles.GetRandom(parameters);\n\nConsole.WriteLine(coachingPrinciple);',
       },
     },
   },
@@ -2694,11 +2694,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.biscuits.BiscuitListPage;\nimport dev.cjav.believe.models.biscuits.BiscuitListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        BiscuitListPage page = client.biscuits().list();\n    }\n}',
       },
-      csharp: {
-        method: 'Biscuits.List',
-        example:
-          'BiscuitListParams parameters = new();\n\nvar page = await client.Biscuits.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.biscuits.list',
         example:
@@ -2708,6 +2703,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'biscuits().list',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.biscuits.BiscuitListPage\nimport dev.cjav.believe.models.biscuits.BiscuitListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: BiscuitListPage = client.biscuits().list()\n}',
+      },
+      csharp: {
+        method: 'Biscuits.List',
+        example:
+          'BiscuitListParams parameters = new();\n\nvar page = await client.Biscuits.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -2744,11 +2744,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.biscuits.Biscuit;\nimport dev.cjav.believe.models.biscuits.BiscuitGetFreshParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Biscuit biscuit = client.biscuits().getFresh();\n    }\n}',
       },
-      csharp: {
-        method: 'Biscuits.GetFresh',
-        example:
-          'BiscuitGetFreshParams parameters = new();\n\nvar biscuit = await client.Biscuits.GetFresh(parameters);\n\nConsole.WriteLine(biscuit);',
-      },
       typescript: {
         method: 'client.biscuits.getFresh',
         example:
@@ -2758,6 +2753,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'biscuits().getFresh',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.biscuits.Biscuit\nimport dev.cjav.believe.models.biscuits.BiscuitGetFreshParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val biscuit: Biscuit = client.biscuits().getFresh()\n}',
+      },
+      csharp: {
+        method: 'Biscuits.GetFresh',
+        example:
+          'BiscuitGetFreshParams parameters = new();\n\nvar biscuit = await client.Biscuits.GetFresh(parameters);\n\nConsole.WriteLine(biscuit);',
       },
     },
   },
@@ -2795,11 +2795,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.biscuits.Biscuit;\nimport dev.cjav.believe.models.biscuits.BiscuitRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        Biscuit biscuit = client.biscuits().retrieve("biscuit_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Biscuits.Retrieve',
-        example:
-          'BiscuitRetrieveParams parameters = new() { BiscuitID = "biscuit_id" };\n\nvar biscuit = await client.Biscuits.Retrieve(parameters);\n\nConsole.WriteLine(biscuit);',
-      },
       typescript: {
         method: 'client.biscuits.retrieve',
         example:
@@ -2809,6 +2804,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'biscuits().retrieve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.biscuits.Biscuit\nimport dev.cjav.believe.models.biscuits.BiscuitRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val biscuit: Biscuit = client.biscuits().retrieve("biscuit_id")\n}',
+      },
+      csharp: {
+        method: 'Biscuits.Retrieve',
+        example:
+          'BiscuitRetrieveParams parameters = new() { BiscuitID = "biscuit_id" };\n\nvar biscuit = await client.Biscuits.Retrieve(parameters);\n\nConsole.WriteLine(biscuit);',
       },
     },
   },
@@ -2847,11 +2847,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.peptalk.PepTalkRetrieveParams;\nimport dev.cjav.believe.models.peptalk.PepTalkRetrieveResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        PepTalkRetrieveResponse pepTalk = client.pepTalk().retrieve();\n    }\n}',
       },
-      csharp: {
-        method: 'PepTalk.Retrieve',
-        example:
-          'PepTalkRetrieveParams parameters = new();\n\nvar pepTalk = await client.PepTalk.Retrieve(parameters);\n\nConsole.WriteLine(pepTalk);',
-      },
       typescript: {
         method: 'client.pepTalk.retrieve',
         example:
@@ -2861,6 +2856,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'pepTalk().retrieve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.peptalk.PepTalkRetrieveParams\nimport dev.cjav.believe.models.peptalk.PepTalkRetrieveResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val pepTalk: PepTalkRetrieveResponse = client.pepTalk().retrieve()\n}',
+      },
+      csharp: {
+        method: 'PepTalk.Retrieve',
+        example:
+          'PepTalkRetrieveParams parameters = new();\n\nvar pepTalk = await client.PepTalk.Retrieve(parameters);\n\nConsole.WriteLine(pepTalk);',
       },
     },
   },
@@ -2896,11 +2896,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.stream.StreamTestConnectionParams;\nimport dev.cjav.believe.models.stream.StreamTestConnectionResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        StreamTestConnectionResponse response = client.stream().testConnection();\n    }\n}',
       },
-      csharp: {
-        method: 'Stream.TestConnection',
-        example:
-          'StreamTestConnectionParams parameters = new();\n\nvar response = await client.Stream.TestConnection(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.stream.testConnection',
         example:
@@ -2910,6 +2905,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'stream().testConnection',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.stream.StreamTestConnectionParams\nimport dev.cjav.believe.models.stream.StreamTestConnectionResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: StreamTestConnectionResponse = client.stream().testConnection()\n}',
+      },
+      csharp: {
+        method: 'Stream.TestConnection',
+        example:
+          'StreamTestConnectionParams parameters = new();\n\nvar response = await client.Stream.TestConnection(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -2953,11 +2953,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teammembers.TeamMemberListPage;\nimport dev.cjav.believe.models.teammembers.TeamMemberListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TeamMemberListPage page = client.teamMembers().list();\n    }\n}',
       },
-      csharp: {
-        method: 'TeamMembers.List',
-        example:
-          'TeamMemberListParams parameters = new();\n\nvar page = await client.TeamMembers.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.teamMembers.list',
         example:
@@ -2967,6 +2962,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teamMembers().list',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teammembers.TeamMemberListPage\nimport dev.cjav.believe.models.teammembers.TeamMemberListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamMemberListPage = client.teamMembers().list()\n}',
+      },
+      csharp: {
+        method: 'TeamMembers.List',
+        example:
+          'TeamMemberListParams parameters = new();\n\nvar page = await client.TeamMembers.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -3007,11 +3007,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teammembers.Position;\nimport dev.cjav.believe.models.teammembers.TeamMemberCreateParams;\nimport dev.cjav.believe.models.teammembers.TeamMemberCreateResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TeamMemberCreateParams.Member.Player params = TeamMemberCreateParams.Member.Player.builder()\n            .characterId("jamie-tartt")\n            .jerseyNumber(9L)\n            .position(Position.FORWARD)\n            .teamId("afc-richmond")\n            .yearsWithTeam(3L)\n            .memberType(TeamMemberCreateParams.Member.Player.MemberType.PLAYER)\n            .build();\n        TeamMemberCreateResponse teamMember = client.teamMembers().create(params);\n    }\n}',
       },
-      csharp: {
-        method: 'TeamMembers.Create',
-        example:
-          'TeamMemberCreateParams parameters = new()\n{\n    Member = new Player()\n    {\n        CharacterID = "jamie-tartt",\n        JerseyNumber = 9,\n        Position = Position.Forward,\n        TeamID = "afc-richmond",\n        YearsWithTeam = 3,\n        Assists = 23,\n        GoalsScored = 47,\n        IsCaptain = false,\n        MemberType = MemberType.Player,\n    },\n};\n\nvar teamMember = await client.TeamMembers.Create(parameters);\n\nConsole.WriteLine(teamMember);',
-      },
       typescript: {
         method: 'client.teamMembers.create',
         example:
@@ -3021,6 +3016,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teamMembers().create',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teammembers.Position\nimport dev.cjav.believe.models.teammembers.TeamMemberCreateParams\nimport dev.cjav.believe.models.teammembers.TeamMemberCreateResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: TeamMemberCreateParams.Member.Player = TeamMemberCreateParams.Member.Player.builder()\n        .characterId("jamie-tartt")\n        .jerseyNumber(9L)\n        .position(Position.FORWARD)\n        .teamId("afc-richmond")\n        .yearsWithTeam(3L)\n        .memberType(TeamMemberCreateParams.Member.Player.MemberType.PLAYER)\n        .build()\n    val teamMember: TeamMemberCreateResponse = client.teamMembers().create(params)\n}',
+      },
+      csharp: {
+        method: 'TeamMembers.Create',
+        example:
+          'TeamMemberCreateParams parameters = new()\n{\n    Member = new Player()\n    {\n        CharacterID = "jamie-tartt",\n        JerseyNumber = 9,\n        Position = Position.Forward,\n        TeamID = "afc-richmond",\n        YearsWithTeam = 3,\n        Assists = 23,\n        GoalsScored = 47,\n        IsCaptain = false,\n        MemberType = MemberType.Player,\n    },\n};\n\nvar teamMember = await client.TeamMembers.Create(parameters);\n\nConsole.WriteLine(teamMember);',
       },
     },
   },
@@ -3059,11 +3059,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teammembers.TeamMemberRetrieveParams;\nimport dev.cjav.believe.models.teammembers.TeamMemberRetrieveResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TeamMemberRetrieveResponse teamMember = client.teamMembers().retrieve("member_id");\n    }\n}',
       },
-      csharp: {
-        method: 'TeamMembers.Retrieve',
-        example:
-          'TeamMemberRetrieveParams parameters = new() { MemberID = "member_id" };\n\nvar teamMember = await client.TeamMembers.Retrieve(parameters);\n\nConsole.WriteLine(teamMember);',
-      },
       typescript: {
         method: 'client.teamMembers.retrieve',
         example:
@@ -3073,6 +3068,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teamMembers().retrieve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teammembers.TeamMemberRetrieveParams\nimport dev.cjav.believe.models.teammembers.TeamMemberRetrieveResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val teamMember: TeamMemberRetrieveResponse = client.teamMembers().retrieve("member_id")\n}',
+      },
+      csharp: {
+        method: 'TeamMembers.Retrieve',
+        example:
+          'TeamMemberRetrieveParams parameters = new() { MemberID = "member_id" };\n\nvar teamMember = await client.TeamMembers.Retrieve(parameters);\n\nConsole.WriteLine(teamMember);',
       },
     },
   },
@@ -3113,11 +3113,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teammembers.TeamMemberUpdateParams;\nimport dev.cjav.believe.models.teammembers.TeamMemberUpdateResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TeamMemberUpdateParams params = TeamMemberUpdateParams.builder()\n            .memberId("member_id")\n            .updates(TeamMemberUpdateParams.Updates.PlayerUpdate.builder().build())\n            .build();\n        TeamMemberUpdateResponse teamMember = client.teamMembers().update(params);\n    }\n}',
       },
-      csharp: {
-        method: 'TeamMembers.Update',
-        example:
-          'TeamMemberUpdateParams parameters = new()\n{\n    MemberID = "member_id",\n    Updates = new PlayerUpdate()\n    {\n        Assists = 0,\n        GoalsScored = 0,\n        IsCaptain = true,\n        JerseyNumber = 1,\n        Position = Position.Goalkeeper,\n        TeamID = "team_id",\n        YearsWithTeam = 0,\n    },\n};\n\nvar teamMember = await client.TeamMembers.Update(parameters);\n\nConsole.WriteLine(teamMember);',
-      },
       typescript: {
         method: 'client.teamMembers.update',
         example:
@@ -3127,6 +3122,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teamMembers().update',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teammembers.TeamMemberUpdateParams\nimport dev.cjav.believe.models.teammembers.TeamMemberUpdateResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: TeamMemberUpdateParams = TeamMemberUpdateParams.builder()\n        .memberId("member_id")\n        .updates(TeamMemberUpdateParams.Updates.PlayerUpdate.builder().build())\n        .build()\n    val teamMember: TeamMemberUpdateResponse = client.teamMembers().update(params)\n}',
+      },
+      csharp: {
+        method: 'TeamMembers.Update',
+        example:
+          'TeamMemberUpdateParams parameters = new()\n{\n    MemberID = "member_id",\n    Updates = new PlayerUpdate()\n    {\n        Assists = 0,\n        GoalsScored = 0,\n        IsCaptain = true,\n        JerseyNumber = 1,\n        Position = Position.Goalkeeper,\n        TeamID = "team_id",\n        YearsWithTeam = 0,\n    },\n};\n\nvar teamMember = await client.TeamMembers.Update(parameters);\n\nConsole.WriteLine(teamMember);',
       },
     },
   },
@@ -3162,11 +3162,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teammembers.TeamMemberDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        client.teamMembers().delete("member_id");\n    }\n}',
       },
-      csharp: {
-        method: 'TeamMembers.Delete',
-        example:
-          'TeamMemberDeleteParams parameters = new() { MemberID = "member_id" };\n\nawait client.TeamMembers.Delete(parameters);',
-      },
       typescript: {
         method: 'client.teamMembers.delete',
         example:
@@ -3176,6 +3171,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teamMembers().delete',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teammembers.TeamMemberDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.teamMembers().delete("member_id")\n}',
+      },
+      csharp: {
+        method: 'TeamMembers.Delete',
+        example:
+          'TeamMemberDeleteParams parameters = new() { MemberID = "member_id" };\n\nawait client.TeamMembers.Delete(parameters);',
       },
     },
   },
@@ -3218,11 +3218,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teammembers.TeamMemberListPlayersPage;\nimport dev.cjav.believe.models.teammembers.TeamMemberListPlayersParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TeamMemberListPlayersPage page = client.teamMembers().listPlayers();\n    }\n}',
       },
-      csharp: {
-        method: 'TeamMembers.ListPlayers',
-        example:
-          'TeamMemberListPlayersParams parameters = new();\n\nvar page = await client.TeamMembers.ListPlayers(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.teamMembers.listPlayers',
         example:
@@ -3232,6 +3227,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teamMembers().listPlayers',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teammembers.TeamMemberListPlayersPage\nimport dev.cjav.believe.models.teammembers.TeamMemberListPlayersParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamMemberListPlayersPage = client.teamMembers().listPlayers()\n}',
+      },
+      csharp: {
+        method: 'TeamMembers.ListPlayers',
+        example:
+          'TeamMemberListPlayersParams parameters = new();\n\nvar page = await client.TeamMembers.ListPlayers(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -3274,11 +3274,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teammembers.TeamMemberListCoachesPage;\nimport dev.cjav.believe.models.teammembers.TeamMemberListCoachesParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TeamMemberListCoachesPage page = client.teamMembers().listCoaches();\n    }\n}',
       },
-      csharp: {
-        method: 'TeamMembers.ListCoaches',
-        example:
-          'TeamMemberListCoachesParams parameters = new();\n\nvar page = await client.TeamMembers.ListCoaches(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.teamMembers.listCoaches',
         example:
@@ -3288,6 +3283,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teamMembers().listCoaches',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teammembers.TeamMemberListCoachesPage\nimport dev.cjav.believe.models.teammembers.TeamMemberListCoachesParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamMemberListCoachesPage = client.teamMembers().listCoaches()\n}',
+      },
+      csharp: {
+        method: 'TeamMembers.ListCoaches',
+        example:
+          'TeamMemberListCoachesParams parameters = new();\n\nvar page = await client.TeamMembers.ListCoaches(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -3326,11 +3326,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.teammembers.TeamMemberListStaffPage;\nimport dev.cjav.believe.models.teammembers.TeamMemberListStaffParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TeamMemberListStaffPage page = client.teamMembers().listStaff();\n    }\n}',
       },
-      csharp: {
-        method: 'TeamMembers.ListStaff',
-        example:
-          'TeamMemberListStaffParams parameters = new();\n\nvar page = await client.TeamMembers.ListStaff(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.teamMembers.listStaff',
         example:
@@ -3340,6 +3335,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'teamMembers().listStaff',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.teammembers.TeamMemberListStaffPage\nimport dev.cjav.believe.models.teammembers.TeamMemberListStaffParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TeamMemberListStaffPage = client.teamMembers().listStaff()\n}',
+      },
+      csharp: {
+        method: 'TeamMembers.ListStaff',
+        example:
+          'TeamMemberListStaffParams parameters = new();\n\nvar page = await client.TeamMembers.ListStaff(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -3376,11 +3376,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.webhooks.RegisteredWebhook;\nimport dev.cjav.believe.models.webhooks.WebhookListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        List<RegisteredWebhook> registeredWebhooks = client.webhooks().list();\n    }\n}',
       },
-      csharp: {
-        method: 'Webhooks.List',
-        example:
-          'WebhookListParams parameters = new();\n\nvar registeredWebhooks = await client.Webhooks.List(parameters);\n\nConsole.WriteLine(registeredWebhooks);',
-      },
       typescript: {
         method: 'client.webhooks.list',
         example:
@@ -3390,6 +3385,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'webhooks().list',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.webhooks.RegisteredWebhook\nimport dev.cjav.believe.models.webhooks.WebhookListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val registeredWebhooks: List<RegisteredWebhook> = client.webhooks().list()\n}',
+      },
+      csharp: {
+        method: 'Webhooks.List',
+        example:
+          'WebhookListParams parameters = new();\n\nvar registeredWebhooks = await client.Webhooks.List(parameters);\n\nConsole.WriteLine(registeredWebhooks);',
       },
     },
   },
@@ -3432,11 +3432,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.webhooks.WebhookCreateParams;\nimport dev.cjav.believe.models.webhooks.WebhookCreateResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        WebhookCreateParams params = WebhookCreateParams.builder()\n            .url("https://example.com/webhooks")\n            .build();\n        WebhookCreateResponse webhook = client.webhooks().create(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Webhooks.Create',
-        example:
-          'WebhookCreateParams parameters = new() { Url = "https://example.com/webhooks" };\n\nvar webhook = await client.Webhooks.Create(parameters);\n\nConsole.WriteLine(webhook);',
-      },
       typescript: {
         method: 'client.webhooks.create',
         example:
@@ -3446,6 +3441,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'webhooks().create',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.webhooks.WebhookCreateParams\nimport dev.cjav.believe.models.webhooks.WebhookCreateResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: WebhookCreateParams = WebhookCreateParams.builder()\n        .url("https://example.com/webhooks")\n        .build()\n    val webhook: WebhookCreateResponse = client.webhooks().create(params)\n}',
+      },
+      csharp: {
+        method: 'Webhooks.Create',
+        example:
+          'WebhookCreateParams parameters = new() { Url = "https://example.com/webhooks" };\n\nvar webhook = await client.Webhooks.Create(parameters);\n\nConsole.WriteLine(webhook);',
       },
     },
   },
@@ -3483,11 +3483,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.webhooks.RegisteredWebhook;\nimport dev.cjav.believe.models.webhooks.WebhookRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        RegisteredWebhook registeredWebhook = client.webhooks().retrieve("webhook_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Webhooks.Retrieve',
-        example:
-          'WebhookRetrieveParams parameters = new() { WebhookID = "webhook_id" };\n\nvar registeredWebhook = await client.Webhooks.Retrieve(parameters);\n\nConsole.WriteLine(registeredWebhook);',
-      },
       typescript: {
         method: 'client.webhooks.retrieve',
         example:
@@ -3497,6 +3492,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'webhooks().retrieve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.webhooks.RegisteredWebhook\nimport dev.cjav.believe.models.webhooks.WebhookRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val registeredWebhook: RegisteredWebhook = client.webhooks().retrieve("webhook_id")\n}',
+      },
+      csharp: {
+        method: 'Webhooks.Retrieve',
+        example:
+          'WebhookRetrieveParams parameters = new() { WebhookID = "webhook_id" };\n\nvar registeredWebhook = await client.Webhooks.Retrieve(parameters);\n\nConsole.WriteLine(registeredWebhook);',
       },
     },
   },
@@ -3533,11 +3533,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.webhooks.WebhookDeleteParams;\nimport dev.cjav.believe.models.webhooks.WebhookDeleteResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        WebhookDeleteResponse webhook = client.webhooks().delete("webhook_id");\n    }\n}',
       },
-      csharp: {
-        method: 'Webhooks.Delete',
-        example:
-          'WebhookDeleteParams parameters = new() { WebhookID = "webhook_id" };\n\nvar webhook = await client.Webhooks.Delete(parameters);\n\nConsole.WriteLine(webhook);',
-      },
       typescript: {
         method: 'client.webhooks.delete',
         example:
@@ -3547,6 +3542,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'webhooks().delete',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.webhooks.WebhookDeleteParams\nimport dev.cjav.believe.models.webhooks.WebhookDeleteResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val webhook: WebhookDeleteResponse = client.webhooks().delete("webhook_id")\n}',
+      },
+      csharp: {
+        method: 'Webhooks.Delete',
+        example:
+          'WebhookDeleteParams parameters = new() { WebhookID = "webhook_id" };\n\nvar webhook = await client.Webhooks.Delete(parameters);\n\nConsole.WriteLine(webhook);',
       },
     },
   },
@@ -3588,11 +3588,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.webhooks.WebhookTriggerEventParams;\nimport dev.cjav.believe.models.webhooks.WebhookTriggerEventResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        WebhookTriggerEventParams params = WebhookTriggerEventParams.builder()\n            .eventType(WebhookTriggerEventParams.EventType.MATCH_COMPLETED)\n            .build();\n        WebhookTriggerEventResponse response = client.webhooks().triggerEvent(params);\n    }\n}',
       },
-      csharp: {
-        method: 'Webhooks.TriggerEvent',
-        example:
-          'WebhookTriggerEventParams parameters = new()\n{\n    EventType = EventType.MatchCompleted\n};\n\nvar response = await client.Webhooks.TriggerEvent(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.webhooks.triggerEvent',
         example:
@@ -3602,6 +3597,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'webhooks().triggerEvent',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.webhooks.WebhookTriggerEventParams\nimport dev.cjav.believe.models.webhooks.WebhookTriggerEventResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: WebhookTriggerEventParams = WebhookTriggerEventParams.builder()\n        .eventType(WebhookTriggerEventParams.EventType.MATCH_COMPLETED)\n        .build()\n    val response: WebhookTriggerEventResponse = client.webhooks().triggerEvent(params)\n}',
+      },
+      csharp: {
+        method: 'Webhooks.TriggerEvent',
+        example:
+          'WebhookTriggerEventParams parameters = new()\n{\n    EventType = EventType.MatchCompleted\n};\n\nvar response = await client.Webhooks.TriggerEvent(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -3628,9 +3628,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.webhooks.WebhookUnwrapParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        client.webhooks().unwrap();\n    }\n}',
       },
-      csharp: {
-        example: 'WebhookUnwrapParams parameters = new();\n\nawait client.Webhooks.Unwrap(parameters);',
-      },
       typescript: {
         method: 'client.webhooks.unwrap',
         example:
@@ -3639,6 +3636,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       kotlin: {
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.webhooks.WebhookUnwrapParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.webhooks().unwrap()\n}',
+      },
+      csharp: {
+        example: 'WebhookUnwrapParams parameters = new();\n\nawait client.Webhooks.Unwrap(parameters);',
       },
     },
   },
@@ -3684,11 +3684,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.ticketsales.TicketSaleListPage;\nimport dev.cjav.believe.models.ticketsales.TicketSaleListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TicketSaleListPage page = client.ticketSales().list();\n    }\n}',
       },
-      csharp: {
-        method: 'TicketSales.List',
-        example:
-          'TicketSaleListParams parameters = new();\n\nvar page = await client.TicketSales.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
-      },
       typescript: {
         method: 'client.ticketSales.list',
         example:
@@ -3698,6 +3693,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'ticketSales().list',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.ticketsales.TicketSaleListPage\nimport dev.cjav.believe.models.ticketsales.TicketSaleListParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val page: TicketSaleListPage = client.ticketSales().list()\n}',
+      },
+      csharp: {
+        method: 'TicketSales.List',
+        example:
+          'TicketSaleListParams parameters = new();\n\nvar page = await client.TicketSales.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
     },
   },
@@ -3748,11 +3748,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.ticketsales.PurchaseMethod;\nimport dev.cjav.believe.models.ticketsales.TicketSale;\nimport dev.cjav.believe.models.ticketsales.TicketSaleCreateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TicketSaleCreateParams params = TicketSaleCreateParams.builder()\n            .buyerName("Mae Green")\n            .currency("GBP")\n            .discount("9.00")\n            .matchId("match-001")\n            .purchaseMethod(PurchaseMethod.ONLINE)\n            .quantity(2L)\n            .subtotal("90.00")\n            .tax("16.20")\n            .total("97.20")\n            .unitPrice("45.00")\n            .build();\n        TicketSale ticketSale = client.ticketSales().create(params);\n    }\n}',
       },
-      csharp: {
-        method: 'TicketSales.Create',
-        example:
-          'TicketSaleCreateParams parameters = new()\n{\n    BuyerName = "Mae Green",\n    Currency = "GBP",\n    Discount = "9.00",\n    MatchID = "match-001",\n    PurchaseMethod = PurchaseMethod.Online,\n    Quantity = 2,\n    Subtotal = "90.00",\n    Tax = "16.20",\n    Total = "97.20",\n    UnitPrice = "45.00",\n};\n\nvar ticketSale = await client.TicketSales.Create(parameters);\n\nConsole.WriteLine(ticketSale);',
-      },
       typescript: {
         method: 'client.ticketSales.create',
         example:
@@ -3762,6 +3757,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'ticketSales().create',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.ticketsales.PurchaseMethod\nimport dev.cjav.believe.models.ticketsales.TicketSale\nimport dev.cjav.believe.models.ticketsales.TicketSaleCreateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val params: TicketSaleCreateParams = TicketSaleCreateParams.builder()\n        .buyerName("Mae Green")\n        .currency("GBP")\n        .discount("9.00")\n        .matchId("match-001")\n        .purchaseMethod(PurchaseMethod.ONLINE)\n        .quantity(2L)\n        .subtotal("90.00")\n        .tax("16.20")\n        .total("97.20")\n        .unitPrice("45.00")\n        .build()\n    val ticketSale: TicketSale = client.ticketSales().create(params)\n}',
+      },
+      csharp: {
+        method: 'TicketSales.Create',
+        example:
+          'TicketSaleCreateParams parameters = new()\n{\n    BuyerName = "Mae Green",\n    Currency = "GBP",\n    Discount = "9.00",\n    MatchID = "match-001",\n    PurchaseMethod = PurchaseMethod.Online,\n    Quantity = 2,\n    Subtotal = "90.00",\n    Tax = "16.20",\n    Total = "97.20",\n    UnitPrice = "45.00",\n};\n\nvar ticketSale = await client.TicketSales.Create(parameters);\n\nConsole.WriteLine(ticketSale);',
       },
     },
   },
@@ -3797,11 +3797,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.ticketsales.TicketSaleDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        client.ticketSales().delete("ticket_sale_id");\n    }\n}',
       },
-      csharp: {
-        method: 'TicketSales.Delete',
-        example:
-          'TicketSaleDeleteParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nawait client.TicketSales.Delete(parameters);',
-      },
       typescript: {
         method: 'client.ticketSales.delete',
         example:
@@ -3811,6 +3806,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'ticketSales().delete',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.ticketsales.TicketSaleDeleteParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.ticketSales().delete("ticket_sale_id")\n}',
+      },
+      csharp: {
+        method: 'TicketSales.Delete',
+        example:
+          'TicketSaleDeleteParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nawait client.TicketSales.Delete(parameters);',
       },
     },
   },
@@ -3848,11 +3848,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.ticketsales.TicketSale;\nimport dev.cjav.believe.models.ticketsales.TicketSaleRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TicketSale ticketSale = client.ticketSales().retrieve("ticket_sale_id");\n    }\n}',
       },
-      csharp: {
-        method: 'TicketSales.Retrieve',
-        example:
-          'TicketSaleRetrieveParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nvar ticketSale = await client.TicketSales.Retrieve(parameters);\n\nConsole.WriteLine(ticketSale);',
-      },
       typescript: {
         method: 'client.ticketSales.retrieve',
         example:
@@ -3862,6 +3857,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'ticketSales().retrieve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.ticketsales.TicketSale\nimport dev.cjav.believe.models.ticketsales.TicketSaleRetrieveParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val ticketSale: TicketSale = client.ticketSales().retrieve("ticket_sale_id")\n}',
+      },
+      csharp: {
+        method: 'TicketSales.Retrieve',
+        example:
+          'TicketSaleRetrieveParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nvar ticketSale = await client.TicketSales.Retrieve(parameters);\n\nConsole.WriteLine(ticketSale);',
       },
     },
   },
@@ -3913,11 +3913,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.ticketsales.TicketSale;\nimport dev.cjav.believe.models.ticketsales.TicketSaleUpdateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        TicketSale ticketSale = client.ticketSales().update("ticket_sale_id");\n    }\n}',
       },
-      csharp: {
-        method: 'TicketSales.Update',
-        example:
-          'TicketSaleUpdateParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nvar ticketSale = await client.TicketSales.Update(parameters);\n\nConsole.WriteLine(ticketSale);',
-      },
       typescript: {
         method: 'client.ticketSales.update',
         example:
@@ -3927,6 +3922,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'ticketSales().update',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.ticketsales.TicketSale\nimport dev.cjav.believe.models.ticketsales.TicketSaleUpdateParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val ticketSale: TicketSale = client.ticketSales().update("ticket_sale_id")\n}',
+      },
+      csharp: {
+        method: 'TicketSales.Update',
+        example:
+          'TicketSaleUpdateParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nvar ticketSale = await client.TicketSales.Update(parameters);\n\nConsole.WriteLine(ticketSale);',
       },
     },
   },
@@ -3962,11 +3962,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.health.HealthCheckParams;\nimport dev.cjav.believe.models.health.HealthCheckResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        HealthCheckResponse response = client.health().check();\n    }\n}',
       },
-      csharp: {
-        method: 'Health.Check',
-        example:
-          'HealthCheckParams parameters = new();\n\nvar response = await client.Health.Check(parameters);\n\nConsole.WriteLine(response);',
-      },
       typescript: {
         method: 'client.health.check',
         example:
@@ -3976,6 +3971,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'health().check',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.health.HealthCheckParams\nimport dev.cjav.believe.models.health.HealthCheckResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val response: HealthCheckResponse = client.health().check()\n}',
+      },
+      csharp: {
+        method: 'Health.Check',
+        example:
+          'HealthCheckParams parameters = new();\n\nvar response = await client.Health.Check(parameters);\n\nConsole.WriteLine(response);',
       },
     },
   },
@@ -4011,11 +4011,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.version.VersionRetrieveParams;\nimport dev.cjav.believe.models.version.VersionRetrieveResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        VersionRetrieveResponse version = client.version().retrieve();\n    }\n}',
       },
-      csharp: {
-        method: 'Version.Retrieve',
-        example:
-          'VersionRetrieveParams parameters = new();\n\nvar version = await client.Version.Retrieve(parameters);\n\nConsole.WriteLine(version);',
-      },
       typescript: {
         method: 'client.version.retrieve',
         example:
@@ -4025,6 +4020,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'version().retrieve',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.version.VersionRetrieveParams\nimport dev.cjav.believe.models.version.VersionRetrieveResponse\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    val version: VersionRetrieveResponse = client.version().retrieve()\n}',
+      },
+      csharp: {
+        method: 'Version.Retrieve',
+        example:
+          'VersionRetrieveParams parameters = new();\n\nvar version = await client.Version.Retrieve(parameters);\n\nConsole.WriteLine(version);',
       },
     },
   },
@@ -4060,10 +4060,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'package dev.cjav.believe.example;\n\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.client.ws.WTestParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        BelieveClient client = BelieveOkHttpClient.fromEnv();\n\n        client.client().ws().test();\n    }\n}',
       },
-      csharp: {
-        method: 'Client.Ws.Test',
-        example: 'WTestParams parameters = new();\n\nawait client.Client.Ws.Test(parameters);',
-      },
       typescript: {
         method: 'client.client.ws.test',
         example:
@@ -4073,6 +4069,10 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client().ws().test',
         example:
           'package dev.cjav.believe.example\n\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.client.ws.WTestParams\n\nfun main() {\n    val client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\n    client.client().ws().test()\n}',
+      },
+      csharp: {
+        method: 'Client.Ws.Test',
+        example: 'WTestParams parameters = new();\n\nawait client.Client.Ws.Test(parameters);',
       },
     },
   },
@@ -4100,11 +4100,6 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
       '# Believe Java API Library\n\n<!-- x-release-please-start-version -->\n[![Maven Central](https://img.shields.io/maven-central/v/dev.cjav.believe/believe-java)](https://central.sonatype.com/artifact/dev.cjav.believe/believe-java/0.8.2)\n[![javadoc](https://javadoc.io/badge2/dev.cjav.believe/believe-java/0.8.2/javadoc.svg)](https://javadoc.io/doc/dev.cjav.believe/believe-java/0.8.2)\n<!-- x-release-please-end -->\n\nThe Believe Java SDK provides convenient access to the Believe REST API   from applications written in Java.\n\nThe Believe Java SDK is similar to the Believe Kotlin SDK but with minor differences that       make it more ergonomic for use in Java, such as `Optional` instead of nullable values, `Stream`       instead of `Sequence`, and `CompletableFuture` instead of suspend functions.\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## MCP Server\n\nUse the Believe MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40cjavdev%2Fbelieve-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBjamF2ZGV2L2JlbGlldmUtbWNwIl0sImVudiI6eyJCRUxJRVZFX0FQSV9LRVkiOiJNeSBBUEkgS2V5In19)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40cjavdev%2Fbelieve-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40cjavdev%2Fbelieve-mcp%22%5D%2C%22env%22%3A%7B%22BELIEVE_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n<!-- x-release-please-start-version -->\n\nJavadocs are available on [javadoc.io](https://javadoc.io/doc/dev.cjav.believe/believe-java/0.8.2).\n\n<!-- x-release-please-end -->\n\n## Installation\n\n<!-- x-release-please-start-version -->\n\n### Gradle\n\n~~~kotlin\nimplementation("dev.cjav.believe:believe-java:0.8.2")\n~~~\n\n### Maven\n\n~~~xml\n<dependency>\n  <groupId>dev.cjav.believe</groupId>\n  <artifactId>believe-java</artifactId>\n  <version>0.8.2</version>\n</dependency>\n~~~\n\n<!-- x-release-please-end -->\n\n## Requirements\n\nThis library requires Java 8 or later.\n\n## Usage\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.characters.CharacterListPage;\nimport dev.cjav.believe.models.characters.CharacterListParams;\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nBelieveClient client = BelieveOkHttpClient.fromEnv();\n\nCharacterListPage page = client.characters().list();\n```\n\n## Client configuration\n\nConfigure the client using system properties or environment variables:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nBelieveClient client = BelieveOkHttpClient.fromEnv();\n```\n\nOr manually:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\n\nBelieveClient client = BelieveOkHttpClient.builder()\n    .apiKey("My API Key")\n    .build();\n```\n\nOr using a combination of the two approaches:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\n\nBelieveClient client = BelieveOkHttpClient.builder()\n    // Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n    // Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\n    .fromEnv()\n    .apiKey("My API Key")\n    .build();\n```\n\nSee this table for the available options:\n\n| Setter    | System property   | Environment variable | Required | Default value                |\n| --------- | ----------------- | -------------------- | -------- | ---------------------------- |\n| `apiKey`  | `believe.apiKey`  | `BELIEVE_API_KEY`    | true     | -                            |\n| `baseUrl` | `believe.baseUrl` | `BELIEVE_BASE_URL`   | true     | `"https://believe.cjav.dev"` |\n\nSystem properties take precedence over environment variables.\n\n> [!TIP]\n> Don\'t create more than one client in the same application. Each client has a connection pool and\n> thread pools, which are more efficient to share between requests.\n\n### Modifying configuration\n\nTo temporarily use a modified client configuration, while reusing the same connection and thread       pools, call `withOptions()` on any client or service:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\n\nBelieveClient clientWithOptions = client.withOptions(optionsBuilder -> {\n    optionsBuilder.baseUrl("https://example.com");\n    optionsBuilder.maxRetries(42);\n});\n```\n\nThe `withOptions()` method does not affect the original client or service.\n\n## Requests and responses\n\nTo send a request to the Believe API, build an instance of some `Params` class and pass it to the     corresponding client method. When the response is received, it will be deserialized into an instance of     a Java class.\n\nFor example, `client.characters().list(...)` should be called with an instance of `CharacterListParams`, and it     will return an instance of `CharacterListPage`.\n\n## Immutability\n\nEach class in the SDK has an associated   [builder](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)   or factory method for constructing it.\n\nEach class is [immutable](https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html)   once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can   be used to convert it back to a builder for making a modified copy.\n\nBecause each class is immutable, builder modification will _never_ affect already built class instances.\n\n## Asynchronous execution\n\nThe default client is synchronous. To switch to asynchronous execution, call the `async()` method:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.models.characters.CharacterListPageAsync;\nimport dev.cjav.believe.models.characters.CharacterListParams;\nimport java.util.concurrent.CompletableFuture;\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nBelieveClient client = BelieveOkHttpClient.fromEnv();\n\nCompletableFuture<CharacterListPageAsync> page = client.async().characters().list();\n```\n\nOr create an asynchronous client from the beginning:\n\n```java\nimport dev.cjav.believe.client.BelieveClientAsync;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClientAsync;\nimport dev.cjav.believe.models.characters.CharacterListPageAsync;\nimport dev.cjav.believe.models.characters.CharacterListParams;\nimport java.util.concurrent.CompletableFuture;\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nBelieveClientAsync client = BelieveOkHttpClientAsync.fromEnv();\n\nCompletableFuture<CharacterListPageAsync> page = client.characters().list();\n```\n\nThe asynchronous client supports the same options as the synchronous one, except most methods return `CompletableFuture`s.\n\n\n\n## File uploads\n\nThe SDK defines methods that accept files.\n\nTo upload a file, pass a [`Path`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html):\n\n```java\nimport dev.cjav.believe.models.teams.logo.FileUpload;\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams;\nimport java.nio.file.Paths;\n\nLogoUploadParams params = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file(Paths.get("/path/to/file"))\n    .build();\nFileUpload fileUpload = client.teams().logo().upload(params);\n```\n\nOr an arbitrary [`InputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html):\n\n```java\nimport dev.cjav.believe.models.teams.logo.FileUpload;\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams;\nimport java.net.URL;\n\nLogoUploadParams params = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file(new URL("https://example.com//path/to/file").openStream())\n    .build();\nFileUpload fileUpload = client.teams().logo().upload(params);\n```\n\nOr a `byte[]` array:\n\n```java\nimport dev.cjav.believe.models.teams.logo.FileUpload;\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams;\n\nLogoUploadParams params = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file("content".getBytes())\n    .build();\nFileUpload fileUpload = client.teams().logo().upload(params);\n```\n\nNote that when passing a non-`Path` its filename is unknown so it will not be included in the request.     To manually set a filename, pass a [`MultipartField`](believe-java-core/src/main/kotlin/dev/cjav/believe/core/Values.kt):\n\n```java\nimport dev.cjav.believe.core.MultipartField;\nimport dev.cjav.believe.models.teams.logo.FileUpload;\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams;\nimport java.io.InputStream;\nimport java.net.URL;\n\nLogoUploadParams params = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file(MultipartField.<InputStream>builder()\n        .value(new URL("https://example.com//path/to/file").openStream())\n        .filename("/path/to/file")\n        .build())\n    .build();\nFileUpload fileUpload = client.teams().logo().upload(params);\n```\n\n\n\n## Raw responses\n\nThe SDK defines methods that deserialize responses into instances of Java classes.       However, these methods don\'t provide access to the response headers, status code, or the raw response       body.\n\nTo access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:\n\n```java\nimport dev.cjav.believe.core.http.Headers;\nimport dev.cjav.believe.core.http.HttpResponseFor;\nimport dev.cjav.believe.models.characters.CharacterListPage;\nimport dev.cjav.believe.models.characters.CharacterListParams;\n\nHttpResponseFor<CharacterListPage> page = client.characters().withRawResponse().list();\n\nint statusCode = page.statusCode();\nHeaders headers = page.headers();\n```\n\nYou can still deserialize the response into an instance of a Java class if needed:\n\n```java\nimport dev.cjav.believe.models.characters.CharacterListPage;\n\nCharacterListPage parsedPage = page.parse();\n```\n\n## Error handling\n\nThe SDK throws custom unchecked exception types:\n\n- [`BelieveServiceException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/BelieveServiceException.kt): Base class for HTTP errors. See this table for which exception       subclass is thrown for each HTTP status code:\n\n  | Status | Exception                                          |\n  | ------ | -------------------------------------------------- |\n  | 400    | [`BadRequestException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/BadRequestException.kt)           |\n  | 401    | [`UnauthorizedException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/UnauthorizedException.kt)         |\n  | 403    | [`PermissionDeniedException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/PermissionDeniedException.kt)     |\n  | 404    | [`NotFoundException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/NotFoundException.kt)             |\n  | 422    | [`UnprocessableEntityException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/UnprocessableEntityException.kt)  |\n  | 429    | [`RateLimitException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/RateLimitException.kt)            |\n  | 5xx    | [`InternalServerException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/InternalServerException.kt)       |\n  | others | [`UnexpectedStatusCodeException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/UnexpectedStatusCodeException.kt) |\n\n- [`BelieveIoException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/BelieveIoException.kt): I/O networking errors.\n\n- [`BelieveRetryableException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/BelieveRetryableException.kt): Generic error indicating a failure that could be retried by the client.\n\n- [`BelieveInvalidDataException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/BelieveInvalidDataException.kt): Failure to interpret successfully parsed data. For example,       when accessing a property that\'s supposed to be required, but the API unexpectedly omitted it from the       response.\n\n- [`BelieveException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/BelieveException.kt): Base class for all exceptions. Most errors will result in one of the       previously mentioned ones, but completely generic errors may be thrown using the base class.\n\n## Pagination\n\nThe SDK defines methods that return a paginated lists of results. It provides convenient ways to access     the results either one page at a time or item-by-item across all pages.\n\n### Auto-pagination\n\nTo iterate through all results across all pages, use the `autoPager()` method, which automatically     fetches more pages as needed.\n\nWhen using the synchronous client, the method returns an [`Iterable`](https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)\n\n```java\nimport dev.cjav.believe.models.characters.Character;\nimport dev.cjav.believe.models.characters.CharacterListPage;\n\nCharacterListPage page = client.characters().list();\n\n// Process as an Iterable\nfor (Character character : page.autoPager()) {\n    System.out.println(character);\n}\n\n// Process as a Stream\npage.autoPager()\n    .stream()\n    .limit(50)\n    .forEach(character -> System.out.println(character));\n```\n\nWhen using the asynchronous client, the method returns an [`AsyncStreamResponse`](believe-java-core/src/main/kotlin/dev/cjav/believe/core/http/AsyncStreamResponse.kt):\n\n```java\nimport dev.cjav.believe.core.http.AsyncStreamResponse;\nimport dev.cjav.believe.models.characters.Character;\nimport dev.cjav.believe.models.characters.CharacterListPageAsync;\nimport java.util.Optional;\nimport java.util.concurrent.CompletableFuture;\n\nCompletableFuture<CharacterListPageAsync> pageFuture = client.async().characters().list();\n\npageFuture.thenRun(page -> page.autoPager().subscribe(character -> {\n    System.out.println(character);\n}));\n\n// If you need to handle errors or completion of the stream\npageFuture.thenRun(page -> page.autoPager().subscribe(new AsyncStreamResponse.Handler<>() {\n    @Override\n    public void onNext(Character character) {\n        System.out.println(character);\n    }\n\n    @Override\n    public void onComplete(Optional<Throwable> error) {\n        if (error.isPresent()) {\n            System.out.println("Something went wrong!");\n            throw new RuntimeException(error.get());\n        } else {\n            System.out.println("No more!");\n        }\n    }\n}));\n\n// Or use futures\npageFuture.thenRun(page -> page.autoPager()\n    .subscribe(character -> {\n        System.out.println(character);\n    })\n    .onCompleteFuture()\n    .whenComplete((unused, error) -> {\n        if (error != null) {\n            System.out.println("Something went wrong!");\n            throw new RuntimeException(error);\n        } else {\n            System.out.println("No more!");\n        }\n    }));\n```\n\n### Manual pagination\n\nTo access individual page items and manually request the next page, use the `items()`,\n`hasNextPage()`, and `nextPage()` methods:\n\n```java\nimport dev.cjav.believe.models.characters.Character;\nimport dev.cjav.believe.models.characters.CharacterListPage;\n\nCharacterListPage page = client.characters().list();\nwhile (true) {\n    for (Character character : page.items()) {\n        System.out.println(character);\n    }\n\n    if (!page.hasNextPage()) {\n        break;\n    }\n\n    page = page.nextPage();\n}\n```\n\n## Logging\n\nEnable logging by setting the `BELIEVE_LOG` environment variable to   `info`:\n\n```sh\nexport BELIEVE_LOG=info\n```\n\nOr to `debug` for more verbose logging:\n\n```sh\nexport BELIEVE_LOG=debug\n```\n\nOr configure the client manually using the `logLevel` method:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.core.LogLevel;\n\nBelieveClient client = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .logLevel(LogLevel.INFO)\n    .build();\n```\n\n## ProGuard and R8\n\nAlthough the SDK uses reflection, it is still usable with     [ProGuard](https://github.com/Guardsquare/proguard) and     [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because     `believe-java-core` is published with a     [configuration file](believe-java-core/src/main/resources/META-INF/proguard/believe-java-core.pro) containing     [keep rules](https://www.guardsquare.com/manual/configuration/usage).\n\nProGuard and R8 should automatically detect and use the published rules, but you can also manually copy     the keep rules if necessary.\n\n\n\n\n\n## Jackson\n\nThe SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON     serialization/deserialization. It is compatible with version 2.13.4 or higher,     but depends on version 2.18.2 by default.\n\nThe SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the     default version was overridden in your Maven or Gradle config).\n\nIf the SDK threw an exception, but you\'re _certain_ the version is compatible, then disable the version     check using the `checkJacksonVersionCompatibility` on [`BelieveOkHttpClient`](believe-java-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClient.kt) or     [`BelieveOkHttpClientAsync`](believe-java-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClientAsync.kt).\n\n> [!CAUTION]\n> We make no guarantee that the SDK works correctly when the Jackson version check is disabled.\n\nAlso note that there are bugs in older Jackson versions that can affect the SDK. We don\'t work around all     Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to     upgrade Jackson for those instead.\n\n## Network options\n\n### Retries\n\nThe SDK automatically retries 2 times by default, with a short exponential backoff between requests.\n\nOnly the following error types are retried:\n- Connection errors (for example, due to a network connectivity problem)\n- 408 Request Timeout\n- 409 Conflict\n- 429 Rate Limit\n- 5xx Internal\n\nThe API may also explicitly instruct the SDK to retry or not retry a request.\n\nTo set a custom number of retries, configure the client using the `maxRetries` method:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\n\nBelieveClient client = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .maxRetries(4)\n    .build();\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default.\n\nTo set a custom timeout, configure the method call using the `timeout` method:\n\n```java\nimport dev.cjav.believe.models.characters.CharacterListPage;\n\nCharacterListPage page = client.characters().list(RequestOptions.builder().timeout(Duration.ofSeconds(30)).build());\n```\n\nOr configure the default for all method calls at the client level:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport java.time.Duration;\n\nBelieveClient client = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .timeout(Duration.ofSeconds(30))\n    .build();\n```\n\n### Proxies\n\nTo route requests through a proxy, configure the client using the `proxy` method:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport java.net.InetSocketAddress;\nimport java.net.Proxy;\n\nBelieveClient client = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .proxy(new Proxy(\n      Proxy.Type.HTTP, new InetSocketAddress(\n        "https://example.com", 8080\n      )\n    ))\n    .build();\n```\n\nIf the proxy responds with `407 Proxy Authentication Required`, supply credentials by also   configuring `proxyAuthenticator`:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport dev.cjav.believe.core.http.ProxyAuthenticator;\n\nBelieveClient client = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .proxy(...)\n    // Or a custom implementation of `ProxyAuthenticator`.\n    .proxyAuthenticator(ProxyAuthenticator.basic("username", "password"))\n    .build();\n```\n\n### Connection pooling\n\nTo customize the underlying OkHttp connection pool, configure the client using the   `maxIdleConnections` and `keepAliveDuration` methods:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\nimport java.time.Duration;\n\nBelieveClient client = BelieveOkHttpClient.builder()\n    .fromEnv()\n    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.\n    .maxIdleConnections(10)\n    .keepAliveDuration(Duration.ofMinutes(2))\n    .build();\n```\n\nIf both options are unset, OkHttp\'s default connection pool settings are used.\n\n### HTTPS\n\n> [!NOTE]\n> Most applications should not call these methods, and instead use the system defaults. The defaults include\n> special optimizations that can be lost if the implementations are modified.\n\nTo configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`,   `trustManager`, and `hostnameVerifier` methods:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\n\nBelieveClient client = BelieveOkHttpClient.builder()\n    .fromEnv()\n    // If `sslSocketFactory` is set, then `trustManager` must be set, and vice versa.\n    .sslSocketFactory(yourSSLSocketFactory)\n    .trustManager(yourTrustManager)\n    .hostnameVerifier(yourHostnameVerifier)\n    .build();\n```\n\n\n\n### Custom HTTP client\n\nThe SDK consists of three artifacts:\n- `believe-java-core`\n  - Contains core SDK logic\n  - Does not depend on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`BelieveClient`](believe-java-core/src/main/kotlin/dev/cjav/believe/client/BelieveClient.kt), [`BelieveClientAsync`](believe-java-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsync.kt),             [`BelieveClientImpl`](believe-java-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientImpl.kt), and [`BelieveClientAsyncImpl`](believe-java-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsyncImpl.kt), all of which can             work with any HTTP client\n- `believe-java-client-okhttp`\n  - Depends on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`BelieveOkHttpClient`](believe-java-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClient.kt) and [`BelieveOkHttpClientAsync`](believe-java-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClientAsync.kt), which             provide a way to construct [`BelieveClientImpl`](believe-java-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientImpl.kt) and             [`BelieveClientAsyncImpl`](believe-java-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsyncImpl.kt), respectively, using OkHttp\n- `believe-java`\n  - Depends on and exposes the APIs of both `believe-java-core` and `believe-java-client-okhttp`\n  - Does not have its own logic\n\nThis structure allows replacing the SDK\'s default HTTP client without pulling in unnecessary dependencies.\n\n#### Customized [`OkHttpClient`](https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html)\n\n> [!TIP]\n> Try the available [network options](#network-options) before replacing the default client.\n\nTo use a customized `OkHttpClient`:\n\n1. Replace your [`believe-java` dependency](#installation) with `believe-java-core`\n2. Copy `believe-java-client-okhttp`\'s [`OkHttpClient`](believe-java-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/OkHttpClient.kt) class into your code and        customize it\n3. Construct [`BelieveClientImpl`](believe-java-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientImpl.kt) or [`BelieveClientAsyncImpl`](believe-java-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsyncImpl.kt), similarly to        [`BelieveOkHttpClient`](believe-java-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClient.kt) or [`BelieveOkHttpClientAsync`](believe-java-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClientAsync.kt), using your        customized client\n\n### Completely custom HTTP client\n\nTo use a completely custom HTTP client:\n\n1. Replace your [`believe-java` dependency](#installation) with `believe-java-core`\n2. Write a class that implements the [`HttpClient`](believe-java-core/src/main/kotlin/dev/cjav/believe/core/http/HttpClient.kt) interface\n3. Construct [`BelieveClientImpl`](believe-java-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientImpl.kt) or [`BelieveClientAsyncImpl`](believe-java-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsyncImpl.kt), similarly to        [`BelieveOkHttpClient`](believe-java-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClient.kt) or [`BelieveOkHttpClientAsync`](believe-java-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClientAsync.kt), using your new        client class\n\n## Undocumented API functionality\n\nThe SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.\n\n### Parameters\n\nTo set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or       `putAdditionalBodyProperty` methods on any `Params` class:\n\n```java\nimport dev.cjav.believe.core.JsonValue;\nimport dev.cjav.believe.models.characters.CharacterListParams;\n\nCharacterListParams params = CharacterListParams.builder()\n    .putAdditionalHeader("Secret-Header", "42")\n    .putAdditionalQueryParam("secret_query_param", "42")\n    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))\n    .build();\n```\n\nThese can be accessed on the built object later using the `_additionalHeaders()`,       `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.\n\nTo set undocumented parameters on _nested_ headers, query params, or body classes, call the         `putAdditionalProperty` method on the nested class:\n\n```java\nimport dev.cjav.believe.core.JsonValue;\nimport dev.cjav.believe.models.characters.CharacterCreateParams;\nimport dev.cjav.believe.models.characters.EmotionalStats;\n\nCharacterCreateParams params = CharacterCreateParams.builder()\n    .emotionalStats(EmotionalStats.builder()\n        .putAdditionalProperty("secretProperty", JsonValue.from("42"))\n        .build())\n    .build();\n```\n\nThese properties can be accessed on the nested built object later using the         `_additionalProperties()` method.\n\nTo set a documented parameter or property to an undocumented or not yet supported _value_, pass a       [`JsonValue`](believe-java-core/src/main/kotlin/dev/cjav/believe/core/Values.kt) object to its setter:\n\n```java\nimport dev.cjav.believe.models.characters.CharacterListParams;\n\nCharacterListParams params = CharacterListParams.builder().build();\n```\n\nThe most straightforward way to create a [`JsonValue`](believe-java-core/src/main/kotlin/dev/cjav/believe/core/Values.kt) is using its       `from(...)` method:\n\n```java\nimport dev.cjav.believe.core.JsonValue;\nimport java.util.List;\nimport java.util.Map;\n\n// Create primitive JSON values\nJsonValue nullValue = JsonValue.from(null);\nJsonValue booleanValue = JsonValue.from(true);\nJsonValue numberValue = JsonValue.from(42);\nJsonValue stringValue = JsonValue.from("Hello World!");\n\n// Create a JSON array value equivalent to `["Hello", "World"]`\nJsonValue arrayValue = JsonValue.from(List.of(\n  "Hello", "World"\n));\n\n// Create a JSON object value equivalent to `{ "a": 1, "b": 2 }`\nJsonValue objectValue = JsonValue.from(Map.of(\n  "a", 1,\n  "b", 2\n));\n\n// Create an arbitrarily nested JSON equivalent to:\n// {\n//   "a": [1, 2],\n//   "b": [3, 4]\n// }\nJsonValue complexValue = JsonValue.from(Map.of(\n  "a", List.of(\n    1, 2\n  ),\n  "b", List.of(\n    3, 4\n  )\n));\n```\n\nNormally a `Builder` class\'s `build` method will throw         [`IllegalStateException`](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)         if any required parameter or property is unset.\n\nTo forcibly omit a required parameter or property, pass [`JsonMissing`](believe-java-core/src/main/kotlin/dev/cjav/believe/core/Values.kt):\n\n```java\nimport dev.cjav.believe.core.JsonMissing;\nimport dev.cjav.believe.models.characters.CharacterCreateParams;\nimport dev.cjav.believe.models.characters.CharacterListParams;\nimport dev.cjav.believe.models.characters.CharacterRole;\nimport dev.cjav.believe.models.characters.EmotionalStats;\nimport java.util.List;\n\nCharacterListParams params = CharacterCreateParams.builder()\n    .emotionalStats(EmotionalStats.builder()\n        .curiosity(40L)\n        .empathy(85L)\n        .optimism(45L)\n        .resilience(95L)\n        .vulnerability(60L)\n        .build())\n    .name("Roy Kent")\n    .personalityTraits(List.of(\n      "intense",\n      "loyal",\n      "secretly caring",\n      "profane"\n    ))\n    .role(CharacterRole.COACH)\n    .background(JsonMissing.of())\n    .build();\n```\n\n### Response properties\n\nTo access undocumented response properties, call the `_additionalProperties()` method:\n\n```java\nimport dev.cjav.believe.core.JsonValue;\nimport java.util.Map;\n\nMap<String, JsonValue> additionalProperties = client.characters().create(params)._additionalProperties();\nJsonValue secretPropertyValue = additionalProperties.get("secretProperty");\n\nString result = secretPropertyValue.accept(new JsonValue.Visitor<>() {\n    @Override\n    public String visitNull() {\n        return "It\'s null!";\n    }\n\n    @Override\n    public String visitBoolean(boolean value) {\n        return "It\'s a boolean!";\n    }\n\n    @Override\n    public String visitNumber(Number value) {\n        return "It\'s a number!";\n    }\n\n    // Other methods include `visitMissing`, `visitString`, `visitArray`, and `visitObject`\n    // The default implementation of each unimplemented method delegates to `visitDefault`, which throws by default, but can also be overridden\n});\n```\n\nTo access a property\'s raw JSON value, which may be undocumented, call its `_` prefixed method:\n\n```java\nimport dev.cjav.believe.core.JsonField;\nimport java.util.Optional;\n\nJsonField<String> background = client.characters().create(params)._background();\n\nif (background.isMissing()) {\n  // The property is absent from the JSON response\n} else if (background.isNull()) {\n  // The property was set to literal null\n} else {\n  // Check if value was provided as a string\n  // Other methods include `asNumber()`, `asBoolean()`, etc.\n  Optional<String> jsonString = background.asString();\n\n  // Try to deserialize into a custom type\n  MyClass myObject = background.asUnknown().orElseThrow().convert(MyClass.class);\n}\n```\n\n### Response validation\n\nIn rare cases, the API may return a response that doesn\'t match the expected type. For example, the SDK     may expect a property to contain a `String`, but the API could return something else.\n\nBy default, the SDK will not throw an exception in this case. It will throw     [`BelieveInvalidDataException`](believe-java-core/src/main/kotlin/dev/cjav/believe/errors/BelieveInvalidDataException.kt) only if you directly access the property.\n\nValidating the response is _not_ forwards compatible with new types from the API for existing fields.\n\nIf you would still prefer to check that the response is completely well-typed upfront, then either call     `validate()`:\n\n```java\nimport dev.cjav.believe.models.characters.Character;\n\nCharacter character = client.characters().create(params).validate();\n```\n\nOr configure the method call to validate the response using the `responseValidation` method:\n\n```java\nimport dev.cjav.believe.models.characters.CharacterListPage;\n\nCharacterListPage page = client.characters().list(RequestOptions.builder().responseValidation(true).build());\n```\n\nOr configure the default for all method calls at the client level:\n\n```java\nimport dev.cjav.believe.client.BelieveClient;\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient;\n\nBelieveClient client = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .responseValidation(true)\n    .build();\n```\n\n## FAQ\n\n### Why don\'t you use plain `enum` classes?\n\nJava `enum` classes are not trivially   [forwards compatible](https://www.stainless.com/blog/making-java-enums-forwards-compatible). Using them in   the SDK could cause runtime exceptions if the API is updated to respond with a new enum value.\n\n### Why do you represent fields using `JsonField<T>` instead of just plain `T`?\n\nUsing `JsonField<T>` enables a few features:\n\n- Allowing usage of [undocumented API functionality](#undocumented-api-functionality)\n- Lazily [validating the API response against the expected shape](#response-validation)\n- Representing absent vs explicitly null values\n\n### Why don\'t you use [`data` classes](https://kotlinlang.org/docs/data-classes.html)?\n\nIt is not [backwards compatible to add new fields to a data class](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api)   and we don\'t want to introduce a breaking change every time we add a field to a class.\n\n### Why don\'t you use checked exceptions?\n\nChecked exceptions are widely considered a mistake in the Java programming language. In fact, they were   omitted from Kotlin for this reason.\n\nChecked exceptions:\n\n- Are verbose to handle\n- Encourage error handling at the wrong level of abstraction, where nothing can be done about the error\n- Are tedious to propagate due to the [function coloring problem](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function)\n- Don\'t play well with lambdas (also due to the function coloring problem)\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/cjavdev/believe-java/issues) with questions, bugs, or suggestions.\n',
   },
   {
-    language: 'csharp',
-    content:
-      '# Believe C# API Library\n\nThe Believe C# SDK provides convenient access to the Believe REST API from applications written in   C#.\n\n## Installation\n\nInstall the package from [NuGet](https://www.nuget.org/packages/Believe.Client):\n\n```bash\ndotnet add package Believe.Client\n```\n\n## Requirements\n\nThis library requires .NET Standard 2.0 or later.\n\n## Usage\n\nSee the [`examples`](examples) directory for complete and runnable examples.\n\n```csharp\nBelieveClient client = new();\n\nCharacterListParams parameters = new();\n\nvar page = await client.Characters.List(parameters);\n\nConsole.WriteLine(page);\n```',
-  },
-  {
     language: 'typescript',
     content:
       "# Believe TypeScript API Library\n\n[![NPM version](https://img.shields.io/npm/v/@cjavdev/believe.svg?label=npm%20(stable))](https://npmjs.org/package/@cjavdev/believe) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@cjavdev/believe)\n\nThis library provides convenient access to the Believe REST API from server-side TypeScript or JavaScript.\n\n\n\nThe full API of this library can be found in [api.md](api.md).\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## MCP Server\n\nUse the Believe MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40cjavdev%2Fbelieve-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBjamF2ZGV2L2JlbGlldmUtbWNwIl0sImVudiI6eyJCRUxJRVZFX0FQSV9LRVkiOiJNeSBBUEkgS2V5In19)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40cjavdev%2Fbelieve-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40cjavdev%2Fbelieve-mcp%22%5D%2C%22env%22%3A%7B%22BELIEVE_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n```sh\nnpm install @cjavdev/believe\n```\n\n\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n<!-- prettier-ignore -->\n```js\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst page = await client.characters.list();\nconst character = page.data[0];\n\nconsole.log(character.id);\n```\n\n\n\n### Request & Response types\n\nThis library includes TypeScript definitions for all request params and response fields. You may import and use them like so:\n\n<!-- prettier-ignore -->\n```ts\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst [character]: [Believe.Character] = await client.characters.list();\n```\n\nDocumentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.\n\n## File uploads\n\nRequest parameters that correspond to file uploads can be passed in many different forms:\n- `File` (or an object with the same structure)\n- a `fetch` `Response` (or an object with the same structure)\n- an `fs.ReadStream`\n- the return value of our `toFile` helper\n\n```ts\nimport fs from 'fs';\nimport Believe, { toFile } from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// If you have access to Node `fs` we recommend using `fs.createReadStream()`:\nawait client.teams.logo.upload('team_id', { file: fs.createReadStream('/path/to/file') });\n\n// Or if you have the web `File` API you can pass a `File` instance:\nawait client.teams.logo.upload('team_id', { file: new File(['my bytes'], 'file') });\n\n// You can also pass a `fetch` `Response`:\nawait client.teams.logo.upload('team_id', { file: await fetch('https://somesite/file') });\n\n// Finally, if none of the above are convenient, you can use our `toFile` helper:\nawait client.teams.logo.upload('team_id', { file: await toFile(Buffer.from('my bytes'), 'file') });\nawait client.teams.logo.upload('team_id', {\n  file: await toFile(new Uint8Array([0, 1, 2]), 'file'),\n});\n```\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API,\nor if the API returns a non-success status code (i.e., 4xx or 5xx response),\na subclass of `APIError` will be thrown:\n\n<!-- prettier-ignore -->\n```ts\nconst page = await client.characters.list().catch(async (err) => {\n  if (err instanceof Believe.APIError) {\n    console.log(err.status); // 400\n    console.log(err.name); // BadRequestError\n    console.log(err.headers); // {server: 'nginx', ...}\n  } else {\n    throw err;\n  }\n});\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors will all be retried by default.\n\nYou can use the `maxRetries` option to configure or disable this:\n\n<!-- prettier-ignore -->\n```js\n// Configure the default for all requests:\nconst client = new Believe({\n  maxRetries: 0, // default is 2\n});\n\n// Or, configure per-request:\nawait client.characters.list({\n  maxRetries: 5,\n});\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default. You can configure this with a `timeout` option:\n\n<!-- prettier-ignore -->\n```ts\n// Configure the default for all requests:\nconst client = new Believe({\n  timeout: 20 * 1000, // 20 seconds (default is 1 minute)\n});\n\n// Override per-request:\nawait client.characters.list({\n  timeout: 5 * 1000,\n});\n```\n\nOn timeout, an `APIConnectionTimeoutError` is thrown.\n\nNote that requests which time out will be [retried twice by default](#retries).\n\n## Auto-pagination\n\nList methods in the Believe API are paginated.\nYou can use the `for await … of` syntax to iterate through items across all pages:\n\n```ts\nasync function fetchAllCharacters(params) {\n  const allCharacters = [];\n  // Automatically fetches more pages as needed.\n  for await (const character of client.characters.list()) {\n    allCharacters.push(character);\n  }\n  return allCharacters;\n}\n```\n\nAlternatively, you can request a single page at a time:\n\n```ts\nlet page = await client.characters.list();\nfor (const character of page.data) {\n  console.log(character);\n}\n\n// Convenience methods are provided for manually paginating:\nwhile (page.hasNextPage()) {\n  page = await page.getNextPage();\n  // ...\n}\n```\n\n\n\n## Advanced Usage\n\n### Tree shaking\n\nThis library supports tree shaking to reduce bundle size. Instead of importing the full client, you can create a client only including the API resources you need:\n\n~~~ts\nimport { createClient } from '@cjavdev/believe/tree-shakable';\nimport { Characters } from '@cjavdev/believe/resources/characters';\nimport { BaseLogo } from '@cjavdev/believe/resources/teams/logo';\n\nconst client = createClient({\n  // Specify the resources you'd like to use ...\n  resources: [Characters, BaseLogo],\n});\n\n// ... then make API calls as usual.\nconst page = await client.characters.list();\nconst character = page.data[0]\nconst fileUpload = await client.teams.logo.upload('team_id', { file: fs.createReadStream('path/to/file') });\n~~~\n\nEach API resource has two versions, the full resource (e.g., `Characters`) which includes all subresources, and the base resource (e.g., `BaseCharacters`) which does not.\n\nThe tree-shaken client is fully typed, so TypeScript will provide accurate autocomplete and prevent access to resources not included in your configuration.\nThe `createClient` function automatically infers the correct type, but you can also use the `PartialBelieve` type explicitly:\n\n~~~ts\nimport Believe from '@cjavdev/believe';\nimport { createClient, type PartialBelieve } from '@cjavdev/believe/tree-shakable';\nimport { BaseCharacters } from '@cjavdev/believe/resources/characters';\n\n// Explicit variable type\nconst client: PartialBelieve<{ characters: BaseCharacters }> = createClient({\n  resources: [BaseCharacters],\n  /* ... */\n});\n\n// Function parameter type\nasync function main(client: PartialBelieve<{ characters: BaseCharacters }>) {\n  const page = await client.characters.list();\n  const character = page.data[0]\n}\n\n// Works with any client that has the characters resource\nconst treeShakableClient = createClient({\n  resources: [BaseCharacters],\n  /* ... */\n});\nconst fullClient = new Believe(/* ... */);\n\nmain(treeShakableClient); // Works\nmain(fullClient); // Also works\n~~~\n\n### Accessing raw Response data (e.g., headers)\n\nThe \"raw\" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.\nThis method returns as soon as the headers for a successful response are received and does not consume the response body, so you are free to write custom parsing or streaming logic.\n\nYou can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.\nUnlike `.asResponse()` this method consumes the body, returning once it is parsed.\n\n<!-- prettier-ignore -->\n```ts\nconst client = new Believe();\n\nconst response = await client.characters.list().asResponse();\nconsole.log(response.headers.get('X-My-Header'));\nconsole.log(response.statusText); // access the underlying Response object\n\nconst { data: page, response: raw } = await client.characters.list().withResponse();\nconsole.log(raw.headers.get('X-My-Header'));\nfor await (const character of page) {\n  console.log(character.id);\n}\n```\n\n### Logging\n\n> [!IMPORTANT]\n> All log messages are intended for debugging only. The format and content of log messages\n> may change between releases.\n\n#### Log levels\n\nThe log level can be configured in two ways:\n\n1. Via the `BELIEVE_LOG` environment variable\n2. Using the `logLevel` client option (overrides the environment variable if set)\n\n```ts\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  logLevel: 'debug', // Show all log messages\n});\n```\n\nAvailable log levels, from most to least verbose:\n\n- `'debug'` - Show debug messages, info, warnings, and errors\n- `'info'` - Show info messages, warnings, and errors\n- `'warn'` - Show warnings and errors (default)\n- `'error'` - Show only errors\n- `'off'` - Disable all logging\n\nAt the `'debug'` level, all HTTP requests and responses are logged, including headers and bodies.\nSome authentication-related headers are redacted, but sensitive data in request and response bodies\nmay still be visible.\n\n#### Custom logger\n\nBy default, this library logs to `globalThis.console`. You can also provide a custom logger.\nMost logging libraries are supported, including [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), and [@std/log](https://jsr.io/@std/log). If your logger doesn't work, please open an issue.\n\nWhen providing a custom logger, the `logLevel` option still controls which messages are emitted, messages\nbelow the configured level will not be sent to your logger.\n\n```ts\nimport Believe from '@cjavdev/believe';\nimport pino from 'pino';\n\nconst logger = pino();\n\nconst client = new Believe({\n  logger: logger.child({ name: 'Believe' }),\n  logLevel: 'debug', // Send all messages to pino, allowing it to filter\n});\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.\nOptions on the client, such as retries, will be respected when making these requests.\n\n```ts\nawait client.post('/some/path', {\n  body: { some_prop: 'foo' },\n  query: { some_query_arg: 'bar' },\n});\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented\nparameter. This library doesn't validate at runtime that the request matches the type, so any extra values you\nsend will be sent as-is.\n\n```ts\nclient.characters.list({\n  // ...\n  // @ts-expect-error baz is not yet public\n  baz: 'undocumented option',\n});\n```\n\nFor requests with the `GET` verb, any extra params will be in the query, all other requests will send the\nextra param in the body.\n\nIf you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may access the response object with `// @ts-expect-error` on\nthe response object, or cast the response object to the requisite type. Like the request params, we do not\nvalidate or strip extra properties from the response from the API.\n\n### Customizing the fetch client\n\nBy default, this library expects a global `fetch` function is defined.\n\nIf you want to use a different `fetch` function, you can either polyfill the global:\n\n```ts\nimport fetch from 'my-fetch';\n\nglobalThis.fetch = fetch;\n```\n\nOr pass it to the client:\n\n```ts\nimport Believe from '@cjavdev/believe';\nimport fetch from 'my-fetch';\n\nconst client = new Believe({ fetch });\n```\n\n### Fetch options\n\nIf you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)\n\n```ts\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  fetchOptions: {\n    // `RequestInit` options\n  },\n});\n```\n\n#### Configuring proxies\n\nTo modify proxy behavior, you can provide custom `fetchOptions` that add runtime-specific proxy\noptions to requests:\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg\" align=\"top\" width=\"18\" height=\"21\"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>\n\n```ts\nimport Believe from '@cjavdev/believe';\nimport * as undici from 'undici';\n\nconst proxyAgent = new undici.ProxyAgent('http://localhost:8888');\nconst client = new Believe({\n  fetchOptions: {\n    dispatcher: proxyAgent,\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg\" align=\"top\" width=\"18\" height=\"21\"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>\n\n```ts\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  fetchOptions: {\n    proxy: 'http://localhost:8888',\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg\" align=\"top\" width=\"18\" height=\"21\"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>\n\n```ts\nimport Believe from 'npm:@cjavdev/believe';\n\nconst httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });\nconst client = new Believe({\n  fetchOptions: {\n    client: httpClient,\n  },\n});\n```\n\n## Frequently Asked Questions\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/cjavdev/believe-typescript/issues) with questions, bugs, or suggestions.\n\n## Requirements\n\nTypeScript >= 4.9 is supported.\n\nThe following runtimes are supported:\n\n- Node.js 20 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.\n- Deno v1.28.0 or higher.\n- Bun 1.0 or later.\n- Cloudflare Workers.\n- Vercel Edge Runtime.\n- Jest 28 or greater with the `\"node\"` environment (`\"jsdom\"` is not supported at this time).\n- Nitro v2.6 or greater.\n- Web browsers: disabled by default to avoid exposing your secret API credentials. Enable browser support by explicitly setting `dangerouslyAllowBrowser` to true'.\n<details>\n  <summary>More explanation</summary>\n\n  ### Why is this dangerous?\n  Enabling the `dangerouslyAllowBrowser` option can be dangerous because it exposes your secret API credentials in the client-side code. Web browsers are inherently less secure than server environments,\n  any user with access to the browser can potentially inspect, extract, and misuse these credentials. This could lead to unauthorized access using your credentials and potentially compromise sensitive data or functionality.\n  ### When might this not be dangerous?\n  In certain scenarios where enabling browser support might not pose significant risks:\n  - Internal Tools: If the application is used solely within a controlled internal environment where the users are trusted, the risk of credential exposure can be mitigated.\n  - Public APIs with Limited Scope: If your API has very limited scope and the exposed credentials do not grant access to sensitive data or critical operations, the potential impact of exposure is reduced.\n  - Development or debugging purpose: Enabling this feature temporarily might be acceptable, provided the credentials are short-lived, aren't also used in production environments, or are frequently rotated.\n\n</details>\n\nNote that React Native is not supported at this time.\n\nIf you are interested in other runtime environments, please open or upvote an issue on GitHub.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n",
@@ -4113,6 +4108,11 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
     language: 'kotlin',
     content:
       '# Believe Kotlin API Library\n\n<!-- x-release-please-start-version -->\n[![Maven Central](https://img.shields.io/maven-central/v/dev.cjav.believe/believe-kotlin)](https://central.sonatype.com/artifact/dev.cjav.believe/believe-kotlin/0.0.1)\n[![javadoc](https://javadoc.io/badge2/dev.cjav.believe/believe-kotlin/0.0.1/javadoc.svg)](https://javadoc.io/doc/dev.cjav.believe/believe-kotlin/0.0.1)\n<!-- x-release-please-end -->\n\nThe Believe Kotlin SDK provides convenient access to the Believe REST API   from applications written in Kotlin.\n\nThe Believe Kotlin SDK is similar to the Believe Java SDK but with minor differences that       make it more ergonomic for use in Kotlin, such as nullable values instead of `Optional`,       `Sequence` instead of `Stream`, and suspend functions instead of `CompletableFuture`.\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## MCP Server\n\nUse the Believe MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40cjavdev%2Fbelieve-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBjamF2ZGV2L2JlbGlldmUtbWNwIl0sImVudiI6eyJCRUxJRVZFX0FQSV9LRVkiOiJNeSBBUEkgS2V5In19)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40cjavdev%2Fbelieve-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40cjavdev%2Fbelieve-mcp%22%5D%2C%22env%22%3A%7B%22BELIEVE_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n<!-- x-release-please-start-version -->\n\nKDocs are available on [javadoc.io](https://javadoc.io/doc/dev.cjav.believe/believe-kotlin/0.0.1).\n\n<!-- x-release-please-end -->\n\n## Installation\n\n<!-- x-release-please-start-version -->\n\n### Gradle\n\n~~~kotlin\nimplementation("dev.cjav.believe:believe-kotlin:0.0.1")\n~~~\n\n### Maven\n\n~~~xml\n<dependency>\n  <groupId>dev.cjav.believe</groupId>\n  <artifactId>believe-kotlin</artifactId>\n  <version>0.0.1</version>\n</dependency>\n~~~\n\n<!-- x-release-please-end -->\n\n## Requirements\n\nThis library requires Java 8 or later.\n\n## Usage\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.characters.CharacterListPage\nimport dev.cjav.believe.models.characters.CharacterListParams\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nval client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\nval page: CharacterListPage = client.characters().list()\n```\n\n## Client configuration\n\nConfigure the client using system properties or environment variables:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nval client: BelieveClient = BelieveOkHttpClient.fromEnv()\n```\n\nOr manually:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .apiKey("My API Key")\n    .build()\n```\n\nOr using a combination of the two approaches:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    // Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n    // Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\n    .fromEnv()\n    .apiKey("My API Key")\n    .build()\n```\n\nSee this table for the available options:\n\n| Setter    | System property   | Environment variable | Required | Default value                |\n| --------- | ----------------- | -------------------- | -------- | ---------------------------- |\n| `apiKey`  | `believe.apiKey`  | `BELIEVE_API_KEY`    | true     | -                            |\n| `baseUrl` | `believe.baseUrl` | `BELIEVE_BASE_URL`   | true     | `"https://believe.cjav.dev"` |\n\nSystem properties take precedence over environment variables.\n\n> [!TIP]\n> Don\'t create more than one client in the same application. Each client has a connection pool and\n> thread pools, which are more efficient to share between requests.\n\n### Modifying configuration\n\nTo temporarily use a modified client configuration, while reusing the same connection and thread       pools, call `withOptions()` on any client or service:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\n\nval clientWithOptions: BelieveClient = client.withOptions {\n    it.baseUrl("https://example.com")\n    it.maxRetries(42)\n}\n```\n\nThe `withOptions()` method does not affect the original client or service.\n\n## Requests and responses\n\nTo send a request to the Believe API, build an instance of some `Params` class and pass it to the     corresponding client method. When the response is received, it will be deserialized into an instance of     a Kotlin class.\n\nFor example, `client.characters().list(...)` should be called with an instance of `CharacterListParams`, and it     will return an instance of `CharacterListPage`.\n\n## Immutability\n\nEach class in the SDK has an associated   [builder](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)   or factory method for constructing it.\n\nEach class is [immutable](https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html)   once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can   be used to convert it back to a builder for making a modified copy.\n\nBecause each class is immutable, builder modification will _never_ affect already built class instances.\n\n## Asynchronous execution\n\nThe default client is synchronous. To switch to asynchronous execution, call the `async()` method:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.characters.CharacterListPageAsync\nimport dev.cjav.believe.models.characters.CharacterListParams\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nval client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\nval page: CharacterListPageAsync = client.async().characters().list()\n```\n\nOr create an asynchronous client from the beginning:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClientAsync\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClientAsync\nimport dev.cjav.believe.models.characters.CharacterListPageAsync\nimport dev.cjav.believe.models.characters.CharacterListParams\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nval client: BelieveClientAsync = BelieveOkHttpClientAsync.fromEnv()\n\nval page: CharacterListPageAsync = client.characters().list()\n```\n\nThe asynchronous client supports the same options as the synchronous one, except most methods are [suspending](https://kotlinlang.org/docs/coroutines-guide.html).\n\n\n\n## File uploads\n\nThe SDK defines methods that accept files.\n\nTo upload a file, pass a [`Path`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html):\n\n```kotlin\nimport dev.cjav.believe.models.teams.logo.FileUpload\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams\nimport java.nio.file.Paths\n\nval params: LogoUploadParams = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file(Paths.get("/path/to/file"))\n    .build()\nval fileUpload: FileUpload = client.teams().logo().upload(params)\n```\n\nOr an arbitrary [`InputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html):\n\n```kotlin\nimport dev.cjav.believe.models.teams.logo.FileUpload\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams\nimport java.net.URL\n\nval params: LogoUploadParams = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file(URL("https://example.com//path/to/file").openStream())\n    .build()\nval fileUpload: FileUpload = client.teams().logo().upload(params)\n```\n\nOr a `ByteArray`:\n\n```kotlin\nimport dev.cjav.believe.models.teams.logo.FileUpload\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams\n\nval params: LogoUploadParams = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file("content".toByteArray())\n    .build()\nval fileUpload: FileUpload = client.teams().logo().upload(params)\n```\n\nNote that when passing a non-`Path` its filename is unknown so it will not be included in the request.     To manually set a filename, pass a [`MultipartField`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/core/Values.kt):\n\n```kotlin\nimport dev.cjav.believe.core.MultipartField\nimport dev.cjav.believe.models.teams.logo.FileUpload\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams\nimport java.io.InputStream\nimport java.net.URL\n\nval params: LogoUploadParams = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file(MultipartField.builder<InputStream>()\n        .value(URL("https://example.com//path/to/file").openStream())\n        .filename("/path/to/file")\n        .build())\n    .build()\nval fileUpload: FileUpload = client.teams().logo().upload(params)\n```\n\n\n\n## Raw responses\n\nThe SDK defines methods that deserialize responses into instances of Kotlin classes.       However, these methods don\'t provide access to the response headers, status code, or the raw response       body.\n\nTo access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:\n\n```kotlin\nimport dev.cjav.believe.core.http.Headers\nimport dev.cjav.believe.core.http.HttpResponseFor\nimport dev.cjav.believe.models.characters.CharacterListPage\nimport dev.cjav.believe.models.characters.CharacterListParams\n\nval page: HttpResponseFor<CharacterListPage> = client.characters().withRawResponse().list()\n\nval statusCode: Int = page.statusCode()\nval headers: Headers = page.headers()\n```\n\nYou can still deserialize the response into an instance of a Kotlin class if needed:\n\n```kotlin\nimport dev.cjav.believe.models.characters.CharacterListPage\n\nval parsedPage: CharacterListPage = page.parse()\n```\n\n## Error handling\n\nThe SDK throws custom unchecked exception types:\n\n- [`BelieveServiceException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BelieveServiceException.kt): Base class for HTTP errors. See this table for which exception       subclass is thrown for each HTTP status code:\n\n  | Status | Exception                                          |\n  | ------ | -------------------------------------------------- |\n  | 400    | [`BadRequestException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BadRequestException.kt)           |\n  | 401    | [`UnauthorizedException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/UnauthorizedException.kt)         |\n  | 403    | [`PermissionDeniedException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/PermissionDeniedException.kt)     |\n  | 404    | [`NotFoundException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/NotFoundException.kt)             |\n  | 422    | [`UnprocessableEntityException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/UnprocessableEntityException.kt)  |\n  | 429    | [`RateLimitException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/RateLimitException.kt)            |\n  | 5xx    | [`InternalServerException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/InternalServerException.kt)       |\n  | others | [`UnexpectedStatusCodeException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/UnexpectedStatusCodeException.kt) |\n\n- [`BelieveIoException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BelieveIoException.kt): I/O networking errors.\n\n- [`BelieveRetryableException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BelieveRetryableException.kt): Generic error indicating a failure that could be retried by the client.\n\n- [`BelieveInvalidDataException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BelieveInvalidDataException.kt): Failure to interpret successfully parsed data. For example,       when accessing a property that\'s supposed to be required, but the API unexpectedly omitted it from the       response.\n\n- [`BelieveException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BelieveException.kt): Base class for all exceptions. Most errors will result in one of the       previously mentioned ones, but completely generic errors may be thrown using the base class.\n\n## Pagination\n\nThe SDK defines methods that return a paginated lists of results. It provides convenient ways to access     the results either one page at a time or item-by-item across all pages.\n\n### Auto-pagination\n\nTo iterate through all results across all pages, use the `autoPager()` method, which automatically     fetches more pages as needed.\n\nWhen using the synchronous client, the method returns a [`Sequence`](https://kotlinlang.org/docs/sequences.html)\n\n```kotlin\nimport dev.cjav.believe.models.characters.CharacterListPage\n\nval page: CharacterListPage = client.characters().list()\npage.autoPager()\n    .take(50)\n    .forEach { character -> println(character) }\n```\n\nWhen using the asynchronous client, the method returns a [`Flow`](https://kotlinlang.org/docs/flow.html):\n\n```kotlin\nimport dev.cjav.believe.models.characters.CharacterListPageAsync\n\nval page: CharacterListPageAsync = client.async().characters().list()\npage.autoPager()\n    .take(50)\n    .forEach { character -> println(character) }\n```\n\n### Manual pagination\n\nTo access individual page items and manually request the next page, use the `items()`,\n`hasNextPage()`, and `nextPage()` methods:\n\n```kotlin\nimport dev.cjav.believe.models.characters.Character\nimport dev.cjav.believe.models.characters.CharacterListPage\n\nval page: CharacterListPage = client.characters().list()\nwhile (true) {\n    for (character in page.items()) {\n        println(character)\n    }\n\n    if (!page.hasNextPage()) {\n        break\n    }\n\n    page = page.nextPage()\n}\n```\n\n## Logging\n\nEnable logging by setting the `BELIEVE_LOG` environment variable to   `info`:\n\n```sh\nexport BELIEVE_LOG=info\n```\n\nOr to `debug` for more verbose logging:\n\n```sh\nexport BELIEVE_LOG=debug\n```\n\nOr configure the client manually using the `logLevel` method:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.core.LogLevel\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .logLevel(LogLevel.INFO)\n    .build()\n```\n\n## ProGuard and R8\n\nAlthough the SDK uses reflection, it is still usable with     [ProGuard](https://github.com/Guardsquare/proguard) and     [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because     `believe-kotlin-core` is published with a     [configuration file](believe-kotlin-core/src/main/resources/META-INF/proguard/believe-kotlin-core.pro) containing     [keep rules](https://www.guardsquare.com/manual/configuration/usage).\n\nProGuard and R8 should automatically detect and use the published rules, but you can also manually copy     the keep rules if necessary.\n\n\n\n\n\n## Jackson\n\nThe SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON     serialization/deserialization. It is compatible with version 2.13.4 or higher,     but depends on version 2.18.2 by default.\n\nThe SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the     default version was overridden in your Maven or Gradle config).\n\nIf the SDK threw an exception, but you\'re _certain_ the version is compatible, then disable the version     check using the `checkJacksonVersionCompatibility` on [`BelieveOkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClient.kt) or     [`BelieveOkHttpClientAsync`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClientAsync.kt).\n\n> [!CAUTION]\n> We make no guarantee that the SDK works correctly when the Jackson version check is disabled.\n\nAlso note that there are bugs in older Jackson versions that can affect the SDK. We don\'t work around all     Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to     upgrade Jackson for those instead.\n\n## Network options\n\n### Retries\n\nThe SDK automatically retries 2 times by default, with a short exponential backoff between requests.\n\nOnly the following error types are retried:\n- Connection errors (for example, due to a network connectivity problem)\n- 408 Request Timeout\n- 409 Conflict\n- 429 Rate Limit\n- 5xx Internal\n\nThe API may also explicitly instruct the SDK to retry or not retry a request.\n\nTo set a custom number of retries, configure the client using the `maxRetries` method:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .maxRetries(4)\n    .build()\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default.\n\nTo set a custom timeout, configure the method call using the `timeout` method:\n\n```kotlin\nimport dev.cjav.believe.models.characters.CharacterListPage\n\nval page: CharacterListPage = client.characters().list(RequestOptions.builder().timeout(Duration.ofSeconds(30)).build())\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport java.time.Duration\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .timeout(Duration.ofSeconds(30))\n    .build()\n```\n\n### Proxies\n\nTo route requests through a proxy, configure the client using the `proxy` method:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport java.net.InetSocketAddress\nimport java.net.Proxy\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .proxy(Proxy(\n      Proxy.Type.HTTP, InetSocketAddress(\n        "https://example.com", 8080\n      )\n    ))\n    .build()\n```\n\nIf the proxy responds with `407 Proxy Authentication Required`, supply credentials by also   configuring `proxyAuthenticator`:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.core.http.ProxyAuthenticator\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .proxy(...)\n    // Or a custom implementation of `ProxyAuthenticator`.\n    .proxyAuthenticator(ProxyAuthenticator.basic("username", "password"))\n    .build()\n```\n\n### Connection pooling\n\nTo customize the underlying OkHttp connection pool, configure the client using the   `maxIdleConnections` and `keepAliveDuration` methods:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport java.time.Duration\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.\n    .maxIdleConnections(10)\n    .keepAliveDuration(Duration.ofMinutes(2))\n    .build()\n```\n\nIf both options are unset, OkHttp\'s default connection pool settings are used.\n\n### HTTPS\n\n> [!NOTE]\n> Most applications should not call these methods, and instead use the system defaults. The defaults include\n> special optimizations that can be lost if the implementations are modified.\n\nTo configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`,   `trustManager`, and `hostnameVerifier` methods:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    // If `sslSocketFactory` is set, then `trustManager` must be set, and vice versa.\n    .sslSocketFactory(yourSSLSocketFactory)\n    .trustManager(yourTrustManager)\n    .hostnameVerifier(yourHostnameVerifier)\n    .build()\n```\n\n\n\n### Custom HTTP client\n\nThe SDK consists of three artifacts:\n- `believe-kotlin-core`\n  - Contains core SDK logic\n  - Does not depend on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`BelieveClient`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClient.kt), [`BelieveClientAsync`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsync.kt),             [`BelieveClientImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientImpl.kt), and [`BelieveClientAsyncImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsyncImpl.kt), all of which can             work with any HTTP client\n- `believe-kotlin-client-okhttp`\n  - Depends on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`BelieveOkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClient.kt) and [`BelieveOkHttpClientAsync`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClientAsync.kt), which             provide a way to construct [`BelieveClientImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientImpl.kt) and             [`BelieveClientAsyncImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsyncImpl.kt), respectively, using OkHttp\n- `believe-kotlin`\n  - Depends on and exposes the APIs of both `believe-kotlin-core` and `believe-kotlin-client-okhttp`\n  - Does not have its own logic\n\nThis structure allows replacing the SDK\'s default HTTP client without pulling in unnecessary dependencies.\n\n#### Customized [`OkHttpClient`](https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html)\n\n> [!TIP]\n> Try the available [network options](#network-options) before replacing the default client.\n\nTo use a customized `OkHttpClient`:\n\n1. Replace your [`believe-kotlin` dependency](#installation) with `believe-kotlin-core`\n2. Copy `believe-kotlin-client-okhttp`\'s [`OkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/OkHttpClient.kt) class into your code and        customize it\n3. Construct [`BelieveClientImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientImpl.kt) or [`BelieveClientAsyncImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsyncImpl.kt), similarly to        [`BelieveOkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClient.kt) or [`BelieveOkHttpClientAsync`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClientAsync.kt), using your        customized client\n\n### Completely custom HTTP client\n\nTo use a completely custom HTTP client:\n\n1. Replace your [`believe-kotlin` dependency](#installation) with `believe-kotlin-core`\n2. Write a class that implements the [`HttpClient`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/core/http/HttpClient.kt) interface\n3. Construct [`BelieveClientImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientImpl.kt) or [`BelieveClientAsyncImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsyncImpl.kt), similarly to        [`BelieveOkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClient.kt) or [`BelieveOkHttpClientAsync`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClientAsync.kt), using your new        client class\n\n## Undocumented API functionality\n\nThe SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.\n\n### Parameters\n\nTo set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or       `putAdditionalBodyProperty` methods on any `Params` class:\n\n```kotlin\nimport dev.cjav.believe.core.JsonValue\nimport dev.cjav.believe.models.characters.CharacterListParams\n\nval params: CharacterListParams = CharacterListParams.builder()\n    .putAdditionalHeader("Secret-Header", "42")\n    .putAdditionalQueryParam("secret_query_param", "42")\n    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))\n    .build()\n```\n\nThese can be accessed on the built object later using the `_additionalHeaders()`,       `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.\n\nTo set undocumented parameters on _nested_ headers, query params, or body classes, call the         `putAdditionalProperty` method on the nested class:\n\n```kotlin\nimport dev.cjav.believe.core.JsonValue\nimport dev.cjav.believe.models.characters.CharacterCreateParams\nimport dev.cjav.believe.models.characters.EmotionalStats\n\nval params: CharacterCreateParams = CharacterCreateParams.builder()\n    .emotionalStats(EmotionalStats.builder()\n        .putAdditionalProperty("secretProperty", JsonValue.from("42"))\n        .build())\n    .build()\n```\n\nThese properties can be accessed on the nested built object later using the         `_additionalProperties()` method.\n\nTo set a documented parameter or property to an undocumented or not yet supported _value_, pass a       [`JsonValue`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/core/Values.kt) object to its setter:\n\n```kotlin\nimport dev.cjav.believe.models.characters.CharacterListParams\n\nval params: CharacterListParams = CharacterListParams.builder().build()\n```\n\nThe most straightforward way to create a [`JsonValue`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/core/Values.kt) is using its       `from(...)` method:\n\n```kotlin\nimport dev.cjav.believe.core.JsonValue\n\n// Create primitive JSON values\nval nullValue: JsonValue = JsonValue.from(null)\nval booleanValue: JsonValue = JsonValue.from(true)\nval numberValue: JsonValue = JsonValue.from(42)\nval stringValue: JsonValue = JsonValue.from("Hello World!")\n\n// Create a JSON array value equivalent to `["Hello", "World"]`\nval arrayValue: JsonValue = JsonValue.from(listOf(\n  "Hello", "World"\n))\n\n// Create a JSON object value equivalent to `{ "a": 1, "b": 2 }`\nval objectValue: JsonValue = JsonValue.from(mapOf(\n  "a" to 1, "b" to 2\n))\n\n// Create an arbitrarily nested JSON equivalent to:\n// {\n//   "a": [1, 2],\n//   "b": [3, 4]\n// }\nval complexValue: JsonValue = JsonValue.from(mapOf(\n  "a" to listOf(\n    1, 2\n  ), "b" to listOf(\n    3, 4\n  )\n))\n```\n\nNormally a `Builder` class\'s `build` method will throw         [`IllegalStateException`](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)         if any required parameter or property is unset.\n\nTo forcibly omit a required parameter or property, pass [`JsonMissing`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/core/Values.kt):\n\n```kotlin\nimport dev.cjav.believe.core.JsonMissing\nimport dev.cjav.believe.models.characters.CharacterCreateParams\nimport dev.cjav.believe.models.characters.CharacterListParams\nimport dev.cjav.believe.models.characters.CharacterRole\nimport dev.cjav.believe.models.characters.EmotionalStats\n\nval params: CharacterListParams = CharacterCreateParams.builder()\n    .emotionalStats(EmotionalStats.builder()\n        .curiosity(40L)\n        .empathy(85L)\n        .optimism(45L)\n        .resilience(95L)\n        .vulnerability(60L)\n        .build())\n    .name("Roy Kent")\n    .personalityTraits(listOf(\n      "intense",\n      "loyal",\n      "secretly caring",\n      "profane",\n    ))\n    .role(CharacterRole.COACH)\n    .background(JsonMissing.of())\n    .build()\n```\n\n### Response properties\n\nTo access undocumented response properties, call the `_additionalProperties()` method:\n\n```kotlin\nimport dev.cjav.believe.core.JsonBoolean\nimport dev.cjav.believe.core.JsonNull\nimport dev.cjav.believe.core.JsonNumber\nimport dev.cjav.believe.core.JsonValue\n\nval additionalProperties: Map<String, JsonValue> = client.characters().create(params)._additionalProperties()\nval secretPropertyValue: JsonValue = additionalProperties.get("secretProperty")\n\nval result = when (secretPropertyValue) {\n    is JsonNull -> "It\'s null!"\n    is JsonBoolean -> "It\'s a boolean!"\n    is JsonNumber -> "It\'s a number!"\n    // Other types include `JsonMissing`, `JsonString`, `JsonArray`, and `JsonObject`\n    else -> "It\'s something else!"\n}\n```\n\nTo access a property\'s raw JSON value, which may be undocumented, call its `_` prefixed method:\n\n```kotlin\nimport dev.cjav.believe.core.JsonField\n\nval background: JsonField<String> = client.characters().create(params)._background()\n\nif (background.isMissing()) {\n  // The property is absent from the JSON response\n} else if (background.isNull()) {\n  // The property was set to literal null\n} else {\n  // Check if value was provided as a string\n  // Other methods include `asNumber()`, `asBoolean()`, etc.\n  val jsonString: String? = background.asString();\n\n  // Try to deserialize into a custom type\n  val myObject: MyClass = background.asUnknown()!!.convert(MyClass::class.java)\n}\n```\n\n### Response validation\n\nIn rare cases, the API may return a response that doesn\'t match the expected type. For example, the SDK     may expect a property to contain a `String`, but the API could return something else.\n\nBy default, the SDK will not throw an exception in this case. It will throw     [`BelieveInvalidDataException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BelieveInvalidDataException.kt) only if you directly access the property.\n\nValidating the response is _not_ forwards compatible with new types from the API for existing fields.\n\nIf you would still prefer to check that the response is completely well-typed upfront, then either call     `validate()`:\n\n```kotlin\nimport dev.cjav.believe.models.characters.Character\n\nval character: Character = client.characters().create(params).validate()\n```\n\nOr configure the method call to validate the response using the `responseValidation` method:\n\n```kotlin\nimport dev.cjav.believe.models.characters.CharacterListPage\n\nval page: CharacterListPage = client.characters().list(RequestOptions.builder().responseValidation(true).build())\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .responseValidation(true)\n    .build()\n```\n\n## FAQ\n\n### Why don\'t you use plain `enum` classes?\n\nKotlin `enum` classes are not trivially   [forwards compatible](https://www.stainless.com/blog/making-java-enums-forwards-compatible). Using them in   the SDK could cause runtime exceptions if the API is updated to respond with a new enum value.\n\n### Why do you represent fields using `JsonField<T>` instead of just plain `T`?\n\nUsing `JsonField<T>` enables a few features:\n\n- Allowing usage of [undocumented API functionality](#undocumented-api-functionality)\n- Lazily [validating the API response against the expected shape](#response-validation)\n- Representing absent vs explicitly null values\n\n### Why don\'t you use [`data` classes](https://kotlinlang.org/docs/data-classes.html)?\n\nIt is not [backwards compatible to add new fields to a data class](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api)   and we don\'t want to introduce a breaking change every time we add a field to a class.\n\n### Why don\'t you use checked exceptions?\n\nChecked exceptions are widely considered a mistake in the Java programming language. In fact, they were   omitted from Kotlin for this reason.\n\nChecked exceptions:\n\n- Are verbose to handle\n- Encourage error handling at the wrong level of abstraction, where nothing can be done about the error\n- Are tedious to propagate due to the [function coloring problem](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function)\n- Don\'t play well with lambdas (also due to the function coloring problem)\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/cjavdev/believe-kotlin/issues) with questions, bugs, or suggestions.\n',
+  },
+  {
+    language: 'csharp',
+    content:
+      '# Believe C# API Library\n\nThe Believe C# SDK provides convenient access to the Believe REST API from applications written in   C#.\n\n## Installation\n\nInstall the package from [NuGet](https://www.nuget.org/packages/Believe.Client):\n\n```bash\ndotnet add package Believe.Client\n```\n\n## Requirements\n\nThis library requires .NET Standard 2.0 or later.\n\n## Usage\n\nSee the [`examples`](examples) directory for complete and runnable examples.\n\n```csharp\nBelieveClient client = new();\n\nCharacterListParams parameters = new();\n\nvar page = await client.Characters.List(parameters);\n\nConsole.WriteLine(page);\n```',
   },
 ];
 
