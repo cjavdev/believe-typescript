@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.31.0](https://github.com/cjavdev/believe-typescript/compare/v0.30.1...v0.31.0) (2026-05-12)
+
+
+### Features
+
+* initial stlc build ([c5b4364](https://github.com/cjavdev/believe-typescript/commit/c5b4364dfc677a807c619a9c9a58dfb95845eb95))
+
+
+### Chores
+
+* regenerate from believe[#82](https://github.com/cjavdev/believe-typescript/issues/82) ([a53d244](https://github.com/cjavdev/believe-typescript/commit/a53d244ae7658eedadc8f3691af7096ba8124226))
+* regenerate from believe[#83](https://github.com/cjavdev/believe-typescript/issues/83) (Build from scratch 2) ([5067a5e](https://github.com/cjavdev/believe-typescript/commit/5067a5edfd433d74372584ef7ecdd725bab485ae))
+* regenerate SDKs from believe[#82](https://github.com/cjavdev/believe-typescript/issues/82) (building from custom code on saas again with refs pushed for go,ruby,csharp to see if that fixes custom code) ([db9a175](https://github.com/cjavdev/believe-typescript/commit/db9a175f781e9ecaabc4ca04987cfec6df260a48))
+* regenerate SDKs from believe[#83](https://github.com/cjavdev/believe-typescript/issues/83) (Build from scratch 2) ([2486b15](https://github.com/cjavdev/believe-typescript/commit/2486b1577a0453ce2a7cf9c92633ff817e4c9404))
+
 ## 0.25.1 (2026-04-23)
 
 Full Changelog: [v0.25.0...v0.25.1](https://github.com/cjavdev/believe-typescript/compare/v0.25.0...v0.25.1)
