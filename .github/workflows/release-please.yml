@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   release-please:
+    if: github.repository == 'cjavdev/believe-typescript'
     runs-on: ubuntu-latest
 
     steps:
