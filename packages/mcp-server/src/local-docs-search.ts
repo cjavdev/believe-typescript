@@ -96,6 +96,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'ClientGetWelcomeParams parameters = new();\n\nvar response = await client.GetWelcome(parameters);\n\nConsole.WriteLine(response);',
       },
+      typescript: {
+        method: 'client.getWelcome',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.getWelcome();\n\nconsole.log(response);",
+      },
       kotlin: {
         method: 'getWelcome',
         example:
@@ -161,6 +166,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Characters.List',
         example:
           'CharacterListParams parameters = new();\n\nvar page = await client.Characters.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      typescript: {
+        method: 'client.characters.list',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const character of client.characters.list()) {\n  console.log(character.id);\n}",
       },
       kotlin: {
         method: 'characters().list',
@@ -237,6 +247,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'CharacterCreateParams parameters = new()\n{\n    Background = "Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",\n    EmotionalStats = new()\n    {\n        Curiosity = 40,\n        Empathy = 85,\n        Optimism = 45,\n        Resilience = 95,\n        Vulnerability = 60,\n    },\n    Name = "Roy Kent",\n    PersonalityTraits =\n    [\n        "intense", "loyal", "secretly caring", "profane"\n    ],\n    Role = CharacterRole.Coach,\n};\n\nvar character = await client.Characters.Create(parameters);\n\nConsole.WriteLine(character);',
       },
+      typescript: {
+        method: 'client.characters.create',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst character = await client.characters.create({\n  background:\n    'Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.',\n  emotional_stats: {\n    curiosity: 40,\n    empathy: 85,\n    optimism: 45,\n    resilience: 95,\n    vulnerability: 60,\n  },\n  name: 'Roy Kent',\n  personality_traits: ['intense', 'loyal', 'secretly caring', 'profane'],\n  role: 'coach',\n});\n\nconsole.log(character.id);",
+      },
       kotlin: {
         method: 'characters().create',
         example:
@@ -296,6 +311,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Characters.Retrieve',
         example:
           'CharacterRetrieveParams parameters = new() { CharacterID = "character_id" };\n\nvar character = await client.Characters.Retrieve(parameters);\n\nConsole.WriteLine(character);',
+      },
+      typescript: {
+        method: 'client.characters.retrieve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst character = await client.characters.retrieve('character_id');\n\nconsole.log(character.id);",
       },
       kotlin: {
         method: 'characters().retrieve',
@@ -372,6 +392,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'CharacterUpdateParams parameters = new() { CharacterID = "character_id" };\n\nvar character = await client.Characters.Update(parameters);\n\nConsole.WriteLine(character);',
       },
+      typescript: {
+        method: 'client.characters.update',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst character = await client.characters.update('character_id');\n\nconsole.log(character.id);",
+      },
       kotlin: {
         method: 'characters().update',
         example:
@@ -429,6 +454,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Characters.Delete',
         example:
           'CharacterDeleteParams parameters = new() { CharacterID = "character_id" };\n\nawait client.Characters.Delete(parameters);',
+      },
+      typescript: {
+        method: 'client.characters.delete',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.characters.delete('character_id');",
       },
       kotlin: {
         method: 'characters().delete',
@@ -490,6 +520,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'CharacterGetQuotesParams parameters = new() { CharacterID = "character_id" };\n\nvar response = await client.Characters.GetQuotes(parameters);\n\nConsole.WriteLine(response);',
       },
+      typescript: {
+        method: 'client.characters.getQuotes',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.characters.getQuotes('character_id');\n\nconsole.log(response);",
+      },
       kotlin: {
         method: 'characters().getQuotes',
         example:
@@ -549,6 +584,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Teams.List',
         example:
           'TeamListParams parameters = new();\n\nvar page = await client.Teams.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      typescript: {
+        method: 'client.teams.list',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const team of client.teams.list()) {\n  console.log(team.id);\n}",
       },
       kotlin: {
         method: 'teams().list',
@@ -629,6 +669,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'TeamCreateParams parameters = new()\n{\n    CultureScore = 70,\n    FoundedYear = 1895,\n    League = League.PremierLeague,\n    Name = "West Ham United",\n    Stadium = "London Stadium",\n    Values = new()\n    {\n        PrimaryValue = "Pride",\n        SecondaryValues =\n        [\n            "History", "Community", "Passion"\n        ],\n        TeamMotto = "Forever Blowing Bubbles",\n    },\n};\n\nvar team = await client.Teams.Create(parameters);\n\nConsole.WriteLine(team);',
       },
+      typescript: {
+        method: 'client.teams.create',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst team = await client.teams.create({\n  culture_score: 70,\n  founded_year: 1895,\n  league: 'Premier League',\n  name: 'West Ham United',\n  stadium: 'London Stadium',\n  values: {\n    primary_value: 'Pride',\n    secondary_values: ['History', 'Community', 'Passion'],\n    team_motto: 'Forever Blowing Bubbles',\n  },\n});\n\nconsole.log(team.id);",
+      },
       kotlin: {
         method: 'teams().create',
         example:
@@ -688,6 +733,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Teams.Retrieve',
         example:
           'TeamRetrieveParams parameters = new() { TeamID = "team_id" };\n\nvar team = await client.Teams.Retrieve(parameters);\n\nConsole.WriteLine(team);',
+      },
+      typescript: {
+        method: 'client.teams.retrieve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst team = await client.teams.retrieve('team_id');\n\nconsole.log(team.id);",
       },
       kotlin: {
         method: 'teams().retrieve',
@@ -768,6 +818,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'TeamUpdateParams parameters = new() { TeamID = "team_id" };\n\nvar team = await client.Teams.Update(parameters);\n\nConsole.WriteLine(team);',
       },
+      typescript: {
+        method: 'client.teams.update',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst team = await client.teams.update('team_id');\n\nconsole.log(team.id);",
+      },
       kotlin: {
         method: 'teams().update',
         example:
@@ -825,6 +880,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Teams.Delete',
         example:
           'TeamDeleteParams parameters = new() { TeamID = "team_id" };\n\nawait client.Teams.Delete(parameters);',
+      },
+      typescript: {
+        method: 'client.teams.delete',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.teams.delete('team_id');",
       },
       kotlin: {
         method: 'teams().delete',
@@ -886,6 +946,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'TeamGetRivalsParams parameters = new() { TeamID = "team_id" };\n\nvar teams = await client.Teams.GetRivals(parameters);\n\nConsole.WriteLine(teams);',
       },
+      typescript: {
+        method: 'client.teams.getRivals',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst teams = await client.teams.getRivals('team_id');\n\nconsole.log(teams);",
+      },
       kotlin: {
         method: 'teams().getRivals',
         example:
@@ -944,6 +1009,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Teams.GetCulture',
         example:
           'TeamGetCultureParams parameters = new() { TeamID = "team_id" };\n\nvar response = await client.Teams.GetCulture(parameters);\n\nConsole.WriteLine(response);',
+      },
+      typescript: {
+        method: 'client.teams.getCulture',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.teams.getCulture('team_id');\n\nconsole.log(response);",
       },
       kotlin: {
         method: 'teams().getCulture',
@@ -1004,6 +1074,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Teams.ListLogos',
         example:
           'TeamListLogosParams parameters = new() { TeamID = "team_id" };\n\nvar fileUploads = await client.Teams.ListLogos(parameters);\n\nConsole.WriteLine(fileUploads);',
+      },
+      typescript: {
+        method: 'client.teams.listLogos',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst fileUploads = await client.teams.listLogos('team_id');\n\nconsole.log(fileUploads);",
       },
       kotlin: {
         method: 'teams().listLogos',
@@ -1066,6 +1141,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'LogoUploadParams parameters = new()\n{\n    TeamID = "team_id",\n    File = Encoding.UTF8.GetBytes("Example data"),\n};\n\nvar fileUpload = await client.Teams.Logo.Upload(parameters);\n\nConsole.WriteLine(fileUpload);',
       },
+      typescript: {
+        method: 'client.teams.logo.upload',
+        example:
+          "import fs from 'fs';\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst fileUpload = await client.teams.logo.upload('team_id', {\n  file: fs.createReadStream('path/to/file'),\n});\n\nconsole.log(fileUpload.file_id);",
+      },
       kotlin: {
         method: 'teams().logo().upload',
         example:
@@ -1126,6 +1206,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'LogoDownloadParams parameters = new()\n{\n    TeamID = "team_id",\n    FileID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n};\n\nvar response = await client.Teams.Logo.Download(parameters);\n\nConsole.WriteLine(response);',
       },
+      typescript: {
+        method: 'client.teams.logo.download',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.teams.logo.download('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  team_id: 'team_id',\n});\n\nconsole.log(response);",
+      },
       kotlin: {
         method: 'teams().logo().download',
         example:
@@ -1184,6 +1269,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Teams.Logo.Delete',
         example:
           'LogoDeleteParams parameters = new()\n{\n    TeamID = "team_id",\n    FileID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n};\n\nawait client.Teams.Logo.Delete(parameters);',
+      },
+      typescript: {
+        method: 'client.teams.logo.delete',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.teams.logo.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { team_id: 'team_id' });",
       },
       kotlin: {
         method: 'teams().logo().delete',
@@ -1250,6 +1340,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Matches.List',
         example:
           'MatchListParams parameters = new();\n\nvar page = await client.Matches.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      typescript: {
+        method: 'client.matches.list',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const match of client.matches.list()) {\n  console.log(match.id);\n}",
       },
       kotlin: {
         method: 'matches().list',
@@ -1328,6 +1423,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'MatchCreateParams parameters = new()\n{\n    AwayTeamID = "tottenham",\n    Date = DateTimeOffset.Parse("2024-02-20T19:45:00Z"),\n    HomeTeamID = "afc-richmond",\n    MatchType = MatchType.Cup,\n};\n\nvar match = await client.Matches.Create(parameters);\n\nConsole.WriteLine(match);',
       },
+      typescript: {
+        method: 'client.matches.create',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst match = await client.matches.create({\n  away_team_id: 'tottenham',\n  date: '2024-02-20T19:45:00Z',\n  home_team_id: 'afc-richmond',\n  match_type: 'cup',\n});\n\nconsole.log(match.id);",
+      },
       kotlin: {
         method: 'matches().create',
         example:
@@ -1387,6 +1487,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Matches.Retrieve',
         example:
           'MatchRetrieveParams parameters = new() { MatchID = "match_id" };\n\nvar match = await client.Matches.Retrieve(parameters);\n\nConsole.WriteLine(match);',
+      },
+      typescript: {
+        method: 'client.matches.retrieve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst match = await client.matches.retrieve('match_id');\n\nconsole.log(match.id);",
       },
       kotlin: {
         method: 'matches().retrieve',
@@ -1465,6 +1570,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'MatchUpdateParams parameters = new() { MatchID = "match_id" };\n\nvar match = await client.Matches.Update(parameters);\n\nConsole.WriteLine(match);',
       },
+      typescript: {
+        method: 'client.matches.update',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst match = await client.matches.update('match_id');\n\nconsole.log(match.id);",
+      },
       kotlin: {
         method: 'matches().update',
         example:
@@ -1522,6 +1632,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Matches.Delete',
         example:
           'MatchDeleteParams parameters = new() { MatchID = "match_id" };\n\nawait client.Matches.Delete(parameters);',
+      },
+      typescript: {
+        method: 'client.matches.delete',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.matches.delete('match_id');",
       },
       kotlin: {
         method: 'matches().delete',
@@ -1641,6 +1756,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'MatchGetLessonParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.GetLesson(parameters);\n\nConsole.WriteLine(response);',
       },
+      typescript: {
+        method: 'client.matches.getLesson',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.matches.getLesson('match_id');\n\nconsole.log(response);",
+      },
       kotlin: {
         method: 'matches().getLesson',
         example:
@@ -1698,6 +1818,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       csharp: {
         method: 'Matches.StreamLive',
         example: 'MatchStreamLiveParams parameters = new();\n\nawait client.Matches.StreamLive(parameters);',
+      },
+      typescript: {
+        method: 'client.matches.streamLive',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.matches.streamLive();",
       },
       kotlin: {
         method: 'matches().streamLive',
@@ -1759,6 +1884,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'CommentaryStreamParams parameters = new() { MatchID = "match_id" };\n\nvar response = await client.Matches.Commentary.Stream(parameters);\n\nConsole.WriteLine(response);',
       },
+      typescript: {
+        method: 'client.matches.commentary.stream',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.matches.commentary.stream('match_id');\n\nconsole.log(response);",
+      },
       kotlin: {
         method: 'matches().commentary().stream',
         example:
@@ -1818,6 +1948,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Episodes.List',
         example:
           'EpisodeListParams parameters = new();\n\nvar page = await client.Episodes.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      typescript: {
+        method: 'client.episodes.list',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const episode of client.episodes.list()) {\n  console.log(episode.id);\n}",
       },
       kotlin: {
         method: 'episodes().list',
@@ -1896,6 +2031,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'EpisodeCreateParams parameters = new()\n{\n    AirDate = "2020-10-02",\n    CharacterFocus =\n    [\n        "ted-lasso", "coach-beard", "higgins", "nate"\n    ],\n    Director = "MJ Delaney",\n    EpisodeNumber = 8,\n    MainTheme = "The power of vulnerability and male friendship",\n    RuntimeMinutes = 29,\n    Season = 1,\n    Synopsis = "Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.",\n    TedWisdom = "There\'s two buttons I never like to hit: that\'s panic and snooze.",\n    Title = "The Diamond Dogs",\n    Writer = "Jason Sudeikis, Brendan Hunt, Joe Kelly",\n};\n\nvar episode = await client.Episodes.Create(parameters);\n\nConsole.WriteLine(episode);',
       },
+      typescript: {
+        method: 'client.episodes.create',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst episode = await client.episodes.create({\n  air_date: '2020-10-02',\n  character_focus: ['ted-lasso', 'coach-beard', 'higgins', 'nate'],\n  director: 'MJ Delaney',\n  episode_number: 8,\n  main_theme: 'The power of vulnerability and male friendship',\n  runtime_minutes: 29,\n  season: 1,\n  synopsis:\n    'Ted creates a support group for the coaching staff while Rebecca faces a difficult decision about her future.',\n  ted_wisdom: \"There's two buttons I never like to hit: that's panic and snooze.\",\n  title: 'The Diamond Dogs',\n  writer: 'Jason Sudeikis, Brendan Hunt, Joe Kelly',\n});\n\nconsole.log(episode.id);",
+      },
       kotlin: {
         method: 'episodes().create',
         example:
@@ -1955,6 +2095,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Episodes.Retrieve',
         example:
           'EpisodeRetrieveParams parameters = new() { EpisodeID = "episode_id" };\n\nvar episode = await client.Episodes.Retrieve(parameters);\n\nConsole.WriteLine(episode);',
+      },
+      typescript: {
+        method: 'client.episodes.retrieve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst episode = await client.episodes.retrieve('episode_id');\n\nconsole.log(episode.id);",
       },
       kotlin: {
         method: 'episodes().retrieve',
@@ -2033,6 +2178,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'EpisodeUpdateParams parameters = new() { EpisodeID = "episode_id" };\n\nvar episode = await client.Episodes.Update(parameters);\n\nConsole.WriteLine(episode);',
       },
+      typescript: {
+        method: 'client.episodes.update',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst episode = await client.episodes.update('episode_id');\n\nconsole.log(episode.id);",
+      },
       kotlin: {
         method: 'episodes().update',
         example:
@@ -2090,6 +2240,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Episodes.Delete',
         example:
           'EpisodeDeleteParams parameters = new() { EpisodeID = "episode_id" };\n\nawait client.Episodes.Delete(parameters);',
+      },
+      typescript: {
+        method: 'client.episodes.delete',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.episodes.delete('episode_id');",
       },
       kotlin: {
         method: 'episodes().delete',
@@ -2149,6 +2304,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Episodes.GetWisdom',
         example:
           'EpisodeGetWisdomParams parameters = new() { EpisodeID = "episode_id" };\n\nvar response = await client.Episodes.GetWisdom(parameters);\n\nConsole.WriteLine(response);',
+      },
+      typescript: {
+        method: 'client.episodes.getWisdom',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.episodes.getWisdom('episode_id');\n\nconsole.log(response);",
       },
       kotlin: {
         method: 'episodes().getWisdom',
@@ -2217,6 +2377,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Quotes.List',
         example:
           'QuoteListParams parameters = new();\n\nvar page = await client.Quotes.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      typescript: {
+        method: 'client.quotes.list',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const quote of client.quotes.list()) {\n  console.log(quote.id);\n}",
       },
       kotlin: {
         method: 'quotes().list',
@@ -2291,6 +2456,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Quotes.Create',
         example:
           'QuoteCreateParams parameters = new()\n{\n    CharacterID = "ted-lasso",\n    Context = "Ted\'s first team meeting, revealing his coaching philosophy",\n    MomentType = QuoteMoment.LockerRoom,\n    Text = "I believe in believe.",\n    Theme = QuoteTheme.Belief,\n};\n\nvar quote = await client.Quotes.Create(parameters);\n\nConsole.WriteLine(quote);',
+      },
+      typescript: {
+        method: 'client.quotes.create',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst quote = await client.quotes.create({\n  character_id: 'ted-lasso',\n  context: \"Ted's first team meeting, revealing his coaching philosophy\",\n  moment_type: 'locker_room',\n  text: 'I believe in believe.',\n  theme: 'belief',\n});\n\nconsole.log(quote.id);",
       },
       kotlin: {
         method: 'quotes().create',
@@ -2412,6 +2582,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'QuoteRetrieveParams parameters = new() { QuoteID = "quote_id" };\n\nvar quote = await client.Quotes.Retrieve(parameters);\n\nConsole.WriteLine(quote);',
       },
+      typescript: {
+        method: 'client.quotes.retrieve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst quote = await client.quotes.retrieve('quote_id');\n\nconsole.log(quote.id);",
+      },
       kotlin: {
         method: 'quotes().retrieve',
         example:
@@ -2486,6 +2661,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'QuoteUpdateParams parameters = new() { QuoteID = "quote_id" };\n\nvar quote = await client.Quotes.Update(parameters);\n\nConsole.WriteLine(quote);',
       },
+      typescript: {
+        method: 'client.quotes.update',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst quote = await client.quotes.update('quote_id');\n\nconsole.log(quote.id);",
+      },
       kotlin: {
         method: 'quotes().update',
         example:
@@ -2543,6 +2723,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Quotes.Delete',
         example:
           'QuoteDeleteParams parameters = new() { QuoteID = "quote_id" };\n\nawait client.Quotes.Delete(parameters);',
+      },
+      typescript: {
+        method: 'client.quotes.delete',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.quotes.delete('quote_id');",
       },
       kotlin: {
         method: 'quotes().delete',
@@ -2603,6 +2788,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Quotes.ListByTheme',
         example:
           'QuoteListByThemeParams parameters = new() { Theme = QuoteTheme.Belief };\n\nvar page = await client.Quotes.ListByTheme(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      typescript: {
+        method: 'client.quotes.listByTheme',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const quote of client.quotes.listByTheme('belief')) {\n  console.log(quote.id);\n}",
       },
       kotlin: {
         method: 'quotes().listByTheme',
@@ -2665,6 +2855,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'QuoteListByCharacterParams parameters = new() { CharacterID = "character_id" };\n\nvar page = await client.Quotes.ListByCharacter(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
+      typescript: {
+        method: 'client.quotes.listByCharacter',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const quote of client.quotes.listByCharacter('character_id')) {\n  console.log(quote.id);\n}",
+      },
       kotlin: {
         method: 'quotes().listByCharacter',
         example:
@@ -2725,6 +2920,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Believe.Submit',
         example:
           'BelieveSubmitParams parameters = new()\n{\n    Situation = "I just got passed over for a promotion I\'ve been working toward for two years.",\n    SituationType = SituationType.WorkChallenge,\n};\n\nvar response = await client.Believe.Submit(parameters);\n\nConsole.WriteLine(response);',
+      },
+      typescript: {
+        method: 'client.believe.submit',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.believe.submit({\n  situation: \"I just got passed over for a promotion I've been working toward for two years.\",\n  situation_type: 'work_challenge',\n});\n\nconsole.log(response.action_suggestion);",
       },
       kotlin: {
         method: 'believe().submit',
@@ -2792,6 +2992,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'ConflictResolveParams parameters = new()\n{\n    ConflictType = ConflictType.Interpersonal,\n    Description = "Alex keeps taking credit for my ideas in meetings and I\'m getting resentful.",\n    PartiesInvolved =\n    [\n        "Me", "My teammate Alex"\n    ],\n};\n\nvar response = await client.Conflicts.Resolve(parameters);\n\nConsole.WriteLine(response);',
       },
+      typescript: {
+        method: 'client.conflicts.resolve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.conflicts.resolve({\n  conflict_type: 'interpersonal',\n  description: \"Alex keeps taking credit for my ideas in meetings and I'm getting resentful.\",\n  parties_involved: ['Me', 'My teammate Alex'],\n});\n\nconsole.log(response.barbecue_sauce_wisdom);",
+      },
       kotlin: {
         method: 'conflicts().resolve',
         example:
@@ -2852,6 +3057,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Reframe.TransformNegativeThoughts',
         example:
           'ReframeTransformNegativeThoughtsParams parameters = new()\n{\n    NegativeThought = "I\'m not good enough for this job."\n};\n\nvar response = await client.Reframe.TransformNegativeThoughts(parameters);\n\nConsole.WriteLine(response);',
+      },
+      typescript: {
+        method: 'client.reframe.transformNegativeThoughts',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reframe.transformNegativeThoughts({\n  negative_thought: \"I'm not good enough for this job.\",\n});\n\nconsole.log(response.daily_affirmation);",
       },
       kotlin: {
         method: 'reframe().transformNegativeThoughts',
@@ -2914,6 +3124,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'PressSimulateParams parameters = new()\n{\n    Question = "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",\n};\n\nvar response = await client.Press.Simulate(parameters);\n\nConsole.WriteLine(response);',
       },
+      typescript: {
+        method: 'client.press.simulate',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.press.simulate({\n  question: 'Ted, your team just lost 5-0. How do you explain this embarrassing defeat?',\n});\n\nconsole.log(response.actual_wisdom);",
+      },
       kotlin: {
         method: 'press().simulate',
         example:
@@ -2973,6 +3188,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Coaching.Principles.List',
         example:
           'PrincipleListParams parameters = new();\n\nvar page = await client.Coaching.Principles.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      typescript: {
+        method: 'client.coaching.principles.list',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const coachingPrinciple of client.coaching.principles.list()) {\n  console.log(coachingPrinciple.id);\n}",
       },
       kotlin: {
         method: 'coaching().principles().list',
@@ -3034,6 +3254,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Coaching.Principles.Retrieve',
         example:
           'PrincipleRetrieveParams parameters = new() { PrincipleID = "principle_id" };\n\nvar coachingPrinciple = await client.Coaching.Principles.Retrieve(parameters);\n\nConsole.WriteLine(coachingPrinciple);',
+      },
+      typescript: {
+        method: 'client.coaching.principles.retrieve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst coachingPrinciple = await client.coaching.principles.retrieve('principle_id');\n\nconsole.log(coachingPrinciple.id);",
       },
       kotlin: {
         method: 'coaching().principles().retrieve',
@@ -3155,6 +3380,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'BiscuitListParams parameters = new();\n\nvar page = await client.Biscuits.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
+      typescript: {
+        method: 'client.biscuits.list',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const biscuit of client.biscuits.list()) {\n  console.log(biscuit.id);\n}",
+      },
       kotlin: {
         method: 'biscuits().list',
         example:
@@ -3213,6 +3443,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Biscuits.GetFresh',
         example:
           'BiscuitGetFreshParams parameters = new();\n\nvar biscuit = await client.Biscuits.GetFresh(parameters);\n\nConsole.WriteLine(biscuit);',
+      },
+      typescript: {
+        method: 'client.biscuits.getFresh',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst biscuit = await client.biscuits.getFresh();\n\nconsole.log(biscuit.id);",
       },
       kotlin: {
         method: 'biscuits().getFresh',
@@ -3273,6 +3508,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Biscuits.Retrieve',
         example:
           'BiscuitRetrieveParams parameters = new() { BiscuitID = "biscuit_id" };\n\nvar biscuit = await client.Biscuits.Retrieve(parameters);\n\nConsole.WriteLine(biscuit);',
+      },
+      typescript: {
+        method: 'client.biscuits.retrieve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst biscuit = await client.biscuits.retrieve('biscuit_id');\n\nconsole.log(biscuit.id);",
       },
       kotlin: {
         method: 'biscuits().retrieve',
@@ -3335,6 +3575,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'PepTalkRetrieveParams parameters = new();\n\nvar pepTalk = await client.PepTalk.Retrieve(parameters);\n\nConsole.WriteLine(pepTalk);',
       },
+      typescript: {
+        method: 'client.pepTalk.retrieve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst pepTalk = await client.pepTalk.retrieve();\n\nconsole.log(pepTalk.chunks);",
+      },
       kotlin: {
         method: 'pepTalk().retrieve',
         example:
@@ -3392,6 +3637,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Stream.TestConnection',
         example:
           'StreamTestConnectionParams parameters = new();\n\nvar response = await client.Stream.TestConnection(parameters);\n\nConsole.WriteLine(response);',
+      },
+      typescript: {
+        method: 'client.stream.testConnection',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.stream.testConnection();\n\nconsole.log(response);",
       },
       kotlin: {
         method: 'stream().testConnection',
@@ -3459,6 +3709,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'TeamMemberListParams parameters = new();\n\nvar page = await client.TeamMembers.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
+      typescript: {
+        method: 'client.teamMembers.list',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const teamMemberListResponse of client.teamMembers.list()) {\n  console.log(teamMemberListResponse);\n}",
+      },
       kotlin: {
         method: 'teamMembers().list',
         example:
@@ -3523,6 +3778,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'TeamMemberCreateParams parameters = new()\n{\n    Member = new Player()\n    {\n        CharacterID = "jamie-tartt",\n        JerseyNumber = 9,\n        Position = Position.Forward,\n        TeamID = "afc-richmond",\n        YearsWithTeam = 3,\n        Assists = 23,\n        GoalsScored = 47,\n        IsCaptain = false,\n        MemberType = MemberType.Player,\n    },\n};\n\nvar teamMember = await client.TeamMembers.Create(parameters);\n\nConsole.WriteLine(teamMember);',
       },
+      typescript: {
+        method: 'client.teamMembers.create',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst teamMember = await client.teamMembers.create({\n  member: {\n    character_id: 'jamie-tartt',\n    jersey_number: 9,\n    position: 'forward',\n    team_id: 'afc-richmond',\n    years_with_team: 3,\n    member_type: 'player',\n  },\n});\n\nconsole.log(teamMember);",
+      },
       kotlin: {
         method: 'teamMembers().create',
         example:
@@ -3583,6 +3843,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'TeamMembers.Retrieve',
         example:
           'TeamMemberRetrieveParams parameters = new() { MemberID = "member_id" };\n\nvar teamMember = await client.TeamMembers.Retrieve(parameters);\n\nConsole.WriteLine(teamMember);',
+      },
+      typescript: {
+        method: 'client.teamMembers.retrieve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst teamMember = await client.teamMembers.retrieve('member_id');\n\nconsole.log(teamMember);",
       },
       kotlin: {
         method: 'teamMembers().retrieve',
@@ -3648,6 +3913,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'TeamMemberUpdateParams parameters = new()\n{\n    MemberID = "member_id",\n    Updates = new PlayerUpdate()\n    {\n        Assists = 0,\n        GoalsScored = 0,\n        IsCaptain = true,\n        JerseyNumber = 1,\n        Position = Position.Goalkeeper,\n        TeamID = "team_id",\n        YearsWithTeam = 0,\n    },\n};\n\nvar teamMember = await client.TeamMembers.Update(parameters);\n\nConsole.WriteLine(teamMember);',
       },
+      typescript: {
+        method: 'client.teamMembers.update',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst teamMember = await client.teamMembers.update('member_id', { updates: {} });\n\nconsole.log(teamMember);",
+      },
       kotlin: {
         method: 'teamMembers().update',
         example:
@@ -3705,6 +3975,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'TeamMembers.Delete',
         example:
           'TeamMemberDeleteParams parameters = new() { MemberID = "member_id" };\n\nawait client.TeamMembers.Delete(parameters);',
+      },
+      typescript: {
+        method: 'client.teamMembers.delete',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.teamMembers.delete('member_id');",
       },
       kotlin: {
         method: 'teamMembers().delete',
@@ -3770,6 +4045,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'TeamMembers.ListPlayers',
         example:
           'TeamMemberListPlayersParams parameters = new();\n\nvar page = await client.TeamMembers.ListPlayers(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+      typescript: {
+        method: 'client.teamMembers.listPlayers',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const player of client.teamMembers.listPlayers()) {\n  console.log(player.id);\n}",
       },
       kotlin: {
         method: 'teamMembers().listPlayers',
@@ -3897,6 +4177,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'TeamMemberListStaffParams parameters = new();\n\nvar page = await client.TeamMembers.ListStaff(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
+      typescript: {
+        method: 'client.teamMembers.listStaff',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const teamMemberListStaffResponse of client.teamMembers.listStaff()) {\n  console.log(teamMemberListStaffResponse);\n}",
+      },
       kotlin: {
         method: 'teamMembers().listStaff',
         example:
@@ -3955,6 +4240,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Webhooks.List',
         example:
           'WebhookListParams parameters = new();\n\nvar registeredWebhooks = await client.Webhooks.List(parameters);\n\nConsole.WriteLine(registeredWebhooks);',
+      },
+      typescript: {
+        method: 'client.webhooks.list',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst registeredWebhooks = await client.webhooks.list();\n\nconsole.log(registeredWebhooks);",
       },
       kotlin: {
         method: 'webhooks().list',
@@ -4022,6 +4312,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'WebhookCreateParams parameters = new() { Url = "https://example.com/webhooks" };\n\nvar webhook = await client.Webhooks.Create(parameters);\n\nConsole.WriteLine(webhook);',
       },
+      typescript: {
+        method: 'client.webhooks.create',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst webhook = await client.webhooks.create({ url: 'https://example.com/webhooks' });\n\nconsole.log(webhook.webhook);",
+      },
       kotlin: {
         method: 'webhooks().create',
         example:
@@ -4082,6 +4377,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'WebhookRetrieveParams parameters = new() { WebhookID = "webhook_id" };\n\nvar registeredWebhook = await client.Webhooks.Retrieve(parameters);\n\nConsole.WriteLine(registeredWebhook);',
       },
+      typescript: {
+        method: 'client.webhooks.retrieve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst registeredWebhook = await client.webhooks.retrieve('webhook_id');\n\nconsole.log(registeredWebhook.id);",
+      },
       kotlin: {
         method: 'webhooks().retrieve',
         example:
@@ -4140,6 +4440,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Webhooks.Delete',
         example:
           'WebhookDeleteParams parameters = new() { WebhookID = "webhook_id" };\n\nvar webhook = await client.Webhooks.Delete(parameters);\n\nConsole.WriteLine(webhook);',
+      },
+      typescript: {
+        method: 'client.webhooks.delete',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst webhook = await client.webhooks.delete('webhook_id');\n\nconsole.log(webhook);",
       },
       kotlin: {
         method: 'webhooks().delete',
@@ -4205,6 +4510,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Webhooks.TriggerEvent',
         example:
           'WebhookTriggerEventParams parameters = new()\n{\n    EventType = EventType.MatchCompleted\n};\n\nvar response = await client.Webhooks.TriggerEvent(parameters);\n\nConsole.WriteLine(response);',
+      },
+      typescript: {
+        method: 'client.webhooks.triggerEvent',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.webhooks.triggerEvent({ event_type: 'match.completed' });\n\nconsole.log(response.event_id);",
       },
       kotlin: {
         method: 'webhooks().triggerEvent',
@@ -4316,6 +4626,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'TicketSaleListParams parameters = new();\n\nvar page = await client.TicketSales.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
+      typescript: {
+        method: 'client.ticketSales.list',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const ticketSale of client.ticketSales.list()) {\n  console.log(ticketSale.id);\n}",
+      },
       kotlin: {
         method: 'ticketSales().list',
         example:
@@ -4390,6 +4705,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'TicketSaleCreateParams parameters = new()\n{\n    BuyerName = "Mae Green",\n    Currency = "GBP",\n    Discount = "9.00",\n    MatchID = "match-001",\n    PurchaseMethod = PurchaseMethod.Online,\n    Quantity = 2,\n    Subtotal = "90.00",\n    Tax = "16.20",\n    Total = "97.20",\n    UnitPrice = "45.00",\n};\n\nvar ticketSale = await client.TicketSales.Create(parameters);\n\nConsole.WriteLine(ticketSale);',
       },
+      typescript: {
+        method: 'client.ticketSales.create',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst ticketSale = await client.ticketSales.create({\n  buyer_name: 'Mae Green',\n  currency: 'GBP',\n  discount: '9.00',\n  match_id: 'match-001',\n  purchase_method: 'online',\n  quantity: 2,\n  subtotal: '90.00',\n  tax: '16.20',\n  total: '97.20',\n  unit_price: '45.00',\n});\n\nconsole.log(ticketSale.id);",
+      },
       kotlin: {
         method: 'ticketSales().create',
         example:
@@ -4448,6 +4768,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'TicketSales.Delete',
         example:
           'TicketSaleDeleteParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nawait client.TicketSales.Delete(parameters);',
+      },
+      typescript: {
+        method: 'client.ticketSales.delete',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.ticketSales.delete('ticket_sale_id');",
       },
       kotlin: {
         method: 'ticketSales().delete',
@@ -4509,6 +4834,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'TicketSales.Retrieve',
         example:
           'TicketSaleRetrieveParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nvar ticketSale = await client.TicketSales.Retrieve(parameters);\n\nConsole.WriteLine(ticketSale);',
+      },
+      typescript: {
+        method: 'client.ticketSales.retrieve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst ticketSale = await client.ticketSales.retrieve('ticket_sale_id');\n\nconsole.log(ticketSale.id);",
       },
       kotlin: {
         method: 'ticketSales().retrieve',
@@ -4585,6 +4915,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'TicketSaleUpdateParams parameters = new() { TicketSaleID = "ticket_sale_id" };\n\nvar ticketSale = await client.TicketSales.Update(parameters);\n\nConsole.WriteLine(ticketSale);',
       },
+      typescript: {
+        method: 'client.ticketSales.update',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst ticketSale = await client.ticketSales.update('ticket_sale_id');\n\nconsole.log(ticketSale.id);",
+      },
       kotlin: {
         method: 'ticketSales().update',
         example:
@@ -4642,6 +4977,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Health.Check',
         example:
           'HealthCheckParams parameters = new();\n\nvar response = await client.Health.Check(parameters);\n\nConsole.WriteLine(response);',
+      },
+      typescript: {
+        method: 'client.health.check',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.health.check();\n\nconsole.log(response);",
       },
       kotlin: {
         method: 'health().check',
@@ -4701,6 +5041,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'VersionRetrieveParams parameters = new();\n\nvar version = await client.Version.Retrieve(parameters);\n\nConsole.WriteLine(version);',
       },
+      typescript: {
+        method: 'client.version.retrieve',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst version = await client.version.retrieve();\n\nconsole.log(version);",
+      },
       kotlin: {
         method: 'version().retrieve',
         example:
@@ -4758,6 +5103,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'Client.Ws.Test',
         example: 'WTestParams parameters = new();\n\nawait client.Client.Ws.Test(parameters);',
       },
+      typescript: {
+        method: 'client.client.ws.test',
+        example:
+          "import Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.client.ws.test();",
+      },
       kotlin: {
         method: 'client().ws().test',
         example:
@@ -4809,14 +5159,14 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
       '# Believe C# API Library\n\nThe Believe C# SDK provides convenient access to the Believe REST API from applications written in   C#.\n\n## Installation\n\nInstall the package from [NuGet](https://www.nuget.org/packages/Believe.Client):\n\n```bash\ndotnet add package Believe.Client\n```\n\n## Requirements\n\nThis library requires .NET Standard 2.0 or later.\n\n## Usage\n\nSee the [`examples`](examples) directory for complete and runnable examples.\n\n```csharp\nBelieveClient client = new();\n\nCharacterListParams parameters = new();\n\nvar page = await client.Characters.List(parameters);\n\nConsole.WriteLine(page);\n```',
   },
   {
+    language: 'typescript',
+    content:
+      "# Believe TypeScript API Library\n\n[![NPM version](https://img.shields.io/npm/v/@cjavdev/believe.svg?label=npm%20(stable))](https://npmjs.org/package/@cjavdev/believe) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@cjavdev/believe)\n\nThis library provides convenient access to the Believe REST API from server-side TypeScript or JavaScript.\n\n\n\nThe full API of this library can be found in [api.md](api.md).\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## MCP Server\n\nUse the Believe MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40cjavdev%2Fbelieve-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBjamF2ZGV2L2JlbGlldmUtbWNwIl0sImVudiI6eyJCRUxJRVZFX0FQSV9LRVkiOiJNeSBBUEkgS2V5In19)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40cjavdev%2Fbelieve-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40cjavdev%2Fbelieve-mcp%22%5D%2C%22env%22%3A%7B%22BELIEVE_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n```sh\nnpm install @cjavdev/believe\n```\n\n\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n<!-- prettier-ignore -->\n```js\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst page = await client.characters.list();\nconst character = page.data[0];\n\nconsole.log(character.id);\n```\n\n\n\n### Request & Response types\n\nThis library includes TypeScript definitions for all request params and response fields. You may import and use them like so:\n\n<!-- prettier-ignore -->\n```ts\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  apiKey: process.env['BELIEVE_API_KEY'], // This is the default and can be omitted\n});\n\nconst [character]: [Believe.Character] = await client.characters.list();\n```\n\nDocumentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.\n\n## File uploads\n\nRequest parameters that correspond to file uploads can be passed in many different forms:\n- `File` (or an object with the same structure)\n- a `fetch` `Response` (or an object with the same structure)\n- an `fs.ReadStream`\n- the return value of our `toFile` helper\n\n```ts\nimport fs from 'fs';\nimport Believe, { toFile } from '@cjavdev/believe';\n\nconst client = new Believe();\n\n// If you have access to Node `fs` we recommend using `fs.createReadStream()`:\nawait client.teams.logo.upload('team_id', { file: fs.createReadStream('/path/to/file') });\n\n// Or if you have the web `File` API you can pass a `File` instance:\nawait client.teams.logo.upload('team_id', { file: new File(['my bytes'], 'file') });\n\n// You can also pass a `fetch` `Response`:\nawait client.teams.logo.upload('team_id', { file: await fetch('https://somesite/file') });\n\n// Finally, if none of the above are convenient, you can use our `toFile` helper:\nawait client.teams.logo.upload('team_id', { file: await toFile(Buffer.from('my bytes'), 'file') });\nawait client.teams.logo.upload('team_id', {\n  file: await toFile(new Uint8Array([0, 1, 2]), 'file'),\n});\n```\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API,\nor if the API returns a non-success status code (i.e., 4xx or 5xx response),\na subclass of `APIError` will be thrown:\n\n<!-- prettier-ignore -->\n```ts\nconst page = await client.characters.list().catch(async (err) => {\n  if (err instanceof Believe.APIError) {\n    console.log(err.status); // 400\n    console.log(err.name); // BadRequestError\n    console.log(err.headers); // {server: 'nginx', ...}\n  } else {\n    throw err;\n  }\n});\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors will all be retried by default.\n\nYou can use the `maxRetries` option to configure or disable this:\n\n<!-- prettier-ignore -->\n```js\n// Configure the default for all requests:\nconst client = new Believe({\n  maxRetries: 0, // default is 2\n});\n\n// Or, configure per-request:\nawait client.characters.list({\n  maxRetries: 5,\n});\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default. You can configure this with a `timeout` option:\n\n<!-- prettier-ignore -->\n```ts\n// Configure the default for all requests:\nconst client = new Believe({\n  timeout: 20 * 1000, // 20 seconds (default is 1 minute)\n});\n\n// Override per-request:\nawait client.characters.list({\n  timeout: 5 * 1000,\n});\n```\n\nOn timeout, an `APIConnectionTimeoutError` is thrown.\n\nNote that requests which time out will be [retried twice by default](#retries).\n\n## Auto-pagination\n\nList methods in the Believe API are paginated.\nYou can use the `for await … of` syntax to iterate through items across all pages:\n\n```ts\nasync function fetchAllCharacters(params) {\n  const allCharacters = [];\n  // Automatically fetches more pages as needed.\n  for await (const character of client.characters.list()) {\n    allCharacters.push(character);\n  }\n  return allCharacters;\n}\n```\n\nAlternatively, you can request a single page at a time:\n\n```ts\nlet page = await client.characters.list();\nfor (const character of page.data) {\n  console.log(character);\n}\n\n// Convenience methods are provided for manually paginating:\nwhile (page.hasNextPage()) {\n  page = await page.getNextPage();\n  // ...\n}\n```\n\n\n\n## Advanced Usage\n\n### Tree shaking\n\nThis library supports tree shaking to reduce bundle size. Instead of importing the full client, you can create a client only including the API resources you need:\n\n~~~ts\nimport { createClient } from '@cjavdev/believe/tree-shakable';\nimport { Characters } from '@cjavdev/believe/resources/characters';\nimport { BaseLogo } from '@cjavdev/believe/resources/teams/logo';\n\nconst client = createClient({\n  // Specify the resources you'd like to use ...\n  resources: [Characters, BaseLogo],\n});\n\n// ... then make API calls as usual.\nconst page = await client.characters.list();\nconst character = page.data[0]\nconst fileUpload = await client.teams.logo.upload('team_id', { file: fs.createReadStream('path/to/file') });\n~~~\n\nEach API resource has two versions, the full resource (e.g., `Characters`) which includes all subresources, and the base resource (e.g., `BaseCharacters`) which does not.\n\nThe tree-shaken client is fully typed, so TypeScript will provide accurate autocomplete and prevent access to resources not included in your configuration.\nThe `createClient` function automatically infers the correct type, but you can also use the `PartialBelieve` type explicitly:\n\n~~~ts\nimport Believe from '@cjavdev/believe';\nimport { createClient, type PartialBelieve } from '@cjavdev/believe/tree-shakable';\nimport { BaseCharacters } from '@cjavdev/believe/resources/characters';\n\n// Explicit variable type\nconst client: PartialBelieve<{ characters: BaseCharacters }> = createClient({\n  resources: [BaseCharacters],\n  /* ... */\n});\n\n// Function parameter type\nasync function main(client: PartialBelieve<{ characters: BaseCharacters }>) {\n  const page = await client.characters.list();\n  const character = page.data[0]\n}\n\n// Works with any client that has the characters resource\nconst treeShakableClient = createClient({\n  resources: [BaseCharacters],\n  /* ... */\n});\nconst fullClient = new Believe(/* ... */);\n\nmain(treeShakableClient); // Works\nmain(fullClient); // Also works\n~~~\n\n### Accessing raw Response data (e.g., headers)\n\nThe \"raw\" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.\nThis method returns as soon as the headers for a successful response are received and does not consume the response body, so you are free to write custom parsing or streaming logic.\n\nYou can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.\nUnlike `.asResponse()` this method consumes the body, returning once it is parsed.\n\n<!-- prettier-ignore -->\n```ts\nconst client = new Believe();\n\nconst response = await client.characters.list().asResponse();\nconsole.log(response.headers.get('X-My-Header'));\nconsole.log(response.statusText); // access the underlying Response object\n\nconst { data: page, response: raw } = await client.characters.list().withResponse();\nconsole.log(raw.headers.get('X-My-Header'));\nfor await (const character of page) {\n  console.log(character.id);\n}\n```\n\n### Logging\n\n> [!IMPORTANT]\n> All log messages are intended for debugging only. The format and content of log messages\n> may change between releases.\n\n#### Log levels\n\nThe log level can be configured in two ways:\n\n1. Via the `BELIEVE_LOG` environment variable\n2. Using the `logLevel` client option (overrides the environment variable if set)\n\n```ts\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  logLevel: 'debug', // Show all log messages\n});\n```\n\nAvailable log levels, from most to least verbose:\n\n- `'debug'` - Show debug messages, info, warnings, and errors\n- `'info'` - Show info messages, warnings, and errors\n- `'warn'` - Show warnings and errors (default)\n- `'error'` - Show only errors\n- `'off'` - Disable all logging\n\nAt the `'debug'` level, all HTTP requests and responses are logged, including headers and bodies.\nSome authentication-related headers are redacted, but sensitive data in request and response bodies\nmay still be visible.\n\n#### Custom logger\n\nBy default, this library logs to `globalThis.console`. You can also provide a custom logger.\nMost logging libraries are supported, including [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), and [@std/log](https://jsr.io/@std/log). If your logger doesn't work, please open an issue.\n\nWhen providing a custom logger, the `logLevel` option still controls which messages are emitted, messages\nbelow the configured level will not be sent to your logger.\n\n```ts\nimport Believe from '@cjavdev/believe';\nimport pino from 'pino';\n\nconst logger = pino();\n\nconst client = new Believe({\n  logger: logger.child({ name: 'Believe' }),\n  logLevel: 'debug', // Send all messages to pino, allowing it to filter\n});\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.\nOptions on the client, such as retries, will be respected when making these requests.\n\n```ts\nawait client.post('/some/path', {\n  body: { some_prop: 'foo' },\n  query: { some_query_arg: 'bar' },\n});\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented\nparameter. This library doesn't validate at runtime that the request matches the type, so any extra values you\nsend will be sent as-is.\n\n```ts\nclient.characters.list({\n  // ...\n  // @ts-expect-error baz is not yet public\n  baz: 'undocumented option',\n});\n```\n\nFor requests with the `GET` verb, any extra params will be in the query, all other requests will send the\nextra param in the body.\n\nIf you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may access the response object with `// @ts-expect-error` on\nthe response object, or cast the response object to the requisite type. Like the request params, we do not\nvalidate or strip extra properties from the response from the API.\n\n### Customizing the fetch client\n\nBy default, this library expects a global `fetch` function is defined.\n\nIf you want to use a different `fetch` function, you can either polyfill the global:\n\n```ts\nimport fetch from 'my-fetch';\n\nglobalThis.fetch = fetch;\n```\n\nOr pass it to the client:\n\n```ts\nimport Believe from '@cjavdev/believe';\nimport fetch from 'my-fetch';\n\nconst client = new Believe({ fetch });\n```\n\n### Fetch options\n\nIf you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)\n\n```ts\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  fetchOptions: {\n    // `RequestInit` options\n  },\n});\n```\n\n#### Configuring proxies\n\nTo modify proxy behavior, you can provide custom `fetchOptions` that add runtime-specific proxy\noptions to requests:\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg\" align=\"top\" width=\"18\" height=\"21\"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>\n\n```ts\nimport Believe from '@cjavdev/believe';\nimport * as undici from 'undici';\n\nconst proxyAgent = new undici.ProxyAgent('http://localhost:8888');\nconst client = new Believe({\n  fetchOptions: {\n    dispatcher: proxyAgent,\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg\" align=\"top\" width=\"18\" height=\"21\"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>\n\n```ts\nimport Believe from '@cjavdev/believe';\n\nconst client = new Believe({\n  fetchOptions: {\n    proxy: 'http://localhost:8888',\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg\" align=\"top\" width=\"18\" height=\"21\"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>\n\n```ts\nimport Believe from 'npm:@cjavdev/believe';\n\nconst httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });\nconst client = new Believe({\n  fetchOptions: {\n    client: httpClient,\n  },\n});\n```\n\n## Frequently Asked Questions\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/cjavdev/believe-typescript/issues) with questions, bugs, or suggestions.\n\n## Requirements\n\nTypeScript >= 4.9 is supported.\n\nThe following runtimes are supported:\n\n- Node.js 20 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.\n- Deno v1.28.0 or higher.\n- Bun 1.0 or later.\n- Cloudflare Workers.\n- Vercel Edge Runtime.\n- Jest 28 or greater with the `\"node\"` environment (`\"jsdom\"` is not supported at this time).\n- Nitro v2.6 or greater.\n- Web browsers: disabled by default to avoid exposing your secret API credentials. Enable browser support by explicitly setting `dangerouslyAllowBrowser` to true'.\n<details>\n  <summary>More explanation</summary>\n\n  ### Why is this dangerous?\n  Enabling the `dangerouslyAllowBrowser` option can be dangerous because it exposes your secret API credentials in the client-side code. Web browsers are inherently less secure than server environments,\n  any user with access to the browser can potentially inspect, extract, and misuse these credentials. This could lead to unauthorized access using your credentials and potentially compromise sensitive data or functionality.\n  ### When might this not be dangerous?\n  In certain scenarios where enabling browser support might not pose significant risks:\n  - Internal Tools: If the application is used solely within a controlled internal environment where the users are trusted, the risk of credential exposure can be mitigated.\n  - Public APIs with Limited Scope: If your API has very limited scope and the exposed credentials do not grant access to sensitive data or critical operations, the potential impact of exposure is reduced.\n  - Development or debugging purpose: Enabling this feature temporarily might be acceptable, provided the credentials are short-lived, aren't also used in production environments, or are frequently rotated.\n\n</details>\n\nNote that React Native is not supported at this time.\n\nIf you are interested in other runtime environments, please open or upvote an issue on GitHub.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n",
+  },
+  {
     language: 'kotlin',
     content:
       '# Believe Kotlin API Library\n\n<!-- x-release-please-start-version -->\n[![Maven Central](https://img.shields.io/maven-central/v/dev.cjav.believe/believe-kotlin)](https://central.sonatype.com/artifact/dev.cjav.believe/believe-kotlin/0.0.1)\n[![javadoc](https://javadoc.io/badge2/dev.cjav.believe/believe-kotlin/0.0.1/javadoc.svg)](https://javadoc.io/doc/dev.cjav.believe/believe-kotlin/0.0.1)\n<!-- x-release-please-end -->\n\nThe Believe Kotlin SDK provides convenient access to the Believe REST API   from applications written in Kotlin.\n\nThe Believe Kotlin SDK is similar to the Believe Java SDK but with minor differences that       make it more ergonomic for use in Kotlin, such as nullable values instead of `Optional`,       `Sequence` instead of `Stream`, and suspend functions instead of `CompletableFuture`.\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## MCP Server\n\nUse the Believe MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40cjavdev%2Fbelieve-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBjamF2ZGV2L2JlbGlldmUtbWNwIl0sImVudiI6eyJCRUxJRVZFX0FQSV9LRVkiOiJNeSBBUEkgS2V5In19)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40cjavdev%2Fbelieve-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40cjavdev%2Fbelieve-mcp%22%5D%2C%22env%22%3A%7B%22BELIEVE_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n<!-- x-release-please-start-version -->\n\nKDocs are available on [javadoc.io](https://javadoc.io/doc/dev.cjav.believe/believe-kotlin/0.0.1).\n\n<!-- x-release-please-end -->\n\n## Installation\n\n<!-- x-release-please-start-version -->\n\n### Gradle\n\n~~~kotlin\nimplementation("dev.cjav.believe:believe-kotlin:0.0.1")\n~~~\n\n### Maven\n\n~~~xml\n<dependency>\n  <groupId>dev.cjav.believe</groupId>\n  <artifactId>believe-kotlin</artifactId>\n  <version>0.0.1</version>\n</dependency>\n~~~\n\n<!-- x-release-please-end -->\n\n## Requirements\n\nThis library requires Java 8 or later.\n\n## Usage\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.characters.CharacterListPage\nimport dev.cjav.believe.models.characters.CharacterListParams\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nval client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\nval page: CharacterListPage = client.characters().list()\n```\n\n## Client configuration\n\nConfigure the client using system properties or environment variables:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nval client: BelieveClient = BelieveOkHttpClient.fromEnv()\n```\n\nOr manually:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .apiKey("My API Key")\n    .build()\n```\n\nOr using a combination of the two approaches:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    // Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n    // Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\n    .fromEnv()\n    .apiKey("My API Key")\n    .build()\n```\n\nSee this table for the available options:\n\n| Setter    | System property   | Environment variable | Required | Default value                |\n| --------- | ----------------- | -------------------- | -------- | ---------------------------- |\n| `apiKey`  | `believe.apiKey`  | `BELIEVE_API_KEY`    | true     | -                            |\n| `baseUrl` | `believe.baseUrl` | `BELIEVE_BASE_URL`   | true     | `"https://believe.cjav.dev"` |\n\nSystem properties take precedence over environment variables.\n\n> [!TIP]\n> Don\'t create more than one client in the same application. Each client has a connection pool and\n> thread pools, which are more efficient to share between requests.\n\n### Modifying configuration\n\nTo temporarily use a modified client configuration, while reusing the same connection and thread       pools, call `withOptions()` on any client or service:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\n\nval clientWithOptions: BelieveClient = client.withOptions {\n    it.baseUrl("https://example.com")\n    it.maxRetries(42)\n}\n```\n\nThe `withOptions()` method does not affect the original client or service.\n\n## Requests and responses\n\nTo send a request to the Believe API, build an instance of some `Params` class and pass it to the     corresponding client method. When the response is received, it will be deserialized into an instance of     a Kotlin class.\n\nFor example, `client.characters().list(...)` should be called with an instance of `CharacterListParams`, and it     will return an instance of `CharacterListPage`.\n\n## Immutability\n\nEach class in the SDK has an associated   [builder](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)   or factory method for constructing it.\n\nEach class is [immutable](https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html)   once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can   be used to convert it back to a builder for making a modified copy.\n\nBecause each class is immutable, builder modification will _never_ affect already built class instances.\n\n## Asynchronous execution\n\nThe default client is synchronous. To switch to asynchronous execution, call the `async()` method:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.models.characters.CharacterListPageAsync\nimport dev.cjav.believe.models.characters.CharacterListParams\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nval client: BelieveClient = BelieveOkHttpClient.fromEnv()\n\nval page: CharacterListPageAsync = client.async().characters().list()\n```\n\nOr create an asynchronous client from the beginning:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClientAsync\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClientAsync\nimport dev.cjav.believe.models.characters.CharacterListPageAsync\nimport dev.cjav.believe.models.characters.CharacterListParams\n\n// Configures using the `believe.apiKey` and `believe.baseUrl` system properties\n// Or configures using the `BELIEVE_API_KEY` and `BELIEVE_BASE_URL` environment variables\nval client: BelieveClientAsync = BelieveOkHttpClientAsync.fromEnv()\n\nval page: CharacterListPageAsync = client.characters().list()\n```\n\nThe asynchronous client supports the same options as the synchronous one, except most methods are [suspending](https://kotlinlang.org/docs/coroutines-guide.html).\n\n\n\n## File uploads\n\nThe SDK defines methods that accept files.\n\nTo upload a file, pass a [`Path`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html):\n\n```kotlin\nimport dev.cjav.believe.models.teams.logo.FileUpload\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams\nimport java.nio.file.Paths\n\nval params: LogoUploadParams = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file(Paths.get("/path/to/file"))\n    .build()\nval fileUpload: FileUpload = client.teams().logo().upload(params)\n```\n\nOr an arbitrary [`InputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html):\n\n```kotlin\nimport dev.cjav.believe.models.teams.logo.FileUpload\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams\nimport java.net.URL\n\nval params: LogoUploadParams = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file(URL("https://example.com//path/to/file").openStream())\n    .build()\nval fileUpload: FileUpload = client.teams().logo().upload(params)\n```\n\nOr a `ByteArray`:\n\n```kotlin\nimport dev.cjav.believe.models.teams.logo.FileUpload\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams\n\nval params: LogoUploadParams = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file("content".toByteArray())\n    .build()\nval fileUpload: FileUpload = client.teams().logo().upload(params)\n```\n\nNote that when passing a non-`Path` its filename is unknown so it will not be included in the request.     To manually set a filename, pass a [`MultipartField`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/core/Values.kt):\n\n```kotlin\nimport dev.cjav.believe.core.MultipartField\nimport dev.cjav.believe.models.teams.logo.FileUpload\nimport dev.cjav.believe.models.teams.logo.LogoUploadParams\nimport java.io.InputStream\nimport java.net.URL\n\nval params: LogoUploadParams = LogoUploadParams.builder()\n    .teamId("team_id")\n    .file(MultipartField.builder<InputStream>()\n        .value(URL("https://example.com//path/to/file").openStream())\n        .filename("/path/to/file")\n        .build())\n    .build()\nval fileUpload: FileUpload = client.teams().logo().upload(params)\n```\n\n\n\n## Raw responses\n\nThe SDK defines methods that deserialize responses into instances of Kotlin classes.       However, these methods don\'t provide access to the response headers, status code, or the raw response       body.\n\nTo access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:\n\n```kotlin\nimport dev.cjav.believe.core.http.Headers\nimport dev.cjav.believe.core.http.HttpResponseFor\nimport dev.cjav.believe.models.characters.CharacterListPage\nimport dev.cjav.believe.models.characters.CharacterListParams\n\nval page: HttpResponseFor<CharacterListPage> = client.characters().withRawResponse().list()\n\nval statusCode: Int = page.statusCode()\nval headers: Headers = page.headers()\n```\n\nYou can still deserialize the response into an instance of a Kotlin class if needed:\n\n```kotlin\nimport dev.cjav.believe.models.characters.CharacterListPage\n\nval parsedPage: CharacterListPage = page.parse()\n```\n\n## Error handling\n\nThe SDK throws custom unchecked exception types:\n\n- [`BelieveServiceException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BelieveServiceException.kt): Base class for HTTP errors. See this table for which exception       subclass is thrown for each HTTP status code:\n\n  | Status | Exception                                          |\n  | ------ | -------------------------------------------------- |\n  | 400    | [`BadRequestException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BadRequestException.kt)           |\n  | 401    | [`UnauthorizedException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/UnauthorizedException.kt)         |\n  | 403    | [`PermissionDeniedException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/PermissionDeniedException.kt)     |\n  | 404    | [`NotFoundException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/NotFoundException.kt)             |\n  | 422    | [`UnprocessableEntityException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/UnprocessableEntityException.kt)  |\n  | 429    | [`RateLimitException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/RateLimitException.kt)            |\n  | 5xx    | [`InternalServerException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/InternalServerException.kt)       |\n  | others | [`UnexpectedStatusCodeException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/UnexpectedStatusCodeException.kt) |\n\n- [`BelieveIoException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BelieveIoException.kt): I/O networking errors.\n\n- [`BelieveRetryableException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BelieveRetryableException.kt): Generic error indicating a failure that could be retried by the client.\n\n- [`BelieveInvalidDataException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BelieveInvalidDataException.kt): Failure to interpret successfully parsed data. For example,       when accessing a property that\'s supposed to be required, but the API unexpectedly omitted it from the       response.\n\n- [`BelieveException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BelieveException.kt): Base class for all exceptions. Most errors will result in one of the       previously mentioned ones, but completely generic errors may be thrown using the base class.\n\n## Pagination\n\nThe SDK defines methods that return a paginated lists of results. It provides convenient ways to access     the results either one page at a time or item-by-item across all pages.\n\n### Auto-pagination\n\nTo iterate through all results across all pages, use the `autoPager()` method, which automatically     fetches more pages as needed.\n\nWhen using the synchronous client, the method returns a [`Sequence`](https://kotlinlang.org/docs/sequences.html)\n\n```kotlin\nimport dev.cjav.believe.models.characters.CharacterListPage\n\nval page: CharacterListPage = client.characters().list()\npage.autoPager()\n    .take(50)\n    .forEach { character -> println(character) }\n```\n\nWhen using the asynchronous client, the method returns a [`Flow`](https://kotlinlang.org/docs/flow.html):\n\n```kotlin\nimport dev.cjav.believe.models.characters.CharacterListPageAsync\n\nval page: CharacterListPageAsync = client.async().characters().list()\npage.autoPager()\n    .take(50)\n    .forEach { character -> println(character) }\n```\n\n### Manual pagination\n\nTo access individual page items and manually request the next page, use the `items()`,\n`hasNextPage()`, and `nextPage()` methods:\n\n```kotlin\nimport dev.cjav.believe.models.characters.Character\nimport dev.cjav.believe.models.characters.CharacterListPage\n\nval page: CharacterListPage = client.characters().list()\nwhile (true) {\n    for (character in page.items()) {\n        println(character)\n    }\n\n    if (!page.hasNextPage()) {\n        break\n    }\n\n    page = page.nextPage()\n}\n```\n\n## Logging\n\nEnable logging by setting the `BELIEVE_LOG` environment variable to   `info`:\n\n```sh\nexport BELIEVE_LOG=info\n```\n\nOr to `debug` for more verbose logging:\n\n```sh\nexport BELIEVE_LOG=debug\n```\n\nOr configure the client manually using the `logLevel` method:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.core.LogLevel\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .logLevel(LogLevel.INFO)\n    .build()\n```\n\n## ProGuard and R8\n\nAlthough the SDK uses reflection, it is still usable with     [ProGuard](https://github.com/Guardsquare/proguard) and     [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because     `believe-kotlin-core` is published with a     [configuration file](believe-kotlin-core/src/main/resources/META-INF/proguard/believe-kotlin-core.pro) containing     [keep rules](https://www.guardsquare.com/manual/configuration/usage).\n\nProGuard and R8 should automatically detect and use the published rules, but you can also manually copy     the keep rules if necessary.\n\n\n\n\n\n## Jackson\n\nThe SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON     serialization/deserialization. It is compatible with version 2.13.4 or higher,     but depends on version 2.18.2 by default.\n\nThe SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the     default version was overridden in your Maven or Gradle config).\n\nIf the SDK threw an exception, but you\'re _certain_ the version is compatible, then disable the version     check using the `checkJacksonVersionCompatibility` on [`BelieveOkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClient.kt) or     [`BelieveOkHttpClientAsync`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClientAsync.kt).\n\n> [!CAUTION]\n> We make no guarantee that the SDK works correctly when the Jackson version check is disabled.\n\nAlso note that there are bugs in older Jackson versions that can affect the SDK. We don\'t work around all     Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to     upgrade Jackson for those instead.\n\n## Network options\n\n### Retries\n\nThe SDK automatically retries 2 times by default, with a short exponential backoff between requests.\n\nOnly the following error types are retried:\n- Connection errors (for example, due to a network connectivity problem)\n- 408 Request Timeout\n- 409 Conflict\n- 429 Rate Limit\n- 5xx Internal\n\nThe API may also explicitly instruct the SDK to retry or not retry a request.\n\nTo set a custom number of retries, configure the client using the `maxRetries` method:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .maxRetries(4)\n    .build()\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default.\n\nTo set a custom timeout, configure the method call using the `timeout` method:\n\n```kotlin\nimport dev.cjav.believe.models.characters.CharacterListPage\n\nval page: CharacterListPage = client.characters().list(RequestOptions.builder().timeout(Duration.ofSeconds(30)).build())\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport java.time.Duration\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .timeout(Duration.ofSeconds(30))\n    .build()\n```\n\n### Proxies\n\nTo route requests through a proxy, configure the client using the `proxy` method:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport java.net.InetSocketAddress\nimport java.net.Proxy\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .proxy(Proxy(\n      Proxy.Type.HTTP, InetSocketAddress(\n        "https://example.com", 8080\n      )\n    ))\n    .build()\n```\n\nIf the proxy responds with `407 Proxy Authentication Required`, supply credentials by also   configuring `proxyAuthenticator`:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport dev.cjav.believe.core.http.ProxyAuthenticator\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .proxy(...)\n    // Or a custom implementation of `ProxyAuthenticator`.\n    .proxyAuthenticator(ProxyAuthenticator.basic("username", "password"))\n    .build()\n```\n\n### Connection pooling\n\nTo customize the underlying OkHttp connection pool, configure the client using the   `maxIdleConnections` and `keepAliveDuration` methods:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\nimport java.time.Duration\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.\n    .maxIdleConnections(10)\n    .keepAliveDuration(Duration.ofMinutes(2))\n    .build()\n```\n\nIf both options are unset, OkHttp\'s default connection pool settings are used.\n\n### HTTPS\n\n> [!NOTE]\n> Most applications should not call these methods, and instead use the system defaults. The defaults include\n> special optimizations that can be lost if the implementations are modified.\n\nTo configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`,   `trustManager`, and `hostnameVerifier` methods:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    // If `sslSocketFactory` is set, then `trustManager` must be set, and vice versa.\n    .sslSocketFactory(yourSSLSocketFactory)\n    .trustManager(yourTrustManager)\n    .hostnameVerifier(yourHostnameVerifier)\n    .build()\n```\n\n\n\n### Custom HTTP client\n\nThe SDK consists of three artifacts:\n- `believe-kotlin-core`\n  - Contains core SDK logic\n  - Does not depend on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`BelieveClient`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClient.kt), [`BelieveClientAsync`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsync.kt),             [`BelieveClientImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientImpl.kt), and [`BelieveClientAsyncImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsyncImpl.kt), all of which can             work with any HTTP client\n- `believe-kotlin-client-okhttp`\n  - Depends on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`BelieveOkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClient.kt) and [`BelieveOkHttpClientAsync`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClientAsync.kt), which             provide a way to construct [`BelieveClientImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientImpl.kt) and             [`BelieveClientAsyncImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsyncImpl.kt), respectively, using OkHttp\n- `believe-kotlin`\n  - Depends on and exposes the APIs of both `believe-kotlin-core` and `believe-kotlin-client-okhttp`\n  - Does not have its own logic\n\nThis structure allows replacing the SDK\'s default HTTP client without pulling in unnecessary dependencies.\n\n#### Customized [`OkHttpClient`](https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html)\n\n> [!TIP]\n> Try the available [network options](#network-options) before replacing the default client.\n\nTo use a customized `OkHttpClient`:\n\n1. Replace your [`believe-kotlin` dependency](#installation) with `believe-kotlin-core`\n2. Copy `believe-kotlin-client-okhttp`\'s [`OkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/OkHttpClient.kt) class into your code and        customize it\n3. Construct [`BelieveClientImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientImpl.kt) or [`BelieveClientAsyncImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsyncImpl.kt), similarly to        [`BelieveOkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClient.kt) or [`BelieveOkHttpClientAsync`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClientAsync.kt), using your        customized client\n\n### Completely custom HTTP client\n\nTo use a completely custom HTTP client:\n\n1. Replace your [`believe-kotlin` dependency](#installation) with `believe-kotlin-core`\n2. Write a class that implements the [`HttpClient`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/core/http/HttpClient.kt) interface\n3. Construct [`BelieveClientImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientImpl.kt) or [`BelieveClientAsyncImpl`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/client/BelieveClientAsyncImpl.kt), similarly to        [`BelieveOkHttpClient`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClient.kt) or [`BelieveOkHttpClientAsync`](believe-kotlin-client-okhttp/src/main/kotlin/dev/cjav/believe/client/okhttp/BelieveOkHttpClientAsync.kt), using your new        client class\n\n## Undocumented API functionality\n\nThe SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.\n\n### Parameters\n\nTo set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or       `putAdditionalBodyProperty` methods on any `Params` class:\n\n```kotlin\nimport dev.cjav.believe.core.JsonValue\nimport dev.cjav.believe.models.characters.CharacterListParams\n\nval params: CharacterListParams = CharacterListParams.builder()\n    .putAdditionalHeader("Secret-Header", "42")\n    .putAdditionalQueryParam("secret_query_param", "42")\n    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))\n    .build()\n```\n\nThese can be accessed on the built object later using the `_additionalHeaders()`,       `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.\n\nTo set undocumented parameters on _nested_ headers, query params, or body classes, call the         `putAdditionalProperty` method on the nested class:\n\n```kotlin\nimport dev.cjav.believe.core.JsonValue\nimport dev.cjav.believe.models.characters.CharacterCreateParams\nimport dev.cjav.believe.models.characters.EmotionalStats\n\nval params: CharacterCreateParams = CharacterCreateParams.builder()\n    .emotionalStats(EmotionalStats.builder()\n        .putAdditionalProperty("secretProperty", JsonValue.from("42"))\n        .build())\n    .build()\n```\n\nThese properties can be accessed on the nested built object later using the         `_additionalProperties()` method.\n\nTo set a documented parameter or property to an undocumented or not yet supported _value_, pass a       [`JsonValue`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/core/Values.kt) object to its setter:\n\n```kotlin\nimport dev.cjav.believe.models.characters.CharacterListParams\n\nval params: CharacterListParams = CharacterListParams.builder().build()\n```\n\nThe most straightforward way to create a [`JsonValue`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/core/Values.kt) is using its       `from(...)` method:\n\n```kotlin\nimport dev.cjav.believe.core.JsonValue\n\n// Create primitive JSON values\nval nullValue: JsonValue = JsonValue.from(null)\nval booleanValue: JsonValue = JsonValue.from(true)\nval numberValue: JsonValue = JsonValue.from(42)\nval stringValue: JsonValue = JsonValue.from("Hello World!")\n\n// Create a JSON array value equivalent to `["Hello", "World"]`\nval arrayValue: JsonValue = JsonValue.from(listOf(\n  "Hello", "World"\n))\n\n// Create a JSON object value equivalent to `{ "a": 1, "b": 2 }`\nval objectValue: JsonValue = JsonValue.from(mapOf(\n  "a" to 1, "b" to 2\n))\n\n// Create an arbitrarily nested JSON equivalent to:\n// {\n//   "a": [1, 2],\n//   "b": [3, 4]\n// }\nval complexValue: JsonValue = JsonValue.from(mapOf(\n  "a" to listOf(\n    1, 2\n  ), "b" to listOf(\n    3, 4\n  )\n))\n```\n\nNormally a `Builder` class\'s `build` method will throw         [`IllegalStateException`](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)         if any required parameter or property is unset.\n\nTo forcibly omit a required parameter or property, pass [`JsonMissing`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/core/Values.kt):\n\n```kotlin\nimport dev.cjav.believe.core.JsonMissing\nimport dev.cjav.believe.models.characters.CharacterCreateParams\nimport dev.cjav.believe.models.characters.CharacterListParams\nimport dev.cjav.believe.models.characters.CharacterRole\nimport dev.cjav.believe.models.characters.EmotionalStats\n\nval params: CharacterListParams = CharacterCreateParams.builder()\n    .emotionalStats(EmotionalStats.builder()\n        .curiosity(40L)\n        .empathy(85L)\n        .optimism(45L)\n        .resilience(95L)\n        .vulnerability(60L)\n        .build())\n    .name("Roy Kent")\n    .personalityTraits(listOf(\n      "intense",\n      "loyal",\n      "secretly caring",\n      "profane",\n    ))\n    .role(CharacterRole.COACH)\n    .background(JsonMissing.of())\n    .build()\n```\n\n### Response properties\n\nTo access undocumented response properties, call the `_additionalProperties()` method:\n\n```kotlin\nimport dev.cjav.believe.core.JsonBoolean\nimport dev.cjav.believe.core.JsonNull\nimport dev.cjav.believe.core.JsonNumber\nimport dev.cjav.believe.core.JsonValue\n\nval additionalProperties: Map<String, JsonValue> = client.characters().create(params)._additionalProperties()\nval secretPropertyValue: JsonValue = additionalProperties.get("secretProperty")\n\nval result = when (secretPropertyValue) {\n    is JsonNull -> "It\'s null!"\n    is JsonBoolean -> "It\'s a boolean!"\n    is JsonNumber -> "It\'s a number!"\n    // Other types include `JsonMissing`, `JsonString`, `JsonArray`, and `JsonObject`\n    else -> "It\'s something else!"\n}\n```\n\nTo access a property\'s raw JSON value, which may be undocumented, call its `_` prefixed method:\n\n```kotlin\nimport dev.cjav.believe.core.JsonField\n\nval background: JsonField<String> = client.characters().create(params)._background()\n\nif (background.isMissing()) {\n  // The property is absent from the JSON response\n} else if (background.isNull()) {\n  // The property was set to literal null\n} else {\n  // Check if value was provided as a string\n  // Other methods include `asNumber()`, `asBoolean()`, etc.\n  val jsonString: String? = background.asString();\n\n  // Try to deserialize into a custom type\n  val myObject: MyClass = background.asUnknown()!!.convert(MyClass::class.java)\n}\n```\n\n### Response validation\n\nIn rare cases, the API may return a response that doesn\'t match the expected type. For example, the SDK     may expect a property to contain a `String`, but the API could return something else.\n\nBy default, the SDK will not throw an exception in this case. It will throw     [`BelieveInvalidDataException`](believe-kotlin-core/src/main/kotlin/dev/cjav/believe/errors/BelieveInvalidDataException.kt) only if you directly access the property.\n\nValidating the response is _not_ forwards compatible with new types from the API for existing fields.\n\nIf you would still prefer to check that the response is completely well-typed upfront, then either call     `validate()`:\n\n```kotlin\nimport dev.cjav.believe.models.characters.Character\n\nval character: Character = client.characters().create(params).validate()\n```\n\nOr configure the method call to validate the response using the `responseValidation` method:\n\n```kotlin\nimport dev.cjav.believe.models.characters.CharacterListPage\n\nval page: CharacterListPage = client.characters().list(RequestOptions.builder().responseValidation(true).build())\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport dev.cjav.believe.client.BelieveClient\nimport dev.cjav.believe.client.okhttp.BelieveOkHttpClient\n\nval client: BelieveClient = BelieveOkHttpClient.builder()\n    .fromEnv()\n    .responseValidation(true)\n    .build()\n```\n\n## FAQ\n\n### Why don\'t you use plain `enum` classes?\n\nKotlin `enum` classes are not trivially   [forwards compatible](https://www.stainless.com/blog/making-java-enums-forwards-compatible). Using them in   the SDK could cause runtime exceptions if the API is updated to respond with a new enum value.\n\n### Why do you represent fields using `JsonField<T>` instead of just plain `T`?\n\nUsing `JsonField<T>` enables a few features:\n\n- Allowing usage of [undocumented API functionality](#undocumented-api-functionality)\n- Lazily [validating the API response against the expected shape](#response-validation)\n- Representing absent vs explicitly null values\n\n### Why don\'t you use [`data` classes](https://kotlinlang.org/docs/data-classes.html)?\n\nIt is not [backwards compatible to add new fields to a data class](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api)   and we don\'t want to introduce a breaking change every time we add a field to a class.\n\n### Why don\'t you use checked exceptions?\n\nChecked exceptions are widely considered a mistake in the Java programming language. In fact, they were   omitted from Kotlin for this reason.\n\nChecked exceptions:\n\n- Are verbose to handle\n- Encourage error handling at the wrong level of abstraction, where nothing can be done about the error\n- Are tedious to propagate due to the [function coloring problem](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function)\n- Don\'t play well with lambdas (also due to the function coloring problem)\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/cjavdev/believe-kotlin/issues) with questions, bugs, or suggestions.\n',
-  },
-  {
-    language: 'terraform',
-    content:
-      '# Believe Terraform Provider\n\nThe [Believe Terraform provider](https://registry.terraform.io/providers/cjavdev/believe/latest/docs) provides convenient access to\nthe Believe REST API from Terraform.\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## Requirements\n\nThis provider requires Terraform CLI 1.0 or later. You can [install it for your system](https://developer.hashicorp.com/terraform/install)\non Hashicorp\'s website.\n\n## Usage\n\nAdd the following to your `main.tf` file:\n\n<!-- x-release-please-start-version -->\n\n```hcl\n# Declare the provider and version\nterraform {\n  required_providers {\n    SDK_ProviderTypeName = {\n      source  = "cjavdev/believe"\n      version = "~> 0.4.2"\n    }\n  }\n}\n\n# Initialize the provider\nprovider "believe" {\n  api_key = "My API Key" # or set BELIEVE_API_KEY env variable\n}\n\n# Configure a resource\nresource "believe_character" "example_character" {\n\n}\n```\n\n<!-- x-release-please-end -->\n\nInitialize your project by running `terraform init` in the directory.\n\nAdditional examples can be found in the [./examples](./examples) folder within this repository, and you can\nrefer to the full documentation on [the Terraform Registry](https://registry.terraform.io/providers/cjavdev/believe/latest/docs).\n\n### Provider Options\nWhen you initialize the provider, the following options are supported. It is recommended to use environment variables for sensitive values like access tokens.\nIf an environment variable is provided, then the option does not need to be set in the terraform source.\n\n| Property | Environment variable | Required | Default value |\n| -------- | -------------------- | -------- | ------------- |\n| api_key  | `BELIEVE_API_KEY`    | true     | —             |\n\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/cjavdev/terraform-provider-believe/issues) with questions, bugs, or suggestions.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
   },
   {
     language: 'typescript',
