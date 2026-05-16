@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.31.1](https://github.com/cjavdev/believe-typescript/compare/v0.31.0...v0.31.1) (2026-05-14)
+
+
+### Chores
+
+* regenerate from believe[#86](https://github.com/cjavdev/believe-typescript/issues/86) (try this) ([d48dfdc](https://github.com/cjavdev/believe-typescript/commit/d48dfdc21c1b800d2f4bd0502aa4bddad8b7ca74))
+* regenerate SDKs from believe[#86](https://github.com/cjavdev/believe-typescript/issues/86) (try this) ([5527551](https://github.com/cjavdev/believe-typescript/commit/55275513df76f93496fedac2577481d956a69219))
+
 ## [0.31.0](https://github.com/cjavdev/believe-typescript/compare/v0.30.1...v0.31.0) (2026-05-12)
 
 
